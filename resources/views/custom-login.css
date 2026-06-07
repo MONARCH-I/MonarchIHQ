@@ -1,0 +1,79 @@
+:root {
+  --cu-red: #a31d22;
+  --cu-red-dark: #8b181c;
+  --cu-light-bg: #f8f6f6;
+}
+
+body {
+  background-color: var(--cu-light-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a31d22' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+.top-bar {
+  background-color: var(--cu-red);
+}
+
+.login-card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  overflow: hidden;
+}
+/* Modern Input Styling */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-input-modern {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+}
+
+.form-input-modern:focus {
+  border-color: var(--cu-red);
+  box-shadow: 0 0 0 4px rgba(163, 29, 34, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.4rem;
+}
+
+.login-btn-modern {
+  background: linear-gradient(
+    135deg,
+    var(--cu-red) 0%,
+    var(--cu-red-dark) 100%
+  );
+  color: white;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  width: 100%;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(163, 29, 34, 0.2);
+}
+
+.login-btn-modern:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(163, 29, 34, 0.3);
+}
+
+.right-panel {
+  background-color: #ede7e7;
+}
