@@ -26,7 +26,7 @@ class MonarchPanelProvider extends PanelProvider
             ->default()
             ->id('monarch')
             ->path('monarch')
-            ->login()
+            ->login(\App\Filament\Pages\Auth\CustomLogin::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

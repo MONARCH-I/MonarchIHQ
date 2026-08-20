@@ -11,19 +11,47 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static ?string $navigationGroup = 'CRM & Sales';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make('Customer Details')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
+
+                        Forms\Components\TextInput::make('company')
+                            ->maxLength(255)
+                            ->placeholder('e.g. Acme Corp'),
+
+                        Forms\Components\Select::make('status')
+                            ->options([
+                                'lead' => 'Lead',
+                                'customer' => 'Customer',
+                                'inactive' => 'Inactive',
+                            ])
+                            ->default('lead')
+                            ->required()
+                            ->native(false),
+                    ])->columns(2),
             ]);
     }
 
@@ -31,13 +59,47 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('medium'),
+
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->copyable()
+                    ->icon('heroicon-m-envelope'),
+
+                Tables\Columns\TextColumn::make('company')
+                    ->searchable()
+                    ->placeholder('—')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'customer' => 'success',
+                        'lead' => 'warning',
+                        'inactive' => 'gray',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => ucfirst($state)),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime('M d, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'lead' => 'Lead',
+                        'customer' => 'Customer',
+                        'inactive' => 'Inactive',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

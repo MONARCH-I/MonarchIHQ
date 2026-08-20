@@ -7,8 +7,10 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -22,6 +24,24 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
+        'provider',
+        'provider_id',
+        'provider_token',
+        'is_super_admin',
+        // Notification prefs
+        'notif_orders',
+        'notif_promos',
+        'notif_blog',
+        'notif_security',
+        // Display
+        'language',
+        'currency',
+        // Shipping
+        'address_street',
+        'address_city',
+        'address_region',
+        'phone',
     ];
 
     /**
@@ -32,6 +52,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'provider_token',
     ];
 
     /**
@@ -44,6 +65,12 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_super_admin' => 'boolean',
         ];
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->is_super_admin;
     }
 }

@@ -1,8 +1,9 @@
 <x-main-layout>
 
+    {{-- =============================================
+         HERO SECTION — Always dark, no theme changes
+    ============================================= --}}
     <section class="hero-section relative h-screen w-full overflow-hidden flex flex-col pt-12">
-
-
 
         <img src="{{ asset('images/world-tech.png') }}" alt="Hero"
             class="absolute inset-0 w-full h-full object-cover z-0" />
@@ -10,8 +11,6 @@
         <div
             class="absolute inset-0 bg-black/2 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)] z-0">
         </div>
-
-
 
         <div class="absolute top-20 left-1/2 -translate-x-1/2 z-20 flex justify-center w-full px-4">
 
@@ -28,8 +27,6 @@
 
         </div>
 
-
-
         <div
             class="absolute top-[30%] md:top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[95%] md:w-[80%] max-w-5xl pointer-events-none drop-shadow-2xl">
 
@@ -41,9 +38,9 @@
 
                     <linearGradient id="glass-grad" x1="0%" y1="0%" x2="0%" y2="100%">
 
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                        <stop offset="0%"   stop-color="#ffffff" stop-opacity="1" />
 
-                        <stop offset="45%" stop-color="#ffffff" stop-opacity="0.85" />
+                        <stop offset="45%"  stop-color="#ffffff" stop-opacity="0.85" />
 
                         <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
 
@@ -58,8 +55,6 @@
                     </filter>
 
                 </defs>
-
-
 
                 <text fill="url(#glass-grad)" filter="url(#globe-glow)"
                     font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="48"
@@ -89,8 +84,6 @@
 
         </div>
 
-
-
         <div
             class="absolute top-[38%] md:top-[48%] left-1/2 -translate-x-1/2 z-30 flex flex-row items-center gap-3 md:gap-6 w-full justify-center px-4">
 
@@ -107,8 +100,6 @@
 
             </a>
 
-
-
             <a href="/store"
                 class="group px-6 md:px-8 py-3 rounded-full liquid-btn text-white font-medium text-[7px] md:text-xs uppercase tracking-[0.15em] transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:border-white/40 flex items-center gap-2 md:gap-3">
 
@@ -124,15 +115,11 @@
 
         </div>
 
-
-
-        <div class="absolute right-4 md:right-12 bottom-4 md:bottom-[55px] z-20 w-[calc(100%-2rem)] md:w-auto">
+        <div class="absolute right-4 md:right-12 bottom-4 md:bottom-[55px] z-20 w-[calc(100%-2rem)] md:w-auto max-w-[calc(100%-2rem)] md:max-w-[calc(100%-4rem)]">
 
             <div class="flex flex-col md:flex-row md:items-end justify-end gap-2 md:gap-4 w-full">
 
-
-
-                <div class="liquid-card p-4 md:p-6 w-full md:w-7/12 lg:w-[50rem] lg:h-full lg:p-10 flex flex-col justify-between group">
+                <div class="liquid-card p-4 md:p-6 w-full md:w-7/12 lg:w-[50rem] lg:h-full lg:p-10 flex flex-col justify-between group min-w-0">
 
                     <div>
 
@@ -154,15 +141,13 @@
 
                 </div>
 
-
-
-                <div class="grid grid-cols-2 gap-2 md:gap-4 w-full md:w-auto h-fit">
+                <div class="grid grid-cols-2 gap-2 md:gap-4 w-full md:w-auto h-fit shrink-0">
 
                     <div
                         class="liquid-card drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] py-2 px-2 md:py-4 md:px-4 w-full md:w-36 lg:w-40 h-fit flex flex-col justify-center items-center text-center">
 
                         <h4 class="text-xl md:text-2xl lg:text-3xl font-light text-white"><span class="stat-counter"
-                                data-target="55">0</span>+</h4>
+                                data-target="22">0</span>+</h4>
 
                         <span
                             class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest leading-tight mt-1 md:mt-2">Satisfied<br>Clients</span>
@@ -173,7 +158,7 @@
                         class="liquid-card drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] py-2 px-2 md:py-4 md:px-4 w-full md:w-36 lg:w-40 h-fit flex flex-col justify-center items-center text-center">
 
                         <h4 class="text-xl md:text-2xl lg:text-3xl font-light text-white"><span class="stat-counter"
-                                data-target="80">0</span>+</h4>
+                                data-target="28">0</span>+</h4>
 
                         <span
                             class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest leading-tight mt-1 md:mt-2">Completed<br>Projects</span>
@@ -184,22 +169,20 @@
                         class="liquid-card drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] py-2 px-2 md:py-4 md:px-4 w-full md:w-36 lg:w-40 h-fit flex flex-col justify-center items-center text-center">
 
                         <h4 class="text-xl md:text-2xl lg:text-3xl font-light text-white"><span class="stat-counter"
-                                data-target="15">0</span>+</h4>
+                                data-target="4">0</span>+</h4>
 
                         <span
-                            class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest leading-tight mt-1 md:mt-2">Awards<br>Won</span>
-
+                            class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest leading-tight mt-1 md:mt-2">Star<br>Rating</span>
                     </div>
 
                     <div
                         class="liquid-card drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] py-2 px-2 md:py-4 md:px-4 w-full md:w-36 lg:w-40 h-fit flex flex-col justify-center items-center text-center">
 
                         <h4 class="text-xl md:text-2xl lg:text-3xl font-light text-white"><span class="stat-counter"
-                                data-target="99">0</span>%</h4>
+                                data-target="97">0</span>%</h4>
 
                         <span
                             class="text-[8px] md:text-[9px] text-gray-400 uppercase tracking-widest leading-tight mt-1 md:mt-2">System<br>Uptime</span>
-
                     </div>
 
                 </div>
@@ -209,69 +192,173 @@
         </div>
     </section>
 
-    <section class="relative max-w-[1200px] mx-auto px-4 py-8 z-10 border-t border-white/10 border-b">
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-3">Our Services</h2>
-            <h3 class="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-6">
-                Intelligent Systems, <br> <span class="text-gray-500">Intelligent Data.</span>
-            </h3>
-            <p class="text-xl text-gray-400 mt-4 font-medium">MonarchI provides enterprise-grade systems and Services that automates workflows and unlock predictive insights.</p>
-        </div>
+    {{-- =============================================
+         SERVICES SECTION
+    ============================================= --}}
+    <section class="services-section py-24 px-4 sm:px-6 lg:px-8 z-10 border-t border-b relative" style="border-color: var(--border-color); background: var(--bg-primary);">
+        <div class="max-w-[1240px] mx-auto">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <div class="relative h-[500px] md:h-[650px] rounded-3xl overflow-hidden group reveal delay-100 bg-[#111]">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop"
-                    class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition duration-1000">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
-                <div class="absolute top-10 w-full text-left px-6 z-10">
-                    <h4 class="text-3xl font-semibold text-white mb-2">SaaS</h4>
-                    <p class="text-lg text-gray-300 font-normal">Proprietary software solutions for business workflow automation powered by MAI.</p>
-                    <a href="#" class="inline-block mt-3 text-[#edf0f1] hover:bg-blue-400 text-sm rounded-full border border-none bg-blue-500 p-2 font-medium">Learn more ></a>
+            {{-- Section Header --}}
+            <div class="mb-16 md:mb-20 reveal">
+                <p class="text-xs font-semibold tracking-[0.2em] text-[#2997ff] uppercase mb-4">Our Services</p>
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1]" style="color: var(--text-primary);">
+                        What we offer<br><span style="color: var(--text-muted);">to your business.</span>
+                    </h2>
+                    <p class="text-base md:text-lg max-w-md leading-relaxed" style="color: var(--text-secondary);">
+                        Enterprise-grade systems and AI-powered services that automate workflows and surface predictive insights.
+                    </p>
                 </div>
             </div>
 
-            <div class="relative h-[500px] md:h-[650px] rounded-3xl overflow-hidden group reveal delay-200 bg-[#111]">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop"
-                    class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition duration-1000">
-                <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/60"></div>
-                <div class="absolute bottom-10 w-full text-left px-6 z-10">
-                    <h4 class="text-3xl font-semibold text-white mb-2">Workflow Automation</h4>
-                    <p class="text-lg text-gray-300 font-normal">Automation of business processes with our in-house AI model - MAI.</p>
-                    <a href="#" class="inline-block mt-3 text-[#edf0f1] hover:bg-blue-400 text-sm rounded-full border border-none bg-blue-500 p-2 font-medium">Learn more ></a>
-                </div>
-            </div>
+            {{-- Services Bento Grid: 2x2 on large screens, 1x1 on mobile --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 
-            <div class="relative h-[500px] md:h-[650px] rounded-3xl overflow-hidden group reveal delay-100 bg-[#111]">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop"
-                    class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition duration-1000">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
-                <div class="absolute top-10 w-full text-left px-6 z-10">
-                    <h4 class="text-3xl font-semibold text-white mb-2">Software Development</h4>
-                    <p class="text-lg text-gray-300 font-normal">We build and deploy custom software for mobile and desktop per business needs.</p>
-                    <a href="#" class="inline-block mt-3 text-[#edf0f1] hover:bg-blue-400 text-sm rounded-full border border-none bg-blue-500 p-2 font-medium">Learn more ></a>
-                </div>
-            </div>
+                {{-- Card 1: SaaS --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/fLcZwcFd/Gemini-Generated-Image-vegmr1vegmr1vegm(1).jpg"
+                         alt="SaaS Platforms"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
-            <div class="relative h-[500px] md:h-[650px] rounded-3xl overflow-hidden group reveal delay-200 bg-[#111]">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop"
-                    class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition duration-1000 filter grayscale">
-                <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/60"></div>
-                <div class="absolute bottom-10 w-full text-left px-6 z-10">
-                    <h4 class="text-3xl font-semibold text-white mb-2">Edge Intelligence</h4>
-                    <p class="text-lg text-gray-300 font-normal">Zero-latency, offline decision making.</p>
-                    <a href="#" class="inline-block mt-3 text-[#edf0f1] hover:bg-blue-400 text-sm rounded-full border border-none bg-blue-500 p-2 font-medium">Learn more ></a>
+                    {{-- Top Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">SaaS Platforms</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Software. Built for Scale.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                {{-- Card 2: Workflow Automation --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/SNdYxk4G/Gemini-Generated-Image-czxebtczxebtczxe(1).jpg"
+                         alt="Workflow Automation"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
+
+                    {{-- Top Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-black drop-shadow-md">Workflow Automation</h3>
+                        <p class="text-sm md:text-base text-black drop-shadow font-normal leading-relaxed">Automate. Optimize. Intelligent.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/contact" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 3: Software Development --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-end pb-10 md:pb-12 px-6 md:px-10 pt-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/rFH0rgdp/Gemini-Generated-Image-wag4hpwag4hpwag4(1).jpg"
+                         alt="Software Development"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
+
+                    {{-- Bottom Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg mt-auto">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-300 drop-shadow-md">Software Development</h3>
+                        <p class="text-sm md:text-base text-black drop-shadow font-semibold leading-relaxed">Build. Deploy. Scale.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-black backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 4: Web Development --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-end pb-10 md:pb-12 px-6 md:px-10 pt-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/JnTJd8hx/Gemini-Generated-Image-ey2szaey2szaey2s(1).jpg"
+                         alt="Web Development"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
+
+                    {{-- Bottom Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg mt-auto">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-300 drop-shadow-md">Web Development</h3>
+                        <p class="text-sm md:text-base text-white drop-shadow font-normal leading-relaxed">Identity. Performance. Yours.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 5: Integrated Systems --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/wT9c29QV/Gemini-Generated-Image-r0ei34r0ei34r0ei(1).jpg"
+                         alt="Integrated Systems"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
+
+                    {{-- Top Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Integrated Systems</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Engineered as one. Built for the world.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 6: Security Systems --}}
+                <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
+                    {{-- Background Image --}}
+                    <img src="https://i.postimg.cc/Xv5QhQGy/Gemini-Generated-Image-nfrsy9nfrsy9nfrs(1).jpg"
+                         alt="Security Systems"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
+
+                    {{-- Top Centered Content & Buttons --}}
+                    <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Security Systems</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Intelligent. Connected. Secure.</p>
+                        <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                                Learn More
+                            </a>
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                                Explore
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section class="relative max-w-[1200px] mx-auto  overflow-hidden  z-10 my-8">
+    {{-- =============================================
+         MAI AI SECTION
+    ============================================= --}}
+    <section class="mai-section relative overflow-hidden z-10 my-8" style="background: #050510;">
         <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2000&auto=format&fit=crop"
             class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-sm">
         <div class="absolute inset-0 bg-black/80"></div>
 
-        <div class="relative px-6 flex flex-col md:flex-row items-center gap-16">
+        <div class="relative px-6 flex flex-col md:flex-row items-center gap-16 max-w-[1200px] mx-auto py-24">
 
             <div class="md:w-1/2 reveal-left pl-6">
                 <h2 class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-3">Monarch AI - MAI</h2>
@@ -285,36 +372,31 @@
                 <ul class="space-y-4 text-sm text-gray-300 font-light">
                     <li class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Get analysis from your business's data in real-time.
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Generate tailored email for clients and stakeholders.
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Get intelligent advice tailored to you.
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Automate repetitive business tasks effortlessly.
                     </li>
                     <li class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Provide Financial Forecasts with backed business data.
                     </li>
@@ -333,7 +415,7 @@
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-[#2997ff]/20 flex items-center justify-center shrink-0">
                                 You</div>
-                            <div class="glass px-4 py-2 rounded-lg rounded-tl-none text-gray-200 border-none">Compare this quarters revenue to last years revenue and make a forecast based on current market conditions.</div>
+                            <div class="glass px-4 py-2 rounded-lg rounded-tl-none text-gray-200 border-none">Compare this quarters revenue to last years and make a forecast based on current market conditions.</div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0">
@@ -345,7 +427,7 @@
                             <div
                                 class="bg-gray-900 border border-white/10 px-4 py-3 rounded-lg rounded-tl-none text-gray-300 font-light w-full">
                                 <p class="mb-2">Per the data, the company has made a total of $87,899 compared to last years quarter revenue of $65,345 which signifies a percentage increase of ...</p>
-                                <span class="text-[10px] text-[#2997ff] font-mono">✔ Draft generated in 1.2s</span>
+                                <span class="text-[10px] text-[#2997ff] font-mono">✔ Generated in 1.2s</span>
                             </div>
                         </div>
                     </div>
@@ -354,7 +436,11 @@
         </div>
     </section>
 
-    <section class="relative bg-black py-24 px-6 overflow-hidden border-t border-white/5 z-0">
+    {{-- =============================================
+         CTA SECTION — Always dark
+    ============================================= --}}
+    <section class="cta-section relative py-24 px-6 overflow-hidden border-t z-0"
+             style="background: #020208; border-color: rgba(255,255,255,0.05);">
 
         <div id="random-cards-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0">
             @for ($i = 0; $i < 20; $i++) <div
@@ -365,111 +451,252 @@
 
         <div class="relative max-w-7xl mx-auto text-center z-10 reveal">
             <h2 class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-3">Start Today</h2>
-            <h3 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-8">Ready to unleash <br>
-                intelligent efficiency?</h3>
+            <h3 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-8">Bring enterprise AI<br>
+                into your workflow.</h3>
             <p class="text-lg text-gray-400 font-light leading-relaxed max-w-3xl mx-auto mb-12">
-                Connect your existing workflow and experience the Monarch Intelligence advantage. Automate processes,
-                unlock predictive insights, and stay ahead with enterprise-grade AI designed for your success.
+                Scale smarter with MonarchI. Automate business processes, surface predictive insights, and unlock
+                actionable intelligence across your operations with AI built for your growth.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ route('register') }}"
+                <a href="{{ route('login') }}"
                     class="inline-block bg-[#2997ff] hover:bg-[#1a7de3] text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 text-lg">
                     Get Started
                 </a>
                 <a href="#demo"
                     class="inline-block glass px-10 py-4 rounded-full text-white font-medium hover:bg-white/10 transition text-lg">
-                    Watch Demo
+                    Contact Us
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="overflow-hidden bg-black mt-12">
-        <div class="flex gap-6 overflow-x-auto hide-scroll snap-inline px-6  w-full">
-            <div
-                class="snap-item shrink-0 w-[85vw] md:w-[65vw] h-[500px] md:h-[600px] relative rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1500&auto=format&fit=crop"
+    {{-- =============================================}}
+         CASE STUDIES SECTION
+    {{-- =============================================
+         UNIFIED DUAL-TRACK CAROUSEL
+         Case Studies + Past Projects scroll in sync.
+         Single centered controls at the bottom (Apple-style).
+    ============================================= --}}
+    <section class="unified-carousel-section py-16" id="unified-carousel" style="background: var(--bg-primary); overflow: hidden;">
+        <div class="max-w-[1200px] mx-auto px-6 mb-10 reveal">
+            {{-- Two labels side by side --}}
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-1 md:gap-0">
+                <div>
+                    <p class="text-xs font-semibold tracking-[0.2em] text-[#2997ff] uppercase mb-1">Case Studies &amp; Projects</p>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight leading-tight" style="color: var(--text-primary);">
+                        Research, Insights &amp;<br class="hidden md:block"> Work We're Proud Of.
+                    </h2>
+                </div>
+                <p class="text-sm max-w-xs leading-relaxed mt-3 md:mt-0" style="color: var(--text-secondary);">
+                    Swipe or use the arrows to explore. Both tracks move together.
+                </p>
+            </div>
+        </div>
+
+        {{-- ── Track 1: Case Studies ── --}}
+        <div class="flex gap-6 overflow-x-auto hide-scroll snap-x snap-mandatory px-6 w-full pb-3" id="cs-track">
+
+            {{-- Case Study 1: BoG --}}
+            <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
+                <img src="{{asset('images/BoG.webp')}}"
+                    class="absolute inset-0 w-full h-3/4 object-cover opacity-60 transition duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">FinTech Sector - Ghana</span>
+                    <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">National Payment Systems Strategy</h3>
+                    <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">The Bank of Ghana's strategy mandates telecoms and fintechs to upgrade security infrastructure and institute automated monitoring systems.</p>
+                    <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+                       href="https://www.bog.gov.gh/wp-content/uploads/2026/02/NATIONAL-PAYMENT-SYSTEMS-STRATEGY-2025-2029.pdf">Read Case Study</a>
+                </div>
+            </div>
+
+            {{-- Case Study 2: AI Health --}}
+            <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
+                <img src="{{asset('images/37Hospital.jpg')}}"
                     class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                <div class="absolute bottom-10 left-10 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">FinTech
-                        Sector</span>
-                    <h3 class="text-3xl md:text-4xl font-semibold text-white mb-4">Project Nexus</h3>
-                    <p class="text-gray-300 mb-6 font-light">Automated fraud detection system scaling to 10M+ daily
-                        transactions.</p>
-                    <button
-                        class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Read
-                        Case Study</button>
+                <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">HealthTech - Ghana</span>
+                    <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">AI-Driven Health Programme</h3>
+                    <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">Ghana launched an AI-driven health programme with WHO and UNDP, deploying early warning systems for climate-sensitive diseases.</p>
+                    <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+                       href="https://www.afro.who.int/countries/ghana/news/ghana-launches-artificial-intelligence-driven-health-programme-strengthen-systems-and-safeguard">Read Case Study</a>
                 </div>
             </div>
 
-            <div
-                class="snap-item shrink-0 w-[85vw] md:w-[65vw] h-[500px] md:h-[600px] relative rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1500&auto=format&fit=crop"
+            {{-- Case Study 3: Africa Fintech AI Credit Scoring --}}
+            <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80"
+                    alt="Africa Fintech AI"
                     class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                <div class="absolute bottom-10 left-10 z-10 max-w-lg">
-                    <span
-                        class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">Healthcare</span>
-                    <h3 class="text-3xl md:text-4xl font-semibold text-white mb-4">Lumina Health</h3>
-                    <p class="text-gray-300 mb-6 font-light">Predictive patient diagnostics utilizing advanced computer
-                        vision models.</p>
-                    <button
-                        class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition">Read
-                        Case Study</button>
+                <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">FinTech - West Africa</span>
+                    <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">AI Credit Scoring for Unbanked SMEs</h3>
+                    <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">AI engines analysing mobile-money patterns issue instant micro-loans to SMEs — reducing approval time from weeks to minutes.</p>
+                    <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+                       href="https://getcarbon.co" target="_blank" rel="noopener noreferrer">Read Case Study</a>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="flex gap-6 overflow-x-auto hide-scroll snap-inline px-6 pb-12 w-full">
-        <div class="snap-item shrink-0 w-[85vw] md:w-[400px] liquid-card p-8 relative flex flex-col justify-between">
-            <div>
-                <div class="flex text-[#2997ff] mb-4">★★★★★</div>
-                <p class="text-lg text-white font-light leading-relaxed">"Monarch completely overhauled our data
-                    pipeline. The predictive models are eerie in their accuracy."</p>
-            </div>
-            <div class="mt-8 flex items-center gap-4">
-                <img src="https://ui-avatars.com/api/?name=Sarah+L&background=fff&color=000"
-                    class="w-10 h-10 rounded-full">
-                <div>
-                    <h5 class="text-white font-medium text-sm">Sarah L.</h5>
-                    <span class="text-gray-400 text-xs">CTO, Nexus Corp</span>
+
+            {{-- Case Study 4: GhanaPostGPS --}}
+            <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                    alt="Ghana Smart City"
+                    class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">Smart Cities - Ghana</span>
+                    <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">GhanaPostGPS &amp; Digital Addressing</h3>
+                    <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">A unique code for every 5m&times;5m grid across Ghana — enabling emergency response and logistics for millions without postal addresses.</p>
+                    <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+                       href="https://ghanapostgps.com" target="_blank" rel="noopener noreferrer">Read Case Study</a>
                 </div>
             </div>
+
+            {{-- Case Study 5: Nuru AgriTech --}}
+            <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+                    alt="Africa AgriTech AI"
+                    class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">AgriTech - East Africa</span>
+                    <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Nuru: Offline AI Crop Disease Diagnosis</h3>
+                    <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">Nuru uses on-device vision to diagnose crop diseases offline, reaching millions of smallholder farmers via the UN ENSURE programme.</p>
+                    <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+                       href="https://plantvillage.psu.edu" target="_blank" rel="noopener noreferrer">Read Case Study</a>
+                </div>
+            </div>
+
         </div>
 
-        <div class="snap-item shrink-0 w-[85vw] md:w-[400px] liquid-card p-8 relative flex flex-col justify-between">
-            <div>
-                <div class="flex text-[#2997ff] mb-4">★★★★★</div>
-                <p class="text-lg text-white font-light leading-relaxed">"The integration was seamless. The MAI
-                    assistant has cut our customer response times by 40%."</p>
-            </div>
-            <div class="mt-8 flex items-center gap-4">
-                <img src="https://ui-avatars.com/api/?name=James+W&background=fff&color=000"
-                    class="w-10 h-10 rounded-full">
-                <div>
-                    <h5 class="text-white font-medium text-sm">James W.</h5>
-                    <span class="text-gray-400 text-xs">Director of Operations</span>
+        {{-- ── Track 2: Past Projects ── --}}
+        <div class="flex gap-6 overflow-x-auto hide-scroll snap-x snap-mandatory px-6 w-full pb-4 mt-4" id="proj-track">
+
+            {{-- Project 1 --}}
+            <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+                    alt="Edge Intelligence Project"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
+                    <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">Edge Computing</span>
+                        <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">Logistics</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Project Zero Latency</h3>
+                    <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        Deployed Monarch's Edge Intelligence to remote hardware — offline processing without latency in critical logistical environments.
+                    </p>
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                        Visit Store
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
                 </div>
             </div>
+
+            {{-- Project 2 --}}
+            <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80"
+                    alt="SaaS Platform"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
+                    <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">SaaS</span>
+                        <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">Finance</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">invenStore Platform</h3>
+                    <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        Full-stack inventory management SaaS for SMEs across Ghana with real-time stock tracking and automated reorder alerts.
+                    </p>
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Project 3 --}}
+            <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
+                    alt="Health Tech Project"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
+                    <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">HealthTech</span>
+                        <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">AI</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">MAI Health Dashboard</h3>
+                    <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        AI-powered health monitoring dashboard for clinic staff, surfacing patient trends and flagging anomalies with zero manual input.
+                    </p>
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Project 4 --}}
+            <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                    alt="KYC Compliance AI"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
+                    <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">Compliance</span>
+                        <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">FinTech</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">KYC Automation Suite</h3>
+                    <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        AI-driven KYC pipeline for a Ghanaian fintech — cutting onboarding time by 78% with full Bank of Ghana regulatory compliance.
+                    </p>
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            {{-- Project 5 --}}
+            <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
+                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80"
+                    alt="MAI AgriAdvisor"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
+                    <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">AgriTech</span>
+                        <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">AI / MAI</span>
+                    </div>
+                    <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">MAI AgriAdvisor</h3>
+                    <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                        Offline-capable crop advisory engine for smallholder farmers in Northern Ghana — real-time pest alerts, yield forecasts, and market prices via SMS.
+                    </p>
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                        Learn More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-        <div class="snap-item shrink-0 w-[85vw] md:w-[400px] liquid-card p-8 relative flex flex-col justify-between">
-            <div>
-                <div class="flex text-[#2997ff] mb-4">★★★★★</div>
-                <p class="text-lg text-white font-light leading-relaxed">"Unmatched processing speed. Monarch's Edge
-                    Intelligence allowed us to deploy offline without latency."</p>
-            </div>
-            <div class="mt-8 flex items-center gap-4">
-                <img src="https://ui-avatars.com/api/?name=Elena+R&background=fff&color=000"
-                    class="w-10 h-10 rounded-full">
-                <div>
-                    <h5 class="text-white font-medium text-sm">Elena R.</h5>
-                    <span class="text-gray-400 text-xs">Lead Data Scientist</span>
-                </div>
-            </div>
+        {{-- ── Shared centered controls ── --}}
+        <div class="unified-carousel-controls">
+            <button class="carousel-arrow" id="unified-prev" aria-label="Previous">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="carousel-dots" id="unified-dots"></div>
+            <button class="carousel-arrow" id="unified-next" aria-label="Next">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
         </div>
-    </div>
+
     </section>
 
 </x-main-layout>
