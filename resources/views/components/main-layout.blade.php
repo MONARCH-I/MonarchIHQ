@@ -1,3 +1,4 @@
+@props(['showFooter' => true])
 <!DOCTYPE html>
 <html lang="en" id="html-root">
 
@@ -86,7 +87,7 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
-            height: 200vh;
+            min-height: 100vh;
         }
 
         .hide-scroll {
@@ -826,6 +827,7 @@
     <main>
         {{ $slot }}
     </main>
+    @if($showFooter)
     <footer class="bg-black border-t border-white/10 pt-20 pb-10 px-6 z-10 relative">
         <div class="max-w-[1200px] mx-auto">
             <div class="md:col-span-2 flex flex-col items-center md:items-center mb-8">
@@ -836,7 +838,7 @@
                         Enterprise-grade Systems and bespoke Machine Learning solutions engineered for absolute scale.
                     </p>
                     <div class="flex space-x-5">
-                        <a href="#" class="text-gray-500 hover:text-[#2997ff] transition-colors">
+                        <a href="https://x.com/monarchihq" class="text-gray-500 hover:text-[#2997ff] transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path
                                     d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.925H5.022z" />
@@ -849,7 +851,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-[#2997ff] transition-colors">
+                        <a href="https://github.com/MONARCH-I" class="text-gray-500 hover:text-[#2997ff] transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
@@ -871,7 +873,6 @@
                         <li><a href="#" class="hover:text-[#2997ff] transition-colors">Partners</a></li>
                     </ul>
                 </div> 
-
                 {{-- DIVISIONS QUICKLINKS --}}
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Divisions</h4>
@@ -929,6 +930,7 @@
             </div>
         </div>
     </footer>
+    @endif
     {{-- SCRIPTS --}}
     <script>
         /* =============================================
@@ -1031,6 +1033,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('random-cards-container');
+            if (!container) return;
             const cards = container.querySelectorAll('.glass-card');
             
             function positionCards() {

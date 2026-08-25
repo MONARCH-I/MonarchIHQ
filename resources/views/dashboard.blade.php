@@ -1,22 +1,23 @@
-<x-main-layout>
+<x-main-layout :showFooter="false">
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     /* ── Dashboard shell ── */
     .db-shell {
-        min-height: 100vh;
+        height: 100vh;
         padding-top: 48px; /* height of the fixed nav */
         background: var(--bg-primary);
         font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .db-inner {
-        max-width: 1200px;
-        margin: 0 auto;
+        width: 100%;
         display: flex;
         gap: 0;
-        min-height: calc(100vh - 48px);
+        height: 100%;
     }
 
     /* ── Sidebar ── */
@@ -25,9 +26,8 @@
         flex-shrink: 0;
         border-right: 1px solid var(--border-subtle);
         padding: 2rem 0;
-        position: sticky;
-        top: 48px;
-        height: calc(100vh - 48px);
+        position: relative;
+        height: 100%;
         overflow-y: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -153,11 +153,16 @@
     /* ── Main content ── */
     .db-content {
         flex: 1;
-        padding: 2rem 2.5rem;
+        min-width: 0;
+        padding: 2.5rem 3rem;
         overflow-y: auto;
+        height: 100%;
     }
 
-    .db-section { display: none; }
+    .db-section {
+        display: none;
+        max-width: 1100px;
+    }
     .db-section.active { display: block; }
 
     /* Section heading */
@@ -449,7 +454,15 @@
     }
 
     @media (max-width: 768px) {
-        .db-inner { flex-direction: column; }
+        .db-shell {
+            height: auto;
+            min-height: 100vh;
+            overflow: visible;
+        }
+        .db-inner {
+            flex-direction: column;
+            height: auto;
+        }
         .db-sidebar {
             width: 100%;
             height: auto;
@@ -466,7 +479,7 @@
         .db-nav-group-label { display: none; }
         .db-nav-item { padding: 0.5rem 0.75rem; font-size: 0.75rem; white-space: nowrap; }
         .db-logout-btn { margin: 0; white-space: nowrap; padding: 0.5rem 0.75rem; width: auto; font-size: 0.75rem; }
-        .db-content { padding: 1.25rem 1rem; }
+        .db-content { padding: 1.25rem 1rem; height: auto; overflow-y: visible; }
         .db-field-group { grid-template-columns: 1fr; }
     }
 

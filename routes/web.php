@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,13 +17,16 @@ Route::get('/projects', function () {
     return view('pages.projects');
 });
 
-Route::get('/store', function () {
-    return view('store.store');
-});
+// Store
+Route::get('/store', [StoreController::class, 'index'])->name('store.index');
+Route::get('/store/{slug}', [StoreController::class, 'show'])->name('store.show');
 
-Route::get('/cart', function () {
-    return view('store.cart');
-});
+// Cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::patch('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 Route::get('/contact', function () {
     return view('pages.contact');
@@ -57,3 +62,4 @@ Route::get('/auth/{provider}/redirect', [App\Http\Controllers\Auth\SocialAuthCon
 Route::get('/auth/{provider}/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'callback'])->name('social.callback');
 
 require __DIR__.'/auth.php';
+
