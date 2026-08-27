@@ -28,7 +28,7 @@ class StoreController extends Controller
             $productsQuery->forCategory($categorySlug);
         }
 
-        $products = $productsQuery->paginate(12)->withQueryString();
+        $products = $productsQuery->paginate(9)->withQueryString();
 
         $activeCategory = $categorySlug;
 

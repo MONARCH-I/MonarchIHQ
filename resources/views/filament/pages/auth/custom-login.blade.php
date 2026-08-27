@@ -2,208 +2,239 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        /* ── Full-page dark background ── */
-        body, .fi-simple-layout {
-            background: transparent !important;
+        html, body {
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+
+        body, .fi-simple-layout, .fi-simple-main {
+            font-family: 'Inter', sans-serif !important;
         }
 
         .fi-simple-main {
-            background: linear-gradient(135deg, #0f0c1a 0%, #1a0810 40%, #0d1117 100%) !important;
-            min-height: 100vh !important;
+            background: #000000 !important;
+            height: 100dvh !important;
+            min-height: 100dvh !important;
             position: relative !important;
             overflow: hidden !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 1.5rem !important;
-            font-family: 'Inter', sans-serif !important;
+            padding: 12px !important;
         }
 
-        /* Animated background orbs */
+        /* Subtle grid background */
         .fi-simple-main::before {
             content: '';
             position: fixed;
-            top: -20%;
-            left: -10%;
-            width: 55vw;
-            height: 55vw;
-            background: radial-gradient(circle, rgba(163,29,34,0.18) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatOrb 8s ease-in-out infinite alternate;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
             pointer-events: none;
+            z-index: 0;
         }
 
+        /* ── Pure CSS Floating Glow Orbs (Zero-JS, zero breakage) ── */
         .fi-simple-main::after {
             content: '';
             position: fixed;
-            bottom: -15%;
-            right: -10%;
-            width: 45vw;
-            height: 45vw;
-            background: radial-gradient(circle, rgba(163,29,34,0.12) 0%, transparent 70%);
+            top: -80px;
+            left: -80px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(41,151,255,0.14) 0%, transparent 70%);
             border-radius: 50%;
-            animation: floatOrb 10s ease-in-out infinite alternate-reverse;
+            filter: blur(80px);
             pointer-events: none;
+            z-index: 0;
+            animation: orbFloatOne 10s ease-in-out infinite alternate;
         }
 
-        @keyframes floatOrb {
+        @keyframes orbFloatOne {
             0%   { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(3%, 4%) scale(1.08); }
+            100% { transform: translate(45px, 35px) scale(1.08); }
         }
 
-        /* ── Glassmorphic card ── */
+        /* ── Ultra-compact Liquid Glass Card ── */
         .fi-simple-page {
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(24px) saturate(160%) !important;
-            -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
-            border-radius: 1.75rem !important;
+            background: rgba(255,255,255,0.035) !important;
+            backdrop-filter: blur(28px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+            border: 1px solid rgba(255,255,255,0.09) !important;
+            border-radius: 20px !important;
             box-shadow:
-                0 32px 64px rgba(0,0,0,0.5),
-                inset 0 1px 0 rgba(255,255,255,0.12) !important;
-            max-width: 28rem !important;
+                0 0 0 1px rgba(255,255,255,0.03) inset,
+                0 20px 40px rgba(0,0,0,0.7),
+                0 2px 10px rgba(41,151,255,0.05) !important;
+            max-width: 320px !important;
             width: 100% !important;
             padding: 0 !important;
             overflow: hidden !important;
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+            position: relative !important;
+            z-index: 10 !important;
+            animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(28px); }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(14px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Brand header strip ── */
-        .monarchi-glass-header {
-            background: linear-gradient(135deg, #eee8e9ff 0%, #0e0c0cff 100%);
-            padding: 2.25rem 2rem 2rem;
+        /* ── Brand header ── */
+        .monarchi-admin-header {
+            padding: 14px 18px 10px;
             text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             position: relative;
-            overflow: hidden;
         }
 
-        .monarchi-glass-header::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            left: -20%;
-            width: 140%;
-            height: 180%;
-            background: radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .monarchi-logo-text {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
+        .monarchi-admin-wordmark {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
             color: #ffffff;
-            position: relative;
-        }
-
-        .monarchi-logo-text span {
-            color: rgba(255,255,255,0.55);
-        }
-
-        .monarchi-tagline {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
-            margin-top: 0.35rem;
-            position: relative;
+            margin-bottom: 3px;
+        }
+
+        .monarchi-admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 999px;
+            padding: 2px 7px;
+        }
+
+        .monarchi-admin-badge::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #2997ff;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.75); }
         }
 
         /* ── Form body ── */
-        .monarchi-glass-body {
-            padding: 2rem 2rem 2.25rem;
+        .monarchi-admin-body {
+            padding: 12px 18px 14px;
         }
 
-        .monarchi-glass-body h2 {
-            font-size: 1.15rem;
+        .monarchi-admin-body .admin-sign-in-label {
+            font-size: 14px;
             font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 0.3rem;
+            color: #ffffff;
+            margin: 0 0 1px;
         }
 
-        .monarchi-glass-body p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.38);
-            margin-bottom: 1.75rem;
+        .monarchi-admin-body .admin-sign-in-sub {
+            font-size: 10.5px;
+            color: rgba(255,255,255,0.35);
+            margin: 0 0 10px;
         }
 
-        /* ── Input overrides ── */
+        /* ── Compact Input overrides ── */
+        .fi-fo-field-wrp {
+            margin-bottom: 8px !important;
+        }
+
         .fi-fo-field-wrp label,
         .fi-label-text {
-            color: rgba(255,255,255,0.65) !important;
-            font-size: 0.78rem !important;
-            font-weight: 500 !important;
-            letter-spacing: 0.03em !important;
+            color: rgba(255,255,255,0.45) !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            margin-bottom: 2px !important;
         }
 
         .fi-input-wrapper, .fi-input {
-            background: rgba(255,255,255,0.07) !important;
-            border: 1px solid rgba(255,255,255,0.12) !important;
-            border-radius: 0.65rem !important;
-            color: #f1f5f9 !important;
+            background: rgba(255,255,255,0.04) !important;
+            border: 1px solid rgba(255,255,255,0.09) !important;
+            border-radius: 9px !important;
+            color: #ffffff !important;
             transition: all 0.2s ease !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 13px !important;
         }
 
-        .fi-input::placeholder { color: rgba(255,255,255,0.25) !important; }
+        .fi-input {
+            padding: 6px 10px !important;
+            height: 34px !important;
+        }
+
+        .fi-input::placeholder { color: rgba(255,255,255,0.22) !important; font-size: 12px !important; }
 
         .fi-input-wrapper:focus-within {
-            background: rgba(255,255,255,0.11) !important;
-            border-color: rgba(163,29,34,0.7) !important;
-            box-shadow: 0 0 0 3px rgba(163,29,34,0.22) !important;
+            background: rgba(41,151,255,0.05) !important;
+            border-color: rgba(41,151,255,0.45) !important;
+            box-shadow: 0 0 0 2.5px rgba(41,151,255,0.12) !important;
         }
 
-        /* ── Sign-in button ── */
-        .fi-btn-primary, .fi-btn[wire\:click="authenticate"] {
-            background: linear-gradient(135deg, #0425feff 0%, #1508f0ff 100%) !important;
+        /* ── Compact Sign-in button ── */
+        .fi-btn[wire\:click="authenticate"],
+        .fi-btn-primary {
+            background: #ffffff !important;
             border: none !important;
-            border-radius: 0.65rem !important;
-            color: #fff !important;
-            font-weight: 600 !important;
-            font-size: 0.9rem !important;
-            letter-spacing: 0.025em !important;
-            padding: 0.75rem 1.5rem !important;
+            border-radius: 11px !important;
+            color: #000000 !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            font-family: 'Inter', sans-serif !important;
+            letter-spacing: 0.01em !important;
+            padding: 9px 16px !important;
+            height: 36px !important;
             width: 100% !important;
-            box-shadow: 0 4px 20px rgb(48, 67, 246,0.38) !important;
-            transition: transform 0.18s ease, box-shadow 0.18s ease !important;
-            margin-top: 0.5rem !important;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.35) !important;
+            transition: transform 0.16s cubic-bezier(0.34,1.56,0.64,1), background 0.18s, box-shadow 0.2s !important;
+            margin-top: 4px !important;
         }
         .fi-btn-primary:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 28px rgba(58, 87, 237, 0.5) !important;
+            background: #e8e8e8 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.45) !important;
         }
+        .fi-btn-primary:active { transform: scale(0.97) !important; }
 
-        /* ── Forgot password link ── */
+        /* ── Links & checkbox ── */
         .fi-link {
-            color: rgba(163,29,34,0.85) !important;
-            font-size: 0.75rem !important;
+            color: rgba(255,255,255,0.4) !important;
+            font-size: 11px !important;
+            transition: color 0.15s !important;
         }
-        .fi-link:hover { color: #a31d22 !important; }
+        .fi-link:hover { color: #ffffff !important; }
 
-        /* ── Checkbox ── */
         .fi-checkbox input[type="checkbox"] {
-            accent-color: #a31d22 !important;
+            accent-color: #2997ff !important;
         }
 
-        /* ── Error messages ── */
         .fi-fo-field-wrp-error-message,
         .fi-fo-field-wrp [role="alert"] {
-            color: #fca5a5 !important;
-            font-size: 0.73rem !important;
+            color: #ff8080 !important;
+            font-size: 10px !important;
         }
 
-        /* ── Footer text ── */
-        .monarchi-footer-note {
-            padding: 1rem 2rem;
+        /* ── Compact Footer ── */
+        .monarchi-admin-footer {
+            padding: 8px 16px;
             text-align: center;
-            font-size: 0.68rem;
-            color: rgba(255,255,255,0.2);
-            border-top: 1px solid rgba(255,255,255,0.07);
+            font-size: 9px;
+            color: rgba(255,255,255,0.18);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            letter-spacing: 0.04em;
         }
 
         /* ── Hide Filament's auto-injected logo & heading ── */
@@ -217,27 +248,32 @@
     </style>
 
     {{-- Brand header --}}
-    <div class="monarchi-glass-header">
-        <div class="monarchi-logo-text">MONARCHI<span>HQ</span></div>
-        <div class="monarchi-tagline">Administrator Portal &middot; We are Innovation</div>
+    <div class="monarchi-admin-header">
+        <div class="monarchi-admin-wordmark">M O N A R C H I</div>
+        <div class="monarchi-admin-badge">Administrator Portal</div>
     </div>
 
     {{-- Form body --}}
-    <div class="monarchi-glass-body">
-        <h2>Sign In</h2>
-        <p>Enter your credentials to access the admin panel.</p>
+    <div class="monarchi-admin-body">
+        <p class="admin-sign-in-label">Sign in</p>
+        <p class="admin-sign-in-sub">Access restricted to authorised personnel.</p>
 
-        <x-filament-panels::form wire:submit="authenticate">
+        {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
+
+        <x-filament-panels::form id="form" wire:submit="authenticate">
             {{ $this->form }}
+
             <x-filament-panels::form.actions
                 :actions="$this->getCachedFormActions()"
-                :full-width="true"
+                :full-width="$this->hasFullWidthFormActions()"
             />
         </x-filament-panels::form>
+
+        {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
     </div>
 
     {{-- Footer --}}
-    <div class="monarchi-footer-note">
-        &copy; {{ date('Y') }} Monarchi HQ &middot; Secure Admin Access
+    <div class="monarchi-admin-footer">
+        © {{ date('Y') }} Monarchi HQ &middot; Secure Admin Access
     </div>
 </x-filament-panels::page.simple>

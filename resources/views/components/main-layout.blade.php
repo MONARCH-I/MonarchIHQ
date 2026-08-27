@@ -742,11 +742,18 @@
                     </svg>
                 </button>
 
-                <a href="/cart">
+                @php
+                    $headerCartCount = array_sum(session('cart', []));
+                @endphp
+                <a href="{{ route('bag.index') }}" class="relative inline-flex items-center justify-center p-1" aria-label="Shopping Bag">
                     <svg class="w-4 h-4 text-gray-300 nav-link" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                     </svg>
+                    <span id="cart-count-badge"
+                          class="{{ $headerCartCount > 0 ? '' : 'hidden' }} absolute -top-1.5 -right-2.5 bg-[#e3000f] text-white text-[9px] font-bold rounded-full h-4 min-w-[16px] px-1 flex items-center justify-center shadow-md pointer-events-none transition-all duration-300 transform scale-100 leading-none">
+                        {{ $headerCartCount > 99 ? '99+' : $headerCartCount }}
+                    </span>
                 </a>
 
 
@@ -964,6 +971,59 @@
                 }
             }
         })();
+
+        /* =============================================
+           GLOBAL CART BADGE & NOTIFICATION HELPERS
+        ============================================= */
+        window.updateCartBadge = function(count) {
+            const badge = document.getElementById('cart-count-badge');
+            if (!badge) return;
+            const num = parseInt(count, 10) || 0;
+            badge.textContent = num > 99 ? '99+' : num;
+            if (num > 0) {
+                badge.classList.remove('hidden');
+                badge.style.display = 'flex';
+                badge.animate([
+                    { transform: 'scale(0.5)' },
+                    { transform: 'scale(1.4)' },
+                    { transform: 'scale(1)' }
+                ], { duration: 320, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' });
+            } else {
+                badge.classList.add('hidden');
+                badge.style.display = 'none';
+            }
+        };
+
+        window.showStoreToast = function(message, isSuccess = true) {
+            const existingToast = document.getElementById('store-live-toast');
+            if (existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'store-live-toast';
+            toast.className = 'fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl shadow-2xl text-sm font-medium flex items-center gap-3 transition-all duration-300 transform translate-y-4 opacity-0';
+            toast.style.background = isSuccess ? '#111111' : '#e3000f';
+            toast.style.color = '#ffffff';
+            toast.style.border = '1px solid rgba(255,255,255,0.15)';
+            toast.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+
+            const iconHtml = isSuccess
+                ? `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`
+                : `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>`;
+
+            toast.innerHTML = `${iconHtml}<span>${message}</span>`;
+            document.body.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+            });
+
+            setTimeout(() => {
+                toast.style.transform = 'translateY(8px)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 350);
+            }, 3000);
+        };
 
         document.addEventListener('DOMContentLoaded', () => {
             const header = document.getElementById('header');

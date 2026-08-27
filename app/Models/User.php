@@ -73,4 +73,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->is_super_admin;
     }
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -113,17 +113,25 @@ class ProductResource extends Resource
                         ->required(),
 
                     Forms\Components\TextInput::make('badge_text')
-                        ->label('Badge Label')
-                        ->placeholder('e.g. New, Sale, Pre-Order')
+                        ->label('Custom Badge Label')
+                        ->placeholder('e.g. Pre-Order, Limited Offer')
+                        ->datalist([
+                            'Pre-Order',
+                            'Limited Offer',
+                            'New',
+                            'Special Edition',
+                        ])
+                        ->helperText('Leave empty to use automatic system badge (Popular, Limited Quantity, Restock Soon).')
                         ->maxLength(30),
 
                     Forms\Components\Select::make('badge_color')
+                        ->label('Badge Color')
                         ->options([
-                            'orange' => 'Orange',
-                            'red'    => 'Red',
-                            'green'  => 'Green',
-                            'blue'   => 'Blue',
-                            'gray'   => 'Gray',
+                            'orange' => 'Orange (Pre-Order / Warm)',
+                            'red'    => 'Red (Limited Offer / Sale)',
+                            'green'  => 'Green (New)',
+                            'blue'   => 'Blue (Popular / Featured)',
+                            'gray'   => 'Gray (Muted)',
                         ])
                         ->default('orange'),
 

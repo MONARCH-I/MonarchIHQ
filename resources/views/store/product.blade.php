@@ -1,48 +1,82 @@
 <x-main-layout>
-<div style="background:#f8f8f6; min-height:100vh;" class="pt-20 md:pt-24 pb-24">
+<div class="product-detail-root pt-20 md:pt-24 pb-24 min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
+    <style>
+        .modern-qty-stepper {
+            background: var(--card-bg-alt);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .modern-qty-stepper:focus-within,
+        .modern-qty-stepper:hover {
+            border-color: rgba(41, 151, 255, 0.4);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+        .qty-stepper-btn {
+            background: transparent;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .qty-stepper-btn:hover:not(:disabled) {
+            background: rgba(41, 151, 255, 0.15);
+            color: #2997ff !important;
+            transform: scale(1.08);
+        }
+        .qty-stepper-btn:active:not(:disabled) {
+            transform: scale(0.86);
+        }
+        .qty-pop {
+            animation: qtyPopAnim 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes qtyPopAnim {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            50% { transform: scale(1.22); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
 
         {{-- Breadcrumb --}}
-        <nav class="flex items-center gap-2 text-xs text-gray-400 mb-8">
-            <a href="{{ route('store.index') }}" class="hover:text-gray-700 transition">Store</a>
+        <nav class="flex items-center gap-2 text-xs mb-8" style="color: var(--text-muted);">
+            <a href="{{ route('store.index') }}" class="hover:text-[#2997ff] transition">Store</a>
             <span>/</span>
-            <a href="{{ route('store.index', ['category' => $product->category->slug]) }}" class="hover:text-gray-700 transition">{{ $product->category->name }}</a>
+            <a href="{{ route('store.index', ['category' => $product->category->slug]) }}" class="hover:text-[#2997ff] transition">{{ $product->category->name }}</a>
             <span>/</span>
-            <span class="text-gray-600 font-medium">{{ $product->name }}</span>
+            <span class="font-medium" style="color: var(--text-secondary);">{{ $product->name }}</span>
         </nav>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
             {{-- Product Image --}}
-            <div class="rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm aspect-square">
+            <div class="rounded-3xl overflow-hidden shadow-sm aspect-square relative" style="background: var(--card-bg-alt); border: 1px solid var(--border-color);">
                 <img src="{{ $product->image_url }}"
                      alt="{{ $product->name }}"
                      class="w-full h-full object-cover">
+
+                @php $badge = $product->badge; @endphp
+                @if($badge)
+                <span class="absolute top-5 left-5 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md
+                    @if($badge['color'] === 'orange') bg-orange-500 text-white
+                    @elseif($badge['color'] === 'red') bg-red-600 text-white
+                    @elseif($badge['color'] === 'green') bg-green-600 text-white
+                    @elseif($badge['color'] === 'blue') bg-blue-600 text-white
+                    @else bg-gray-600 text-white @endif">
+                    {{ $badge['text'] }}
+                </span>
+                @endif
             </div>
 
             {{-- Product Info --}}
             <div class="flex flex-col">
-                @if($product->badge_text)
-                <span class="inline-block text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 w-fit
-                    @if($product->badge_color === 'orange') bg-orange-500 text-white
-                    @elseif($product->badge_color === 'red') bg-red-600 text-white
-                    @elseif($product->badge_color === 'green') bg-green-600 text-white
-                    @elseif($product->badge_color === 'blue') bg-blue-600 text-white
-                    @else bg-gray-500 text-white @endif">
-                    {{ $product->badge_text }}
-                </span>
-                @endif
-
-                <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">{{ $product->category->name }}</p>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-3">{{ $product->name }}</h1>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">{{ $product->short_description }}</p>
+                <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--text-muted);">{{ $product->category->name }}</p>
+                <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-3" style="color: var(--text-primary);">{{ $product->name }}</h1>
+                <p class="text-sm leading-relaxed mb-6" style="color: var(--text-secondary);">{{ $product->short_description }}</p>
 
                 {{-- Price --}}
-                <div class="flex items-baseline gap-3 mb-2">
-                    <span class="text-3xl font-bold text-gray-900">{{ $product->display_price }}</span>
+                <div class="flex items-baseline gap-3 mb-3">
+                    <span class="text-3xl font-bold" style="color: var(--text-primary);">{{ $product->display_price }}</span>
                     @if($product->is_on_sale)
-                        <span class="text-lg text-gray-400 line-through">{{ $product->original_price }}</span>
-                        <span class="text-sm font-semibold text-red-500">Sale</span>
+                        <span class="text-lg line-through" style="color: var(--text-muted);">{{ $product->original_price }}</span>
                     @endif
                 </div>
 
@@ -54,35 +88,69 @@
                         $statusLabels = ['in_stock'=>'In Stock','low_stock'=>'Low Stock — Order Soon','out_of_stock'=>'Out of Stock'];
                     @endphp
                     <span class="w-2.5 h-2.5 rounded-full {{ $dotColors[$status] }} inline-block"></span>
-                    <span class="text-sm font-medium text-gray-500">{{ $statusLabels[$status] }}</span>
+                    <span class="text-sm font-medium" style="color: var(--text-secondary);">{{ $statusLabels[$status] }}</span>
                 </div>
 
-                {{-- Add to Bag --}}
+                {{-- Add to Bag with Ultra-Modern Quantity Stepper --}}
                 @if($product->stock_status !== 'out_of_stock')
-                <form action="{{ route('cart.add') }}" method="POST" class="flex gap-3 mb-4">
+                <form id="product-detail-atb-form" action="{{ route('bag.add') }}" method="POST" class="mb-5">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock_quantity }}"
-                           class="w-16 px-3 py-3.5 border border-gray-200 rounded-xl text-center text-sm font-semibold bg-white focus:outline-none focus:border-gray-400">
-                    <button type="submit"
-                            class="flex-1 py-3.5 bg-[#111] text-white rounded-xl font-semibold text-sm hover:bg-gray-800 transition-all hover:shadow-lg active:scale-95">
-                        Add to Bag →
-                    </button>
+                    <input type="hidden" name="quantity" id="detail-qty-input" value="1">
+
+                    <div class="flex items-center gap-3.5">
+                        {{-- Ultra-Modern Capsule Stepper --}}
+                        <div class="modern-qty-stepper flex items-center justify-between p-1 rounded-2xl h-[52px] w-[140px] shrink-0 select-none">
+                            {{-- Decrement Button --}}
+                            <button type="button" id="qty-dec-btn" aria-label="Decrease quantity"
+                                    class="qty-stepper-btn w-10 h-10 rounded-xl flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                                    style="color: var(--text-primary);">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+
+                            {{-- Quantity Number --}}
+                            <div class="flex-1 flex items-center justify-center overflow-hidden">
+                                <span id="qty-val-display" class="font-extrabold text-base font-mono tracking-tight inline-block"
+                                      style="color: var(--text-primary);">1</span>
+                            </div>
+
+                            {{-- Increment Button --}}
+                            <button type="button" id="qty-inc-btn" aria-label="Increase quantity"
+                                    class="qty-stepper-btn w-10 h-10 rounded-xl flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                                    style="color: var(--text-primary);">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        {{-- Add to Bag Button --}}
+                        <button type="submit" id="detail-atb-btn"
+                                class="flex-1 h-[52px] bg-[#2997ff] text-white rounded-2xl font-bold text-sm hover:bg-[#1a7de3] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                            <span>Add to Bag</span>
+                        </button>
+                    </div>
                 </form>
                 @else
-                <button disabled class="w-full py-3.5 bg-gray-100 text-gray-400 rounded-xl font-semibold text-sm cursor-not-allowed mb-4">
-                    Currently Out of Stock
+                <button disabled class="w-full h-[52px] bg-gray-500/10 text-gray-400 rounded-2xl font-semibold text-sm cursor-not-allowed mb-5">
+                    Currently Out of Stock — Restock Soon
                 </button>
                 @endif
 
                 {{-- SKU --}}
-                <p class="text-xs text-gray-300 mb-6">SKU: {{ $product->sku ?? '—' }}</p>
+                <p class="text-xs mb-6" style="color: var(--text-muted);">SKU: {{ $product->sku ?? '—' }}</p>
 
                 {{-- Description --}}
                 @if($product->description)
-                <div class="border-t border-gray-100 pt-6">
-                    <h2 class="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wider">Product Details</h2>
-                    <p class="text-sm text-gray-600 leading-relaxed">{{ $product->description }}</p>
+                <div class="border-t pt-6" style="border-color: var(--border-color);">
+                    <h2 class="font-bold mb-3 text-xs uppercase tracking-wider" style="color: var(--text-primary);">Product Details</h2>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">{{ $product->description }}</p>
                 </div>
                 @endif
             </div>
@@ -90,19 +158,20 @@
 
         {{-- Related Products --}}
         @if($related->isNotEmpty())
-        <section class="mt-20">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-6">More in {{ $product->category->name }}</h2>
+        <section class="mt-20 border-t pt-14" style="border-color: var(--border-color);">
+            <h2 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">More in {{ $product->category->name }}</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                 @foreach($related as $rel)
                 <a href="{{ route('store.show', $rel->slug) }}"
-                   class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="aspect-square overflow-hidden">
+                   class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                   style="background: var(--card-bg-alt); border: 1px solid var(--border-color);">
+                    <div class="aspect-square overflow-hidden bg-black/5 dark:bg-white/5">
                         <img src="{{ $rel->image_url }}" alt="{{ $rel->name }}"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400">
                     </div>
-                    <div class="p-3">
-                        <p class="text-sm font-semibold text-gray-900 line-clamp-1">{{ $rel->name }}</p>
-                        <p class="text-sm font-bold text-gray-700 mt-1">{{ $rel->display_price }}</p>
+                    <div class="p-4">
+                        <p class="text-sm font-bold line-clamp-1 group-hover:text-[#2997ff] transition" style="color: var(--text-primary);">{{ $rel->name }}</p>
+                        <p class="text-sm font-semibold mt-1" style="color: var(--text-secondary);">{{ $rel->display_price }}</p>
                     </div>
                 </a>
                 @endforeach
@@ -111,4 +180,108 @@
         @endif
     </div>
 </div>
+
+{{-- ── QUANTITY STEPPER & AJAX ADD TO BAG SCRIPTS ─────────────────────────── --}}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ultra-Modern Quantity Stepper Logic
+        const qtyInput = document.getElementById('detail-qty-input');
+        const qtyDisplay = document.getElementById('qty-val-display');
+        const decBtn = document.getElementById('qty-dec-btn');
+        const incBtn = document.getElementById('qty-inc-btn');
+        const maxStock = parseInt("{{ $product->stock_quantity }}", 10) || 99;
+
+        function updateQty(newQty) {
+            if (newQty < 1) newQty = 1;
+            if (newQty > maxStock) newQty = maxStock;
+
+            if (qtyInput) qtyInput.value = newQty;
+            if (qtyDisplay) {
+                qtyDisplay.textContent = newQty;
+                qtyDisplay.classList.remove('qty-pop');
+                void qtyDisplay.offsetWidth; // trigger reflow
+                qtyDisplay.classList.add('qty-pop');
+            }
+
+            if (decBtn) decBtn.disabled = (newQty <= 1);
+            if (incBtn) incBtn.disabled = (newQty >= maxStock);
+        }
+
+        if (decBtn && incBtn && qtyDisplay && qtyInput) {
+            updateQty(1);
+
+            decBtn.addEventListener('click', () => {
+                const current = parseInt(qtyInput.value, 10) || 1;
+                updateQty(current - 1);
+            });
+
+            incBtn.addEventListener('click', () => {
+                const current = parseInt(qtyInput.value, 10) || 1;
+                updateQty(current + 1);
+            });
+        }
+
+        // AJAX Add to Bag
+        const form = document.getElementById('product-detail-atb-form');
+        if (!form) return;
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('detail-atb-btn');
+            const span = btn ? btn.querySelector('span') : null;
+            const originalText = span ? span.textContent : 'Add to Bag';
+
+            if (btn) {
+                btn.disabled = true;
+                if (span) span.textContent = 'Adding...';
+            }
+
+            try {
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.cartCount !== undefined && window.updateCartBadge) {
+                        window.updateCartBadge(data.cartCount);
+                    }
+
+                    if (span) span.textContent = 'Added to Bag ✓';
+                    if (btn) {
+                        btn.classList.add('bg-green-600');
+                        btn.classList.remove('bg-[#2997ff]');
+                    }
+
+                    if (window.showStoreToast) {
+                        window.showStoreToast('Added to your bag!');
+                    }
+
+                    setTimeout(() => {
+                        if (span) span.textContent = originalText;
+                        if (btn) {
+                            btn.classList.remove('bg-green-600');
+                            btn.classList.add('bg-[#2997ff]');
+                            btn.disabled = false;
+                        }
+                    }, 1600);
+                } else {
+                    if (btn) btn.disabled = false;
+                    if (span) span.textContent = originalText;
+                    if (window.showStoreToast) window.showStoreToast('Could not add item to bag', false);
+                }
+            } catch (err) {
+                console.error('Error adding to cart:', err);
+                if (btn) btn.disabled = false;
+                if (span) span.textContent = originalText;
+            }
+        });
+    });
+</script>
 </x-main-layout>

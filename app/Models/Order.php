@@ -15,6 +15,12 @@ class Order extends Model
         'user_id',
         'session_id',
         'status',
+        'payment_status',
+        'payment_method',
+        'payment_reference',
+        'payment_channel',
+        'paid_at',
+        'paystack_response',
         'currency',
         'subtotal',
         'shipping',
@@ -27,9 +33,11 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'subtotal' => 'decimal:2',
-        'shipping' => 'decimal:2',
-        'total'    => 'decimal:2',
+        'subtotal'          => 'decimal:2',
+        'shipping'          => 'decimal:2',
+        'total'             => 'decimal:2',
+        'paid_at'           => 'datetime',
+        'paystack_response' => 'array',
     ];
 
     const STATUSES = [
@@ -39,6 +47,41 @@ class Order extends Model
         'delivered'  => 'Delivered',
         'cancelled'  => 'Cancelled',
     ];
+
+    const PAYMENT_STATUSES = [
+        'pending'  => 'Pending',
+        'paid'     => 'Paid',
+        'failed'   => 'Failed',
+        'refunded' => 'Refunded',
+    ];
+
+    public function isPaid(): bool
+    {
+        return $this->payment_status === 'paid';
+    }
+
+    public function markAsPaid(?string $channel = null, ?array $response = null): self
+    {
+        $this->update([
+            'payment_status'    => 'paid',
+            'status'            => 'processing',
+            'payment_channel'   => $channel ?? $this->payment_channel,
+            'paid_at'           => now(),
+            'paystack_response' => $response ?? $this->paystack_response,
+        ]);
+
+        return $this;
+    }
+
+    public function markAsFailed(?array $response = null): self
+    {
+        $this->update([
+            'payment_status'    => 'failed',
+            'paystack_response' => $response ?? $this->paystack_response,
+        ]);
+
+        return $this;
+    }
 
     public function user(): BelongsTo
     {

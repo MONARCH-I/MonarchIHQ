@@ -38,6 +38,26 @@ class OrderResource extends Resource
                     Forms\Components\Textarea::make('shipping_address')->rows(3)->columnSpanFull(),
                     Forms\Components\Textarea::make('notes')->rows(2)->columnSpanFull(),
                 ])->columns(2),
+
+            Forms\Components\Section::make('Payment Info')
+                ->schema([
+                    Forms\Components\Select::make('payment_status')
+                        ->options(Order::PAYMENT_STATUSES)
+                        ->default('pending')
+                        ->required(),
+
+                    Forms\Components\TextInput::make('payment_method')
+                        ->default('paystack'),
+
+                    Forms\Components\TextInput::make('payment_reference')
+                        ->label('Paystack Reference'),
+
+                    Forms\Components\TextInput::make('payment_channel')
+                        ->label('Channel (MoMo / Card)'),
+
+                    Forms\Components\DateTimePicker::make('paid_at')
+                        ->label('Paid At'),
+                ])->columns(2),
         ]);
     }
 
@@ -55,11 +75,19 @@ class OrderResource extends Resource
                     ->placeholder('Guest')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('customer_email')
-                    ->placeholder('—')
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('payment_status')
+                    ->label('Payment')
+                    ->badge()
+                    ->color(fn (string $state) => match ($state) {
+                        'paid'     => 'success',
+                        'pending'  => 'warning',
+                        'failed'   => 'danger',
+                        'refunded' => 'gray',
+                        default    => 'gray',
+                    }),
 
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Fulfillment')
                     ->badge()
                     ->color(fn (string $state) => match ($state) {
                         'pending'    => 'gray',
@@ -67,11 +95,22 @@ class OrderResource extends Resource
                         'shipped'    => 'warning',
                         'delivered'  => 'success',
                         'cancelled'  => 'danger',
+                        default      => 'gray',
                     }),
 
                 Tables\Columns\TextColumn::make('total')
                     ->money('GHS')
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('payment_channel')
+                    ->label('Channel')
+                    ->placeholder('—')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                Tables\Columns\TextColumn::make('payment_reference')
+                    ->label('Ref')
+                    ->placeholder('—')
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('items_count')
                     ->label('Items')
@@ -85,11 +124,16 @@ class OrderResource extends Resource
                     ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('payment_status')
+                    ->label('Payment Status')
+                    ->options(Order::PAYMENT_STATUSES),
+
                 Tables\Filters\SelectFilter::make('status')
+                    ->label('Fulfillment Status')
                     ->options(Order::STATUSES),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Update Status'),
+                Tables\Actions\EditAction::make()->label('Update'),
                 Tables\Actions\ViewAction::make(),
             ])
             ->defaultSort('created_at', 'desc');

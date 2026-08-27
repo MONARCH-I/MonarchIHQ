@@ -601,28 +601,28 @@
             <div class="db-stat-icon" style="background: rgba(56,189,248,0.12);">
               <svg width="18" height="18" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
             </div>
-            <div class="db-stat-value">0</div>
+            <div class="db-stat-value">{{ $totalOrders ?? 0 }}</div>
             <div class="db-stat-label">Total Orders</div>
           </div>
           <div class="db-stat-card">
             <div class="db-stat-icon" style="background: rgba(16,185,129,0.12);">
               <svg width="18" height="18" fill="none" stroke="#10b981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div class="db-stat-value">0</div>
+            <div class="db-stat-value">{{ $completedOrders ?? 0 }}</div>
             <div class="db-stat-label">Completed</div>
           </div>
           <div class="db-stat-card">
             <div class="db-stat-icon" style="background: rgba(245,158,11,0.12);">
               <svg width="18" height="18" fill="none" stroke="#f59e0b" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <div class="db-stat-value">0</div>
-            <div class="db-stat-label">Pending</div>
+            <div class="db-stat-value">{{ $pendingOrders ?? 0 }}</div>
+            <div class="db-stat-label">In Progress</div>
           </div>
           <div class="db-stat-card">
             <div class="db-stat-icon" style="background: rgba(59,130,246,0.12);">
               <svg width="18" height="18" fill="none" stroke="#3b82f6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             </div>
-            <div class="db-stat-value">GHS 0</div>
+            <div class="db-stat-value">₵{{ number_format($totalSpent ?? 0, 2) }}</div>
             <div class="db-stat-label">Total Spent</div>
           </div>
         </div>
@@ -630,17 +630,41 @@
         {{-- Recent Activity --}}
         <div class="db-form-card">
           <div class="db-form-card-title">Recent Activity</div>
-          <div class="db-timeline-item">
-            <div class="db-timeline-dot" style="background: rgba(56,189,248,0.12);">
-              <svg width="14" height="14" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          <div class="space-y-4">
+            @if(isset($orders) && $orders->isNotEmpty())
+              @foreach($orders->take(3) as $recentOrder)
+              <div class="db-timeline-item">
+                <div class="db-timeline-dot" style="background: {{ $recentOrder->isPaid() ? 'rgba(16,185,129,0.12)' : 'rgba(56,189,248,0.12)' }};">
+                  @if($recentOrder->isPaid())
+                    <svg width="14" height="14" fill="none" stroke="#10b981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  @else
+                    <svg width="14" height="14" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                  @endif
+                </div>
+                <div class="db-timeline-content">
+                  <div class="db-timeline-title flex items-center justify-between">
+                    <span>Order #MHQ-{{ str_pad($recentOrder->id, 5, '0', STR_PAD_LEFT) }} (₵{{ number_format($recentOrder->total, 2) }})</span>
+                    @if($recentOrder->isPaid())
+                      <span class="db-badge db-badge-green">Paid ({{ ucfirst(str_replace('_', ' ', $recentOrder->payment_channel ?? 'Paystack')) }})</span>
+                    @else
+                      <span class="db-badge db-badge-yellow">Payment Pending</span>
+                    @endif
+                  </div>
+                  <div class="db-timeline-time">{{ $recentOrder->created_at->diffForHumans() }} &middot; {{ $recentOrder->items->count() }} {{ Str::plural('item', $recentOrder->items->count()) }}</div>
+                </div>
+              </div>
+              @endforeach
+            @endif
+
+            <div class="db-timeline-item">
+              <div class="db-timeline-dot" style="background: rgba(56,189,248,0.12);">
+                <svg width="14" height="14" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              </div>
+              <div class="db-timeline-content">
+                <div class="db-timeline-title">Account Created</div>
+                <div class="db-timeline-time">{{ auth()->user()->created_at->diffForHumans() }} &middot; Welcome to Monarchi!</div>
+              </div>
             </div>
-            <div class="db-timeline-content">
-              <div class="db-timeline-title">Account Created</div>
-              <div class="db-timeline-time">{{ auth()->user()->created_at->diffForHumans() }} &middot; Welcome to Monarchi!</div>
-            </div>
-          </div>
-          <div style="text-align:center; padding: 1.5rem 0 0.5rem; color: var(--text-muted); font-size: 0.8rem;">
-            No more activity yet. Start by exploring our <a href="/store" style="color: #38bdf8; font-weight:600;">store</a>.
           </div>
         </div>
       </section>
@@ -649,20 +673,128 @@
       {{-- TAB: ORDER HISTORY                      --}}
       {{-- ═══════════════════════════════════════ --}}
       <section id="tab-orders" class="db-section">
-        <h1 class="db-section-heading">Order History</h1>
-        <p class="db-section-sub">Track and manage all your past orders.</p>
-
-        {{-- Empty state --}}
-        <div style="text-align:center; padding: 4rem 2rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 1rem;">
-          <div style="width:72px;height:72px;background:rgba(56,189,248,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
-            <svg width="30" height="30" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h1 class="db-section-heading">Order History</h1>
+            <p class="db-section-sub mb-0">Track and manage all your past orders and payment receipts.</p>
           </div>
-          <div style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;">No orders yet</div>
-          <div style="font-size:0.8rem;color:var(--text-muted);max-width:280px;margin:0 auto 1.5rem;line-height:1.6;">Once you place an order, it will appear here for easy tracking and management.</div>
-          <a href="/store" class="db-btn-primary" style="display:inline-block; text-decoration:none; padding:0.65rem 1.75rem;">
-            Browse the Store
+          <a href="{{ route('store.index') }}" class="db-btn-primary text-xs" style="text-decoration:none;">
+            + New Order
           </a>
         </div>
+
+        @if(!isset($orders) || $orders->isEmpty())
+          {{-- Empty state --}}
+          <div style="text-align:center; padding: 4rem 2rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 1rem;">
+            <div style="width:72px;height:72px;background:rgba(56,189,248,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+              <svg width="30" height="30" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </div>
+            <div style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;">No orders yet</div>
+            <div style="font-size:0.8rem;color:var(--text-muted);max-width:280px;margin:0 auto 1.5rem;line-height:1.6;">Once you place an order, it will appear here for easy tracking and management.</div>
+            <a href="{{ route('store.index') }}" class="db-btn-primary" style="display:inline-block; text-decoration:none; padding:0.65rem 1.75rem;">
+              Browse the Store
+            </a>
+          </div>
+        @else
+          {{-- Orders List --}}
+          <div class="space-y-4">
+            @foreach($orders as $order)
+            <div class="db-form-card" style="padding: 1.5rem;">
+              {{-- Header --}}
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 mb-3.5 border-b gap-2" style="border-color: var(--border-subtle);">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm bg-[#38bdf8]/10 text-[#38bdf8]">
+                    #{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-sm" style="color: var(--text-primary);">Order #MHQ-{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</h3>
+                    <p class="text-xs" style="color: var(--text-muted);">Placed on {{ $order->created_at->format('M d, Y \a\t H:i') }}</p>
+                  </div>
+                </div>
+
+                {{-- Status Badges --}}
+                <div class="flex flex-wrap items-center gap-2">
+                  @if($order->isPaid())
+                    <span class="db-badge db-badge-green">
+                      ✓ Paid ({{ ucfirst(str_replace('_', ' ', $order->payment_channel ?? 'Paystack')) }})
+                    </span>
+                  @elseif($order->payment_status === 'failed')
+                    <span class="db-badge db-badge-red">Payment Failed</span>
+                  @else
+                    <span class="db-badge db-badge-yellow">Payment Pending</span>
+                  @endif
+
+                  <span class="db-badge {{ $order->status === 'delivered' ? 'db-badge-green' : ($order->status === 'cancelled' ? 'db-badge-red' : 'db-badge-blue') }}">
+                    {{ ucfirst($order->status) }}
+                  </span>
+                </div>
+              </div>
+
+              {{-- Order Items --}}
+              <div class="space-y-2.5 my-3">
+                @foreach($order->items as $item)
+                <div class="flex items-center justify-between p-2.5 rounded-xl border" style="background: var(--bg-primary); border-color: var(--border-subtle);">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 border flex items-center justify-center" style="background: var(--bg-card); border-color: var(--border-subtle);">
+                      @if($item->product && $item->product->image_path)
+                        <img src="{{ asset('storage/'.$item->product->image_path) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
+                      @else
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                      @endif
+                    </div>
+                    <div class="min-w-0">
+                      <p class="text-xs font-bold truncate" style="color: var(--text-primary);">
+                        {{ $item->product?->name ?? 'Product' }}
+                      </p>
+                      <p class="text-[11px]" style="color: var(--text-muted);">
+                        Qty: {{ $item->quantity }} &times; ₵{{ number_format($item->unit_price, 2) }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <span class="text-xs font-extrabold shrink-0 ml-4" style="color: var(--text-primary);">
+                    ₵{{ number_format($item->subtotal, 2) }}
+                  </span>
+                </div>
+                @endforeach
+              </div>
+
+              {{-- Footer Details & Actions --}}
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t gap-3" style="border-color: var(--border-subtle);">
+                <div>
+                  <span class="text-[11px]" style="color: var(--text-muted);">Delivery to:</span>
+                  <span class="text-xs font-semibold ml-1" style="color: var(--text-primary);">{{ $order->shipping_address ?? 'Not specified' }}</span>
+                  @if($order->payment_reference)
+                    <span class="text-[11px] font-mono ml-2 block sm:inline" style="color: var(--text-muted);">Ref: {{ $order->payment_reference }}</span>
+                  @endif
+                </div>
+
+                <div class="flex items-center gap-3 justify-between sm:justify-end">
+                  <div class="text-right mr-2">
+                    <span class="text-[10px] uppercase font-bold tracking-wider block text-gray-400">Total</span>
+                    <span class="text-base font-extrabold text-[#38bdf8]">₵{{ number_format($order->total, 2) }}</span>
+                  </div>
+
+                  @if(!$order->isPaid())
+                    <a href="{{ route('paystack.retry', $order->id) }}"
+                       class="px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-bold hover:bg-green-700 transition flex items-center gap-1.5 shadow-sm">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                      Pay on Paystack
+                    </a>
+                  @endif
+
+                  <a href="{{ route('bag.success', $order->id) }}"
+                     class="px-4 py-2 rounded-lg text-xs font-semibold border hover:border-[#38bdf8] transition flex items-center gap-1"
+                     style="border-color: var(--border-subtle); color: var(--text-primary); background: var(--bg-primary);">
+                    Receipt
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            @endforeach
+          </div>
+        @endif
       </section>
 
       {{-- ═══════════════════════════════════════ --}}
@@ -941,9 +1073,27 @@
   function switchTab(tab, btn) {
     document.querySelectorAll('.db-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.db-nav-item').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    btn.classList.add('active');
+    const targetSection = document.getElementById('tab-' + tab);
+    if (targetSection) {
+      targetSection.classList.add('active');
+    }
+    if (btn) {
+      btn.classList.add('active');
+    }
+    // Update browser URL hash without jump
+    if (history.replaceState) {
+      history.replaceState(null, null, '#' + tab);
+    }
   }
+
+  // Check URL hash on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('tab-' + hash)) {
+      const targetBtn = document.querySelector(`.db-nav-item[onclick*="'${hash}'"]`);
+      switchTab(hash, targetBtn);
+    }
+  });
 
   function updateToggle(checkbox) {
     const key = checkbox.name;

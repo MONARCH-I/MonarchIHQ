@@ -1,25 +1,35 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+
+    @if (session('status'))
+        <div class="auth-status">{{ session('status') }}</div>
+    @endif
+
+    <div style="text-align:center;margin-bottom:16px;" class="auth-field-group">
+        <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 3px;">Forgot password?</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.4);margin:0;line-height:1.5;">Enter your email to receive a password reset link.</p>
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.email') }}" style="display:flex;flex-direction:column;gap:12px;">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="auth-field-group">
+            <label class="auth-label" for="email">Email Address</label>
+            <input id="email" class="auth-input" type="email" name="email"
+                   value="{{ old('email') }}" required autofocus
+                   placeholder="kwame@example.com">
+            @error('email')
+                <p class="auth-error">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+        <div class="auth-field-group" style="margin-top:4px;">
+            <button type="submit" class="auth-btn-primary">Send Reset Link</button>
         </div>
     </form>
+
+    <p style="text-align:center;margin-top:14px;margin-bottom:0;font-size:11.5px;color:rgba(255,255,255,0.38);">
+        Remembered it?
+        <a href="{{ route('login') }}" class="auth-link auth-link-blue" style="margin-left:3px;">Sign in →</a>
+    </p>
+
 </x-guest-layout>
