@@ -20,6 +20,8 @@ class SuperAdminSeeder extends Seeder
                 'name' => 'Monarch Super Admin',
                 'password' => Hash::make('HuNyansa7819!'),
                 'is_super_admin' => true,
+                'role' => 'super_admin',
+                'email_verified_at' => now(),
             ]
         );
     }

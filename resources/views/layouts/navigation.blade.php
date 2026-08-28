@@ -34,6 +34,12 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if(Auth::user()->hasManagerAccess())
+                        <x-dropdown-link :href="route('manager')" class="text-blue-500 font-semibold">
+                            ✦ {{ __('Manager Portal') }}
+                        </x-dropdown-link>
+                        @endif
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -80,6 +86,12 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @if(Auth::user()->hasManagerAccess())
+                <x-responsive-nav-link :href="route('manager')" class="text-blue-500 font-semibold">
+                    ✦ {{ __('Manager Portal') }}
+                </x-responsive-nav-link>
+                @endif
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

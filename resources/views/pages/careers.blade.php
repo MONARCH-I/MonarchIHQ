@@ -33,40 +33,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-8 rounded-3xl border" style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">
-                        ⚡
-                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">⚡</div>
                     <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Extreme Craftsmanship</h4>
-                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-                        We care deeply about clean code, zero-latency micro-interactions, robust database design, and architectural integrity. No cutting corners.
-                    </p>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">We care deeply about clean code, zero-latency micro-interactions, robust database design, and architectural integrity. No cutting corners.</p>
                 </div>
 
                 <div class="p-8 rounded-3xl border" style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">
-                        🌐
-                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">🌐</div>
                     <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">African Roots, Global Scale</h4>
-                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-                        Headquartered in Accra with global deployment standards. We build software and hardware that solves real infrastructural challenges across markets.
-                    </p>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Headquartered in Accra with global deployment standards. We build software and hardware that solves real infrastructural challenges across markets.</p>
                 </div>
 
                 <div class="p-8 rounded-3xl border" style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">
-                        🚀
-                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">🚀</div>
                     <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Autonomous Ownership</h4>
-                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-                        Engineers lead projects end-to-end. We value high agency, clear technical writing, rapid prototyping, and shipping production-grade systems.
-                    </p>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Engineers lead projects end-to-end. We value high agency, clear technical writing, rapid prototyping, and shipping production-grade systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
     {{-- =============================================
-         OPEN POSITIONS
+         OPEN POSITIONS (Dynamic)
     ============================================= --}}
     <section class="py-20 px-6 z-10 relative border-t" style="border-color: var(--border-color); background: var(--bg-primary);">
         <div class="max-w-[1000px] mx-auto">
@@ -75,78 +63,39 @@
                 <h2 class="text-3xl md:text-4xl font-bold" style="color: var(--text-primary);">Find Your Role at MonarchI</h2>
             </div>
 
+            @if($jobs->isEmpty())
+            {{-- No open positions --}}
+            <div class="p-10 rounded-3xl border text-center" style="background: var(--bg-card); border-color: var(--border-color);">
+                <div class="text-4xl mb-4">🔭</div>
+                <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">No open positions right now</h4>
+                <p class="text-sm max-w-md mx-auto mb-6" style="color: var(--text-secondary);">We're always looking for exceptional engineers, mathematicians, and builders. Send us your GitHub or portfolio for future opportunities.</p>
+                <a href="mailto:careers@monarchi.com.gh?subject=General%20Engineering%20Inquiry" class="text-sm font-bold text-[#2997ff] hover:underline">
+                    Send General Application &rarr;
+                </a>
+            </div>
+
+            @else
             <div class="space-y-4">
-                {{-- Role 1 --}}
+                @foreach($jobs as $job)
                 <div class="p-6 sm:p-8 rounded-2xl border transition duration-300 hover:border-[#2997ff] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
                      style="background: var(--bg-card); border-color: var(--border-color);">
                     <div>
                         <div class="flex items-center gap-3 mb-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff]">Engineering</span>
-                            <span class="text-xs text-gray-400">&middot; Full-Time</span>
-                            <span class="text-xs text-gray-400">&middot; Accra / Hybrid</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff]">{{ $job->department }}</span>
+                            <span class="text-xs text-gray-400">&middot; {{ $job->employmentTypeLabel() }}</span>
+                            <span class="text-xs text-gray-400">&middot; {{ $job->location }}</span>
                         </div>
-                        <h4 class="text-xl font-bold" style="color: var(--text-primary);">Senior Fullstack / Laravel Systems Engineer</h4>
-                        <p class="text-xs mt-2" style="color: var(--text-muted);">PHP 8.3+, Laravel 12, PostgreSQL/MySQL, TailwindCSS, Livewire/Alpine, High-throughput APIs.</p>
+                        <h4 class="text-xl font-bold" style="color: var(--text-primary);">{{ $job->title }}</h4>
+                        @if($job->skills_required)
+                        <p class="text-xs mt-2" style="color: var(--text-muted);">{{ $job->skills_required }}</p>
+                        @endif
                     </div>
-                    <a href="mailto:careers@monarchi.com.gh?subject=Application:%20Senior%20Fullstack%20Engineer"
+                    <a href="mailto:{{ $job->apply_email }}?subject=Application:%20{{ rawurlencode($job->title) }}"
                        class="px-6 py-3 bg-[#2997ff] text-white rounded-xl text-xs font-bold hover:bg-[#1a7de3] transition text-center shrink-0">
                         Apply for Role &rarr;
                     </a>
                 </div>
-
-                {{-- Role 2 --}}
-                <div class="p-6 sm:p-8 rounded-2xl border transition duration-300 hover:border-[#2997ff] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
-                     style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff]">AI Research &amp; ML</span>
-                            <span class="text-xs text-gray-400">&middot; Full-Time</span>
-                            <span class="text-xs text-gray-400">&middot; Accra / Remote</span>
-                        </div>
-                        <h4 class="text-xl font-bold" style="color: var(--text-primary);">Edge AI &amp; Applied ML Engineer</h4>
-                        <p class="text-xs mt-2" style="color: var(--text-muted);">Python, PyTorch/TensorFlow Lite, ONNX Runtime, Edge Inference Optimization, LLM Tool Calling.</p>
-                    </div>
-                    <a href="mailto:careers@monarchi.com.gh?subject=Application:%20Edge%20AI%20Engineer"
-                       class="px-6 py-3 bg-[#2997ff] text-white rounded-xl text-xs font-bold hover:bg-[#1a7de3] transition text-center shrink-0">
-                        Apply for Role &rarr;
-                    </a>
-                </div>
-
-                {{-- Role 3 --}}
-                <div class="p-6 sm:p-8 rounded-2xl border transition duration-300 hover:border-[#2997ff] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
-                     style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff]">Hardware</span>
-                            <span class="text-xs text-gray-400">&middot; Full-Time</span>
-                            <span class="text-xs text-gray-400">&middot; Accra On-site</span>
-                        </div>
-                        <h4 class="text-xl font-bold" style="color: var(--text-primary);">Embedded Systems &amp; IoT Hardware Engineer</h4>
-                        <p class="text-xs mt-2" style="color: var(--text-muted);">C/C++, ESP32/ARM Cortex, LoRaWAN, PCB Layout &amp; Schematic Design, Sensor Integration.</p>
-                    </div>
-                    <a href="mailto:careers@monarchi.com.gh?subject=Application:%20Embedded%20Hardware%20Engineer"
-                       class="px-6 py-3 bg-[#2997ff] text-white rounded-xl text-xs font-bold hover:bg-[#1a7de3] transition text-center shrink-0">
-                        Apply for Role &rarr;
-                    </a>
-                </div>
-
-                {{-- Role 4 --}}
-                <div class="p-6 sm:p-8 rounded-2xl border transition duration-300 hover:border-[#2997ff] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
-                     style="background: var(--bg-card); border-color: var(--border-color);">
-                    <div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff]">Design</span>
-                            <span class="text-xs text-gray-400">&middot; Full-Time / Contract</span>
-                            <span class="text-xs text-gray-400">&middot; Remote</span>
-                        </div>
-                        <h4 class="text-xl font-bold" style="color: var(--text-primary);">Product &amp; UI/UX Designer</h4>
-                        <p class="text-xs mt-2" style="color: var(--text-muted);">Figma design systems, Micro-animations, Complex Data Dashboards, Dark/Light Mode Systems.</p>
-                    </div>
-                    <a href="mailto:careers@monarchi.com.gh?subject=Application:%20Product%20Designer"
-                       class="px-6 py-3 bg-[#2997ff] text-white rounded-xl text-xs font-bold hover:bg-[#1a7de3] transition text-center shrink-0">
-                        Apply for Role &rarr;
-                    </a>
-                </div>
+                @endforeach
             </div>
 
             {{-- General Application Note --}}
@@ -159,6 +108,8 @@
                     Send General Application &rarr;
                 </a>
             </div>
+            @endif
+
         </div>
     </section>
 

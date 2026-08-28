@@ -11,8 +11,25 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: '*');
+
         $middleware->validateCsrfTokens(except: [
             'payment/paystack/webhook',
+        ]);
+
+        // Unauthenticated redirect routing
+        $middleware->redirectTo(
+            guests: function (\Illuminate\Http\Request $request) {
+                if ($request->is('manager*')) {
+                    return route('manager.login');
+                }
+                return route('login');
+            }
+        );
+
+        // ABAC role-based access control middleware alias
+        $middleware->alias([
+            'role' => \App\Http\Middleware\CheckRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

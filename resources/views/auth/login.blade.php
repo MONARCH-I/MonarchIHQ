@@ -35,7 +35,14 @@
 
     </div>
 
-    <p style="text-align:center;margin-top:16px;margin-bottom:0;font-size:10.5px;color:rgba(255,255,255,0.24);line-height:1.5;">
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;">
+        <span style="font-size:11px;color:rgba(255,255,255,0.35);">Are you staff or management?</span>
+        <a href="{{ route('manager.login') }}" style="font-size:11px;color:#2997ff;font-weight:600;text-decoration:none;margin-left:4px;">
+            Staff Portal Sign In &rarr;
+        </a>
+    </div>
+
+    <p style="text-align:center;margin-top:14px;margin-bottom:0;font-size:10.5px;color:rgba(255,255,255,0.24);line-height:1.5;">
         By continuing you agree to our
         <a href="#" class="auth-link" style="color:rgba(255,255,255,0.4);text-decoration:underline;">Terms</a>
         &amp;

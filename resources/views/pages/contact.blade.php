@@ -71,10 +71,27 @@
                     </div>
                 </div>
 
-                <!-- Decorative image below contact info -->
-                <div class="mt-12 rounded-3xl overflow-hidden h-[200px] relative">
-                     <img src="{{ asset('images/devices.png') }}" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition duration-500" alt="Devices">
-                     <div class="absolute inset-0 bg-black/30"></div>
+                <!-- Google Map Location -->
+                <div class="mt-12 rounded-3xl overflow-hidden h-[240px] relative border shadow-sm group" style="border-color: var(--border-color); background: var(--bg-card);">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Accra%2C%20Ghana&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        class="w-full h-full border-0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="MonarchI HQ Location Map"
+                    ></iframe>
+                    <a
+                        href="https://maps.google.com/?q=Accra,+Ghana"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl text-xs font-semibold backdrop-blur-md bg-black/75 text-white border border-white/15 hover:bg-[#2997ff] hover:border-[#2997ff] transition-all flex items-center gap-1.5 shadow-md"
+                    >
+                        <span>Open in Maps</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
 
@@ -82,40 +99,50 @@
             <div class="w-full lg:w-7/12">
                 <div class="p-8 md:p-12 rounded-3xl" style="background: var(--bg-card); border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
                     <h3 class="text-2xl font-semibold mb-6" style="color: var(--text-primary);">Send a Message</h3>
-                    
-                    <form action="#" method="POST" class="space-y-6">
+
+                    {{-- Success flash --}}
+                    @if(session('success'))
+                    <div class="mb-6 px-5 py-4 rounded-xl text-sm font-medium" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #4ade80;">
+                        ✓ {{ session('success') }}
+                    </div>
+                    @endif
+
+                    @if($errors->any())
+                    <div class="mb-6 px-5 py-4 rounded-xl text-sm" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #f87171;">
+                        <ul class="list-disc list-inside space-y-1">
+                            @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="first_name" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">First Name</label>
-                                <input type="text" id="first_name" name="first_name" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="John" required>
+                                <label for="contact_name" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Full Name</label>
+                                <input type="text" id="contact_name" name="name" value="{{ old('name') }}" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="Jane Doe" required>
                             </div>
                             <div>
-                                <label for="last_name" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Last Name</label>
-                                <input type="text" id="last_name" name="last_name" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="Doe" required>
+                                <label for="contact_email" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Work Email</label>
+                                <input type="email" id="contact_email" name="email" value="{{ old('email') }}" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="jane@company.com" required>
                             </div>
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Work Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="john@company.com" required>
-                        </div>
-
-                        <div>
-                            <label for="subject" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Subject</label>
-                            <select id="subject" name="subject" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition appearance-none" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
-                                <option value="" disabled selected>Select an inquiry type</option>
-                                <option value="enterprise">Enterprise Systems &amp; SaaS</option>
-                                <option value="ai">AI &amp; Edge Intelligence</option>
-                                <option value="support">Technical Support</option>
-                                <option value="partnership">Partnership Opportunity</option>
-                                <option value="other">Other</option>
+                            <label for="contact_subject" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Subject</label>
+                            <select id="contact_subject" name="subject" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition appearance-none" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
+                                <option value="" {{ old('subject') ? '' : 'selected' }} disabled>Select an inquiry type</option>
+                                <option value="Enterprise Systems &amp; SaaS" {{ old('subject')==='Enterprise Systems &amp; SaaS'?'selected':'' }}>Enterprise Systems &amp; SaaS</option>
+                                <option value="AI &amp; Edge Intelligence" {{ old('subject')==='AI &amp; Edge Intelligence'?'selected':'' }}>AI &amp; Edge Intelligence</option>
+                                <option value="Technical Support" {{ old('subject')==='Technical Support'?'selected':'' }}>Technical Support</option>
+                                <option value="Partnership Opportunity" {{ old('subject')==='Partnership Opportunity'?'selected':'' }}>Partnership Opportunity</option>
+                                <option value="Other" {{ old('subject')==='Other'?'selected':'' }}>Other</option>
                             </select>
                         </div>
 
                         <div>
-                            <label for="message" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition resize-none" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="Tell us about your project..." required></textarea>
+                            <label for="contact_message" class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Message</label>
+                            <textarea id="contact_message" name="message" rows="5" class="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-[#2997ff] outline-none transition resize-none" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);" placeholder="Tell us about your project..." required>{{ old('message') }}</textarea>
                         </div>
 
                         <button type="submit" class="w-full py-4 rounded-xl bg-[#2997ff] text-white font-medium hover:bg-blue-600 transition shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2">

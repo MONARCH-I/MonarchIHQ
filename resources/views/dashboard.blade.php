@@ -538,39 +538,61 @@
         />
         <span class="db-user-name">{{ auth()->user()->name }}</span>
         <span class="db-user-email">{{ auth()->user()->email }}</span>
+
+        @if(auth()->user()->hasManagerAccess())
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px;width:100%;align-items:center">
+          <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;background:rgba(41,151,255,0.12);color:#2997ff;border:1px solid rgba(41,151,255,0.3)">
+            {{ auth()->user()->roleLabel() }}
+          </span>
+          <a href="{{ route('manager') }}" style="font-size:11px;font-weight:600;color:#2997ff;text-decoration:none;display:inline-flex;align-items:center;gap:4px">
+            ✦ Open Manager Portal &rarr;
+          </a>
+        </div>
+        @endif
       </div>
+
+      @php
+        $activeTab = 'overview';
+        if (session('status') === 'display-updated' || session('status') === 'address-updated' || $errors->hasAny(['address_street','address_city','address_region','phone','language','currency'])) {
+            $activeTab = 'settings';
+        } elseif (session('status') === 'notifications-updated') {
+            $activeTab = 'notifications';
+        } elseif (session('status') === 'profile-updated' || $errors->hasAny(['name','email'])) {
+            $activeTab = 'account';
+        }
+      @endphp
 
       <nav class="db-nav">
         <div class="db-nav-group-label">Account</div>
 
-        <button class="db-nav-item active" onclick="switchTab('overview', this)">
+        <button class="db-nav-item {{ $activeTab === 'overview' ? 'active' : '' }}" onclick="switchTab('overview', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           Overview
         </button>
 
-        <button class="db-nav-item" onclick="switchTab('orders', this)">
+        <button class="db-nav-item {{ $activeTab === 'orders' ? 'active' : '' }}" onclick="switchTab('orders', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
           Order History
         </button>
 
-        <button class="db-nav-item" onclick="switchTab('account', this)">
+        <button class="db-nav-item {{ $activeTab === 'account' ? 'active' : '' }}" onclick="switchTab('account', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
           Account Details
         </button>
 
-        <button class="db-nav-item" onclick="switchTab('security', this)">
+        <button class="db-nav-item {{ $activeTab === 'security' ? 'active' : '' }}" onclick="switchTab('security', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           Security
         </button>
 
         <div class="db-nav-group-label" style="margin-top: 0.5rem;">Preferences</div>
 
-        <button class="db-nav-item" onclick="switchTab('notifications', this)">
+        <button class="db-nav-item {{ $activeTab === 'notifications' ? 'active' : '' }}" onclick="switchTab('notifications', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
           Notifications
         </button>
 
-        <button class="db-nav-item" onclick="switchTab('settings', this)">
+        <button class="db-nav-item {{ $activeTab === 'settings' ? 'active' : '' }}" onclick="switchTab('settings', this)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
           Settings
         </button>
@@ -592,7 +614,7 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: OVERVIEW                           --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-overview" class="db-section active">
+      <section id="tab-overview" class="db-section {{ $activeTab === 'overview' ? 'active' : '' }}">
         <h1 class="db-section-heading">Good {{ now()->hour < 12 ? 'Morning' : (now()->hour < 17 ? 'Afternoon' : 'Evening') }}, {{ explode(' ', auth()->user()->name)[0] }} 👋</h1>
         <p class="db-section-sub">Here's a summary of your Monarchi account activity.</p>
 
@@ -672,7 +694,7 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: ORDER HISTORY                      --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-orders" class="db-section">
+      <section id="tab-orders" class="db-section {{ $activeTab === 'orders' ? 'active' : '' }}">
         <div class="flex items-center justify-between mb-4">
           <div>
             <h1 class="db-section-heading">Order History</h1>
@@ -800,13 +822,13 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: ACCOUNT DETAILS                    --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-account" class="db-section">
+      <section id="tab-account" class="db-section {{ $activeTab === 'account' ? 'active' : '' }}">
         <h1 class="db-section-heading">Account Details</h1>
         <p class="db-section-sub">Update your personal information.</p>
 
         <div class="db-form-card">
           <div class="db-form-card-title">Personal Information</div>
-          <form method="POST" action="{{ route('profile.update') }}">
+          <form method="POST" action="{{ route('profile.update') }}" class="db-async-form">
             @csrf
             @method('PATCH')
 
@@ -822,7 +844,7 @@
             </div>
 
             @if (session('status') === 'profile-updated')
-              <p style="color: #10b981; font-size:0.78rem; margin-bottom:0.75rem;">✓ Profile updated successfully.</p>
+              <p class="db-alert-msg" style="color: #10b981; font-size:0.78rem; margin-bottom:0.75rem;">✓ Profile updated successfully.</p>
             @endif
 
             @if ($errors->has('name') || $errors->has('email'))
@@ -863,7 +885,7 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: SECURITY                           --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-security" class="db-section">
+      <section id="tab-security" class="db-section {{ $activeTab === 'security' ? 'active' : '' }}">
         <h1 class="db-section-heading">Security</h1>
         <p class="db-section-sub">Manage your account security settings.</p>
 
@@ -902,7 +924,7 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: NOTIFICATIONS                      --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-notifications" class="db-section">
+      <section id="tab-notifications" class="db-section {{ $activeTab === 'notifications' ? 'active' : '' }}">
         <h1 class="db-section-heading">Notifications</h1>
         <p class="db-section-sub">Control how you receive updates from Monarchi.</p>
 
@@ -910,10 +932,10 @@
           <div class="db-form-card-title">Email Preferences</div>
 
           @if (session('status') === 'notifications-updated')
-            <p style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Notification preferences saved.</p>
+            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Notification preferences saved.</p>
           @endif
 
-          <form method="POST" action="{{ route('settings.notifications') }}">
+          <form method="POST" action="{{ route('settings.notifications') }}" class="db-async-form">
             @csrf
             @php
               $u = auth()->user();
@@ -963,7 +985,7 @@
       {{-- ═══════════════════════════════════════ --}}
       {{-- TAB: SETTINGS                           --}}
       {{-- ═══════════════════════════════════════ --}}
-      <section id="tab-settings" class="db-section">
+      <section id="tab-settings" class="db-section {{ $activeTab === 'settings' ? 'active' : '' }}">
         <h1 class="db-section-heading">Settings</h1>
         <p class="db-section-sub">Manage your display and regional preferences.</p>
 
@@ -971,10 +993,10 @@
           <div class="db-form-card-title">Display & Language</div>
 
           @if (session('status') === 'display-updated')
-            <p style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Display preferences saved.</p>
+            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Display preferences saved.</p>
           @endif
 
-          <form method="POST" action="{{ route('settings.display') }}">
+          <form method="POST" action="{{ route('settings.display') }}" class="db-async-form">
             @csrf
             <div class="db-field-group">
               <div class="db-field">
@@ -1004,10 +1026,10 @@
           <div class="db-form-card-title">Shipping Address</div>
 
           @if (session('status') === 'address-updated')
-            <p style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Shipping address saved.</p>
+            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Shipping address saved.</p>
           @endif
 
-          <form method="POST" action="{{ route('settings.address') }}">
+          <form method="POST" action="{{ route('settings.address') }}" class="db-async-form">
             @csrf
             <div class="db-field-group">
               <div class="db-field">
@@ -1079,6 +1101,9 @@
     }
     if (btn) {
       btn.classList.add('active');
+    } else {
+      const matchingBtn = document.querySelector(`.db-nav-item[onclick*="'${tab}'"]`);
+      if (matchingBtn) matchingBtn.classList.add('active');
     }
     // Update browser URL hash without jump
     if (history.replaceState) {
@@ -1086,13 +1111,140 @@
     }
   }
 
-  // Check URL hash on page load
-  window.addEventListener('DOMContentLoaded', () => {
+  function applyTabFromHash() {
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById('tab-' + hash)) {
       const targetBtn = document.querySelector(`.db-nav-item[onclick*="'${hash}'"]`);
       switchTab(hash, targetBtn);
     }
+  }
+
+  // Check URL hash on page load and hash changes
+  window.addEventListener('DOMContentLoaded', () => {
+    applyTabFromHash();
+    // If no hash in URL but an activeTab was rendered from server flash
+    const currentHash = window.location.hash.replace('#', '');
+    if (!currentHash) {
+      const activeSection = document.querySelector('.db-section.active');
+      if (activeSection && activeSection.id) {
+        const tabName = activeSection.id.replace('tab-', '');
+        if (tabName !== 'overview' && history.replaceState) {
+          history.replaceState(null, null, '#' + tabName);
+        }
+      }
+    }
+  });
+
+  window.addEventListener('hashchange', applyTabFromHash);
+
+  // Modern toast notification system
+  function showToast(message, type = 'success') {
+    let toastContainer = document.getElementById('db-toast-container');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'db-toast-container';
+      toastContainer.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none;';
+      document.body.appendChild(toastContainer);
+    }
+
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      min-width: 260px;
+      max-width: 380px;
+      background: ${type === 'error' ? 'rgba(239, 68, 68, 0.95)' : 'rgba(15, 23, 42, 0.95)'};
+      color: #fff;
+      border: 1px solid ${type === 'error' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(56, 189, 248, 0.4)'};
+      backdrop-filter: blur(8px);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: all;
+    `;
+
+    const icon = type === 'error'
+      ? `<svg width="18" height="18" fill="none" stroke="#fff" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01"/></svg>`
+      : `<svg width="18" height="18" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"/></svg>`;
+
+    toast.innerHTML = `<span>${icon}</span><span style="flex:1;">${message}</span>`;
+    toastContainer.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0) scale(1)';
+    });
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(12px) scale(0.96)';
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
+
+  // Handle asynchronous AJAX form submissions for settings
+  document.querySelectorAll('.db-async-form').forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const origText = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span style="display:inline-flex;align-items:center;gap:0.4rem;"><svg class="animate-spin" style="width:14px;height:14px;animation:spin 1s linear infinite;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity:0.25;"></circle><path class="opacity-75" fill="currentColor" style="opacity:0.75;" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Saving...</span>`;
+      }
+
+      // Clear existing inline alert messages in this form card
+      const existingMsg = form.parentElement.querySelector('.db-alert-msg');
+      if (existingMsg) existingMsg.remove();
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: form.method || 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          const successMsg = data.message || 'Preferences saved successfully.';
+          showToast(successMsg, 'success');
+          const alertEl = document.createElement('p');
+          alertEl.className = 'db-alert-msg';
+          alertEl.style.cssText = 'color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;transition:all 0.3s;';
+          alertEl.innerHTML = `✓ ${successMsg}`;
+          form.parentElement.insertBefore(alertEl, form);
+        } else {
+          let errorMsg = data.message || 'An error occurred while saving.';
+          if (data.errors) {
+            errorMsg = Object.values(data.errors).flat().join('<br>');
+          }
+          showToast(errorMsg, 'error');
+          const alertEl = document.createElement('p');
+          alertEl.className = 'db-alert-msg';
+          alertEl.style.cssText = 'color:#ef4444;font-size:0.78rem;margin-bottom:1rem;';
+          alertEl.innerHTML = `⚠ ${errorMsg}`;
+          form.parentElement.insertBefore(alertEl, form);
+        }
+      } catch (err) {
+        console.error(err);
+        form.submit();
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = origText;
+        }
+      }
+    });
   });
 
   function updateToggle(checkbox) {

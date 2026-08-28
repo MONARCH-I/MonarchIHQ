@@ -20,7 +20,14 @@ class UserSettingsController extends Controller
         $user->notif_security = $request->boolean('notif_security');
         $user->save();
 
-        return back()->with('status', 'notifications-updated');
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Notification preferences saved.',
+            ]);
+        }
+
+        return redirect('/dashboard#notifications')->with('status', 'notifications-updated');
     }
 
     /**
@@ -35,7 +42,14 @@ class UserSettingsController extends Controller
 
         Auth::user()->update($validated);
 
-        return back()->with('status', 'display-updated');
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Display preferences saved.',
+            ]);
+        }
+
+        return redirect('/dashboard#settings')->with('status', 'display-updated');
     }
 
     /**
@@ -52,6 +66,13 @@ class UserSettingsController extends Controller
 
         Auth::user()->update($validated);
 
-        return back()->with('status', 'address-updated');
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Shipping address saved.',
+            ]);
+        }
+
+        return redirect('/dashboard#settings')->with('status', 'address-updated');
     }
 }

@@ -29,6 +29,7 @@ class User extends Authenticatable implements FilamentUser
         'provider_id',
         'provider_token',
         'is_super_admin',
+        'role',
         // Notification prefs
         'notif_orders',
         'notif_promos',
@@ -77,5 +78,57 @@ class User extends Authenticatable implements FilamentUser
     public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    // ─── ABAC Role Helpers ────────────────────────────────────────────────────
+
+    /** Super admin — full access everywhere */
+    public function isSuperAdmin(): bool
+    {
+        return $this->is_super_admin || $this->role === 'super_admin';
+    }
+
+    public function isContentManager(): bool
+    {
+        return $this->isSuperAdmin() || $this->role === 'content_manager';
+    }
+
+    public function isStoreManager(): bool
+    {
+        return $this->isSuperAdmin() || $this->role === 'store_manager';
+    }
+
+    /** HR manager — can also manage employees and view company analytics */
+    public function isHrManager(): bool
+    {
+        return $this->isSuperAdmin() || $this->role === 'hr_manager';
+    }
+
+    /** Any manager-level access */
+    public function hasManagerAccess(): bool
+    {
+        return $this->isSuperAdmin()
+            || in_array($this->role, ['content_manager', 'store_manager', 'hr_manager']);
+    }
+
+    /**
+     * Super admin and HR can add/manage employees and view analytics/reports.
+     * Backups are restricted to super_admin only (checked via isSuperAdmin()).
+     */
+    public function canManageEmployees(): bool
+    {
+        return $this->isSuperAdmin() || $this->role === 'hr_manager';
+    }
+
+    /** Human-readable role label */
+    public function roleLabel(): string
+    {
+        return match ($this->role) {
+            'super_admin'     => 'Super Admin',
+            'content_manager' => 'Content Manager',
+            'store_manager'   => 'Store Manager',
+            'hr_manager'      => 'HR Manager',
+            default           => 'Member',
+        };
     }
 }

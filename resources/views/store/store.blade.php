@@ -353,30 +353,74 @@
 
         {{-- Pagination --}}
         @if($products->hasPages())
-        <div class="mt-12 flex justify-center">
-            <nav class="flex items-center gap-1.5">
-                {{-- Previous --}}
+        <div class="mt-14 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4" style="border-color: var(--border-color);">
+            <div class="text-xs" style="color: var(--text-muted);">
+                Showing <span class="font-semibold" style="color: var(--text-primary);">{{ $products->firstItem() ?? 0 }}</span> &ndash; <span class="font-semibold" style="color: var(--text-primary);">{{ $products->lastItem() ?? 0 }}</span> of <span class="font-semibold" style="color: var(--text-primary);">{{ $products->total() }}</span> items
+            </div>
+
+            <nav class="inline-flex items-center gap-1 p-1.5 rounded-2xl border backdrop-blur-md"
+                 style="background: var(--bg-primary); border-color: var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.15);"
+                 aria-label="Store Pagination Navigation">
+
+                {{-- Previous Page Link --}}
                 @if($products->onFirstPage())
-                    <span class="px-4 py-2 text-sm text-gray-400 opacity-50 rounded-xl cursor-not-allowed store-action-btn">← Prev</span>
+                    <span class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl opacity-35 cursor-not-allowed select-none"
+                          style="color: var(--text-muted);">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                        <span class="hidden sm:inline">Previous</span>
+                    </span>
                 @else
-                    <a href="{{ $products->previousPageUrl() }}" class="px-4 py-2 text-sm rounded-xl hover:text-[#2997ff] transition store-action-btn">← Prev</a>
+                    <a href="{{ $products->previousPageUrl() }}"
+                       class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl transition duration-200 group"
+                       style="color: var(--text-secondary); background: transparent;"
+                       onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                       onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';"
+                       aria-label="Previous Page">
+                        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                        <span class="hidden sm:inline">Previous</span>
+                    </a>
                 @endif
 
-                {{-- Page numbers --}}
-                @foreach($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                    @if($page == $products->currentPage())
-                        <span class="px-4 py-2 text-sm font-bold bg-[#2997ff] text-white rounded-xl shadow-sm">{{ $page }}</span>
-                    @else
-                        <a href="{{ $url }}" class="px-4 py-2 text-sm rounded-xl hover:text-[#2997ff] transition store-action-btn">{{ $page }}</a>
-                    @endif
-                @endforeach
+                {{-- Page Numbers --}}
+                <div class="flex items-center gap-1 mx-1">
+                    @foreach($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                        @if($page == $products->currentPage())
+                            <span class="inline-flex items-center justify-center min-w-[34px] h-[34px] px-3 text-xs font-bold rounded-xl text-white shadow-md select-none"
+                                  style="background: #2997ff; box-shadow: 0 4px 14px rgba(41, 151, 255, 0.45);"
+                                  aria-current="page">
+                                {{ $page }}
+                            </span>
+                        @else
+                            <a href="{{ $url }}"
+                               class="inline-flex items-center justify-center min-w-[34px] h-[34px] px-3 text-xs font-semibold rounded-xl transition duration-200"
+                               style="color: var(--text-secondary); background: transparent;"
+                               onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                               onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';">
+                                {{ $page }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
 
-                {{-- Next --}}
+                {{-- Next Page Link --}}
                 @if($products->hasMorePages())
-                    <a href="{{ $products->nextPageUrl() }}" class="px-4 py-2 text-sm rounded-xl hover:text-[#2997ff] transition store-action-btn">Next →</a>
+                    <a href="{{ $products->nextPageUrl() }}"
+                       class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl transition duration-200 group"
+                       style="color: var(--text-secondary); background: transparent;"
+                       onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                       onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';"
+                       aria-label="Next Page">
+                        <span class="hidden sm:inline">Next</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </a>
                 @else
-                    <span class="px-4 py-2 text-sm text-gray-400 opacity-50 rounded-xl cursor-not-allowed store-action-btn">Next →</span>
+                    <span class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl opacity-35 cursor-not-allowed select-none"
+                          style="color: var(--text-muted);">
+                        <span class="hidden sm:inline">Next</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </span>
                 @endif
+
             </nav>
         </div>
         @endif
