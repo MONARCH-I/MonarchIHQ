@@ -1,4 +1,39 @@
-<x-main-layout>
+@php
+    $productImage = $product->image_path ? asset('storage/' . $product->image_path) : asset('images/world-tech.png');
+    $productDescription = Str::limit(strip_tags($product->short_description ?: $product->description), 160);
+    $effectivePrice = $product->sale_price ?: $product->price;
+    $productSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Product',
+        'name' => $product->name,
+        'image' => [$productImage],
+        'description' => $productDescription,
+        'sku' => $product->sku ?: 'MONARCHI-' . $product->id,
+        'brand' => [
+            '@type' => 'Brand',
+            'name' => 'MonarchI HQ'
+        ],
+        'offers' => [
+            '@type' => 'Offer',
+            'url' => url()->current(),
+            'priceCurrency' => 'GHS',
+            'price' => (float)$effectivePrice,
+            'priceValidUntil' => now()->addYear()->format('Y-m-d'),
+            'itemCondition' => 'https://schema.org/NewCondition',
+            'availability' => ($product->stock_quantity > 0) ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            'seller' => [
+                '@type' => 'Organization',
+                'name' => 'MonarchI HQ'
+            ]
+        ]
+    ];
+@endphp
+<x-main-layout
+    :title="$product->name . ' — MonarchI Store'"
+    :description="$productDescription"
+    :ogImage="$productImage"
+    ogType="product"
+    :jsonLd="$productSchema">
 <div class="product-detail-root pt-20 md:pt-24 pb-24 min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
     <style>
         .modern-qty-stepper {

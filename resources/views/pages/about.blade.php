@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="About MonarchI HQ — Engineering the Future of Enterprise Intelligence"
+    description="Learn about MonarchI HQ, our vision, and our proprietary AI model MAI powering zero-latency edge intelligence, workflow automation, and enterprise digital transformation."
+    keywords="About MonarchI, MonarchI HQ, Enterprise AI Africa, MAI Model, Edge Computing Ghana, Tech Innovation Accra, Enterprise Digital Transformation">
 
     {{-- =============================================
          ABOUT HERO

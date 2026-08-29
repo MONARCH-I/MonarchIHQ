@@ -1,11 +1,17 @@
-<x-main-layout>
+<x-main-layout
+    title="MonarchI HQ — Enterprise AI, Intelligent Systems & Software Engineering"
+    description="MonarchI HQ engineers enterprise-grade AI systems, intelligent workflow automations, bespoke software, and cutting-edge digital infrastructure for leading global organizations."
+    keywords="MonarchI, MonarchI HQ, Enterprise AI, Workflow Automation, Software Development, SaaS Platforms, Cloud Architecture, Web Development, Intelligent Systems, Cyber Security, Tech Africa, Digital Transformation, MAI AI">
+
+    {{-- Semantic H1 for SEO Search Engines & Accessibility --}}
+    <h1 class="sr-only">MonarchI HQ — Enterprise AI, Intelligent Systems, Workflow Automation & Software Engineering</h1>
 
     {{-- =============================================
          HERO SECTION — Always dark, no theme changes
     ============================================= --}}
     <section class="hero-section relative h-screen w-full overflow-hidden flex flex-col pt-12">
 
-        <img src="{{ asset('images/world-tech.png') }}" alt="Hero"
+        <img src="{{ asset('images/world-tech.png') }}" alt="Hero Background"
             class="absolute inset-0 w-full h-full object-cover z-0" />
 
         <div

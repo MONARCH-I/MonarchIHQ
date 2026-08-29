@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="Careers at MonarchI HQ — Build Next-Generation AI & Systems"
+    description="Join the engineering team at MonarchI HQ. Explore open positions in software development, machine learning, systems architecture, and product design."
+    keywords="MonarchI Careers, Software Engineering Jobs Ghana, AI Engineering Careers Africa, Tech Jobs Accra, Systems Architect Jobs">
 
     {{-- =============================================
          CAREERS HERO

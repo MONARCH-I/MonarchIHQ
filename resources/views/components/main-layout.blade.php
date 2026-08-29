@@ -1,11 +1,143 @@
-@props(['showFooter' => true])
+@props([
+    'showFooter' => true,
+    'title' => 'MonarchI HQ — Enterprise AI, Intelligent Systems & Software Engineering',
+    'description' => 'MonarchI HQ engineers enterprise-grade AI systems, intelligent workflow automations, bespoke software, and cutting-edge digital infrastructure for leading global organizations.',
+    'keywords' => 'MonarchI, MonarchI HQ, Enterprise AI, Workflow Automation, Software Development, SaaS Platforms, Cloud Architecture, Web Development, Intelligent Systems, Cyber Security, Tech Africa, Digital Transformation, MAI AI',
+    'ogImage' => null,
+    'ogType' => 'website',
+    'canonical' => null,
+    'jsonLd' => null,
+])
 <!DOCTYPE html>
-<html lang="en" id="html-root">
+<html lang="en" id="html-root" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonarchI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>{{ $title }}</title>
+    <meta name="title" content="{{ $title }}">
+    <meta name="description" content="{{ $description }}">
+    <meta name="keywords" content="{{ $keywords }}">
+    <meta name="author" content="MonarchI HQ">
+    <meta name="publisher" content="MonarchI HQ">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
+    <meta property="og:site_name" content="MonarchI HQ">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:image" content="{{ $ogImage ?? asset('images/world-tech.png') }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage ?? asset('images/world-tech.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MonarchI HQ — Enterprise AI & Technology Solutions">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ $canonical ?? url()->current() }}">
+    <meta name="twitter:site" content="@monarchihq">
+    <meta name="twitter:creator" content="@monarchihq">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $ogImage ?? asset('images/world-tech.png') }}">
+    <meta name="twitter:image:alt" content="MonarchI HQ — Enterprise AI & Technology Solutions">
+
+    <!-- Mobile & PWA Theme -->
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MonarchI">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
+
+    <!-- Schema.org JSON-LD Structured Data for Search Engine Knowledge Graph -->
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => url('/') . '/#organization',
+                'name' => 'MonarchI HQ',
+                'alternateName' => 'MonarchI',
+                'url' => url('/'),
+                'logo' => [
+                    '@type' => 'ImageObject',
+                    '@id' => url('/') . '/#logo',
+                    'url' => asset('images/logo-white.png'),
+                    'caption' => 'MonarchI HQ Logo'
+                ],
+                'image' => asset('images/world-tech.png'),
+                'description' => 'MonarchI HQ engineers enterprise-grade AI systems, intelligent workflow automations, bespoke software, and cutting-edge digital infrastructure.',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'addressLocality' => 'Accra',
+                    'addressCountry' => 'GH'
+                ],
+                'contactPoint' => [
+                    '@type' => 'ContactPoint',
+                    'contactType' => 'Customer Support & Inquiries',
+                    'url' => url('/contact')
+                ],
+                'sameAs' => [
+                    'https://twitter.com/monarchihq',
+                    'https://linkedin.com/company/monarchihq',
+                    'https://github.com/monarchihq'
+                ]
+            ],
+            [
+                '@type' => 'WebSite',
+                '@id' => url('/') . '/#website',
+                'url' => url('/'),
+                'name' => 'MonarchI HQ',
+                'publisher' => [
+                    '@id' => url('/') . '/#organization'
+                ],
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => [
+                        '@type' => 'EntryPoint',
+                        'urlTemplate' => url('/store') . '?q={search_term_string}'
+                    ],
+                    'query-input' => 'required name=search_term_string'
+                ]
+            ],
+            [
+                '@type' => 'WebPage',
+                '@id' => url()->current() . '/#webpage',
+                'url' => url()->current(),
+                'name' => $title,
+                'isPartOf' => [
+                    '@id' => url('/') . '/#website'
+                ],
+                'about' => [
+                    '@id' => url('/') . '/#organization'
+                ],
+                'description' => $description
+            ]
+        ]
+    ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+
+    @if(!empty($jsonLd))
+        <script type="application/ld+json">
+        {!! is_array($jsonLd) ? json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) : $jsonLd !!}
+        </script>
+    @endif
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* =============================================

@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="Enterprise AI & Technology Services — MonarchI HQ"
+    description="Explore MonarchI HQ services: Custom SaaS Platforms, Intelligent Workflow Automation, Software & Web Engineering, and Integrated IoT Systems."
+    keywords="MonarchI Services, Enterprise SaaS, Workflow Automation, Custom Software Development, Web Development, IoT Integration, Cyber Security, Tech Solutions Africa">
 
     {{-- =============================================
          SERVICES HERO
@@ -46,7 +49,7 @@
                 </div>
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl group h-[400px]">
-                        <img src="{{ asset('images/saas.png') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="SaaS Platforms">
+                        <img src="{{ asset('images/service-saas.jpg') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="SaaS Platforms">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                     </div>
                 </div>
@@ -56,7 +59,7 @@
             <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 reveal delay-100">
                 <div class="w-full md:w-1/2">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl group h-[400px]">
-                        <img src="{{ asset('images/ai.png') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Edge Intelligence">
+                        <img src="{{ asset('images/ai.png') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Edge Intelligence">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                     </div>
                 </div>
@@ -66,12 +69,12 @@
                     </div>
                     <h3 class="text-3xl md:text-4xl font-semibold mb-4" style="color: var(--text-primary);">Edge Intelligence</h3>
                     <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary);">
-                        Deploying AI models directly to hardware for zero-latency, offline decision-making. Our edge computing solutions operate flawlessly in remote areas, analyzing data at the source without relying on constant cloud connectivity.
+                        Deploy artificial intelligence directly onto hardware units without relying on cloud infrastructure. MAI processes real-time video, environmental sensors, and behavioral patterns at zero latency.
                     </p>
                     <ul class="space-y-3 mb-8" style="color: var(--text-secondary);">
                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Offline machine learning inference</li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Ultra-low latency processing</li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Hardware-accelerated neural networks</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Computer vision at the edge</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Ultra-low power consumption</li>
                     </ul>
                 </div>
             </div>
@@ -84,7 +87,7 @@
                     </div>
                     <h3 class="text-3xl md:text-4xl font-semibold mb-4" style="color: var(--text-primary);">Workflow Automation</h3>
                     <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary);">
-                        We streamline complex business processes through intelligent automation. Our in-house AI model, MAI, integrates seamlessly into your operations to reduce manual labor, minimize errors, and accelerate throughput.
+                        Eliminate manual data entry and repetitive operations. We build customized robotic process automation (RPA) workflows that connect fragmented systems, ensuring your team focuses purely on high-leverage growth.
                     </p>
                     <ul class="space-y-3 mb-8" style="color: var(--text-secondary);">
                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> AI-driven process mapping</li>
@@ -94,7 +97,7 @@
                 </div>
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl group h-[400px]">
-                        <img src="{{ asset('images/workflow-automations.png') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Workflow Automation">
+                        <img src="{{ asset('images/service-workflow.jpg') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Workflow Automation">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                     </div>
                 </div>
@@ -104,7 +107,7 @@
             <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 reveal delay-100">
                 <div class="w-full md:w-1/2">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl group h-[400px]">
-                        <img src="{{ asset('images/is.avif') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Integrated Systems">
+                        <img src="{{ asset('images/service-integrated-systems.jpg') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Integrated Systems">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                     </div>
                 </div>
@@ -143,10 +146,10 @@
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="grid grid-cols-2 gap-4 h-[400px]">
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl group col-span-1 row-span-2">
-                            <img src="{{ asset('images/softwaredev.jpeg') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Software Development">
+                            <img src="{{ asset('images/service-softwaredev.jpg') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Software Development">
                         </div>
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl group col-span-1 row-span-2">
-                            <img src="{{ asset('images/webdev.jpg') }}" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Web Development">
+                            <img src="{{ asset('images/service-webdev.jpg') }}" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Web Development">
                         </div>
                     </div>
                 </div>

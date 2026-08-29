@@ -1,2 +1,41 @@
+# ==============================================================================
+# MonarchI HQ — robots.txt
+# https://monarchihq.fly.dev
+# ==============================================================================
+
 User-agent: *
-Disallow:
+Allow: /
+Allow: /services
+Allow: /about
+Allow: /projects
+Allow: /blog
+Allow: /careers
+Allow: /contact
+Allow: /store
+Allow: /store/*
+Allow: /images/*
+Allow: /build/*
+
+# Disallow admin, manager, customer authentication, checkout, and private panels
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /manager
+Disallow: /manager/*
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /bag
+Disallow: /bag/*
+Disallow: /cart
+Disallow: /cart/*
+Disallow: /checkout
+Disallow: /orders
+Disallow: /orders/*
+Disallow: /payment/*
+Disallow: /livewire/*
+Disallow: /api/*
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Search Engine Sitemap Location
+Sitemap: https://monarchihq.fly.dev/sitemap.xml

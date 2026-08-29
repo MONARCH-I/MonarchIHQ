@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="Portfolio & Case Studies — MonarchI HQ"
+    description="Discover real-world enterprise deployments, fintech architectures, smart city grids, and offline AI implementations engineered by MonarchI HQ."
+    keywords="MonarchI Portfolio, AI Case Studies, Fintech Infrastructure, Smart City Addressing Ghana, Offline AI AgriTech, Enterprise Deployments">
 
     {{-- =============================================
          PROJECTS HERO

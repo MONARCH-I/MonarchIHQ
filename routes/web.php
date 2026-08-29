@@ -12,7 +12,13 @@ use App\Http\Controllers\Manager\StoreManagerController;
 use App\Http\Controllers\Manager\HrManagerController;
 use App\Http\Controllers\Manager\EmployeeController;
 use App\Http\Controllers\Manager\ManagerAuthController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
+
+// ────────────────────────────────────────────────────────────────────────────
+//  SEO & SITEMAP
+// ────────────────────────────────────────────────────────────────────────────
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // ────────────────────────────────────────────────────────────────────────────
 //  PUBLIC PAGES — Dynamic data from DB

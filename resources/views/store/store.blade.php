@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="MonarchI Store — Enterprise Hardware, IoT & Digital Products"
+    description="Explore and purchase official MonarchI hardware, smart devices, software licenses, and digital developer products."
+    keywords="MonarchI Store, Buy Enterprise Hardware, IoT Devices, AI Hardware Africa, Tech Store Ghana, Developer Licenses">
 
 {{-- ═══════════════════════════════════════════════════════════════════════════
      STORE PAGE — Bounded Sections with Drop Shadows & Optimized Card Sizes

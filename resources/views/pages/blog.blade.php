@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="Engineering Insights & Tech News — MonarchI HQ Blog"
+    description="Read the latest articles on artificial intelligence, edge computing, African tech ecosystems, and enterprise software engineering from MonarchI HQ."
+    keywords="MonarchI Blog, Tech News Africa, AI Insights, Edge Computing Articles, Software Engineering Trends, African Tech Innovation">
 
     {{-- =============================================
          BLOG / NEWS HERO

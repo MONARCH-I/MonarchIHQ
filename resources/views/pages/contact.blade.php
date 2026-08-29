@@ -1,4 +1,7 @@
-<x-main-layout>
+<x-main-layout
+    title="Contact MonarchI HQ — Inquire & Partner With Us"
+    description="Get in touch with the MonarchI engineering and solutions team for enterprise AI implementation, custom software development, and technical partnerships."
+    keywords="Contact MonarchI, Partner With MonarchI, Enterprise Tech Inquiries, Software Consultation Ghana, AI Consulting Africa">
 
     {{-- =============================================
          CONTACT HERO
