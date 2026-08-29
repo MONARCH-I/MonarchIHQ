@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+vendor
+tests
+.env
+.env.*
+!.env.example
+*.sqlite
+storage/*.key
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*

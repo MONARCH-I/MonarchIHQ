@@ -1,0 +1,99 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # ============================================================
+  # 1. CONTINUOUS INTEGRATION (Lint, Build & Test)
+  # ============================================================
+  continuous-integration:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Setup PHP Environment
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_pgsql, pgsql, pdo_sqlite, zip, bcmath, gd
+          coverage: none
+
+      # Cache Composer dependencies
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      # Install Composer dependencies
+      - name: Install PHP Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      # Setup Node.js & Vite
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      - name: Build Frontend Assets
+        run: npm run build
+
+      # Code Style / Formatting Check (Laravel Pint)
+      - name: Run Code Style Check (Pint)
+        run: vendor/bin/pint --test
+
+      # Run Tests (Pest / PHPUnit)
+      - name: Run Test Suite
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
+          SESSION_DRIVER: array
+          QUEUE_CONNECTION: sync
+          CACHE_STORE: array
+        run: php artisan test
+
+  # ============================================================
+  # 2. CONTINUOUS DEPLOYMENT (Deploy to Production)
+  # ============================================================
+  continuous-deployment:
+    name: Deploy to Production
+    needs: [continuous-integration]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Deploy using Fly.io (Default recommendation)
+      - name: Setup Flyctl
+        if: env.FLY_API_TOKEN != ''
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy to Fly.io
+        if: env.FLY_API_TOKEN != ''
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      # Generic Deploy Webhook trigger (For Render / Railway / Forge / Coolify)
+      - name: Trigger Deploy Webhook
+        if: env.DEPLOY_WEBHOOK_URL != ''
+        run: |
+          curl -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}"
+        env:
+          DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
