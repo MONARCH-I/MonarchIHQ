@@ -10,9 +10,11 @@ COPY . .
 RUN npm run build
 
 # ============================================================
-# Stage 2: Production PHP Runtime (PHP 8.3/8.4 + Nginx)
+# Stage 2: Production PHP Runtime (PHP 8.4 + Nginx)
 # ============================================================
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Install system packages & dependencies
 RUN apk add --no-cache \

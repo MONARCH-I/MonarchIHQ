@@ -217,8 +217,10 @@
                 {{-- Card 1: SaaS --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/fLcZwcFd/Gemini-Generated-Image-vegmr1vegmr1vegm(1).jpg"
+                    <img src="{{ asset('images/service-saas.jpg') }}"
                          alt="SaaS Platforms"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Top Centered Content & Buttons --}}
@@ -239,14 +241,16 @@
                 {{-- Card 2: Workflow Automation --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/SNdYxk4G/Gemini-Generated-Image-czxebtczxebtczxe(1).jpg"
+                    <img src="{{ asset('images/service-workflow.jpg') }}"
                          alt="Workflow Automation"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Top Centered Content & Buttons --}}
                     <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg">
-                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-black drop-shadow-md">Workflow Automation</h3>
-                        <p class="text-sm md:text-base text-black drop-shadow font-normal leading-relaxed">Automate. Optimize. Intelligent.</p>
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Workflow Automation</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Automate. Optimize. Intelligent.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
                             <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
@@ -261,19 +265,21 @@
                 {{-- Card 3: Software Development --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-end pb-10 md:pb-12 px-6 md:px-10 pt-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/rFH0rgdp/Gemini-Generated-Image-wag4hpwag4hpwag4(1).jpg"
+                    <img src="{{ asset('images/service-softwaredev.jpg') }}"
                          alt="Software Development"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Bottom Centered Content & Buttons --}}
                     <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg mt-auto">
-                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-300 drop-shadow-md">Software Development</h3>
-                        <p class="text-sm md:text-base text-black drop-shadow font-semibold leading-relaxed">Build. Deploy. Scale.</p>
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white drop-shadow-md">Software Development</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-semibold leading-relaxed">Build. Deploy. Scale.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
                             <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
-                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-black backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
+                            <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
                                 Explore
                             </a>
                         </div>
@@ -283,14 +289,16 @@
                 {{-- Card 4: Web Development --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-end pb-10 md:pb-12 px-6 md:px-10 pt-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/JnTJd8hx/Gemini-Generated-Image-ey2szaey2szaey2s(1).jpg"
+                    <img src="{{ asset('images/service-webdev.jpg') }}"
                          alt="Web Development"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Bottom Centered Content & Buttons --}}
                     <div class="relative z-10 flex flex-col items-center text-center gap-2 max-w-lg mt-auto">
-                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-300 drop-shadow-md">Web Development</h3>
-                        <p class="text-sm md:text-base text-white drop-shadow font-normal leading-relaxed">Identity. Performance. Yours.</p>
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Web Development</h3>
+                        <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Identity. Performance. Yours.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
                             <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
@@ -305,8 +313,10 @@
                 {{-- Card 5: Integrated Systems --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-100">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/wT9c29QV/Gemini-Generated-Image-r0ei34r0ei34r0ei(1).jpg"
+                    <img src="{{ asset('images/service-integrated-systems.jpg') }}"
                          alt="Integrated Systems"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Top Centered Content & Buttons --}}
@@ -327,8 +337,10 @@
                 {{-- Card 6: Security Systems --}}
                 <div class="group relative rounded-[28px] md:rounded-[32px] overflow-hidden min-h-[460px] md:min-h-[500px] flex flex-col items-center justify-start pt-10 md:pt-12 px-6 md:px-10 pb-8 text-center border border-white/10 shadow-xl transition-all duration-500 hover:border-white/30 hover:shadow-2xl reveal delay-200">
                     {{-- Background Image --}}
-                    <img src="https://i.postimg.cc/Xv5QhQGy/Gemini-Generated-Image-nfrsy9nfrsy9nfrs(1).jpg"
+                    <img src="{{ asset('images/service-security-systems.jpg') }}"
                          alt="Security Systems"
+                         loading="lazy"
+                         decoding="async"
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 z-0">
 
                     {{-- Top Centered Content & Buttons --}}
@@ -354,7 +366,9 @@
          MAI AI SECTION
     ============================================= --}}
     <section class="mai-section relative overflow-hidden z-10 my-8" style="background: #050510;">
-        <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2000&auto=format&fit=crop"
+        <img src="{{ asset('images/mai-bg.jpg') }}"
+            loading="lazy"
+            decoding="async"
             class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-sm">
         <div class="absolute inset-0 bg-black/80"></div>
 
@@ -526,8 +540,10 @@
 
             {{-- Case Study 3: Africa Fintech AI Credit Scoring --}}
             <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80"
+                <img src="{{ asset('images/case-fintech.jpg') }}"
                     alt="Africa Fintech AI"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
@@ -541,8 +557,10 @@
 
             {{-- Case Study 4: GhanaPostGPS --}}
             <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                <img src="{{ asset('images/case-smartcity.jpg') }}"
                     alt="Ghana Smart City"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
@@ -556,8 +574,10 @@
 
             {{-- Case Study 5: Nuru AgriTech --}}
             <div class="snap-item shrink-0 w-[85vw] md:w-[50vw] h-[280px] md:h-[300px] relative rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+                <img src="{{ asset('images/case-agritech.jpg') }}"
                     alt="Africa AgriTech AI"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
@@ -576,8 +596,10 @@
 
             {{-- Project 1 --}}
             <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+                <img src="{{ asset('images/project-edge.jpg') }}"
                     alt="Edge Intelligence Project"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
@@ -598,8 +620,10 @@
 
             {{-- Project 2 --}}
             <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
-                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80"
+                <img src="{{ asset('images/project-saas.jpg') }}"
                     alt="SaaS Platform"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
@@ -620,8 +644,10 @@
 
             {{-- Project 3 --}}
             <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
+                <img src="{{ asset('images/project-health.jpg') }}"
                     alt="Health Tech Project"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
@@ -642,8 +668,10 @@
 
             {{-- Project 4 --}}
             <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
-                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                <img src="{{ asset('images/project-kyc.jpg') }}"
                     alt="KYC Compliance AI"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
@@ -664,8 +692,10 @@
 
             {{-- Project 5 --}}
             <div class="group snap-item shrink-0 w-[80vw] md:w-[50vw] h-[200px] md:h-[210px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg" data-touch-card>
-                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80"
+                <img src="{{ asset('images/project-agriadvisor.jpg') }}"
                     alt="MAI AgriAdvisor"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">

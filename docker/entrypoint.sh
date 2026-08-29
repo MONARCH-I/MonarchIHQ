@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# Create storage symlink
+php artisan storage:link --force || true
+
 # Cache Laravel configuration, routes, and views for production speed
 echo "Caching Laravel configuration..."
 php artisan config:cache || true

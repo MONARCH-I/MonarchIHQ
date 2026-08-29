@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4'
           extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_pgsql, pgsql, pdo_sqlite, zip, bcmath, gd
           coverage: none
 
@@ -67,7 +67,7 @@ jobs:
         run: php artisan test
 
   # ============================================================
-  # 2. CONTINUOUS DEPLOYMENT (Deploy to Production)
+  # 2. CONTINUOUS DEPLOYMENT (Deploy to Production via Fly.io)
   # ============================================================
   continuous-deployment:
     name: Deploy to Production
@@ -79,21 +79,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Deploy using Fly.io (Default recommendation)
+      # Deploy using Fly.io
       - name: Setup Flyctl
-        if: env.FLY_API_TOKEN != ''
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy to Fly.io
-        if: env.FLY_API_TOKEN != ''
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-
-      # Generic Deploy Webhook trigger (For Render / Railway / Forge / Coolify)
-      - name: Trigger Deploy Webhook
-        if: env.DEPLOY_WEBHOOK_URL != ''
-        run: |
-          curl -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}"
-        env:
-          DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
