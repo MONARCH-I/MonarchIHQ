@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StoreManagerController extends Controller
 {
@@ -19,11 +20,11 @@ class StoreManagerController extends Controller
         abort_if(! auth()->user()->isStoreManager(), 403);
 
         $stats = [
-            'total_products'  => Product::count(),
-            'total_orders'    => Order::count(),
-            'pending_orders'  => Order::whereIn('status', ['pending', 'processing'])->count(),
-            'total_revenue'   => Order::where('payment_status', 'paid')->sum('total'),
-            'total_categories'=> Category::count(),
+            'total_products' => Product::count(),
+            'total_orders' => Order::count(),
+            'pending_orders' => Order::whereIn('status', ['pending', 'processing'])->count(),
+            'total_revenue' => Order::where('payment_status', 'paid')->sum('total'),
+            'total_categories' => Category::count(),
         ];
 
         $recent_orders = Order::with('items.product')
@@ -42,6 +43,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $products = Product::with('category')->latest()->paginate(15);
+
         return view('manager.store.products.index', compact('products'));
     }
 
@@ -49,6 +51,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $categories = Category::orderBy('name')->get();
+
         return view('manager.store.products.create', compact('categories'));
     }
 
@@ -57,20 +60,21 @@ class StoreManagerController extends Controller
         abort_if(! auth()->user()->isStoreManager(), 403);
 
         $data = $request->validate([
-            'name'        => 'required|string|max:255',
-            'slug'        => 'nullable|string|max:255|unique:products,slug',
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:products,slug',
             'description' => 'nullable|string',
-            'price'       => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'stock'       => 'nullable|integer|min:0',
-            'is_active'   => 'boolean',
+            'stock' => 'nullable|integer|min:0',
+            'is_active' => 'boolean',
         ]);
 
         if (empty($data['slug'])) {
-            $data['slug'] = \Illuminate\Support\Str::slug($data['name']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
         Product::create($data);
+
         return redirect()->route('manager.store.products')
             ->with('success', 'Product created successfully.');
     }
@@ -79,6 +83,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $categories = Category::orderBy('name')->get();
+
         return view('manager.store.products.edit', compact('product', 'categories'));
     }
 
@@ -87,15 +92,16 @@ class StoreManagerController extends Controller
         abort_if(! auth()->user()->isStoreManager(), 403);
 
         $data = $request->validate([
-            'name'        => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price'       => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'stock'       => 'nullable|integer|min:0',
-            'is_active'   => 'boolean',
+            'stock' => 'nullable|integer|min:0',
+            'is_active' => 'boolean',
         ]);
 
         $product->update($data);
+
         return redirect()->route('manager.store.products')
             ->with('success', 'Product updated successfully.');
     }
@@ -104,6 +110,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $product->delete();
+
         return redirect()->route('manager.store.products')
             ->with('success', 'Product deleted.');
     }
@@ -116,6 +123,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $categories = Category::withCount('products')->orderBy('name')->paginate(20);
+
         return view('manager.store.categories.index', compact('categories'));
     }
 
@@ -127,9 +135,10 @@ class StoreManagerController extends Controller
             'slug' => 'nullable|string|max:100|unique:categories,slug',
         ]);
         if (empty($data['slug'])) {
-            $data['slug'] = \Illuminate\Support\Str::slug($data['name']);
+            $data['slug'] = Str::slug($data['name']);
         }
         Category::create($data);
+
         return back()->with('success', 'Category created.');
     }
 
@@ -137,6 +146,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $category->delete();
+
         return back()->with('success', 'Category deleted.');
     }
 
@@ -148,6 +158,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $orders = Order::with('items.product')->latest()->paginate(20);
+
         return view('manager.store.orders.index', compact('orders'));
     }
 
@@ -155,6 +166,7 @@ class StoreManagerController extends Controller
     {
         abort_if(! auth()->user()->isStoreManager(), 403);
         $order->load('items.product');
+
         return view('manager.store.orders.show', compact('order'));
     }
 
@@ -165,6 +177,7 @@ class StoreManagerController extends Controller
             'status' => 'required|in:pending,processing,shipped,delivered,completed,cancelled',
         ]);
         $order->update($data);
+
         return back()->with('success', 'Order status updated.');
     }
 }

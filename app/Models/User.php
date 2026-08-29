@@ -4,11 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -75,7 +76,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->is_super_admin;
     }
 
-    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
@@ -124,11 +125,11 @@ class User extends Authenticatable implements FilamentUser
     public function roleLabel(): string
     {
         return match ($this->role) {
-            'super_admin'     => 'Super Admin',
+            'super_admin' => 'Super Admin',
             'content_manager' => 'Content Manager',
-            'store_manager'   => 'Store Manager',
-            'hr_manager'      => 'HR Manager',
-            default           => 'Member',
+            'store_manager' => 'Store Manager',
+            'hr_manager' => 'HR Manager',
+            default => 'Member',
         };
     }
 }

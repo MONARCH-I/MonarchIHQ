@@ -8,14 +8,16 @@ use Illuminate\Support\Facades\Log;
 class PaystackService
 {
     protected ?string $secretKey;
+
     protected ?string $publicKey;
+
     protected string $baseUrl;
 
     public function __construct()
     {
         $this->secretKey = config('services.paystack.secret_key');
         $this->publicKey = config('services.paystack.public_key');
-        $this->baseUrl   = rtrim(config('services.paystack.payment_url', 'https://api.paystack.co'), '/');
+        $this->baseUrl = rtrim(config('services.paystack.payment_url', 'https://api.paystack.co'), '/');
     }
 
     /**
@@ -23,9 +25,9 @@ class PaystackService
      */
     public function isConfigured(): bool
     {
-        return !empty($this->secretKey) &&
-               !str_contains($this->secretKey, 'placeholder') &&
-               !str_contains($this->secretKey, 'xxxxxxxx');
+        return ! empty($this->secretKey) &&
+               ! str_contains($this->secretKey, 'placeholder') &&
+               ! str_contains($this->secretKey, 'xxxxxxxx');
     }
 
     /**
@@ -40,19 +42,19 @@ class PaystackService
     /**
      * Initialize a payment transaction with Paystack.
      *
-     * @param array $payload
      * @return array ['success' => bool, 'authorization_url' => ?string, 'access_code' => ?string, 'reference' => ?string, 'message' => string]
      */
     public function initializePayment(array $payload): array
     {
-        if (!$this->isConfigured()) {
+        if (! $this->isConfigured()) {
             Log::warning('Paystack secret key is not configured. Falling back to test simulation mode.');
+
             return [
-                'success'           => false,
-                'is_mock'           => true,
-                'message'           => 'Paystack API keys are not configured yet. Please add valid test keys in .env.',
+                'success' => false,
+                'is_mock' => true,
+                'message' => 'Paystack API keys are not configured yet. Please add valid test keys in .env.',
                 'authorization_url' => null,
-                'reference'         => $payload['reference'] ?? null,
+                'reference' => $payload['reference'] ?? null,
             ];
         }
 
@@ -61,15 +63,15 @@ class PaystackService
             $amountInMinorUnit = (int) round(($payload['amount'] ?? 0) * 100);
 
             $body = [
-                'email'        => $payload['email'],
-                'amount'       => $amountInMinorUnit,
-                'currency'     => $payload['currency'] ?? 'GHS',
-                'reference'    => $payload['reference'],
+                'email' => $payload['email'],
+                'amount' => $amountInMinorUnit,
+                'currency' => $payload['currency'] ?? 'GHS',
+                'reference' => $payload['reference'],
                 'callback_url' => $payload['callback_url'] ?? route('paystack.callback'),
-                'metadata'     => $payload['metadata'] ?? [],
+                'metadata' => $payload['metadata'] ?? [],
             ];
 
-            if (!empty($payload['channels'])) {
+            if (! empty($payload['channels'])) {
                 $body['channels'] = $payload['channels'];
             }
 
@@ -82,25 +84,25 @@ class PaystackService
 
             if ($response->successful() && ($data['status'] ?? false) === true) {
                 return [
-                    'success'           => true,
+                    'success' => true,
                     'authorization_url' => $data['data']['authorization_url'] ?? null,
-                    'access_code'       => $data['data']['access_code'] ?? null,
-                    'reference'         => $data['data']['reference'] ?? $payload['reference'],
-                    'message'           => $data['message'] ?? 'Transaction initialized',
+                    'access_code' => $data['data']['access_code'] ?? null,
+                    'reference' => $data['data']['reference'] ?? $payload['reference'],
+                    'message' => $data['message'] ?? 'Transaction initialized',
                 ];
             }
 
             Log::error('Paystack initialization failed', [
-                'payload'  => $body,
+                'payload' => $body,
                 'response' => $data,
-                'status'   => $response->status(),
+                'status' => $response->status(),
             ]);
 
             return [
-                'success'           => false,
-                'message'           => $data['message'] ?? 'Unable to initialize Paystack payment.',
+                'success' => false,
+                'message' => $data['message'] ?? 'Unable to initialize Paystack payment.',
                 'authorization_url' => null,
-                'reference'         => $payload['reference'],
+                'reference' => $payload['reference'],
             ];
         } catch (\Throwable $e) {
             Log::error('Paystack transaction initialize exception', [
@@ -109,10 +111,10 @@ class PaystackService
             ]);
 
             return [
-                'success'           => false,
-                'message'           => 'Could not connect to payment gateway: ' . $e->getMessage(),
+                'success' => false,
+                'message' => 'Could not connect to payment gateway: '.$e->getMessage(),
                 'authorization_url' => null,
-                'reference'         => $payload['reference'],
+                'reference' => $payload['reference'],
             ];
         }
     }
@@ -120,16 +122,15 @@ class PaystackService
     /**
      * Verify a transaction with Paystack by reference.
      *
-     * @param string $reference
      * @return array ['success' => bool, 'paid' => bool, 'data' => ?array, 'message' => string]
      */
     public function verifyPayment(string $reference): array
     {
-        if (!$this->isConfigured()) {
+        if (! $this->isConfigured()) {
             return [
                 'success' => false,
-                'paid'    => false,
-                'data'    => null,
+                'paid' => false,
+                'data' => null,
                 'message' => 'Paystack API keys not configured.',
             ];
         }
@@ -138,7 +139,7 @@ class PaystackService
             $response = Http::withToken($this->secretKey)
                 ->timeout(15)
                 ->acceptJson()
-                ->get("{$this->baseUrl}/transaction/verify/" . rawurlencode($reference));
+                ->get("{$this->baseUrl}/transaction/verify/".rawurlencode($reference));
 
             $data = $response->json();
 
@@ -148,34 +149,34 @@ class PaystackService
 
                 return [
                     'success' => true,
-                    'paid'    => $isPaid,
-                    'data'    => $txData,
+                    'paid' => $isPaid,
+                    'data' => $txData,
                     'message' => $data['message'] ?? 'Transaction verified',
                 ];
             }
 
             Log::warning('Paystack verification returned unsuccessful status', [
                 'reference' => $reference,
-                'response'  => $data,
+                'response' => $data,
             ]);
 
             return [
                 'success' => false,
-                'paid'    => false,
-                'data'    => $data['data'] ?? null,
+                'paid' => false,
+                'data' => $data['data'] ?? null,
                 'message' => $data['message'] ?? 'Payment verification failed',
             ];
         } catch (\Throwable $e) {
             Log::error('Paystack verification exception', [
                 'reference' => $reference,
-                'error'     => $e->getMessage(),
+                'error' => $e->getMessage(),
             ]);
 
             return [
                 'success' => false,
-                'paid'    => false,
-                'data'    => null,
-                'message' => 'Could not verify payment: ' . $e->getMessage(),
+                'paid' => false,
+                'data' => null,
+                'message' => 'Could not verify payment: '.$e->getMessage(),
             ];
         }
     }
@@ -190,6 +191,7 @@ class PaystackService
         }
 
         $expected = hash_hmac('sha512', $rawPayload, $this->secretKey);
+
         return hash_equals($expected, $signature);
     }
 }

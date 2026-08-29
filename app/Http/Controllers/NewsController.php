@@ -14,7 +14,7 @@ class NewsController extends Controller
             ->get();
 
         $featured = $articles->first();
-        $rest     = $articles->skip(1);
+        $rest = $articles->skip(1);
 
         return view('pages.blog', compact('articles', 'featured', 'rest'));
     }

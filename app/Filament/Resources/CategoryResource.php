@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
 {
@@ -27,8 +28,7 @@ class CategoryResource extends Resource
                         ->required()
                         ->maxLength(100)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn ($state, Forms\Set $set) =>
-                            $set('slug', \Illuminate\Support\Str::slug($state))
+                        ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))
                         ),
 
                     Forms\Components\TextInput::make('slug')
@@ -118,9 +118,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListCategories::route('/'),
+            'index' => Pages\ListCategories::route('/'),
             'create' => Pages\CreateCategory::route('/create'),
-            'edit'   => Pages\EditCategory::route('/{record}/edit'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse|\Illuminate\Http\JsonResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse|JsonResponse
     {
         $request->user()->fill($request->validated());
 
@@ -36,7 +37,7 @@ class ProfileController extends Controller
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Profile updated successfully.',
             ]);
         }

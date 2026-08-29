@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -33,11 +33,11 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'price'              => 'decimal:2',
-        'sale_price'         => 'decimal:2',
-        'is_featured'        => 'boolean',
-        'is_active'          => 'boolean',
-        'gallery'            => 'array',
+        'price' => 'decimal:2',
+        'sale_price' => 'decimal:2',
+        'is_featured' => 'boolean',
+        'is_active' => 'boolean',
+        'gallery' => 'array',
     ];
 
     // ── Relationships ─────────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ class Product extends Model
     public function scopeLowStock(Builder $query): Builder
     {
         return $query->whereColumn('stock_quantity', '<=', 'min_stock_threshold')
-                     ->where('stock_quantity', '>', 0);
+            ->where('stock_quantity', '>', 0);
     }
 
     public function scopeOutOfStock(Builder $query): Builder
@@ -85,20 +85,26 @@ class Product extends Model
     public function getDisplayPriceAttribute(): string
     {
         $price = $this->sale_price ?? $this->price;
-        return '₵' . number_format($price, 2);
+
+        return '₵'.number_format($price, 2);
     }
 
     public function getOriginalPriceAttribute(): ?string
     {
         return $this->sale_price
-            ? '₵' . number_format($this->price, 2)
+            ? '₵'.number_format($this->price, 2)
             : null;
     }
 
     public function getStockStatusAttribute(): string
     {
-        if ($this->stock_quantity === 0) return 'out_of_stock';
-        if ($this->stock_quantity <= $this->min_stock_threshold) return 'low_stock';
+        if ($this->stock_quantity === 0) {
+            return 'out_of_stock';
+        }
+        if ($this->stock_quantity <= $this->min_stock_threshold) {
+            return 'low_stock';
+        }
+
         return 'in_stock';
     }
 
@@ -109,10 +115,11 @@ class Product extends Model
 
     public function getImageUrlAttribute(): string
     {
-        if (!$this->image_path) {
-            return 'https://placehold.co/400x400/1a1a1a/ffffff?text=' . urlencode($this->name);
+        if (! $this->image_path) {
+            return 'https://placehold.co/400x400/1a1a1a/ffffff?text='.urlencode($this->name);
         }
-        return asset('storage/' . $this->image_path);
+
+        return asset('storage/'.$this->image_path);
     }
 
     /**
@@ -129,17 +136,17 @@ class Product extends Model
         // 1. Out of stock (Grayed out)
         if ($this->stock_quantity <= 0) {
             return [
-                'text'      => 'Restock Soon',
-                'color'     => 'gray',
+                'text' => 'Restock Soon',
+                'color' => 'gray',
                 'is_grayed' => true,
             ];
         }
 
         // 2. Admin explicitly set badge
-        if (!empty($this->badge_text)) {
+        if (! empty($this->badge_text)) {
             $normalized = strtolower(trim($this->badge_text));
             $color = $this->badge_color ?: 'orange';
-            $text  = $this->badge_text;
+            $text = $this->badge_text;
 
             if (str_contains($normalized, 'pre order') || str_contains($normalized, 'pre-order')) {
                 $text = 'Pre-Order';
@@ -150,8 +157,8 @@ class Product extends Model
             }
 
             return [
-                'text'      => $text,
-                'color'     => $color,
+                'text' => $text,
+                'color' => $color,
                 'is_grayed' => false,
             ];
         }
@@ -159,24 +166,24 @@ class Product extends Model
         // 3. System automated badges
         if ($this->stock_quantity <= $this->min_stock_threshold) {
             return [
-                'text'      => 'Limited Quantity',
-                'color'     => 'orange',
+                'text' => 'Limited Quantity',
+                'color' => 'orange',
                 'is_grayed' => false,
             ];
         }
 
         if ($this->is_on_sale) {
             return [
-                'text'      => 'Limited Offer',
-                'color'     => 'red',
+                'text' => 'Limited Offer',
+                'color' => 'red',
                 'is_grayed' => false,
             ];
         }
 
         if ($this->is_featured) {
             return [
-                'text'      => 'Popular',
-                'color'     => 'blue',
+                'text' => 'Popular',
+                'color' => 'blue',
                 'is_grayed' => false,
             ];
         }

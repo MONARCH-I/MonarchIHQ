@@ -1,6 +1,9 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\MonarchPanelProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\Filament\MonarchPanelProvider::class,
+    AppServiceProvider::class,
+    MonarchPanelProvider::class,
 ];

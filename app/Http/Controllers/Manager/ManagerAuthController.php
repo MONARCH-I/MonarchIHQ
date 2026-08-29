@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class ManagerAuthController extends Controller
             if (Auth::user()->hasManagerAccess()) {
                 return redirect()->route('manager');
             }
+
             return redirect()->route('dashboard');
         }
 
@@ -33,7 +35,7 @@ class ManagerAuthController extends Controller
     {
         $request->authenticate();
 
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         // Ensure user has manager access (super_admin, content_manager, store_manager, hr_manager)

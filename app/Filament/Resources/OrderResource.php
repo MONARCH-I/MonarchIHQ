@@ -79,23 +79,23 @@ class OrderResource extends Resource
                     ->label('Payment')
                     ->badge()
                     ->color(fn (string $state) => match ($state) {
-                        'paid'     => 'success',
-                        'pending'  => 'warning',
-                        'failed'   => 'danger',
+                        'paid' => 'success',
+                        'pending' => 'warning',
+                        'failed' => 'danger',
                         'refunded' => 'gray',
-                        default    => 'gray',
+                        default => 'gray',
                     }),
 
                 Tables\Columns\TextColumn::make('status')
                     ->label('Fulfillment')
                     ->badge()
                     ->color(fn (string $state) => match ($state) {
-                        'pending'    => 'gray',
+                        'pending' => 'gray',
                         'processing' => 'info',
-                        'shipped'    => 'warning',
-                        'delivered'  => 'success',
-                        'cancelled'  => 'danger',
-                        default      => 'gray',
+                        'shipped' => 'warning',
+                        'delivered' => 'success',
+                        'cancelled' => 'danger',
+                        default => 'gray',
                     }),
 
                 Tables\Columns\TextColumn::make('total')
@@ -147,9 +147,9 @@ class OrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListOrders::route('/'),
+            'index' => Pages\ListOrders::route('/'),
             'create' => Pages\CreateOrder::route('/create'),
-            'edit'   => Pages\EditOrder::route('/{record}/edit'),
+            'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
     }
 }

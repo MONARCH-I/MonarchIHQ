@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class NewsArticle extends Model
@@ -29,15 +30,17 @@ class NewsArticle extends Model
 
     // Category constants
     const CATEGORY_AFRICAN_TECH = 'african_tech';
-    const CATEGORY_GLOBAL_TECH  = 'global_tech';
-    const CATEGORY_ENGINEERING  = 'engineering';
+
+    const CATEGORY_GLOBAL_TECH = 'global_tech';
+
+    const CATEGORY_ENGINEERING = 'engineering';
 
     public static function getCategoryLabel(string $category): string
     {
         return match ($category) {
             self::CATEGORY_AFRICAN_TECH => 'African Tech',
-            self::CATEGORY_GLOBAL_TECH  => 'Global Tech',
-            self::CATEGORY_ENGINEERING  => 'Engineering',
+            self::CATEGORY_GLOBAL_TECH => 'Global Tech',
+            self::CATEGORY_ENGINEERING => 'Engineering',
             default => ucfirst($category),
         };
     }
@@ -61,7 +64,7 @@ class NewsArticle extends Model
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }

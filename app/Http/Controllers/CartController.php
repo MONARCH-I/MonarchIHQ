@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Services\PaystackService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,20 +16,20 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart  = session('cart', []);
+        $cart = session('cart', []);
         $items = [];
         $subtotal = 0;
 
         foreach ($cart as $productId => $qty) {
             $product = Product::find($productId);
             if ($product) {
-                $price       = $product->sale_price ?? $product->price;
-                $lineTotal   = $price * $qty;
-                $subtotal   += $lineTotal;
-                $items[]     = [
-                    'product'   => $product,
-                    'qty'       => $qty,
-                    'price'     => $price,
+                $price = $product->sale_price ?? $product->price;
+                $lineTotal = $price * $qty;
+                $subtotal += $lineTotal;
+                $items[] = [
+                    'product' => $product,
+                    'qty' => $qty,
+                    'price' => $price,
                     'lineTotal' => $lineTotal,
                 ];
             }
@@ -44,11 +45,11 @@ class CartController extends Controller
     {
         $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity'   => 'sometimes|integer|min:1|max:99',
+            'quantity' => 'sometimes|integer|min:1|max:99',
         ]);
 
         $productId = (int) $validated['product_id'];
-        $qty       = (int) ($validated['quantity'] ?? 1);
+        $qty = (int) ($validated['quantity'] ?? 1);
 
         $cart = session('cart', []);
         $cart[$productId] = ($cart[$productId] ?? 0) + $qty;
@@ -58,9 +59,9 @@ class CartController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'success'   => true,
+                'success' => true,
                 'cartCount' => $cartCount,
-                'message'   => 'Added to bag!',
+                'message' => 'Added to bag!',
             ]);
         }
 
@@ -74,11 +75,11 @@ class CartController extends Controller
     {
         $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity'   => 'required|integer|min:0|max:99',
+            'quantity' => 'required|integer|min:0|max:99',
         ]);
 
         $productId = (int) $validated['product_id'];
-        $qty       = (int) $validated['quantity'];
+        $qty = (int) $validated['quantity'];
 
         $cart = session('cart', []);
 
@@ -100,7 +101,7 @@ class CartController extends Controller
             $prod = Product::find($pid);
             if ($prod) {
                 $pPrice = $prod->sale_price ?? $prod->price;
-                $pLine  = $pPrice * $q;
+                $pLine = $pPrice * $q;
                 $subtotal += $pLine;
                 if ($pid === $productId) {
                     $itemLineTotal = $pLine;
@@ -110,15 +111,15 @@ class CartController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'success'      => true,
-                'productId'    => $productId,
-                'quantity'     => $qty,
-                'cartCount'    => $cartCount,
-                'lineTotal'    => '₵' . number_format($itemLineTotal, 2),
+                'success' => true,
+                'productId' => $productId,
+                'quantity' => $qty,
+                'cartCount' => $cartCount,
+                'lineTotal' => '₵'.number_format($itemLineTotal, 2),
                 'rawLineTotal' => $itemLineTotal,
-                'subtotal'     => '₵' . number_format($subtotal, 2),
-                'rawSubtotal'  => $subtotal,
-                'isEmpty'      => ($cartCount === 0),
+                'subtotal' => '₵'.number_format($subtotal, 2),
+                'rawSubtotal' => $subtotal,
+                'isEmpty' => ($cartCount === 0),
             ]);
         }
 
@@ -146,13 +147,13 @@ class CartController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'success'     => true,
-                'productId'   => $productId,
-                'cartCount'   => $cartCount,
-                'subtotal'    => '₵' . number_format($subtotal, 2),
+                'success' => true,
+                'productId' => $productId,
+                'cartCount' => $cartCount,
+                'subtotal' => '₵'.number_format($subtotal, 2),
                 'rawSubtotal' => $subtotal,
-                'isEmpty'     => ($cartCount === 0),
-                'message'     => 'Item removed from bag.',
+                'isEmpty' => ($cartCount === 0),
+                'message' => 'Item removed from bag.',
             ]);
         }
 
@@ -168,9 +169,9 @@ class CartController extends Controller
 
         if ($request->expectsJson()) {
             return response()->json([
-                'success'   => true,
+                'success' => true,
                 'cartCount' => 0,
-                'message'   => 'Bag cleared.',
+                'message' => 'Bag cleared.',
             ]);
         }
 
@@ -187,16 +188,17 @@ class CartController extends Controller
             if ($request->expectsJson()) {
                 return response()->json(['success' => false, 'message' => 'Your bag is empty.'], 422);
             }
+
             return redirect()->route('bag.index')->with('error', 'Your bag is empty.');
         }
 
         $validated = $request->validate([
-            'customer_name'    => 'required|string|max:255',
-            'customer_email'   => 'required|email|max:255',
-            'customer_phone'   => 'required|string|max:50',
+            'customer_name' => 'required|string|max:255',
+            'customer_email' => 'required|email|max:255',
+            'customer_phone' => 'required|string|max:50',
             'shipping_address' => 'required|string|max:500',
-            'payment_method'   => 'nullable|string|max:100',
-            'notes'            => 'nullable|string|max:1000',
+            'payment_method' => 'nullable|string|max:100',
+            'notes' => 'nullable|string|max:1000',
         ]);
 
         $order = DB::transaction(function () use ($validated, $cart) {
@@ -206,38 +208,38 @@ class CartController extends Controller
             foreach ($cart as $productId => $qty) {
                 $product = Product::find($productId);
                 if ($product) {
-                    $price     = $product->sale_price ?? $product->price;
+                    $price = $product->sale_price ?? $product->price;
                     $lineTotal = $price * $qty;
                     $subtotal += $lineTotal;
 
                     $itemsData[] = [
                         'product_id' => $product->id,
-                        'quantity'   => $qty,
+                        'quantity' => $qty,
                         'unit_price' => $price,
-                        'subtotal'   => $lineTotal,
+                        'subtotal' => $lineTotal,
                     ];
                 }
             }
 
             // Generate unique Paystack payment reference
-            $reference = 'MHQ_ORD_' . time() . '_' . strtoupper(bin2hex(random_bytes(3)));
+            $reference = 'MHQ_ORD_'.time().'_'.strtoupper(bin2hex(random_bytes(3)));
 
             $order = Order::create([
-                'user_id'           => auth()->id(),
-                'session_id'        => session()->getId(),
-                'status'            => 'pending',
-                'payment_status'    => 'pending',
-                'payment_method'    => 'paystack',
+                'user_id' => auth()->id(),
+                'session_id' => session()->getId(),
+                'status' => 'pending',
+                'payment_status' => 'pending',
+                'payment_method' => 'paystack',
                 'payment_reference' => $reference,
-                'currency'          => 'GHS',
-                'subtotal'          => $subtotal,
-                'shipping'          => 0,
-                'total'             => $subtotal,
-                'customer_name'    => $validated['customer_name'],
-                'customer_email'   => $validated['customer_email'],
-                'customer_phone'   => $validated['customer_phone'],
+                'currency' => 'GHS',
+                'subtotal' => $subtotal,
+                'shipping' => 0,
+                'total' => $subtotal,
+                'customer_name' => $validated['customer_name'],
+                'customer_email' => $validated['customer_email'],
+                'customer_phone' => $validated['customer_phone'],
                 'shipping_address' => $validated['shipping_address'],
-                'notes'            => $validated['notes'] ?? null,
+                'notes' => $validated['notes'] ?? null,
             ]);
 
             foreach ($itemsData as $item) {
@@ -249,41 +251,41 @@ class CartController extends Controller
         });
 
         // Initialize Paystack payment
-        $paystack = app(\App\Services\PaystackService::class);
+        $paystack = app(PaystackService::class);
         $paystackInit = $paystack->initializePayment([
-            'email'        => $order->customer_email,
-            'amount'       => $order->total,
-            'currency'     => $order->currency,
-            'reference'    => $order->payment_reference,
+            'email' => $order->customer_email,
+            'amount' => $order->total,
+            'currency' => $order->currency,
+            'reference' => $order->payment_reference,
             'callback_url' => route('paystack.callback'),
-            'metadata'     => [
-                'order_id'       => $order->id,
-                'customer_name'  => $order->customer_name,
+            'metadata' => [
+                'order_id' => $order->id,
+                'customer_name' => $order->customer_name,
                 'customer_phone' => $order->customer_phone,
-                'items_count'    => $order->items()->count(),
-                'custom_fields'  => [
+                'items_count' => $order->items()->count(),
+                'custom_fields' => [
                     [
-                        'display_name'  => 'Order ID',
+                        'display_name' => 'Order ID',
                         'variable_name' => 'order_id',
-                        'value'         => '#MHQ-' . str_pad($order->id, 5, '0', STR_PAD_LEFT),
+                        'value' => '#MHQ-'.str_pad($order->id, 5, '0', STR_PAD_LEFT),
                     ],
                     [
-                        'display_name'  => 'Customer Phone',
+                        'display_name' => 'Customer Phone',
                         'variable_name' => 'customer_phone',
-                        'value'         => $order->customer_phone,
-                    ]
+                        'value' => $order->customer_phone,
+                    ],
                 ],
             ],
         ]);
 
-        if ($paystackInit['success'] && !empty($paystackInit['authorization_url'])) {
+        if ($paystackInit['success'] && ! empty($paystackInit['authorization_url'])) {
             if ($request->expectsJson()) {
                 return response()->json([
-                    'success'     => true,
-                    'order_id'    => $order->id,
-                    'reference'   => $order->payment_reference,
-                    'redirect'    => $paystackInit['authorization_url'],
-                    'message'     => 'Redirecting to Paystack payment gateway...',
+                    'success' => true,
+                    'order_id' => $order->id,
+                    'reference' => $order->payment_reference,
+                    'redirect' => $paystackInit['authorization_url'],
+                    'message' => 'Redirecting to Paystack payment gateway...',
                 ]);
             }
 
@@ -291,14 +293,14 @@ class CartController extends Controller
         }
 
         // If Paystack keys are not configured or offline test fallback
-        if (!empty($paystackInit['is_mock'])) {
+        if (! empty($paystackInit['is_mock'])) {
             session()->forget('cart');
             if ($request->expectsJson()) {
                 return response()->json([
-                    'success'     => true,
-                    'order_id'    => $order->id,
-                    'redirect'    => route('bag.success', $order->id),
-                    'message'     => 'Order created (Test Sandbox). Please add your Paystack test keys in .env to enable live popup gateway.',
+                    'success' => true,
+                    'order_id' => $order->id,
+                    'redirect' => route('bag.success', $order->id),
+                    'message' => 'Order created (Test Sandbox). Please add your Paystack test keys in .env to enable live popup gateway.',
                 ]);
             }
 
@@ -323,6 +325,7 @@ class CartController extends Controller
     public function orderSuccess(Order $order)
     {
         $order->load('items.product');
+
         return view('store.order-success', compact('order'));
     }
 }

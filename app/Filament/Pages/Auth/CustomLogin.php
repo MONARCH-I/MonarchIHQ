@@ -9,12 +9,12 @@ class CustomLogin extends BaseLogin
 {
     protected static string $view = 'filament.pages.auth.custom-login';
 
-    public function getHeading(): string | Htmlable
+    public function getHeading(): string|Htmlable
     {
         return '';
     }
 
-    public function getSubheading(): string | Htmlable | null
+    public function getSubheading(): string|Htmlable|null
     {
         return null;
     }

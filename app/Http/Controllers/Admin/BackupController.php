@@ -18,13 +18,13 @@ class BackupController extends Controller
 
     public function download(Request $request, string $filename): BinaryFileResponse
     {
-        if (!auth()->check() || !auth()->user()->is_super_admin) {
+        if (! auth()->check() || ! auth()->user()->is_super_admin) {
             abort(403, 'Unauthorized access to database backups.');
         }
 
         $path = $this->backupService->getBackupPath($filename);
 
-        if (!$path) {
+        if (! $path) {
             abort(404, 'Backup file not found.');
         }
 

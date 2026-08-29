@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,17 +21,18 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Unauthenticated redirect routing
         $middleware->redirectTo(
-            guests: function (\Illuminate\Http\Request $request) {
+            guests: function (Request $request) {
                 if ($request->is('manager*')) {
                     return route('manager.login');
                 }
+
                 return route('login');
             }
         );
 
         // ABAC role-based access control middleware alias
         $middleware->alias([
-            'role' => \App\Http\Middleware\CheckRole::class,
+            'role' => CheckRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

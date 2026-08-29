@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class JobListing extends Model
 {
@@ -21,18 +22,18 @@ class JobListing extends Model
     ];
 
     protected $casts = [
-        'is_active'  => 'boolean',
+        'is_active' => 'boolean',
         'sort_order' => 'integer',
     ];
 
     public function employmentTypeLabel(): string
     {
         return match ($this->employment_type) {
-            'full_time'  => 'Full-Time',
-            'part_time'  => 'Part-Time',
-            'contract'   => 'Contract',
+            'full_time' => 'Full-Time',
+            'part_time' => 'Part-Time',
+            'contract' => 'Contract',
             'internship' => 'Internship',
-            default      => ucfirst($this->employment_type),
+            default => ucfirst($this->employment_type),
         };
     }
 
@@ -45,7 +46,7 @@ class JobListing extends Model
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }

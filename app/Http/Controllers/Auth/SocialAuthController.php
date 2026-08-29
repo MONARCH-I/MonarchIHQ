@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
@@ -22,9 +22,9 @@ class SocialAuthController extends Controller
 
     public function redirect(string $provider)
     {
-        if (!isset($this->providerMap[$provider])) {
+        if (! isset($this->providerMap[$provider])) {
             return redirect('/login')->withErrors([
-                'email' => "Authentication provider [{$provider}] is not supported."
+                'email' => "Authentication provider [{$provider}] is not supported.",
             ]);
         }
 
@@ -35,9 +35,9 @@ class SocialAuthController extends Controller
 
     public function callback(Request $request, string $provider)
     {
-        if (!isset($this->providerMap[$provider])) {
+        if (! isset($this->providerMap[$provider])) {
             return redirect('/login')->withErrors([
-                'email' => "Authentication provider [{$provider}] is not supported."
+                'email' => "Authentication provider [{$provider}] is not supported.",
             ]);
         }
 
@@ -50,9 +50,9 @@ class SocialAuthController extends Controller
                 ?? ($socialUser->user['userPrincipalName'] ?? null)
                 ?? ($socialUser->user['mail'] ?? null);
 
-            if (!$email) {
+            if (! $email) {
                 return redirect('/login')->withErrors([
-                    'email' => "Could not retrieve an email address from {$provider}. Please ensure your account has a verified email address."
+                    'email' => "Could not retrieve an email address from {$provider}. Please ensure your account has a verified email address.",
                 ]);
             }
 
@@ -88,12 +88,12 @@ class SocialAuthController extends Controller
 
             return redirect()->intended(route('dashboard', absolute: false));
         } catch (\Exception $e) {
-            Log::error("SSO Callback Error for [{$provider}]: " . $e->getMessage(), [
-                'exception' => $e
+            Log::error("SSO Callback Error for [{$provider}]: ".$e->getMessage(), [
+                'exception' => $e,
             ]);
 
             return redirect('/login')->withErrors([
-                'email' => 'Unable to login with ' . ucfirst($provider) . ': ' . $e->getMessage()
+                'email' => 'Unable to login with '.ucfirst($provider).': '.$e->getMessage(),
             ]);
         }
     }

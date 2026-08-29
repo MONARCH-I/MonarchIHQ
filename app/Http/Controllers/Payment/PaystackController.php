@@ -24,7 +24,7 @@ class PaystackController extends Controller
     {
         $reference = $request->query('reference') ?? $request->query('trxref');
 
-        if (!$reference) {
+        if (! $reference) {
             return redirect()->route('bag.index')->with('error', 'No payment reference received. Transaction could not be verified.');
         }
 
@@ -35,10 +35,10 @@ class PaystackController extends Controller
         $verification = $this->paystack->verifyPayment($reference);
 
         if ($verification['paid'] && ($verification['data'] ?? false)) {
-            $data    = $verification['data'];
+            $data = $verification['data'];
             $channel = $data['channel'] ?? 'card/momo';
 
-            if (!$order && isset($data['metadata']['order_id'])) {
+            if (! $order && isset($data['metadata']['order_id'])) {
                 $order = Order::find($data['metadata']['order_id']);
             }
 
@@ -78,23 +78,23 @@ class PaystackController extends Controller
         }
 
         // Create new unique reference
-        $reference = 'MHQ_RETRY_' . $order->id . '_' . bin2hex(random_bytes(4));
+        $reference = 'MHQ_RETRY_'.$order->id.'_'.bin2hex(random_bytes(4));
         $order->update(['payment_reference' => $reference]);
 
         $init = $this->paystack->initializePayment([
-            'email'        => $order->customer_email,
-            'amount'       => $order->total,
-            'currency'     => $order->currency,
-            'reference'    => $reference,
+            'email' => $order->customer_email,
+            'amount' => $order->total,
+            'currency' => $order->currency,
+            'reference' => $reference,
             'callback_url' => route('paystack.callback'),
-            'metadata'     => [
-                'order_id'       => $order->id,
-                'customer_name'  => $order->customer_name,
+            'metadata' => [
+                'order_id' => $order->id,
+                'customer_name' => $order->customer_name,
                 'customer_phone' => $order->customer_phone,
             ],
         ]);
 
-        if ($init['success'] && !empty($init['authorization_url'])) {
+        if ($init['success'] && ! empty($init['authorization_url'])) {
             return redirect()->away($init['authorization_url']);
         }
 
@@ -107,36 +107,37 @@ class PaystackController extends Controller
     public function webhook(Request $request)
     {
         $signature = $request->header('X-Paystack-Signature') ?? $request->header('x-paystack-signature');
-        $rawBody   = $request->getContent();
+        $rawBody = $request->getContent();
 
-        if (!$this->paystack->validateWebhookSignature($rawBody, $signature)) {
+        if (! $this->paystack->validateWebhookSignature($rawBody, $signature)) {
             Log::warning('Paystack webhook signature verification failed.');
+
             return response()->json(['status' => false, 'message' => 'Invalid signature'], 400);
         }
 
         $event = json_decode($rawBody, true);
-        if (!$event) {
+        if (! $event) {
             return response()->json(['status' => false, 'message' => 'Invalid JSON payload'], 400);
         }
 
         $eventName = $event['event'] ?? '';
-        $data      = $event['data'] ?? [];
+        $data = $event['data'] ?? [];
 
         Log::info('Paystack webhook received', ['event' => $eventName, 'reference' => $data['reference'] ?? null]);
 
         if ($eventName === 'charge.success') {
             $reference = $data['reference'] ?? null;
-            $orderId   = $data['metadata']['order_id'] ?? null;
+            $orderId = $data['metadata']['order_id'] ?? null;
 
             $order = null;
             if ($reference) {
                 $order = Order::where('payment_reference', $reference)->first();
             }
-            if (!$order && $orderId) {
+            if (! $order && $orderId) {
                 $order = Order::find($orderId);
             }
 
-            if ($order && !$order->isPaid()) {
+            if ($order && ! $order->isPaid()) {
                 $channel = $data['channel'] ?? 'card/momo';
                 $order->markAsPaid($channel, $data);
                 Log::info("Order #{$order->id} marked as paid via Paystack webhook");

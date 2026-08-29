@@ -19,10 +19,10 @@ class HrManagerController extends Controller
         abort_if(! auth()->user()->isHrManager(), 403);
 
         $stats = [
-            'active_jobs'      => JobListing::active()->count(),
-            'total_jobs'       => JobListing::count(),
-            'new_messages'     => ContactMessage::where('status', 'new')->count(),
-            'open_messages'    => ContactMessage::open()->count(),
+            'active_jobs' => JobListing::active()->count(),
+            'total_jobs' => JobListing::count(),
+            'new_messages' => ContactMessage::where('status', 'new')->count(),
+            'open_messages' => ContactMessage::open()->count(),
             'replied_messages' => ContactMessage::where('status', 'replied')->count(),
         ];
 
@@ -39,12 +39,14 @@ class HrManagerController extends Controller
     {
         $this->authorize('viewAny', JobListing::class);
         $jobs = JobListing::latest()->paginate(15);
+
         return view('manager.hr.jobs.index', compact('jobs'));
     }
 
     public function jobsCreate()
     {
         $this->authorize('create', JobListing::class);
+
         return view('manager.hr.jobs.create');
     }
 
@@ -53,15 +55,15 @@ class HrManagerController extends Controller
         $this->authorize('create', JobListing::class);
 
         $data = $request->validate([
-            'title'           => 'required|string|max:255',
-            'department'      => 'required|string|max:100',
+            'title' => 'required|string|max:255',
+            'department' => 'required|string|max:100',
             'employment_type' => 'required|in:full_time,part_time,contract,internship',
-            'location'        => 'required|string|max:150',
+            'location' => 'required|string|max:150',
             'skills_required' => 'nullable|string',
-            'description'     => 'nullable|string',
-            'apply_email'     => 'required|email',
-            'is_active'       => 'boolean',
-            'sort_order'      => 'nullable|integer',
+            'description' => 'nullable|string',
+            'apply_email' => 'required|email',
+            'is_active' => 'boolean',
+            'sort_order' => 'nullable|integer',
         ]);
 
         $data['created_by'] = auth()->id();
@@ -74,6 +76,7 @@ class HrManagerController extends Controller
     public function jobsEdit(JobListing $job)
     {
         $this->authorize('update', $job);
+
         return view('manager.hr.jobs.edit', compact('job'));
     }
 
@@ -82,15 +85,15 @@ class HrManagerController extends Controller
         $this->authorize('update', $job);
 
         $data = $request->validate([
-            'title'           => 'required|string|max:255',
-            'department'      => 'required|string|max:100',
+            'title' => 'required|string|max:255',
+            'department' => 'required|string|max:100',
             'employment_type' => 'required|in:full_time,part_time,contract,internship',
-            'location'        => 'required|string|max:150',
+            'location' => 'required|string|max:150',
             'skills_required' => 'nullable|string',
-            'description'     => 'nullable|string',
-            'apply_email'     => 'required|email',
-            'is_active'       => 'boolean',
-            'sort_order'      => 'nullable|integer',
+            'description' => 'nullable|string',
+            'apply_email' => 'required|email',
+            'is_active' => 'boolean',
+            'sort_order' => 'nullable|integer',
         ]);
 
         $job->update($data);
@@ -104,6 +107,7 @@ class HrManagerController extends Controller
         $this->authorize('update', $job);
         $job->update(['is_active' => ! $job->is_active]);
         $status = $job->is_active ? 'activated' : 'deactivated';
+
         return back()->with('success', "Job listing {$status}.");
     }
 
@@ -111,6 +115,7 @@ class HrManagerController extends Controller
     {
         $this->authorize('delete', $job);
         $job->delete();
+
         return redirect()->route('manager.hr.jobs')
             ->with('success', 'Job listing deleted.');
     }
@@ -123,6 +128,7 @@ class HrManagerController extends Controller
     {
         $this->authorize('viewAny', ContactMessage::class);
         $messages = ContactMessage::latest()->paginate(20);
+
         return view('manager.hr.messages.index', compact('messages'));
     }
 
@@ -142,10 +148,11 @@ class HrManagerController extends Controller
     {
         $this->authorize('update', $message);
         $data = $request->validate([
-            'status'   => 'required|in:new,in_progress,replied,closed',
+            'status' => 'required|in:new,in_progress,replied,closed',
             'hr_notes' => 'nullable|string|max:2000',
         ]);
         $message->update($data);
+
         return back()->with('success', 'Message status updated.');
     }
 
@@ -159,32 +166,33 @@ class HrManagerController extends Controller
 
         $data = $request->validate([
             'reply_subject' => 'required|string|max:255',
-            'reply_body'    => 'required|string',
+            'reply_body' => 'required|string',
         ]);
 
         Mail::send([], [], function ($mail) use ($message, $data) {
             $mail->to($message->email, $message->name)
                 ->subject($data['reply_subject'])
                 ->html(
-                    nl2br(e($data['reply_body'])) .
+                    nl2br(e($data['reply_body'])).
                     '<br><br><hr><small style="color:#888">MonarchI HQ · Accra, Ghana</small>'
                 );
         });
 
         $message->update([
-            'status'     => ContactMessage::STATUS_REPLIED,
-            'hr_notes'   => ($message->hr_notes ? $message->hr_notes . "\n\n" : '') .
-                            '[Reply sent ' . now()->format('d M Y H:i') . ']',
+            'status' => ContactMessage::STATUS_REPLIED,
+            'hr_notes' => ($message->hr_notes ? $message->hr_notes."\n\n" : '').
+                            '[Reply sent '.now()->format('d M Y H:i').']',
             'replied_at' => now(),
         ]);
 
-        return back()->with('success', 'Reply sent to ' . $message->email . '.');
+        return back()->with('success', 'Reply sent to '.$message->email.'.');
     }
 
     public function messagesDestroy(ContactMessage $message)
     {
         $this->authorize('delete', $message);
         $message->delete();
+
         return redirect()->route('manager.hr.messages')
             ->with('success', 'Message deleted.');
     }

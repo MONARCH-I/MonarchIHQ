@@ -36,8 +36,8 @@ class EmployeeController extends Controller
 
         $roles = [
             'content_manager' => 'Content Manager',
-            'store_manager'   => 'Store Manager',
-            'hr_manager'      => 'HR Manager',
+            'store_manager' => 'Store Manager',
+            'hr_manager' => 'HR Manager',
         ];
 
         return view('manager.employees.create', compact('roles'));
@@ -50,19 +50,19 @@ class EmployeeController extends Controller
         $allowedRoles = ['content_manager', 'store_manager', 'hr_manager'];
 
         $data = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'role'     => 'required|in:' . implode(',', $allowedRoles),
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'role' => 'required|in:'.implode(',', $allowedRoles),
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
         $employee = User::create([
-            'name'             => $data['name'],
-            'email'            => $data['email'],
-            'role'             => $data['role'],
-            'password'         => Hash::make($data['password']),
-            'is_super_admin'   => false,
-            'email_verified_at'=> now(),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role' => $data['role'],
+            'password' => Hash::make($data['password']),
+            'is_super_admin' => false,
+            'email_verified_at' => now(),
         ]);
 
         return redirect()->route('manager.employees')
@@ -79,8 +79,8 @@ class EmployeeController extends Controller
 
         $roles = [
             'content_manager' => 'Content Manager',
-            'store_manager'   => 'Store Manager',
-            'hr_manager'      => 'HR Manager',
+            'store_manager' => 'Store Manager',
+            'hr_manager' => 'HR Manager',
         ];
 
         return view('manager.employees.edit', compact('user', 'roles'));
@@ -96,8 +96,8 @@ class EmployeeController extends Controller
         $allowedRoles = ['content_manager', 'store_manager', 'hr_manager'];
 
         $data = $request->validate([
-            'name'     => 'required|string|max:255',
-            'role'     => 'required|in:' . implode(',', $allowedRoles),
+            'name' => 'required|string|max:255',
+            'role' => 'required|in:'.implode(',', $allowedRoles),
             'password' => ['nullable', 'confirmed', Password::defaults()],
         ]);
 
@@ -106,7 +106,7 @@ class EmployeeController extends Controller
             'role' => $data['role'],
         ];
 
-        if (!empty($data['password'])) {
+        if (! empty($data['password'])) {
             $updateData['password'] = Hash::make($data['password']);
         }
 
@@ -124,6 +124,7 @@ class EmployeeController extends Controller
         abort_if($user->id === auth()->id(), 403);
 
         $user->delete();
+
         return redirect()->route('manager.employees')
             ->with('success', 'Manager account removed.');
     }

@@ -14,15 +14,15 @@ class UserSettingsController extends Controller
     {
         $user = Auth::user();
 
-        $user->notif_orders   = $request->boolean('notif_orders');
-        $user->notif_promos   = $request->boolean('notif_promos');
-        $user->notif_blog     = $request->boolean('notif_blog');
+        $user->notif_orders = $request->boolean('notif_orders');
+        $user->notif_promos = $request->boolean('notif_promos');
+        $user->notif_blog = $request->boolean('notif_blog');
         $user->notif_security = $request->boolean('notif_security');
         $user->save();
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Notification preferences saved.',
             ]);
         }
@@ -44,7 +44,7 @@ class UserSettingsController extends Controller
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Display preferences saved.',
             ]);
         }
@@ -59,16 +59,16 @@ class UserSettingsController extends Controller
     {
         $validated = $request->validate([
             'address_street' => ['nullable', 'string', 'max:255'],
-            'address_city'   => ['nullable', 'string', 'max:100'],
+            'address_city' => ['nullable', 'string', 'max:100'],
             'address_region' => ['nullable', 'string', 'max:100'],
-            'phone'          => ['nullable', 'string', 'max:30'],
+            'phone' => ['nullable', 'string', 'max:30'],
         ]);
 
         Auth::user()->update($validated);
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Shipping address saved.',
             ]);
         }

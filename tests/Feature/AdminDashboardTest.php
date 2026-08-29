@@ -33,15 +33,15 @@ test('admin can access filament dashboard with live data tabs', function () {
     ]);
 
     $order = Order::create([
-        'user_id'           => $admin->id,
+        'user_id' => $admin->id,
         'payment_reference' => 'MHQ_TEST_LIVE_01',
-        'status'            => 'processing',
-        'payment_status'    => 'paid',
-        'payment_method'    => 'paystack',
-        'currency'          => 'GHS',
-        'total'             => 1500.00,
-        'customer_name'     => $admin->name,
-        'customer_email'    => $admin->email,
+        'status' => 'processing',
+        'payment_status' => 'paid',
+        'payment_method' => 'paystack',
+        'currency' => 'GHS',
+        'total' => 1500.00,
+        'customer_name' => $admin->name,
+        'customer_email' => $admin->email,
     ]);
 
     Livewire::actingAs($admin)
@@ -59,7 +59,7 @@ test('admin can access filament dashboard with live data tabs', function () {
 });
 
 test('backup service creates, lists, restores, and deletes database snapshots', function () {
-    $service = new BackupService();
+    $service = new BackupService;
 
     // Create backup
     $createResult = $service->createBackup();

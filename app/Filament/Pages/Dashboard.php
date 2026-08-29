@@ -10,8 +10,6 @@ use App\Models\User;
 use App\Services\BackupService;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Page
 {
@@ -74,14 +72,14 @@ class Dashboard extends Page
             ->get();
 
         return [
-            'totalRevenue'        => $totalRevenue,
-            'totalOrdersCount'    => $totalOrdersCount,
-            'paidOrdersCount'     => $paidOrdersCount,
-            'pendingOrdersCount'  => $pendingOrdersCount,
+            'totalRevenue' => $totalRevenue,
+            'totalOrdersCount' => $totalOrdersCount,
+            'paidOrdersCount' => $paidOrdersCount,
+            'pendingOrdersCount' => $pendingOrdersCount,
             'activeProductsCount' => $activeProductsCount,
             'totalCustomersCount' => $totalCustomersCount,
-            'dailySales'          => $dailySales,
-            'recentOrders'        => $recentOrders,
+            'dailySales' => $dailySales,
+            'recentOrders' => $recentOrders,
         ];
     }
 
@@ -102,14 +100,14 @@ class Dashboard extends Page
 
         $saasSalesCount = OrderItem::whereIn('product_id', $saasProductIds)->sum('quantity');
         $saasRevenue = OrderItem::whereIn('product_id', $saasProductIds)
-            ->whereHas('order', fn($q) => $q->where('payment_status', 'paid'))
+            ->whereHas('order', fn ($q) => $q->where('payment_status', 'paid'))
             ->sum('subtotal');
 
         return [
-            'saasProducts'   => $saasProducts,
-            'saasCount'      => $saasProducts->count(),
+            'saasProducts' => $saasProducts,
+            'saasCount' => $saasProducts->count(),
             'saasSalesCount' => $saasSalesCount,
-            'saasRevenue'    => $saasRevenue,
+            'saasRevenue' => $saasRevenue,
         ];
     }
 
@@ -128,7 +126,7 @@ class Dashboard extends Page
             ->get();
 
         $totalUnitsInStock = $hardwareProducts->sum('stock_quantity');
-        $inventoryAssetValue = $hardwareProducts->sum(fn($p) => ($p->price * $p->stock_quantity));
+        $inventoryAssetValue = $hardwareProducts->sum(fn ($p) => ($p->price * $p->stock_quantity));
 
         // Low stock alerts (stock <= min threshold)
         $lowStockProducts = Product::with('category')
@@ -138,11 +136,11 @@ class Dashboard extends Page
             ->get();
 
         return [
-            'hardwareProducts'    => $hardwareProducts,
-            'totalUnitsInStock'   => $totalUnitsInStock,
+            'hardwareProducts' => $hardwareProducts,
+            'totalUnitsInStock' => $totalUnitsInStock,
             'inventoryAssetValue' => $inventoryAssetValue,
-            'lowStockProducts'    => $lowStockProducts,
-            'lowStockCount'       => $lowStockProducts->count(),
+            'lowStockProducts' => $lowStockProducts,
+            'lowStockCount' => $lowStockProducts->count(),
         ];
     }
 
@@ -161,7 +159,7 @@ class Dashboard extends Page
 
         return [
             'customOrders' => $customOrders,
-            'customers'    => $customers,
+            'customers' => $customers,
         ];
     }
 
@@ -171,6 +169,7 @@ class Dashboard extends Page
     public function getBackupsList(): array
     {
         $backupService = app(BackupService::class);
+
         return $backupService->listBackups();
     }
 

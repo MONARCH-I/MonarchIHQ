@@ -18,11 +18,11 @@ class AbacManagerPortalsTest extends TestCase
     public function test_projects_page_loads_and_displays_dynamic_projects(): void
     {
         PortfolioProject::create([
-            'title'        => 'Dynamic AI Telemetry',
-            'slug'         => 'dynamic-ai-telemetry',
-            'description'  => 'Test description of project',
-            'domain'       => 'Enterprise AI',
-            'status'       => 'Deployed',
+            'title' => 'Dynamic AI Telemetry',
+            'slug' => 'dynamic-ai-telemetry',
+            'description' => 'Test description of project',
+            'domain' => 'Enterprise AI',
+            'status' => 'Deployed',
             'status_color' => 'blue',
             'is_published' => true,
         ]);
@@ -35,14 +35,14 @@ class AbacManagerPortalsTest extends TestCase
     public function test_blog_page_loads_and_displays_dynamic_news(): void
     {
         NewsArticle::create([
-            'title'             => 'African Tech Revolution 2026',
-            'slug'              => 'african-tech-revolution-2026',
-            'excerpt'           => 'Summary of revolution',
-            'category'          => 'african_tech',
-            'author_name'       => 'Monarchi Team',
+            'title' => 'African Tech Revolution 2026',
+            'slug' => 'african-tech-revolution-2026',
+            'excerpt' => 'Summary of revolution',
+            'category' => 'african_tech',
+            'author_name' => 'Monarchi Team',
             'read_time_minutes' => 4,
-            'is_published'      => true,
-            'published_at'      => now(),
+            'is_published' => true,
+            'published_at' => now(),
         ]);
 
         $response = $this->get('/blog');
@@ -54,12 +54,12 @@ class AbacManagerPortalsTest extends TestCase
     public function test_careers_page_loads_and_displays_dynamic_jobs(): void
     {
         JobListing::create([
-            'title'           => 'Principal Cloud Architect',
-            'department'      => 'Engineering',
+            'title' => 'Principal Cloud Architect',
+            'department' => 'Engineering',
             'employment_type' => 'full_time',
-            'location'        => 'Accra',
-            'apply_email'     => 'careers@monarchi.com.gh',
-            'is_active'       => true,
+            'location' => 'Accra',
+            'apply_email' => 'careers@monarchi.com.gh',
+            'is_active' => true,
         ]);
 
         $response = $this->get('/careers');
@@ -70,15 +70,15 @@ class AbacManagerPortalsTest extends TestCase
     public function test_contact_form_submits_and_stores_in_database(): void
     {
         $response = $this->post('/contact', [
-            'name'    => 'Kofi Mensah',
-            'email'   => 'kofi@example.com',
+            'name' => 'Kofi Mensah',
+            'email' => 'kofi@example.com',
             'subject' => 'Enterprise Systems & SaaS',
             'message' => 'We want to inquire about custom telemetry infrastructure deployment.',
         ]);
 
         $response->assertSessionHas('success');
         $this->assertDatabaseHas('contact_messages', [
-            'name'  => 'Kofi Mensah',
+            'name' => 'Kofi Mensah',
             'email' => 'kofi@example.com',
         ]);
     }
@@ -104,13 +104,13 @@ class AbacManagerPortalsTest extends TestCase
     public function test_manager_can_authenticate_via_manager_login(): void
     {
         $manager = User::factory()->create([
-            'email'    => 'content-lead@monarchi.com.gh',
+            'email' => 'content-lead@monarchi.com.gh',
             'password' => bcrypt('StrongSecret123!'),
-            'role'     => 'content_manager',
+            'role' => 'content_manager',
         ]);
 
         $response = $this->post(route('manager.login.store'), [
-            'email'    => 'content-lead@monarchi.com.gh',
+            'email' => 'content-lead@monarchi.com.gh',
             'password' => 'StrongSecret123!',
         ]);
 
@@ -121,14 +121,14 @@ class AbacManagerPortalsTest extends TestCase
     public function test_regular_customer_is_rejected_at_manager_login(): void
     {
         $customer = User::factory()->create([
-            'email'    => 'customer@example.com',
+            'email' => 'customer@example.com',
             'password' => bcrypt('CustomerSecret123!'),
-            'role'     => 'user',
+            'role' => 'user',
             'is_super_admin' => false,
         ]);
 
         $response = $this->post(route('manager.login.store'), [
-            'email'    => 'customer@example.com',
+            'email' => 'customer@example.com',
             'password' => 'CustomerSecret123!',
         ]);
 
@@ -153,7 +153,7 @@ class AbacManagerPortalsTest extends TestCase
     public function test_regular_user_is_forbidden_from_all_manager_portals(): void
     {
         $user = User::factory()->create([
-            'role'           => 'user',
+            'role' => 'user',
             'is_super_admin' => false,
         ]);
 
@@ -168,7 +168,7 @@ class AbacManagerPortalsTest extends TestCase
     public function test_content_manager_can_access_content_portal_only(): void
     {
         $contentMgr = User::factory()->create([
-            'role'           => 'content_manager',
+            'role' => 'content_manager',
             'is_super_admin' => false,
         ]);
 
@@ -188,7 +188,7 @@ class AbacManagerPortalsTest extends TestCase
     public function test_store_manager_can_access_store_portal_only(): void
     {
         $storeMgr = User::factory()->create([
-            'role'           => 'store_manager',
+            'role' => 'store_manager',
             'is_super_admin' => false,
         ]);
 
@@ -209,7 +209,7 @@ class AbacManagerPortalsTest extends TestCase
     public function test_hr_manager_can_access_hr_and_employees_portals(): void
     {
         $hrMgr = User::factory()->create([
-            'role'           => 'hr_manager',
+            'role' => 'hr_manager',
             'is_super_admin' => false,
         ]);
 
@@ -229,7 +229,7 @@ class AbacManagerPortalsTest extends TestCase
     public function test_super_admin_can_access_all_portals(): void
     {
         $superAdmin = User::factory()->create([
-            'role'           => 'super_admin',
+            'role' => 'super_admin',
             'is_super_admin' => true,
         ]);
 
@@ -242,16 +242,16 @@ class AbacManagerPortalsTest extends TestCase
     public function test_super_admin_is_excluded_from_employee_manager_list(): void
     {
         $superAdmin = User::factory()->create([
-            'name'           => 'Monarch Super Admin',
-            'email'          => 'super@monarchi.com.gh',
-            'role'           => 'super_admin',
+            'name' => 'Monarch Super Admin',
+            'email' => 'super@monarchi.com.gh',
+            'role' => 'super_admin',
             'is_super_admin' => true,
         ]);
 
         $hrMgr = User::factory()->create([
-            'name'           => 'Jane HR Lead',
-            'email'          => 'hrlead@monarchi.com.gh',
-            'role'           => 'hr_manager',
+            'name' => 'Jane HR Lead',
+            'email' => 'hrlead@monarchi.com.gh',
+            'role' => 'hr_manager',
             'is_super_admin' => false,
         ]);
 
@@ -264,26 +264,26 @@ class AbacManagerPortalsTest extends TestCase
     public function test_super_admin_cannot_be_created_or_deleted_via_employee_portal(): void
     {
         $hrMgr = User::factory()->create([
-            'role'           => 'hr_manager',
+            'role' => 'hr_manager',
             'is_super_admin' => false,
         ]);
 
         $superAdmin = User::factory()->create([
-            'role'           => 'super_admin',
+            'role' => 'super_admin',
             'is_super_admin' => true,
         ]);
 
         // Attempt to create super_admin role through manager employee portal -> fails validation
         $response = $this->actingAs($hrMgr)->post('/manager/employees', [
-            'name'                  => 'Hacker Admin',
-            'email'                 => 'hack@monarchi.com.gh',
-            'role'                  => 'super_admin',
-            'password'              => 'Password123!',
+            'name' => 'Hacker Admin',
+            'email' => 'hack@monarchi.com.gh',
+            'role' => 'super_admin',
+            'password' => 'Password123!',
             'password_confirmation' => 'Password123!',
         ]);
         $response->assertSessionHasErrors('role');
 
         // Attempt to delete super_admin account through employee portal -> 403 Forbidden
-        $this->actingAs($hrMgr)->delete('/manager/employees/' . $superAdmin->id)->assertStatus(403);
+        $this->actingAs($hrMgr)->delete('/manager/employees/'.$superAdmin->id)->assertStatus(403);
     }
 }

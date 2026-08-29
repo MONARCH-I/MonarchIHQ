@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class ProductResource extends Resource
 {
@@ -34,8 +34,7 @@ class ProductResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn ($state, Forms\Set $set) =>
-                            $set('slug', \Illuminate\Support\Str::slug($state))
+                        ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))
                         ),
 
                     Forms\Components\TextInput::make('slug')
@@ -106,7 +105,7 @@ class ProductResource extends Resource
                         ->label('Featured Card Style')
                         ->options([
                             'light' => 'Light (white)',
-                            'dark'  => 'Dark (black)',
+                            'dark' => 'Dark (black)',
                             'promo' => 'Promo (gradient)',
                         ])
                         ->default('light')
@@ -128,10 +127,10 @@ class ProductResource extends Resource
                         ->label('Badge Color')
                         ->options([
                             'orange' => 'Orange (Pre-Order / Warm)',
-                            'red'    => 'Red (Limited Offer / Sale)',
-                            'green'  => 'Green (New)',
-                            'blue'   => 'Blue (Popular / Featured)',
-                            'gray'   => 'Gray (Muted)',
+                            'red' => 'Red (Limited Offer / Sale)',
+                            'green' => 'Green (New)',
+                            'blue' => 'Blue (Popular / Featured)',
+                            'gray' => 'Gray (Muted)',
                         ])
                         ->default('orange'),
 
@@ -209,14 +208,14 @@ class ProductResource extends Resource
                     ->sortable()
                     ->badge()
                     ->color(fn ($record) => match ($record->stock_status) {
-                        'in_stock'    => 'success',
-                        'low_stock'   => 'warning',
-                        'out_of_stock'=> 'danger',
+                        'in_stock' => 'success',
+                        'low_stock' => 'warning',
+                        'out_of_stock' => 'danger',
                     })
                     ->formatStateUsing(fn ($state, $record) => match ($record->stock_status) {
-                        'in_stock'    => $state . ' In Stock',
-                        'low_stock'   => $state . ' Low',
-                        'out_of_stock'=> 'Out of Stock',
+                        'in_stock' => $state.' In Stock',
+                        'low_stock' => $state.' Low',
+                        'out_of_stock' => 'Out of Stock',
                     }),
 
                 Tables\Columns\IconColumn::make('is_featured')
@@ -268,9 +267,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListProducts::route('/'),
+            'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
-            'edit'   => Pages\EditProduct::route('/{record}/edit'),
+            'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
 }
