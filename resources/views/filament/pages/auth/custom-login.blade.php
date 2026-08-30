@@ -250,13 +250,11 @@
     {{-- Brand header --}}
     <div class="monarchi-admin-header">
         <div class="monarchi-admin-wordmark">M O N A R C H I</div>
-        <div class="monarchi-admin-badge">Administrator Portal</div>
     </div>
 
     {{-- Form body --}}
     <div class="monarchi-admin-body">
-        <p class="admin-sign-in-label">Sign in</p>
-        <p class="admin-sign-in-sub">Access restricted to authorised personnel.</p>
+        <p class="admin-sign-in-sub">Authorised Personnel Only.</p>
 
         {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 
@@ -274,6 +272,6 @@
 
     {{-- Footer --}}
     <div class="monarchi-admin-footer">
-        © {{ date('Y') }} Monarchi HQ &middot; Secure Admin Access
+        © {{ date('Y') }} Monarchi HQ &middot;
     </div>
 </x-filament-panels::page.simple>

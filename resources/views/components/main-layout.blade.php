@@ -983,7 +983,7 @@
                                     d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.925H5.022z" />
                             </svg>
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-[#2997ff] transition-colors">
+                        <a href="https://linkedin.com/company/monarchihq" target="_blank" class="text-gray-500 hover:text-[#2997ff] transition-colors" aria-label="LinkedIn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
@@ -1009,52 +1009,50 @@
                         <li><a href="/blog" class="hover:text-[#2997ff] transition-colors">Blog</a></li>
                         <li><a href="/careers" class="hover:text-[#2997ff] transition-colors">Careers</a></li>
                         <li><a href="/contact" class="hover:text-[#2997ff] transition-colors">Contact</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Partners</a></li>
+                        <li><a href="/partners" class="hover:text-[#2997ff] transition-colors">Partners</a></li>
                     </ul>
                 </div> 
                 {{-- DIVISIONS QUICKLINKS --}}
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Divisions</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Monarch I/O</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Monarch Inventions</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Monarch Innovations</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Monarch IoT</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Monarch IS</a></li>
+                        <li><a href="/divisions#io" class="hover:text-[#2997ff] transition-colors">Monarch I/O</a></li>
+                        <li><a href="/divisions#inventions" class="hover:text-[#2997ff] transition-colors">Monarch Inventions</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">Monarch Innovations</a></li>
+                        <li><a href="/divisions#iot" class="hover:text-[#2997ff] transition-colors">Monarch IoT</a></li>
+                        <li><a href="/divisions#is" class="hover:text-[#2997ff] transition-colors">Monarch IS</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Products</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">MAI</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">iLyft</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">invenStore</a></li>
-                        {{-- <li><a href="#" class="hover:text-[#2997ff] transition-colors">examMode</a></li> --}}
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">OnuaFoodHub</a></li>
-                        {{-- <li><a href="#" class="hover:text-[#2997ff] transition-colors">ticketMaester</a></li> --}}
+                        <li><a href="/services" class="hover:text-[#2997ff] transition-colors">MAI</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">iLyft</a></li>
+                        <li><a href="/store" class="hover:text-[#2997ff] transition-colors">invenStore</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">OnuaFoodHub</a></li>
                     </ul>
                 </div>  
 
-                {{-- LEGAL QUICKLINKS --}}
+                {{-- COMMUNITY QUICKLINKS --}}
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Community</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Open Source</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Social Impact</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Community Events</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Blog</a></li>
+                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Open Source</a></li>
+                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Social Impact</a></li>
+                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Community Events</a></li>
+                        <li><a href="/blog" class="hover:text-[#2997ff] transition-colors">Blog</a></li>
                     </ul>
                 </div> 
 
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Legal</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Cookie Policy</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">License & Authorization</a></li>
-                        <li><a href="#" class="hover:text-[#2997ff] transition-colors">Security</a></li>
+                        <li><a href="/privacy" class="hover:text-[#2997ff] transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-[#2997ff] transition-colors">Terms of Service</a></li>
+                        <li><a href="/cookies" class="hover:text-[#2997ff] transition-colors">Cookie Policy</a></li>
+                        <li><a href="/licenses" class="hover:text-[#2997ff] transition-colors">License & Authorization</a></li>
+                        <li><a href="/security" class="hover:text-[#2997ff] transition-colors">Security</a></li>
                     </ul>
                 </div>
             </div>
@@ -1160,24 +1158,95 @@
         document.addEventListener('DOMContentLoaded', () => {
             const header = document.getElementById('header');
             const menu = document.getElementById('menu');
-            if (header && menu) {
-                const showMenu = () => menu.classList.remove('hidden');
-                const hideMenu = () => menu.classList.add('hidden');
+            if (!header || !menu) return;
 
-                header.addEventListener('mouseenter', showMenu);
-                header.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!menu.matches(':hover') && !header.matches(':hover')) hideMenu();
-                    }, 50);
-                });
+            let isMenuOpen = false;
+            let closeTimeout = null;
 
-                menu.addEventListener('mouseenter', showMenu);
-                menu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
+            const isTouchDevice = () => ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+            const showMenu = () => {
+                if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+                menu.classList.remove('hidden');
+                isMenuOpen = true;
+            };
+
+            const hideMenu = () => {
+                if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+                menu.classList.add('hidden');
+                isMenuOpen = false;
+            };
+
+            const toggleMenu = () => {
+                if (isMenuOpen) {
+                    hideMenu();
+                } else {
+                    showMenu();
+                }
+            };
+
+            // Desktop hover interactions (only for pointer/mouse devices)
+            header.addEventListener('mouseenter', () => {
+                if (!isTouchDevice()) showMenu();
+            });
+            header.addEventListener('mouseleave', () => {
+                if (!isTouchDevice()) {
+                    closeTimeout = setTimeout(() => {
                         if (!menu.matches(':hover') && !header.matches(':hover')) hideMenu();
-                    }, 50);
-                });
-            }
+                    }, 80);
+                }
+            });
+
+            menu.addEventListener('mouseenter', () => {
+                if (!isTouchDevice()) showMenu();
+            });
+            menu.addEventListener('mouseleave', () => {
+                if (!isTouchDevice()) {
+                    closeTimeout = setTimeout(() => {
+                        if (!menu.matches(':hover') && !header.matches(':hover')) hideMenu();
+                    }, 80);
+                }
+            });
+
+            // Tap/click header behavior
+            header.addEventListener('click', (e) => {
+                // If user clicked search button, bag, account or inside active search overlay, let those handlers run
+                if (e.target.closest('#search-btn') || e.target.closest('#search-overlay') || e.target.closest('a[aria-label="Shopping Bag"]') || e.target.closest('a[href*="dashboard"]') || e.target.closest('a[href*="login"]')) {
+                    hideMenu();
+                    return;
+                }
+
+                // If user clicked inside the menu itself
+                if (e.target.closest('#menu')) {
+                    if (e.target.closest('a')) {
+                        hideMenu();
+                    }
+                    return;
+                }
+
+                // Otherwise toggle menu on header tap/click
+                toggleMenu();
+            });
+
+            // Auto-hide when tapping anywhere else on the page
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !header.contains(e.target) && !menu.contains(e.target)) {
+                    hideMenu();
+                }
+            });
+
+            // Auto-hide on mobile/desktop scroll
+            let isScrolling = false;
+            const handleScroll = () => {
+                if (isMenuOpen && !isScrolling) {
+                    isScrolling = true;
+                    hideMenu();
+                    setTimeout(() => { isScrolling = false; }, 80);
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('touchmove', handleScroll, { passive: true });
         });
 
         document.addEventListener('DOMContentLoaded', () => {

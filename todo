@@ -1,0 +1,23 @@
+If I add a Custom Domain later (e.g. monarchihq.com):
+I must update the Fly secret:
+
+bash
+fly secrets set APP_URL="https://monarchihq.com"
+IMPORTANT
+
+One quick reminder for OAuth logins: In your Google Cloud Console and Azure Portal (Microsoft Entra): Make sure to add https://monarchihq.fly.dev/auth/google/callback and https://monarchihq.fly.dev/auth/microsoft/callback to your Authorized redirect URIs list so Google and Microsoft logins work in production.
+
+<!-- 
+Node - Latest LTS
+PHP
+LARAVEL
+COMPOSER
+ARTISAN
+FLY
+DOCKER
+GIT
+PYTHON
+VSCODE
+FIGMA
+VISUAL STUDIO
+ -->

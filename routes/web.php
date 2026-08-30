@@ -48,6 +48,16 @@ Route::get('/careers', [CareersController::class, 'index'])->name('careers.index
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+// Legal & Info pages
+Route::get('/privacy', fn () => view('pages.privacy'))->name('privacy');
+Route::get('/terms', fn () => view('pages.terms'))->name('terms');
+Route::get('/cookies', fn () => view('pages.cookies'))->name('cookies');
+Route::get('/licenses', fn () => view('pages.licenses'))->name('licenses');
+Route::get('/security', fn () => view('pages.security'))->name('security');
+Route::get('/partners', fn () => view('pages.partners'))->name('partners');
+Route::get('/community', fn () => view('pages.community'))->name('community');
+Route::get('/divisions', fn () => view('pages.divisions'))->name('divisions');
+
 // ────────────────────────────────────────────────────────────────────────────
 //  STORE
 // ────────────────────────────────────────────────────────────────────────────
@@ -108,7 +118,7 @@ Route::get('/dashboard', function () {
     $totalSpent = $orders->where('payment_status', 'paid')->sum('total');
 
     return view('dashboard', compact('orders', 'totalOrders', 'completedOrders', 'pendingOrders', 'totalSpent'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
