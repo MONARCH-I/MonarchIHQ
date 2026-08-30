@@ -101,6 +101,31 @@ Route::get('/monarch/backups/download/{filename}', [BackupController::class, 'do
     ->middleware(['auth', 'role:super_admin'])
     ->name('admin.backups.download');
 
+// Fallback POST handler for Filament login to prevent 405 Method Not Allowed if submitted natively
+Route::post('/monarch/login', function (\Illuminate\Http\Request $request) {
+    $email = $request->input('data.email') ?? $request->input('email');
+    $password = $request->input('data.password') ?? $request->input('password');
+    $remember = (bool) ($request->input('data.remember') ?? $request->input('remember', false));
+
+    if (! $email || ! $password) {
+        return redirect('/monarch/login')->withErrors(['email' => 'Email and password are required.']);
+    }
+
+    if (\Illuminate\Support\Facades\Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+        $request->session()->regenerate();
+        $user = \Illuminate\Support\Facades\Auth::user();
+
+        if (! $user->canAccessPanel(\Filament\Facades\Filament::getPanel('monarch'))) {
+            \Illuminate\Support\Facades\Auth::logout();
+            return redirect('/monarch/login')->withErrors(['email' => 'Unauthorized access to admin panel.']);
+        }
+
+        return redirect()->intended('/monarch');
+    }
+
+    return redirect('/monarch/login')->withErrors(['email' => 'Invalid credentials provided.']);
+})->middleware(['web']);
+
 Route::get('/dashboard', function () {
     $user = auth()->user();
 

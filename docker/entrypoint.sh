@@ -6,6 +6,7 @@ php artisan storage:link --force || true
 
 # Cache Laravel configuration, routes, and views for production speed
 echo "Optimizing Laravel configuration & routes..."
+php artisan filament:assets || true
 php artisan config:cache || true
 php artisan route:cache || true
 php artisan view:cache || true

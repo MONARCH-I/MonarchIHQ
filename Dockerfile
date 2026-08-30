@@ -66,7 +66,8 @@ COPY . .
 COPY --from=frontend /app/public/build ./public/build
 
 # Install production PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
+    && php artisan filament:assets || true
 
 # Configure Nginx
 RUN mkdir -p /run/nginx
