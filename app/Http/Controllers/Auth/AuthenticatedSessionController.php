@@ -28,6 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Clear any stale intended URL pointing back to auth pages
+        $intended = session()->get('url.intended');
+        if ($intended && (str_contains($intended, '/login') || str_contains($intended, '/register') || str_contains($intended, '/verify-email'))) {
+            session()->forget('url.intended');
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

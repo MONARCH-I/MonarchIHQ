@@ -139,7 +139,7 @@ Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'
 
 // ── Content Manager (content_manager + super_admin) ──────────────────────────
 Route::prefix('manager/content')
-    ->middleware(['auth', 'verified', 'role:content_manager'])
+    ->middleware(['auth', 'role:content_manager'])
     ->name('manager.content.')
     ->group(function () {
         Route::get('/', [ContentManagerController::class, 'index'])->name('index');
@@ -162,7 +162,7 @@ Route::prefix('manager/content')
 
 // ── Store Manager (store_manager + super_admin) ───────────────────────────────
 Route::prefix('manager/store')
-    ->middleware(['auth', 'verified', 'role:store_manager'])
+    ->middleware(['auth', 'role:store_manager'])
     ->name('manager.store.')
     ->group(function () {
         Route::get('/', [StoreManagerController::class, 'index'])->name('index');
@@ -185,7 +185,7 @@ Route::prefix('manager/store')
 
 // ── HR Manager (hr_manager + super_admin) ─────────────────────────────────────
 Route::prefix('manager/hr')
-    ->middleware(['auth', 'verified', 'role:hr_manager'])
+    ->middleware(['auth', 'role:hr_manager'])
     ->name('manager.hr.')
     ->group(function () {
         Route::get('/', [HrManagerController::class, 'index'])->name('index');
@@ -207,7 +207,7 @@ Route::prefix('manager/hr')
 
 // ── Employee Management (super_admin + hr_manager) ────────────────────────────
 Route::prefix('manager/employees')
-    ->middleware(['auth', 'verified', 'role:hr_manager'])
+    ->middleware(['auth', 'role:hr_manager'])
     ->name('manager.employees.')
     ->group(function () {
         Route::get('/', [EmployeeController::class, 'index'])->name('index');
@@ -242,6 +242,6 @@ Route::get('/manager', function () {
         return redirect()->route('manager.hr.index');
     }
     abort(403);
-})->middleware(['auth', 'verified'])->name('manager');
+})->middleware(['auth'])->name('manager');
 
 require __DIR__.'/auth.php';
