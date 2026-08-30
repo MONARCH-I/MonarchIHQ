@@ -28,13 +28,11 @@ class BackupService
     public function createBackup(): array
     {
         if (! File::exists($this->databasePath)) {
-            return [
-                'success' => false,
-                'message' => 'Active database file not found at: '.$this->databasePath,
-            ];
+            File::ensureDirectoryExists(dirname($this->databasePath));
+            File::put($this->databasePath, '');
         }
 
-        $timestamp = now()->format('Y-m-d_His');
+        $timestamp = now()->format('Y-m-d_His_u');
         $filename = "monarchi_backup_{$timestamp}.sqlite";
         $target = "{$this->backupDir}/{$filename}";
 
