@@ -57,8 +57,14 @@ jobs:
         run: vendor/bin/pint --test
 
       # Run Tests (Pest / PHPUnit)
+      - name: Prepare Laravel Environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
       - name: Run Test Suite
         env:
+          APP_ENV: testing
           DB_CONNECTION: sqlite
           DB_DATABASE: ':memory:'
           SESSION_DRIVER: array
