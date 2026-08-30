@@ -18,6 +18,9 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserSettingsController;
 use App\Models\Order;
+use Filament\Facades\Filament;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -102,7 +105,7 @@ Route::get('/monarch/backups/download/{filename}', [BackupController::class, 'do
     ->name('admin.backups.download');
 
 // Fallback POST handler for Filament login to prevent 405 Method Not Allowed if submitted natively
-Route::post('/monarch/login', function (\Illuminate\Http\Request $request) {
+Route::post('/monarch/login', function (Request $request) {
     $email = $request->input('data.email') ?? $request->input('email');
     $password = $request->input('data.password') ?? $request->input('password');
     $remember = (bool) ($request->input('data.remember') ?? $request->input('remember', false));
@@ -111,12 +114,13 @@ Route::post('/monarch/login', function (\Illuminate\Http\Request $request) {
         return redirect('/monarch/login')->withErrors(['email' => 'Email and password are required.']);
     }
 
-    if (\Illuminate\Support\Facades\Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+    if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
         $request->session()->regenerate();
-        $user = \Illuminate\Support\Facades\Auth::user();
+        $user = Auth::user();
 
-        if (! $user->canAccessPanel(\Filament\Facades\Filament::getPanel('monarch'))) {
-            \Illuminate\Support\Facades\Auth::logout();
+        if (! $user->canAccessPanel(Filament::getPanel('monarch'))) {
+            Auth::logout();
+
             return redirect('/monarch/login')->withErrors(['email' => 'Unauthorized access to admin panel.']);
         }
 
