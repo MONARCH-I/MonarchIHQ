@@ -9,6 +9,7 @@ use App\Http\Controllers\Manager\ContentManagerController;
 use App\Http\Controllers\Manager\EmployeeController;
 use App\Http\Controllers\Manager\HrManagerController;
 use App\Http\Controllers\Manager\ManagerAuthController;
+use App\Http\Controllers\Manager\MaiController;
 use App\Http\Controllers\Manager\StoreManagerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Payment\PaystackController;
@@ -246,6 +247,18 @@ Route::prefix('manager/employees')
         Route::put('/{user}', [EmployeeController::class, 'update'])->name('update');
         Route::delete('/{user}', [EmployeeController::class, 'destroy'])->name('destroy');
     });
+
+// ── MAI — Monarch AI internal assistant (super_admin only) ────────────────────
+Route::post('/manager/mai/chat', [MaiController::class, 'chat'])
+    ->middleware(['auth', 'role:super_admin'])
+    ->name('manager.mai.chat');
+
+// History routes (super_admin only)
+Route::prefix('/manager/mai')->middleware(['auth', 'role:super_admin'])->name('manager.mai.')->group(function () {
+    Route::get('/conversations', [MaiController::class, 'conversations'])->name('conversations');
+    Route::get('/conversations/{conversation}', [MaiController::class, 'conversationMessages'])->name('conversation.messages');
+    Route::delete('/conversations/{conversation}', [MaiController::class, 'deleteConversation'])->name('conversation.delete');
+});
 
 // ────────────────────────────────────────────────────────────────────────────
 //  DEDICATED MANAGER & STAFF AUTHENTICATION

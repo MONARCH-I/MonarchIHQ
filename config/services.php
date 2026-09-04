@@ -62,4 +62,9 @@ return [
         'merchant_email' => env('PAYSTACK_MERCHANT_EMAIL', 'enquiry@monarchi.com.gh'),
     ],
 
+    'gemini' => [
+        'key'   => env('GEMINI_API_KEY'),
+        'model' => env('GEMINI_MODEL', 'gemini-2.5-flash'),
+    ],
+
 ];
