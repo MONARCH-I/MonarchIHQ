@@ -23,6 +23,8 @@ class MaiMessage extends Model
         'results_preview' => 'array',
     ];
 
+    protected $touches = ['conversation'];
+
     public function conversation(): BelongsTo
     {
         return $this->belongsTo(MaiConversation::class, 'conversation_id');

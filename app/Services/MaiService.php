@@ -2,15 +2,17 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use App\Models\User;
 
 class MaiService
 {
-    private string $endpoint;
-    private string $apiKey;
+    private ?string $apiKey;
+
     private string $model;
+
+    private string $endpoint;
 
     private string $schemaContext = <<<'SCHEMA'
 You have access to a PostgreSQL database for MonarchI HQ — a technology company in Ghana.
@@ -27,10 +29,10 @@ TABLE: news_articles — id, title, slug, is_published, published_at, created_at
 TABLE: portfolio_projects — id, title, slug, is_published, created_at
 SCHEMA;
 
-    public function __construct()
+    public function __construct(?string $apiKey = null, ?string $model = null)
     {
-        $this->apiKey   = config('services.gemini.key');
-        $this->model    = config('services.gemini.model', 'gemini-2.5-flash');
+        $this->apiKey = $apiKey ?? config('services.gemini.key') ?? '';
+        $this->model = $model ?? config('services.gemini.model', 'gemini-2.5-flash');
         $this->endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$this->model}:generateContent?key={$this->apiKey}";
     }
 
@@ -41,31 +43,42 @@ SCHEMA;
      */
     public function handle(string $question, User $user, array $history = []): array
     {
+        if (empty($this->apiKey)) {
+            return [
+                'reasoning' => 'Gemini API key is not configured.',
+                'sql' => null,
+                'results_count' => null,
+                'results_preview' => null,
+                'answer' => 'MAI is not fully configured yet. Please ensure the GEMINI_API_KEY is set in your environment.',
+                'error' => 'Missing GEMINI_API_KEY',
+            ];
+        }
+
         // ── Step 1: Generate intent + SQL ───────────────────────────────────
         $queryResponse = $this->generateQuery($question, $user, $history);
 
         if (! $queryResponse['success']) {
             return [
-                'reasoning'       => $queryResponse['reasoning'] ?? 'Failed to analyse the question.',
-                'sql'             => null,
-                'results_count'   => null,
+                'reasoning' => $queryResponse['reasoning'] ?? 'Failed to analyse the question.',
+                'sql' => null,
+                'results_count' => null,
                 'results_preview' => null,
-                'answer'          => 'I had trouble understanding your question. Could you try rephrasing it?',
-                'error'           => $queryResponse['error'] ?? null,
+                'answer' => 'I had trouble understanding your question. Could you try rephrasing it?',
+                'error' => $queryResponse['error'] ?? null,
             ];
         }
 
         $reasoning = $queryResponse['reasoning'];
-        $sql       = $queryResponse['sql'] ?? null;
-        $results   = null;
-        $count     = null;
+        $sql = $queryResponse['sql'] ?? null;
+        $results = null;
+        $count = null;
 
         // ── Step 2: Execute the SQL safely ──────────────────────────────────
         if ($sql) {
             $execResult = $this->executeQuery($sql);
             if ($execResult['success']) {
                 $results = $execResult['rows'];
-                $count   = count($results);
+                $count = count($results);
             } else {
                 $reasoning .= "\n\n[SQL execution error: {$execResult['error']}]";
             }
@@ -75,12 +88,12 @@ SCHEMA;
         $answerResponse = $this->generateAnswer($question, $reasoning, $sql, $results, $user, $history);
 
         return [
-            'reasoning'       => $reasoning,
-            'sql'             => $sql,
-            'results_count'   => $count,
+            'reasoning' => $reasoning,
+            'sql' => $sql,
+            'results_count' => $count,
             'results_preview' => $results ? array_slice($results, 0, 20) : null,
-            'answer'          => $answerResponse['answer'] ?? 'Unable to generate an answer. Please try again.',
-            'error'           => null,
+            'answer' => $answerResponse['answer'] ?? 'Unable to generate an answer. Please try again.',
+            'error' => null,
         ];
     }
 
@@ -124,17 +137,17 @@ PROMPT;
         }
 
         return [
-            'success'   => true,
+            'success' => true,
             'reasoning' => $parsed['reasoning'] ?? '',
-            'sql'       => $sql,
+            'sql' => $sql,
         ];
     }
 
     private function generateAnswer(string $question, string $reasoning, ?string $sql, ?array $results, User $user, array $history): array
     {
         if ($sql && $results !== null) {
-            $rowCount       = count($results);
-            $preview        = json_encode(array_slice($results, 0, 10), JSON_PRETTY_PRINT);
+            $rowCount = count($results);
+            $preview = json_encode(array_slice($results, 0, 10), JSON_PRETTY_PRINT);
             $resultsContext = "Query returned {$rowCount} rows. First 10:\n{$preview}";
         } elseif ($sql) {
             $resultsContext = 'SQL query failed to execute.';
@@ -171,6 +184,7 @@ PROMPT;
         }
 
         $parsed = $this->parseJsonResponse($response['text']);
+
         return ['answer' => $parsed['answer'] ?? $response['text']];
     }
 
@@ -184,7 +198,7 @@ PROMPT;
         $forbidden = ['INSERT', 'UPDATE', 'DELETE', 'DROP', 'TRUNCATE', 'ALTER', 'GRANT', 'REVOKE', 'EXEC', 'CREATE'];
         foreach ($forbidden as $kw) {
             // Check for keyword as a whole word
-            if (preg_match('/\b' . $kw . '\b/', $normalised)) {
+            if (preg_match('/\b'.$kw.'\b/', $normalised)) {
                 return ['success' => false, 'rows' => null, 'error' => "Blocked: contains '{$kw}'. Only SELECT is allowed."];
             }
         }
@@ -195,6 +209,7 @@ PROMPT;
 
         try {
             $rows = DB::select($sql);
+
             return ['success' => true, 'rows' => array_map(fn ($r) => (array) $r, $rows), 'error' => null];
         } catch (\Throwable $e) {
             return ['success' => false, 'rows' => null, 'error' => $e->getMessage()];
@@ -206,17 +221,18 @@ PROMPT;
         try {
             $payload = [
                 'system_instruction' => ['parts' => [['text' => $systemPrompt]]],
-                'contents'           => $contents,
-                'generationConfig'   => ['temperature' => 0.2, 'maxOutputTokens' => 8192],
+                'contents' => $contents,
+                'generationConfig' => ['temperature' => 0.2, 'maxOutputTokens' => 8192],
             ];
 
             $response = Http::timeout(30)->post($this->endpoint, $payload);
 
             if ($response->failed()) {
-                return ['success' => false, 'error' => 'Gemini API error ' . $response->status(), 'text' => ''];
+                return ['success' => false, 'error' => 'Gemini API error '.$response->status(), 'text' => ''];
             }
 
             $text = $response->json('candidates.0.content.parts.0.text', '');
+
             return ['success' => true, 'text' => $text];
         } catch (\Throwable $e) {
             return ['success' => false, 'error' => $e->getMessage(), 'text' => ''];
@@ -228,11 +244,12 @@ PROMPT;
         $contents = [];
         foreach (array_slice($history, -10) as $msg) {
             $contents[] = [
-                'role'  => $msg['role'] === 'user' ? 'user' : 'model',
+                'role' => $msg['role'] === 'user' ? 'user' : 'model',
                 'parts' => [['text' => $msg['content']]],
             ];
         }
         $contents[] = ['role' => 'user', 'parts' => [['text' => $currentQuestion]]];
+
         return $contents;
     }
 
@@ -244,7 +261,7 @@ PROMPT;
         $text = trim($text);
 
         $start = strpos($text, '{');
-        $end   = strrpos($text, '}');
+        $end = strrpos($text, '}');
         if ($start === false || $end === false) {
             return null;
         }
