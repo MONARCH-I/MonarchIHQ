@@ -711,6 +711,191 @@
             font-size: 12.5px;
         }
 
+        /* Header actions */
+        .mai-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .mai-hdr-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 8px;
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .mai-hdr-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .mai-hdr-btn.active {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: rgba(41,151,255,0.35);
+        }
+        .mai-history-count {
+            padding: 1px 6px;
+            border-radius: 99px;
+            background: rgba(255,255,255,0.08);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .mai-hdr-btn.active .mai-history-count {
+            background: rgba(41,151,255,0.2);
+            color: var(--accent);
+        }
+
+        /* Views */
+        .mai-view {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+        }
+
+        /* History view */
+        .mai-history-view {
+            padding: 20px 24px;
+            overflow-y: auto;
+            background: #0f0f11;
+            scrollbar-width: thin;
+        }
+        .mai-history-view::-webkit-scrollbar { width: 4px; }
+        .mai-history-view::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .mai-history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .mai-history-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .mai-history-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .mai-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2997ff, #0071e3);
+            color: #fff;
+            font-size: 11.5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .mai-btn-primary:hover { opacity: 0.9; }
+
+        .mai-history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mai-history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+        }
+        .mai-history-item:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(41,151,255,0.25);
+            transform: translateX(2px);
+        }
+        .mai-history-item.active {
+            background: var(--accent-dim);
+            border-color: rgba(41,151,255,0.35);
+        }
+        .mai-history-item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex: 1;
+        }
+        .mai-history-item-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: rgba(41,151,255,0.1);
+            border: 1px solid rgba(41,151,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .mai-history-item-title {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .mai-history-item-meta {
+            font-size: 10.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .mai-history-delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            transition: all 0.15s;
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mai-history-item:hover .mai-history-delete-btn { opacity: 1; }
+        .mai-history-delete-btn:hover {
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
+        }
+        .mai-history-empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .mai-msg-time {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
         @media (max-width: 768px) {
             .mai-drawer { max-width: 100%; border-left: none; }
             .mai-messages { padding: 16px; }
@@ -919,8 +1104,9 @@
 })();
 </script>
 
+@if(auth()->user()->isSuperAdmin())
 {{-- ════════════════════════════════════════════════════════════════
-     MAI — Monarch AI Chat Panel
+     MAI — Monarch AI Chat Panel (Super Admin Only)
 ═════════════════════════════════════════════════════════════════ --}}
 <div class="mai-panel" id="maiPanel" role="dialog" aria-modal="true" aria-label="MAI — Monarch AI">
     <div class="mai-backdrop" id="maiBackdrop"></div>
@@ -929,65 +1115,86 @@
         {{-- Header --}}
         <div class="mai-header">
             <div class="mai-logo">✦</div>
-            <div>
+            <div style="min-width:0;">
                 <div class="mai-title">MAI &mdash; Monarch AI</div>
-                <div class="mai-subtitle">INTERNAL STAFF ASSISTANT &bull; CONTEXT-AWARE</div>
+                <div class="mai-subtitle">SUPER ADMIN &bull; CONTEXT-AWARE</div>
             </div>
-            <div class="mai-status">
-                <div class="mai-status-dot"></div>
-                <span>Online</span>
+
+            <div class="mai-header-actions">
+                <button type="button" class="mai-hdr-btn" onclick="maiNewChat()" id="maiNewChatBtn" title="Start a fresh conversation">
+                    <span style="font-size:13px;font-weight:700;">+</span>
+                    <span>New Chat</span>
+                </button>
+                <button type="button" class="mai-hdr-btn" onclick="maiToggleHistory()" id="maiHistoryBtn" title="View past chat history">
+                    <svg style="width:12px;height:12px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span id="maiHistoryBtnLabel">History</span>
+                    <span class="mai-history-count" id="maiConvCount">0</span>
+                </button>
             </div>
-            <button class="mai-close-btn" onclick="maiClose()" aria-label="Close MAI">✕</button>
+
+            <button type="button" class="mai-close-btn" onclick="maiClose()" aria-label="Close MAI">✕</button>
         </div>
 
-        {{-- Messages feed --}}
-        <div class="mai-messages" id="maiMessages">
+        {{-- ── Chat View ── --}}
+        <div class="mai-view mai-chat-view" id="maiChatView">
+            {{-- Messages feed --}}
+            <div class="mai-messages" id="maiMessages">
 
-            {{-- Welcome state (hidden once chat begins) --}}
-            <div class="mai-welcome" id="maiWelcome">
-                <div class="mai-welcome-icon">✦</div>
-                <h3>Hi, {{ explode(' ', auth()->user()->name)[0] }}. I'm MAI.</h3>
-                <p>I can query the MonarchI database in real-time to answer your questions. Ask me anything about orders, products, staff, messages, or analytics.</p>
-                <div class="mai-prompts" id="maiPrompts">
-                    @if(auth()->user()->isStoreManager() || auth()->user()->isSuperAdmin())
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many pending orders do we have?</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Which products are low on stock?</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">What's our total revenue this month?</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Show me the top 5 best-selling products</button>
-                    @endif
-                    @if(auth()->user()->isHrManager() || auth()->user()->isSuperAdmin())
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many new contact messages are unread?</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all active job listings</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many employees do we have?</button>
-                    @endif
-                    @if(auth()->user()->isContentManager() || auth()->user()->isSuperAdmin())
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many published articles do we have?</button>
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all live portfolio projects</button>
-                    @endif
-                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Give me a full business overview</button>
+                {{-- Welcome state (hidden once chat begins) --}}
+                <div class="mai-welcome" id="maiWelcome">
+                    <div class="mai-welcome-icon">✦</div>
+                    <h3>Hi, {{ explode(' ', auth()->user()->name)[0] }}. I'm MAI.</h3>
+                    <p>I can query the MonarchI database in real-time to answer your questions. Ask me anything about orders, products, staff, messages, or analytics.</p>
+                    <div class="mai-prompts" id="maiPrompts">
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many pending orders do we have?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Which products are low on stock?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">What's our total revenue this month?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Show me the top 5 best-selling products</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many new contact messages are unread?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all active job listings</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many employees do we have?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many published articles do we have?</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all live portfolio projects</button>
+                        <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Give me a full business overview</button>
+                    </div>
                 </div>
             </div>
 
+            {{-- Input area --}}
+            <div class="mai-input-area">
+                <div class="mai-input-row">
+                    <textarea
+                        id="maiInput"
+                        class="mai-input"
+                        placeholder="Ask MAI anything about the business…"
+                        rows="1"
+                        aria-label="Message MAI"
+                    ></textarea>
+                    <button class="mai-send-btn" id="maiSendBtn" onclick="maiSend()" aria-label="Send message">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mai-input-hint">Enter to send &bull; Shift+Enter for new line &bull; MAI only runs read-only queries</div>
+            </div>
         </div>
 
-        {{-- Input area --}}
-        <div class="mai-input-area">
-            <div class="mai-input-row">
-                <textarea
-                    id="maiInput"
-                    class="mai-input"
-                    placeholder="Ask MAI anything about the business…"
-                    rows="1"
-                    aria-label="Message MAI"
-                ></textarea>
-                <button class="mai-send-btn" id="maiSendBtn" onclick="maiSend()" aria-label="Send message">
-                    <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                    </svg>
+        {{-- ── History View ── --}}
+        <div class="mai-view mai-history-view" id="maiHistoryView" style="display:none;">
+            <div class="mai-history-header">
+                <div>
+                    <div class="mai-history-title">Conversation History</div>
+                    <div class="mai-history-subtitle">Review past queries, reasoning &amp; AI answers</div>
+                </div>
+                <button type="button" class="mai-btn-primary" onclick="maiNewChat()">
+                    <span>+ New Chat</span>
                 </button>
             </div>
-            <div class="mai-input-hint">Enter to send &bull; Shift+Enter for new line &bull; MAI only runs read-only queries</div>
+            <div class="mai-history-list" id="maiHistoryList">
+                {{-- Injected dynamically --}}
+            </div>
         </div>
 
     </div>
@@ -995,30 +1202,45 @@
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-//  MAI — Monarch AI Chat Engine
+//  MAI — Monarch AI Chat Engine (Super Admin Only)
 // ══════════════════════════════════════════════════════════════════
 (function () {
     'use strict';
 
-    var MAI_URL    = '{{ route("manager.mai.chat") }}';
-    var MAI_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var USER_INIT  = '{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}';
+    var MAI_CHAT_URL     = '{{ route("manager.mai.chat") }}';
+    var MAI_CONVS_URL    = '{{ route("manager.mai.conversations") }}';
+    var MAI_CONV_BASE    = '{{ url("/manager/mai/conversations") }}';
+    var MAI_TOKEN        = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var USER_INIT        = '{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}';
 
-    var history    = [];
-    var isLoading  = false;
+    var currentConvId    = null;
+    var history          = [];
+    var conversations    = [];
+    var isLoading        = false;
+    var activeView       = 'chat'; // 'chat' | 'history'
 
     // ── DOM refs ───────────────────────────────────────────────────
-    var panel      = document.getElementById('maiPanel');
-    var backdrop   = document.getElementById('maiBackdrop');
-    var messages   = document.getElementById('maiMessages');
-    var welcome    = document.getElementById('maiWelcome');
-    var input      = document.getElementById('maiInput');
-    var sendBtn    = document.getElementById('maiSendBtn');
+    var panel            = document.getElementById('maiPanel');
+    var backdrop         = document.getElementById('maiBackdrop');
+    var chatView         = document.getElementById('maiChatView');
+    var historyView      = document.getElementById('maiHistoryView');
+    var historyList      = document.getElementById('maiHistoryList');
+    var messages         = document.getElementById('maiMessages');
+    var welcome          = document.getElementById('maiWelcome');
+    var input            = document.getElementById('maiInput');
+    var sendBtn          = document.getElementById('maiSendBtn');
+    var historyBtn       = document.getElementById('maiHistoryBtn');
+    var historyCountEl   = document.getElementById('maiConvCount');
+
+    // Store welcome HTML for resetting chat
+    var welcomeHtml      = welcome ? welcome.outerHTML : '';
 
     // ── Open / Close ──────────────────────────────────────────────
     window.maiOpen = function () {
         panel.classList.add('open');
         document.body.style.overflow = 'hidden';
+        maiShowView('chat');
+        maiFetchConversations();
         input.focus();
     };
 
@@ -1037,6 +1259,188 @@
         }
     });
 
+    // ── View Switching ─────────────────────────────────────────────
+    function maiShowView(view) {
+        activeView = view;
+        if (view === 'history') {
+            chatView.style.display = 'none';
+            historyView.style.display = 'block';
+            historyBtn.classList.add('active');
+        } else {
+            historyView.style.display = 'none';
+            chatView.style.display = 'flex';
+            historyBtn.classList.remove('active');
+            input.focus();
+        }
+    }
+
+    window.maiToggleHistory = function () {
+        if (activeView === 'history') {
+            maiShowView('chat');
+        } else {
+            maiShowView('history');
+            maiFetchConversations();
+        }
+    };
+
+    // ── New Chat ──────────────────────────────────────────────────
+    window.maiNewChat = function () {
+        currentConvId = null;
+        history       = [];
+        messages.innerHTML = welcomeHtml;
+        maiShowView('chat');
+        input.value   = '';
+        maiAutoResize();
+        input.focus();
+        maiHighlightActiveConv();
+    };
+
+    // ── Fetch Conversations List ──────────────────────────────────
+    function maiFetchConversations() {
+        fetch(MAI_CONVS_URL, {
+            headers: {
+                'X-CSRF-TOKEN': MAI_TOKEN,
+                'Accept': 'application/json',
+            }
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+            if (res.ok && res.conversations) {
+                conversations = res.conversations;
+                if (historyCountEl) historyCountEl.textContent = conversations.length;
+                maiRenderHistoryList();
+            }
+        })
+        .catch(function (err) {
+            console.error('Failed to fetch MAI conversations:', err);
+        });
+    }
+
+    function maiRenderHistoryList() {
+        if (! historyList) return;
+
+        if (conversations.length === 0) {
+            historyList.innerHTML =
+                '<div class="mai-history-empty">' +
+                    '<div style="font-size:24px;margin-bottom:8px;">💬</div>' +
+                    '<div style="font-weight:600;color:var(--text-secondary);margin-bottom:4px;">No Chat History Yet</div>' +
+                    '<div>Start asking questions to build your AI history.</div>' +
+                '</div>';
+            return;
+        }
+
+        var html = '';
+        conversations.forEach(function (c) {
+            var isActive = (currentConvId === c.id);
+            html +=
+                '<div class="mai-history-item' + (isActive ? ' active' : '') + '" data-id="' + c.id + '" onclick="maiLoadConversation(' + c.id + ')">' +
+                    '<div class="mai-history-item-left">' +
+                        '<div class="mai-history-item-icon">✦</div>' +
+                        '<div style="min-width:0;flex:1;">' +
+                            '<div class="mai-history-item-title">' + escHtml(c.title || 'Untitled Chat') + '</div>' +
+                            '<div class="mai-history-item-meta">' + escHtml(c.updated_at || c.created_at) + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<button type="button" class="mai-history-delete-btn" onclick="maiDeleteConversation(event, ' + c.id + ')" title="Delete conversation" aria-label="Delete">' +
+                        '<svg style="width:14px;height:14px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>' +
+                    '</button>' +
+                '</div>';
+        });
+
+        historyList.innerHTML = html;
+    }
+
+    function maiHighlightActiveConv() {
+        if (! historyList) return;
+        historyList.querySelectorAll('.mai-history-item').forEach(function (el) {
+            var id = parseInt(el.getAttribute('data-id'), 10);
+            el.classList.toggle('active', id === currentConvId);
+        });
+    }
+
+    // ── Load Past Conversation ─────────────────────────────────────
+    window.maiLoadConversation = function (id) {
+        currentConvId = id;
+        maiShowView('chat');
+        maiHighlightActiveConv();
+
+        // Show loading in messages
+        messages.innerHTML =
+            '<div style="text-align:center;padding:40px;color:var(--text-muted);font-size:13px;">' +
+                '<div class="mai-typing" style="margin:0 auto 12px;display:inline-flex;"><span></span><span></span><span></span></div>' +
+                '<div>Loading conversation...</div>' +
+            '</div>';
+
+        fetch(MAI_CONV_BASE + '/' + id, {
+            headers: {
+                'X-CSRF-TOKEN': MAI_TOKEN,
+                'Accept': 'application/json',
+            }
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+            if (! res.ok || ! res.messages) {
+                messages.innerHTML = '';
+                appendErrorMessage('Could not load conversation messages.');
+                return;
+            }
+
+            messages.innerHTML = '';
+            history = [];
+
+            res.messages.forEach(function (m) {
+                history.push({ role: m.role, content: m.content });
+                if (m.role === 'user') {
+                    appendUserMessage(m.content, m.created_at);
+                } else {
+                    appendAssistantMessage({
+                        answer: m.content,
+                        reasoning: m.reasoning,
+                        sql: m.sql,
+                        results_count: m.results_count,
+                        results_preview: m.results_preview,
+                    }, m.created_at);
+                }
+            });
+
+            scrollBottom();
+        })
+        .catch(function (err) {
+            console.error('Error loading conversation:', err);
+            messages.innerHTML = '';
+            appendErrorMessage('Failed to load conversation.');
+        });
+    };
+
+    // ── Delete Conversation ────────────────────────────────────────
+    window.maiDeleteConversation = function (e, id) {
+        e.stopPropagation();
+        if (! confirm('Delete this conversation from history?')) return;
+
+        fetch(MAI_CONV_BASE + '/' + id, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': MAI_TOKEN,
+                'Accept': 'application/json',
+            }
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+            if (res.ok) {
+                conversations = conversations.filter(function (c) { return c.id !== id; });
+                if (historyCountEl) historyCountEl.textContent = conversations.length;
+                maiRenderHistoryList();
+
+                if (currentConvId === id) {
+                    maiNewChat();
+                }
+            }
+        })
+        .catch(function (err) {
+            console.error('Error deleting conversation:', err);
+        });
+    };
+
     // ── Prompt chips ──────────────────────────────────────────────
     window.maiUsePrompt = function (btn) {
         input.value = btn.textContent.trim();
@@ -1050,10 +1454,11 @@
         var text = input.value.trim();
         if (! text || isLoading) return;
 
-        // Hide welcome state
-        if (welcome) welcome.style.display = 'none';
+        // Remove welcome screen if visible
+        var curWelcome = document.getElementById('maiWelcome');
+        if (curWelcome) curWelcome.remove();
 
-        // Add user message
+        // Append user bubble
         appendUserMessage(text);
         history.push({ role: 'user', content: text });
 
@@ -1062,46 +1467,59 @@
         maiAutoResize();
 
         // Show typing indicator
-        var typingEl = appendTyping();
+        appendTyping();
+        scrollBottom();
         setLoading(true);
 
-        // Call the backend
-        fetch(MAI_URL, {
+        // Call backend
+        fetch(MAI_CHAT_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': MAI_TOKEN,
                 'Accept': 'application/json',
             },
-            body: JSON.stringify({ message: text, history: history.slice(0, -1) }),
+            body: JSON.stringify({
+                message: text,
+                conversation_id: currentConvId,
+                history: history.slice(0, -1),
+            }),
         })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-            typingEl.remove();
+        .then(function (res) {
+            return res.json().then(function (data) {
+                return { status: res.status, data: data };
+            });
+        })
+        .then(function (result) {
+            removeTyping();
             setLoading(false);
 
-            if (! data.ok) {
-                appendErrorMessage(data.error || 'An unexpected error occurred.');
+            if (result.status !== 200 || ! result.data.ok) {
+                var err = (result.data && result.data.error)
+                    ? result.data.error
+                    : 'Server error (' + result.status + '). Please try again.';
+                appendErrorMessage(err);
                 return;
             }
 
-            // Build assistant reply
-            appendAssistantMessage(data);
+            var d = result.data;
+            if (d.conversation_id) {
+                currentConvId = d.conversation_id;
+                maiFetchConversations(); // refresh title & ordering in background
+            }
 
-            // Add to history
-            history.push({ role: 'assistant', content: data.answer });
-
-            // Trim history to last 20 entries
-            if (history.length > 20) history = history.slice(-20);
+            appendAssistantMessage(d);
+            history.push({ role: 'assistant', content: d.answer });
+            scrollBottom();
         })
         .catch(function (err) {
-            typingEl.remove();
+            removeTyping();
             setLoading(false);
             appendErrorMessage('Network error: ' + err.message);
         });
     };
 
-    // ── Keyboard: Enter = send, Shift+Enter = newline ─────────────
+    // ── Keyboard & Input ──────────────────────────────────────────
     input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && ! e.shiftKey) {
             e.preventDefault();
@@ -1116,15 +1534,15 @@
         input.style.height = Math.min(input.scrollHeight, 140) + 'px';
     }
 
-    // ── DOM builders ──────────────────────────────────────────────
-
-    function appendUserMessage(text) {
+    // ── Message Renderers ──────────────────────────────────────────
+    function appendUserMessage(text, time) {
         var msg = document.createElement('div');
         msg.className = 'mai-msg user';
         msg.innerHTML =
             '<div class="mai-msg-avatar">' + escHtml(USER_INIT) + '</div>' +
             '<div class="mai-msg-body">' +
                 '<div class="mai-bubble">' + escHtml(text) + '</div>' +
+                (time ? '<div class="mai-msg-time" style="text-align:right;">' + escHtml(time) + '</div>' : '') +
             '</div>';
         messages.appendChild(msg);
         scrollBottom();
@@ -1140,11 +1558,14 @@
                 '<div class="mai-bubble"><div class="mai-typing"><span></span><span></span><span></span></div></div>' +
             '</div>';
         messages.appendChild(el);
-        scrollBottom();
-        return el;
     }
 
-    function appendAssistantMessage(data) {
+    function removeTyping() {
+        var el = document.getElementById('maiTypingIndicator');
+        if (el) el.remove();
+    }
+
+    function appendAssistantMessage(data, time) {
         var msg = document.createElement('div');
         msg.className = 'mai-msg assistant';
 
@@ -1194,6 +1615,7 @@
                     '<div class="mai-answer">' + renderMarkdown(data.answer) + '</div>' +
                     (thinkingPanels ? '<div class="mai-thinking-panels">' + thinkingPanels + '</div>' : '') +
                 '</div>' +
+                (time ? '<div class="mai-msg-time">' + escHtml(time) + '</div>' : '') +
             '</div>';
 
         messages.appendChild(msg);
@@ -1229,7 +1651,6 @@
     };
 
     // ── Helpers ───────────────────────────────────────────────────
-
     function setLoading(loading) {
         isLoading = loading;
         sendBtn.disabled = loading;
@@ -1319,6 +1740,7 @@
 
 })();
 </script>
+@endif
 
 </body>
 </html>
