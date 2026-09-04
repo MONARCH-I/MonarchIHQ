@@ -33,6 +33,7 @@
             border-right: 1px solid var(--border);
             display: flex; flex-direction: column;
             z-index: 50; overflow-y: auto;
+            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
         }
         .sidebar-logo {
             height: var(--header-h);
@@ -178,6 +179,9 @@
         .data-table tr:last-child td { border-bottom: none; }
         .data-table tr:hover td { background: var(--bg-hover); }
 
+        /* ── Table scroll wrapper ── */
+        .data-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
         /* ── Badge ── */
         .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 99px; font-size: 10px; font-weight: 700; border: 1px solid; }
 
@@ -246,14 +250,485 @@
         nav[role="navigation"] a, nav[role="navigation"] span[aria-disabled], nav[role="navigation"] span[aria-current] {
             border-radius: 8px !important;
         }
+
+        /* ── Hamburger button (hidden on desktop) ── */
+        .sidebar-toggle-btn {
+            display: none;
+            align-items: center; justify-content: center;
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .sidebar-toggle-btn:hover { background: rgba(255,255,255,0.1); }
+        .sidebar-toggle-btn svg { width: 18px; height: 18px; color: var(--text-primary); }
+
+        /* ── Overlay backdrop ── */
+        .sidebar-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
+            z-index: 45;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .sidebar-overlay.active { opacity: 1; }
+
+        /* ════════════════════════════════════════════════════════════
+           RESPONSIVE – MOBILE (≤768px)
+        ════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* Sidebar: hidden off-screen by default */
+            .sidebar {
+                transform: translateX(-100%);
+                width: min(var(--sidebar-w), 85vw);
+                box-shadow: none;
+            }
+
+            /* Sidebar open state */
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+                box-shadow: 4px 0 32px rgba(0,0,0,0.5);
+            }
+
+            body.sidebar-open .sidebar-overlay {
+                display: block;
+                opacity: 1;
+            }
+
+            /* Main content takes full width */
+            .main-content { margin-left: 0; width: 100%; }
+
+            /* Topbar */
+            .topbar { padding: 0 16px; gap: 12px; }
+            .topbar-title { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .topbar-breadcrumb { display: none; }
+            .sidebar-toggle-btn { display: flex; }
+
+            /* Reduce page padding */
+            .page-body { padding: 16px; }
+
+            /* Tables: horizontal scroll */
+            .data-table-wrap {
+                margin: 0 -20px;
+                padding: 0 20px;
+            }
+
+            /* Two-column detail layouts → stack vertically */
+            [style*="grid-template-columns:1fr 340px"],
+            [style*="grid-template-columns: 1fr 340px"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+
+            /* Stat values */
+            .stat-value { font-size: 24px; }
+
+            /* Stat grid — 2 columns on mobile */
+            [style*="grid-template-columns:repeat(auto-fit"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Footer buttons */
+            .sidebar-footer [style*="display:flex;gap:8px"] {
+                flex-direction: column;
+            }
+        }
+
+        /* Extra-small phones */
+        @media (max-width: 480px) {
+            [style*="grid-template-columns:repeat(auto-fit"] {
+                grid-template-columns: 1fr !important;
+            }
+            .stat-value { font-size: 22px; }
+            .page-body { padding: 12px; }
+        }
+
+        /* ════════════════════════════════════════════════════════════
+           MAI — Monarch AI Chat Panel
+        ════════════════════════════════════════════════════════════ */
+        .mai-panel {
+            position: fixed; inset: 0;
+            z-index: 200;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .mai-panel.open { opacity: 1; pointer-events: all; }
+
+        .mai-backdrop {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(4px);
+        }
+
+        .mai-drawer {
+            position: relative;
+            margin-left: auto;
+            width: 100%;
+            max-width: 780px;
+            height: 100%;
+            background: #0d0d0d;
+            border-left: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(40px);
+            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+        }
+        .mai-panel.open .mai-drawer { transform: translateX(0); }
+
+        /* Header */
+        .mai-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.02);
+        }
+        .mai-logo {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(41,151,255,0.25), rgba(99,102,241,0.25));
+            border: 1px solid rgba(41,151,255,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; flex-shrink: 0;
+        }
+        .mai-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+        .mai-subtitle { font-size: 10px; color: var(--text-muted); margin-top: 1px; letter-spacing: 0.04em; }
+        .mai-status {
+            margin-left: auto;
+            display: flex; align-items: center; gap: 6px;
+            font-size: 11px; color: var(--text-muted);
+        }
+        .mai-status-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px rgba(74,222,128,0.6);
+        }
+        .mai-close-btn {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.15s;
+            font-size: 16px; flex-shrink: 0;
+        }
+        .mai-close-btn:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+
+        /* Messages */
+        .mai-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            scrollbar-width: thin;
+        }
+        .mai-messages::-webkit-scrollbar { width: 4px; }
+        .mai-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        /* Welcome / empty state */
+        .mai-welcome {
+            text-align: center;
+            padding: 40px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        .mai-welcome-icon {
+            width: 64px; height: 64px; border-radius: 20px;
+            background: linear-gradient(135deg, rgba(41,151,255,0.2), rgba(99,102,241,0.2));
+            border: 1px solid rgba(41,151,255,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+        }
+        .mai-welcome h3 {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary); margin: 0;
+        }
+        .mai-welcome p {
+            font-size: 13px; color: var(--text-muted);
+            max-width: 380px; line-height: 1.6; margin: 0;
+        }
+        .mai-prompts {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            justify-content: center; margin-top: 8px;
+        }
+        .mai-prompt-chip {
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px; font-weight: 500;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+        }
+        .mai-prompt-chip:hover {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: rgba(41,151,255,0.3);
+        }
+
+        /* Message bubbles */
+        .mai-msg { display: flex; gap: 10px; align-items: flex-start; }
+        .mai-msg.user { flex-direction: row-reverse; }
+
+        .mai-msg-avatar {
+            width: 30px; height: 30px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; flex-shrink: 0;
+        }
+        .mai-msg.user .mai-msg-avatar {
+            background: rgba(41,151,255,0.15);
+            color: var(--accent);
+            border: 1px solid rgba(41,151,255,0.25);
+        }
+        .mai-msg.assistant .mai-msg-avatar {
+            background: linear-gradient(135deg, rgba(41,151,255,0.2), rgba(99,102,241,0.2));
+            border: 1px solid rgba(41,151,255,0.3);
+            font-size: 14px;
+        }
+
+        .mai-msg-body { flex: 1; min-width: 0; max-width: 88%; }
+        .mai-msg.user .mai-msg-body { max-width: 75%; }
+
+        .mai-bubble {
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            line-height: 1.65;
+        }
+        .mai-msg.user .mai-bubble {
+            background: rgba(41,151,255,0.15);
+            border: 1px solid rgba(41,151,255,0.2);
+            color: var(--text-primary);
+            border-top-right-radius: 4px;
+        }
+        .mai-msg.assistant .mai-bubble {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-secondary);
+            border-top-left-radius: 4px;
+        }
+
+        /* Answer text markdown styles */
+        .mai-answer h1, .mai-answer h2, .mai-answer h3 {
+            color: var(--text-primary); margin: 12px 0 6px;
+        }
+        .mai-answer h1 { font-size: 16px; }
+        .mai-answer h2 { font-size: 14px; }
+        .mai-answer h3 { font-size: 13px; }
+        .mai-answer p { margin: 6px 0; }
+        .mai-answer ul, .mai-answer ol { padding-left: 20px; margin: 6px 0; }
+        .mai-answer li { margin: 3px 0; }
+        .mai-answer strong { color: var(--text-primary); }
+        .mai-answer code {
+            background: rgba(255,255,255,0.07);
+            padding: 1px 5px; border-radius: 4px;
+            font-family: monospace; font-size: 12px;
+        }
+        .mai-answer table {
+            width: 100%; border-collapse: collapse;
+            font-size: 12px; margin: 10px 0;
+        }
+        .mai-answer th {
+            background: rgba(255,255,255,0.07);
+            padding: 6px 10px; text-align: left;
+            color: var(--text-muted); font-size: 10px;
+            text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .mai-answer td {
+            padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-secondary);
+        }
+
+        /* Thinking panels (collapsible) */
+        .mai-thinking-panels { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+
+        .mai-panel-toggle {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 11px; color: var(--text-muted);
+            cursor: pointer; padding: 5px 8px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.15s;
+            user-select: none;
+            width: 100%;
+        }
+        .mai-panel-toggle:hover { background: rgba(255,255,255,0.07); color: var(--text-secondary); }
+        .mai-panel-toggle .arrow { transition: transform 0.2s; font-size: 9px; }
+        .mai-panel-toggle.open .arrow { transform: rotate(90deg); }
+
+        .mai-panel-body {
+            display: none;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 2px;
+            overflow-x: auto;
+        }
+        .mai-panel-body.open { display: block; }
+
+        .mai-sql-code {
+            font-family: 'Courier New', monospace;
+            font-size: 11.5px;
+            color: #7dd3fc;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .mai-results-count {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(74,222,128,0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74,222,128,0.2);
+            border-radius: 99px;
+            padding: 1px 8px;
+            font-size: 10px; font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .mai-results-table {
+            width: 100%; border-collapse: collapse;
+            font-size: 11px;
+        }
+        .mai-results-table th {
+            font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em;
+            color: var(--text-muted); padding: 5px 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            text-align: left;
+        }
+        .mai-results-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: rgba(245,245,247,0.5);
+            max-width: 160px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+
+        /* Typing indicator */
+        .mai-typing {
+            display: flex; gap: 4px; align-items: center;
+            padding: 12px 16px;
+        }
+        .mai-typing span {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(41,151,255,0.5);
+            animation: maiTyping 1.4s infinite;
+        }
+        .mai-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .mai-typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes maiTyping {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.85); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Input area */
+        .mai-input-area {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.01);
+        }
+        .mai-input-row {
+            display: flex; gap: 10px; align-items: flex-end;
+        }
+        .mai-input {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            color: var(--text-primary);
+            resize: none;
+            outline: none;
+            min-height: 44px;
+            max-height: 140px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+            line-height: 1.5;
+        }
+        .mai-input:focus { border-color: rgba(41,151,255,0.4); }
+        .mai-input::placeholder { color: var(--text-muted); }
+
+        .mai-send-btn {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: var(--accent);
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+        .mai-send-btn:hover { background: #1a7de3; transform: scale(1.04); }
+        .mai-send-btn:disabled { background: rgba(41,151,255,0.3); cursor: not-allowed; transform: none; }
+        .mai-send-btn svg { width: 18px; height: 18px; color: white; }
+
+        .mai-input-hint {
+            font-size: 10px; color: var(--text-muted);
+            margin-top: 6px; text-align: center;
+        }
+
+        /* Sidebar MAI tab glow */
+        .sidebar-tab.mai-tab {
+            background: linear-gradient(135deg, rgba(41,151,255,0.08), rgba(99,102,241,0.08));
+            border-color: rgba(41,151,255,0.2) !important;
+        }
+        .sidebar-tab.mai-tab:hover {
+            background: linear-gradient(135deg, rgba(41,151,255,0.15), rgba(99,102,241,0.15));
+            border-color: rgba(41,151,255,0.35) !important;
+        }
+
+        /* Error bubble */
+        .mai-error-bubble {
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+            color: #f87171;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 12.5px;
+        }
+
+        @media (max-width: 768px) {
+            .mai-drawer { max-width: 100%; border-left: none; }
+            .mai-messages { padding: 16px; }
+            .mai-input-area { padding: 12px 16px; }
+        }
     </style>
 </head>
 <body>
 
 {{-- ════════════════════════════════════════════════════════════════
+     OVERLAY BACKDROP (mobile only)
+═════════════════════════════════════════════════════════════════ --}}
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+{{-- ════════════════════════════════════════════════════════════════
      SIDEBAR
 ═════════════════════════════════════════════════════════════════ --}}
-<aside class="sidebar">
+<aside class="sidebar" id="managerSidebar">
 
     {{-- Logo --}}
     <div class="sidebar-logo">
@@ -304,6 +779,15 @@
             <span>Employees</span>
         </a>
         @endif
+
+        {{-- MAI — Monarch AI Assistant (super admin only) --}}
+        @if(auth()->user()->isSuperAdmin())
+        <button type="button" onclick="maiOpen()" class="sidebar-tab mai-tab" id="maiSidebarBtn" aria-label="Open MAI Chat">
+            <div class="tab-icon" style="font-size:17px;">✦</div>
+            <span style="background:linear-gradient(90deg,#2997ff,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">MAI</span>
+            <span style="margin-left:auto;font-size:9px;padding:1px 6px;border-radius:99px;background:linear-gradient(135deg,rgba(41,151,255,0.2),rgba(99,102,241,0.2));color:#818cf8;border:1px solid rgba(99,102,241,0.3);-webkit-text-fill-color:#818cf8;">AI</span>
+        </button>
+        @endif
     </div>
 
     {{-- ── Context Nav (changes by active portal) ── --}}
@@ -335,11 +819,20 @@
 ═════════════════════════════════════════════════════════════════ --}}
 <div class="main-content">
     <header class="topbar">
-        <div>
+        {{-- Hamburger (mobile only) --}}
+        <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="managerSidebar">
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+
+        <div style="min-width:0;flex:1">
             <div class="topbar-title">{{ $pageTitle ?? 'Manager Portal' }}</div>
             <div class="topbar-breadcrumb">{{ $breadcrumb ?? 'MonarchI HQ' }}</div>
         </div>
-        <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
             {{ $topbarActions ?? '' }}
             <a href="{{ url('/') }}" target="_blank"
                style="font-size:12px;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:4px">
@@ -368,6 +861,464 @@
         {{ $slot }}
     </main>
 </div>
+
+<script>
+(function () {
+    var toggle  = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('managerSidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    var body    = document.body;
+    var BP      = 768;
+
+    function openSidebar() {
+        body.classList.add('sidebar-open');
+        overlay.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        body.classList.remove('sidebar-open');
+        overlay.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    }
+
+    function isOpen() { return body.classList.contains('sidebar-open'); }
+
+    toggle.addEventListener('click', function () {
+        isOpen() ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    sidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.innerWidth <= BP) closeSidebar();
+        });
+    });
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > BP && isOpen()) closeSidebar();
+    });
+
+    /* Wrap all data-tables in a scroll container on mobile */
+    function wrapTables() {
+        if (window.innerWidth > BP) return;
+        document.querySelectorAll('.data-table').forEach(function (table) {
+            if (table.parentElement.classList.contains('data-table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'data-table-wrap';
+            table.parentNode.insertBefore(wrap, table);
+            wrap.appendChild(table);
+        });
+    }
+
+    wrapTables();
+    window.addEventListener('resize', wrapTables);
+})();
+</script>
+
+{{-- ════════════════════════════════════════════════════════════════
+     MAI — Monarch AI Chat Panel
+═════════════════════════════════════════════════════════════════ --}}
+<div class="mai-panel" id="maiPanel" role="dialog" aria-modal="true" aria-label="MAI — Monarch AI">
+    <div class="mai-backdrop" id="maiBackdrop"></div>
+    <div class="mai-drawer" id="maiDrawer">
+
+        {{-- Header --}}
+        <div class="mai-header">
+            <div class="mai-logo">✦</div>
+            <div>
+                <div class="mai-title">MAI &mdash; Monarch AI</div>
+                <div class="mai-subtitle">INTERNAL STAFF ASSISTANT &bull; CONTEXT-AWARE</div>
+            </div>
+            <div class="mai-status">
+                <div class="mai-status-dot"></div>
+                <span>Online</span>
+            </div>
+            <button class="mai-close-btn" onclick="maiClose()" aria-label="Close MAI">✕</button>
+        </div>
+
+        {{-- Messages feed --}}
+        <div class="mai-messages" id="maiMessages">
+
+            {{-- Welcome state (hidden once chat begins) --}}
+            <div class="mai-welcome" id="maiWelcome">
+                <div class="mai-welcome-icon">✦</div>
+                <h3>Hi, {{ explode(' ', auth()->user()->name)[0] }}. I'm MAI.</h3>
+                <p>I can query the MonarchI database in real-time to answer your questions. Ask me anything about orders, products, staff, messages, or analytics.</p>
+                <div class="mai-prompts" id="maiPrompts">
+                    @if(auth()->user()->isStoreManager() || auth()->user()->isSuperAdmin())
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many pending orders do we have?</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Which products are low on stock?</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">What's our total revenue this month?</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Show me the top 5 best-selling products</button>
+                    @endif
+                    @if(auth()->user()->isHrManager() || auth()->user()->isSuperAdmin())
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many new contact messages are unread?</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all active job listings</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many employees do we have?</button>
+                    @endif
+                    @if(auth()->user()->isContentManager() || auth()->user()->isSuperAdmin())
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">How many published articles do we have?</button>
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">List all live portfolio projects</button>
+                    @endif
+                    <button class="mai-prompt-chip" onclick="maiUsePrompt(this)">Give me a full business overview</button>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- Input area --}}
+        <div class="mai-input-area">
+            <div class="mai-input-row">
+                <textarea
+                    id="maiInput"
+                    class="mai-input"
+                    placeholder="Ask MAI anything about the business…"
+                    rows="1"
+                    aria-label="Message MAI"
+                ></textarea>
+                <button class="mai-send-btn" id="maiSendBtn" onclick="maiSend()" aria-label="Send message">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mai-input-hint">Enter to send &bull; Shift+Enter for new line &bull; MAI only runs read-only queries</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  MAI — Monarch AI Chat Engine
+// ══════════════════════════════════════════════════════════════════
+(function () {
+    'use strict';
+
+    var MAI_URL    = '{{ route("manager.mai.chat") }}';
+    var MAI_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var USER_INIT  = '{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}';
+
+    var history    = [];
+    var isLoading  = false;
+
+    // ── DOM refs ───────────────────────────────────────────────────
+    var panel      = document.getElementById('maiPanel');
+    var backdrop   = document.getElementById('maiBackdrop');
+    var messages   = document.getElementById('maiMessages');
+    var welcome    = document.getElementById('maiWelcome');
+    var input      = document.getElementById('maiInput');
+    var sendBtn    = document.getElementById('maiSendBtn');
+
+    // ── Open / Close ──────────────────────────────────────────────
+    window.maiOpen = function () {
+        panel.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        input.focus();
+    };
+
+    window.maiClose = function () {
+        panel.classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    // Close on backdrop click
+    backdrop.addEventListener('click', window.maiClose);
+
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && panel.classList.contains('open')) {
+            window.maiClose();
+        }
+    });
+
+    // ── Prompt chips ──────────────────────────────────────────────
+    window.maiUsePrompt = function (btn) {
+        input.value = btn.textContent.trim();
+        maiAutoResize();
+        input.focus();
+        maiSend();
+    };
+
+    // ── Send ──────────────────────────────────────────────────────
+    window.maiSend = function () {
+        var text = input.value.trim();
+        if (! text || isLoading) return;
+
+        // Hide welcome state
+        if (welcome) welcome.style.display = 'none';
+
+        // Add user message
+        appendUserMessage(text);
+        history.push({ role: 'user', content: text });
+
+        // Clear input
+        input.value = '';
+        maiAutoResize();
+
+        // Show typing indicator
+        var typingEl = appendTyping();
+        setLoading(true);
+
+        // Call the backend
+        fetch(MAI_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': MAI_TOKEN,
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({ message: text, history: history.slice(0, -1) }),
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            typingEl.remove();
+            setLoading(false);
+
+            if (! data.ok) {
+                appendErrorMessage(data.error || 'An unexpected error occurred.');
+                return;
+            }
+
+            // Build assistant reply
+            appendAssistantMessage(data);
+
+            // Add to history
+            history.push({ role: 'assistant', content: data.answer });
+
+            // Trim history to last 20 entries
+            if (history.length > 20) history = history.slice(-20);
+        })
+        .catch(function (err) {
+            typingEl.remove();
+            setLoading(false);
+            appendErrorMessage('Network error: ' + err.message);
+        });
+    };
+
+    // ── Keyboard: Enter = send, Shift+Enter = newline ─────────────
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && ! e.shiftKey) {
+            e.preventDefault();
+            maiSend();
+        }
+    });
+
+    input.addEventListener('input', maiAutoResize);
+
+    function maiAutoResize() {
+        input.style.height = 'auto';
+        input.style.height = Math.min(input.scrollHeight, 140) + 'px';
+    }
+
+    // ── DOM builders ──────────────────────────────────────────────
+
+    function appendUserMessage(text) {
+        var msg = document.createElement('div');
+        msg.className = 'mai-msg user';
+        msg.innerHTML =
+            '<div class="mai-msg-avatar">' + escHtml(USER_INIT) + '</div>' +
+            '<div class="mai-msg-body">' +
+                '<div class="mai-bubble">' + escHtml(text) + '</div>' +
+            '</div>';
+        messages.appendChild(msg);
+        scrollBottom();
+    }
+
+    function appendTyping() {
+        var el = document.createElement('div');
+        el.className = 'mai-msg assistant';
+        el.id = 'maiTypingIndicator';
+        el.innerHTML =
+            '<div class="mai-msg-avatar">✦</div>' +
+            '<div class="mai-msg-body">' +
+                '<div class="mai-bubble"><div class="mai-typing"><span></span><span></span><span></span></div></div>' +
+            '</div>';
+        messages.appendChild(el);
+        scrollBottom();
+        return el;
+    }
+
+    function appendAssistantMessage(data) {
+        var msg = document.createElement('div');
+        msg.className = 'mai-msg assistant';
+
+        var thinkingPanels = '';
+
+        // Reasoning panel
+        if (data.reasoning) {
+            thinkingPanels += makePanelToggle(
+                '🧠 Intent &amp; Reasoning',
+                '<p style="white-space:pre-wrap;">' + escHtml(data.reasoning) + '</p>'
+            );
+        }
+
+        // SQL panel
+        if (data.sql) {
+            thinkingPanels += makePanelToggle(
+                '🗄️ SQL Query',
+                '<div class="mai-sql-code">' + escHtml(data.sql) + '</div>'
+            );
+        }
+
+        // Results panel
+        if (data.results_preview && data.results_preview.length > 0) {
+            var cols = Object.keys(data.results_preview[0]);
+            var headerCells = cols.map(function (c) { return '<th>' + escHtml(c) + '</th>'; }).join('');
+            var rows = data.results_preview.map(function (row) {
+                var cells = cols.map(function (c) {
+                    var val = row[c] !== null && row[c] !== undefined ? String(row[c]) : 'NULL';
+                    return '<td title="' + escHtml(val) + '">' + escHtml(val.length > 30 ? val.slice(0, 30) + '…' : val) + '</td>';
+                }).join('');
+                return '<tr>' + cells + '</tr>';
+            }).join('');
+
+            var countBadge = '<div class="mai-results-count">✓ ' + data.results_count + ' row' + (data.results_count !== 1 ? 's' : '') + '</div>';
+            thinkingPanels += makePanelToggle(
+                '📊 Query Results',
+                countBadge + '<div style="overflow-x:auto"><table class="mai-results-table"><thead><tr>' + headerCells + '</tr></thead><tbody>' + rows + '</tbody></table></div>'
+            );
+        } else if (data.sql && data.results_count === 0) {
+            thinkingPanels += makePanelToggle('📊 Query Results', '<div class="mai-results-count">0 rows returned</div>');
+        }
+
+        msg.innerHTML =
+            '<div class="mai-msg-avatar">✦</div>' +
+            '<div class="mai-msg-body">' +
+                '<div class="mai-bubble">' +
+                    '<div class="mai-answer">' + renderMarkdown(data.answer) + '</div>' +
+                    (thinkingPanels ? '<div class="mai-thinking-panels">' + thinkingPanels + '</div>' : '') +
+                '</div>' +
+            '</div>';
+
+        messages.appendChild(msg);
+        scrollBottom();
+    }
+
+    function appendErrorMessage(text) {
+        var msg = document.createElement('div');
+        msg.className = 'mai-msg assistant';
+        msg.innerHTML =
+            '<div class="mai-msg-avatar">✦</div>' +
+            '<div class="mai-msg-body">' +
+                '<div class="mai-error-bubble">⚠ ' + escHtml(text) + '</div>' +
+            '</div>';
+        messages.appendChild(msg);
+        scrollBottom();
+    }
+
+    function makePanelToggle(label, bodyHtml) {
+        var id = 'mai-panel-' + Math.random().toString(36).slice(2, 8);
+        return '<button class="mai-panel-toggle" onclick="maiTogglePanel(\'' + id + '\', this)">' +
+                    '<span class="arrow">▶</span>' +
+                    '<span>' + label + '</span>' +
+               '</button>' +
+               '<div class="mai-panel-body" id="' + id + '">' + bodyHtml + '</div>';
+    }
+
+    window.maiTogglePanel = function (id, btn) {
+        var body = document.getElementById(id);
+        if (! body) return;
+        var open = body.classList.toggle('open');
+        btn.classList.toggle('open', open);
+    };
+
+    // ── Helpers ───────────────────────────────────────────────────
+
+    function setLoading(loading) {
+        isLoading = loading;
+        sendBtn.disabled = loading;
+        input.disabled = loading;
+    }
+
+    function scrollBottom() {
+        setTimeout(function () {
+            messages.scrollTop = messages.scrollHeight;
+        }, 40);
+    }
+
+    function escHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    /**
+     * Minimal markdown → HTML renderer for MAI answers.
+     * Handles: headers, bold, italic, code, tables, lists, line breaks.
+     */
+    function renderMarkdown(md) {
+        if (! md) return '';
+        var html = md;
+
+        // Code blocks
+        html = html.replace(/```[\w]*\n?([\s\S]*?)```/g, function (_, code) {
+            return '<pre style="background:rgba(255,255,255,0.05);padding:10px;border-radius:8px;overflow-x:auto;font-size:11.5px;color:#7dd3fc;font-family:monospace;white-space:pre-wrap;">' + escHtml(code.trim()) + '</pre>';
+        });
+
+        // Inline code
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+        // Headers
+        html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+        html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+        html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+        // Bold
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+        // Italic
+        html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+        // Tables (simple: | col | col |)
+        html = html.replace(/((?:\|.+\|\n?)+)/g, function (table) {
+            var lines = table.trim().split('\n');
+            var result = '<table>';
+            var isHeader = true;
+            lines.forEach(function (line) {
+                if (/^\|[-|\s]+\|$/.test(line.trim())) { isHeader = false; return; }
+                var cells = line.trim().replace(/^\||\|$/g, '').split('|');
+                var tag = isHeader ? 'th' : 'td';
+                result += '<tr>' + cells.map(function (c) { return '<' + tag + '>' + c.trim() + '</' + tag + '>'; }).join('') + '</tr>';
+                if (isHeader) isHeader = false;
+            });
+            return result + '</table>';
+        });
+
+        // Unordered lists
+        html = html.replace(/((?:^[-*] .+\n?)+)/gm, function (list) {
+            var items = list.trim().split('\n').map(function (l) {
+                return '<li>' + l.replace(/^[-*] /, '') + '</li>';
+            }).join('');
+            return '<ul>' + items + '</ul>';
+        });
+
+        // Ordered lists
+        html = html.replace(/((?:^\d+\. .+\n?)+)/gm, function (list) {
+            var items = list.trim().split('\n').map(function (l) {
+                return '<li>' + l.replace(/^\d+\. /, '') + '</li>';
+            }).join('');
+            return '<ol>' + items + '</ol>';
+        });
+
+        // Paragraphs
+        html = html.replace(/\n\n+/g, '</p><p>');
+        html = html.replace(/\n/g, '<br>');
+        html = '<p>' + html + '</p>';
+
+        return html;
+    }
+
+})();
+</script>
 
 </body>
 </html>
