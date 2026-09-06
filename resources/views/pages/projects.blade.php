@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="Portfolio & Case Studies — MonarchI HQ"
     description="Discover real-world enterprise deployments, fintech architectures, smart city grids, and offline AI implementations engineered by MonarchI HQ."
     keywords="MonarchI Portfolio, AI Case Studies, Fintech Infrastructure, Smart City Addressing Ghana, Offline AI AgriTech, Enterprise Deployments">
@@ -8,14 +8,14 @@
     ============================================= --}}
     <section class="relative pt-32 pb-20 px-6 min-h-[55vh] flex items-center justify-center overflow-hidden" style="background: var(--bg-primary);">
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-            <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
-            <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
+            <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
         </div>
 
         <div class="max-w-[1000px] mx-auto text-center relative z-10 reveal">
-            <h1 class="text-xs font-bold tracking-[0.25em] text-[#2997ff] uppercase mb-6">Our Portfolio</h1>
+            <h1 class="text-xs font-bold tracking-[0.25em] text-[#9c051d] uppercase mb-6">Our Portfolio</h1>
             <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight" style="color: var(--text-primary);">
-                Selected <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2997ff] to-[#8ebcf2]">Engineering</span> <br>
+                Selected <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#9c051d] to-[#8ebcf2]">Engineering</span> <br>
                 &amp; Innovation Works.
             </h2>
             <p class="text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed" style="color: var(--text-secondary);">
@@ -34,7 +34,7 @@
             {{-- Empty state --}}
             <div class="text-center py-24">
                 <p class="text-lg mb-4" style="color: var(--text-secondary);">No projects published yet. Check back soon.</p>
-                <a href="{{ url('/contact') }}" class="inline-flex items-center px-6 py-3 bg-[#2997ff] text-white rounded-full text-sm font-bold hover:bg-[#1a7de3] transition">
+                <a href="{{ url('/contact') }}" class="inline-flex items-center px-6 py-3 bg-[#9c051d] text-white rounded-full text-sm font-bold hover:bg-[#7a0417] transition">
                     Get in Touch &rarr;
                 </a>
             </div>
@@ -45,14 +45,14 @@
                      style="background: var(--bg-card); border-color: var(--border-color);">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <span class="text-xs font-bold uppercase tracking-widest text-[#2997ff]">
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#9c051d]">
                                 {{ $project->domain }}{{ $project->sub_domain ? ' &middot; ' . $project->sub_domain : '' }}
                             </span>
                             <span class="px-3 py-1 text-[11px] font-semibold rounded-full border {{ $project->statusBadgeClass() }}">
                                 {{ $project->status }}
                             </span>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-[#2997ff] transition" style="color: var(--text-primary);">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-[#9c051d] transition" style="color: var(--text-primary);">
                             {{ $project->title }}
                         </h3>
                         <p class="text-sm leading-relaxed mb-6" style="color: var(--text-secondary);">
@@ -72,7 +72,7 @@
                         @else
                         <span></span>
                         @endif
-                        <a href="{{ url('/contact') }}" class="text-xs font-bold text-[#2997ff] hover:underline flex items-center gap-1">
+                        <a href="{{ url('/contact') }}" class="text-xs font-bold text-[#9c051d] hover:underline flex items-center gap-1">
                             Request Case Study &rarr;
                         </a>
                     </div>
@@ -96,7 +96,7 @@
                 Partner with our engineering team to design, build, and deploy high-performance software and connected hardware.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="{{ url('/contact') }}" class="w-full sm:w-auto px-8 py-4 bg-[#2997ff] text-white rounded-full text-sm font-bold hover:bg-[#1a7de3] transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform">
+                <a href="{{ url('/contact') }}" class="w-full sm:w-auto px-8 py-4 bg-[#9c051d] text-white rounded-full text-sm font-bold hover:bg-[#7a0417] transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform">
                     Schedule Engineering Consult &rarr;
                 </a>
                 <a href="{{ route('store.index') }}" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold border hover:bg-black/5 dark:hover:bg-white/5 transition" style="border-color: var(--border-color); color: var(--text-primary);">

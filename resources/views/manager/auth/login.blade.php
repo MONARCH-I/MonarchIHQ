@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
             --bg-dark: #070709;
             --bg-card: #101014;
             --border: rgba(255,255,255,0.08);
-            --border-hover: rgba(41,151,255,0.3);
-            --accent: #2997ff;
-            --accent-glow: rgba(41,151,255,0.15);
+            --border-hover: rgba(156,5,29,0.3);
+            --accent: #9c051d;
+            --accent-glow: rgba(156,5,29,0.15);
             --text-primary: #f5f5f7;
             --text-secondary: rgba(245,245,247,0.65);
             --text-muted: rgba(245,245,247,0.4);
@@ -43,7 +43,7 @@
             width: 700px;
             height: 400px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(41,151,255,0.18), transparent 70%);
+            background: radial-gradient(circle, rgba(156,5,29,0.18), transparent 70%);
             pointer-events: none;
             filter: blur(80px);
         }
@@ -76,7 +76,7 @@
             padding: 4px 12px;
             border-radius: 99px;
             background: var(--accent-glow);
-            border: 1px solid rgba(41,151,255,0.3);
+            border: 1px solid rgba(156,5,29,0.3);
             color: var(--accent);
             font-size: 10px;
             font-weight: 700;
@@ -131,7 +131,7 @@
 
         .form-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(41,151,255,0.2);
+            box-shadow: 0 0 0 3px rgba(156,5,29,0.2);
             background: rgba(0,0,0,0.6);
         }
 
@@ -166,13 +166,13 @@
             justify-content: center;
             gap: 8px;
             margin-top: 10px;
-            box-shadow: 0 4px 18px rgba(41,151,255,0.3);
+            box-shadow: 0 4px 18px rgba(156,5,29,0.3);
         }
 
         .btn-submit:hover {
-            background: #1a7de3;
+            background: #7a0417;
             transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(41,151,255,0.45);
+            box-shadow: 0 6px 24px rgba(156,5,29,0.45);
         }
 
         .alert-error {

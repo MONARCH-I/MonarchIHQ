@@ -1,4 +1,4 @@
-<x-filament-panels::page.simple>
+﻿<x-filament-panels::page.simple>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -44,7 +44,7 @@
             left: -80px;
             width: 420px;
             height: 420px;
-            background: radial-gradient(circle, rgba(41,151,255,0.14) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(156,5,29,0.14) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(80px);
             pointer-events: none;
@@ -67,7 +67,7 @@
             box-shadow:
                 0 0 0 1px rgba(255,255,255,0.03) inset,
                 0 20px 40px rgba(0,0,0,0.7),
-                0 2px 10px rgba(41,151,255,0.05) !important;
+                0 2px 10px rgba(156,5,29,0.05) !important;
             max-width: 320px !important;
             width: 100% !important;
             padding: 0 !important;
@@ -119,7 +119,7 @@
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: #2997ff;
+            background: #9c051d;
             animation: pulseDot 2s infinite;
         }
 
@@ -179,9 +179,9 @@
         .fi-input::placeholder { color: rgba(255,255,255,0.22) !important; font-size: 12px !important; }
 
         .fi-input-wrapper:focus-within {
-            background: rgba(41,151,255,0.05) !important;
-            border-color: rgba(41,151,255,0.45) !important;
-            box-shadow: 0 0 0 2.5px rgba(41,151,255,0.12) !important;
+            background: rgba(156,5,29,0.05) !important;
+            border-color: rgba(156,5,29,0.45) !important;
+            box-shadow: 0 0 0 2.5px rgba(156,5,29,0.12) !important;
         }
 
         /* ── Compact Sign-in button ── */
@@ -218,7 +218,7 @@
         .fi-link:hover { color: #ffffff !important; }
 
         .fi-checkbox input[type="checkbox"] {
-            accent-color: #2997ff !important;
+            accent-color: #9c051d !important;
         }
 
         .fi-fo-field-wrp-error-message,

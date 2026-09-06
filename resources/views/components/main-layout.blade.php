@@ -170,6 +170,15 @@
             --service-card-bg:  #111111;
             --cta-section-bg:   #000000;
             --scroll-track:     transparent;
+
+            /* ── MonarchI Brand Palette ───────────────────── */
+            --brand-crimson:       #9c051d;
+            --brand-crimson-dark:  #7a0417;
+            --brand-crimson-light: #c4203a;
+            --brand-crimson-pale:  #e8788a;
+            --brand-ash:           #a8a9ad;
+            --brand-ash-light:     #d1d5db;
+            --brand-ash-dark:      #6b7280;
         }
 
         /* --- LIGHT THEME --- */
@@ -362,7 +371,7 @@
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            background: rgba(41, 151, 255, 0.1);
+            background: rgba(156, 5, 29, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -370,13 +379,13 @@
             transition: background 0.25s ease;
         }
         .svc-card:hover .svc-icon-wrap {
-            background: rgba(41, 151, 255, 0.18);
+            background: rgba(156, 5, 29, 0.18);
         }
 
         .svc-icon {
             width: 20px;
             height: 20px;
-            color: #2997ff;
+            color: #9c051d;
             flex-shrink: 0;
         }
 
@@ -401,7 +410,7 @@
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.02em;
-            color: #2997ff;
+            color: #9c051d;
             text-decoration: none;
             margin-top: 8px;
             transition: gap 0.2s ease, opacity 0.2s ease;
@@ -430,7 +439,7 @@
             background: #f0f2f5;
             border-color: rgba(0,0,0,0.08);
         }
-        html.light-theme .services-section h2 { color: #2997ff; }
+        html.light-theme .services-section h2 { color: #9c051d; }
         html.light-theme .services-section h3 { color: #0a0a0a; }
         html.light-theme .services-section h3 span { color: #6b7280; }
         html.light-theme .services-section p.text-xl { color: #4b5563; }
@@ -465,7 +474,7 @@
         }
 
         /* Section headings in light mode */
-        html.light-theme section h2.text-\[\#2997ff\] { color: #1a7de3; }
+        html.light-theme section h2.text-\[\#9c051d\] { color: #7a0417; }
 
         /* Footer always dark in both themes */
         footer {
@@ -577,7 +586,7 @@
             font-weight: 300;
             letter-spacing: 0.01em;
             color: #ffffff;
-            caret-color: #2997ff;
+            caret-color: #9c051d;
         }
         .search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
         html.light-theme .search-input { color: #0a0a0a; }
@@ -593,7 +602,7 @@
         .search-close-label {
             font-size: 14px;
             font-weight: 400;
-            color: #2997ff;
+            color: #9c051d;
             transition: opacity 0.2s;
         }
         .search-close-btn:hover .search-close-label { opacity: 0.7; }
@@ -642,9 +651,9 @@
             transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
         .search-ql-chip:hover {
-            background: rgba(41, 151, 255, 0.15);
-            border-color: rgba(41, 151, 255, 0.4);
-            color: #2997ff;
+            background: rgba(156, 5, 29, 0.15);
+            border-color: rgba(156, 5, 29, 0.4);
+            color: #9c051d;
         }
         html.light-theme .search-ql-chip {
             background: rgba(0, 0, 0, 0.04);
@@ -652,9 +661,9 @@
             color: rgba(0, 0, 0, 0.65);
         }
         html.light-theme .search-ql-chip:hover {
-            background: rgba(41, 151, 255, 0.1);
-            border-color: rgba(41, 151, 255, 0.3);
-            color: #2997ff;
+            background: rgba(156, 5, 29, 0.1);
+            border-color: rgba(156, 5, 29, 0.3);
+            color: #9c051d;
         }
 
         .search-ql-icon {
@@ -742,8 +751,8 @@
             flex-shrink: 0;
         }
         .carousel-arrow:hover {
-            background: rgba(41,151,255,0.12);
-            border-color: rgba(41,151,255,0.4);
+            background: rgba(156,5,29,0.12);
+            border-color: rgba(156,5,29,0.4);
             transform: scale(1.08);
         }
         .carousel-arrow:disabled {
@@ -772,7 +781,7 @@
             flex-shrink: 0;
         }
         .carousel-dot.active {
-            background: #2997ff;
+            background: #9c051d;
             width: 18px;
             border-radius: 3px;
         }
@@ -780,7 +789,7 @@
             background: rgba(0,0,0,0.15);
         }
         html.light-theme .carousel-dot.active {
-            background: #2997ff;
+            background: #9c051d;
         }
 
         /* Touch-active: project cards — reveal overlay on tap (touch devices) */
@@ -980,13 +989,13 @@
                         Enterprise-grade Systems and bespoke Machine Learning solutions engineered for absolute scale.
                     </p>
                     <div class="flex space-x-5">
-                        <a href="https://x.com/monarchihq" class="text-gray-500 hover:text-[#2997ff] transition-colors">
+                        <a href="https://x.com/monarchihq" class="text-gray-500 hover:text-[#9c051d] transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path
                                     d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.925H5.022z" />
                             </svg>
                         </a>
-                        <a href="https://linkedin.com/company/monarchihq" target="_blank" class="text-gray-500 hover:text-[#2997ff] transition-colors" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/company/monarchihq" target="_blank" class="text-gray-500 hover:text-[#9c051d] transition-colors" aria-label="LinkedIn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
@@ -1011,32 +1020,32 @@
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Company</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="/about" class="hover:text-[#2997ff] transition-colors">About Us</a></li>
-                        <li><a href="/blog" class="hover:text-[#2997ff] transition-colors">Blog</a></li>
-                        <li><a href="/careers" class="hover:text-[#2997ff] transition-colors">Careers</a></li>
-                        <li><a href="/contact" class="hover:text-[#2997ff] transition-colors">Contact</a></li>
-                        <li><a href="/partners" class="hover:text-[#2997ff] transition-colors">Partners</a></li>
+                        <li><a href="/about" class="hover:text-[#9c051d] transition-colors">About Us</a></li>
+                        <li><a href="/blog" class="hover:text-[#9c051d] transition-colors">Blog</a></li>
+                        <li><a href="/careers" class="hover:text-[#9c051d] transition-colors">Careers</a></li>
+                        <li><a href="/contact" class="hover:text-[#9c051d] transition-colors">Contact</a></li>
+                        <li><a href="/partners" class="hover:text-[#9c051d] transition-colors">Partners</a></li>
                     </ul>
                 </div> 
                 {{-- DIVISIONS QUICKLINKS --}}
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Divisions</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="/divisions#io" class="hover:text-[#2997ff] transition-colors">Monarch I/O</a></li>
-                        <li><a href="/divisions#inventions" class="hover:text-[#2997ff] transition-colors">Monarch Inventions</a></li>
-                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">Monarch Innovations</a></li>
-                        <li><a href="/divisions#iot" class="hover:text-[#2997ff] transition-colors">Monarch IoT</a></li>
-                        <li><a href="/divisions#is" class="hover:text-[#2997ff] transition-colors">Monarch IS</a></li>
+                        <li><a href="/divisions#io" class="hover:text-[#9c051d] transition-colors">Monarch I/O</a></li>
+                        <li><a href="/divisions#inventions" class="hover:text-[#9c051d] transition-colors">Monarch Inventions</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#9c051d] transition-colors">Monarch Innovations</a></li>
+                        <li><a href="/divisions#iot" class="hover:text-[#9c051d] transition-colors">Monarch IoT</a></li>
+                        <li><a href="/divisions#is" class="hover:text-[#9c051d] transition-colors">Monarch IS</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Products</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="/services" class="hover:text-[#2997ff] transition-colors">MAI</a></li>
-                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">iLyft</a></li>
-                        <li><a href="/store" class="hover:text-[#2997ff] transition-colors">invenStore</a></li>
-                        <li><a href="/divisions#innovations" class="hover:text-[#2997ff] transition-colors">OnuaFoodHub</a></li>
+                        <li><a href="/services" class="hover:text-[#9c051d] transition-colors">MAI</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#9c051d] transition-colors">iLyft</a></li>
+                        <li><a href="/store" class="hover:text-[#9c051d] transition-colors">invenStore</a></li>
+                        <li><a href="/divisions#innovations" class="hover:text-[#9c051d] transition-colors">OnuaFoodHub</a></li>
                     </ul>
                 </div>  
 
@@ -1044,21 +1053,21 @@
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Community</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Open Source</a></li>
-                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Social Impact</a></li>
-                        <li><a href="/community" class="hover:text-[#2997ff] transition-colors">Community Events</a></li>
-                        <li><a href="/blog" class="hover:text-[#2997ff] transition-colors">Blog</a></li>
+                        <li><a href="/community" class="hover:text-[#9c051d] transition-colors">Open Source</a></li>
+                        <li><a href="/community" class="hover:text-[#9c051d] transition-colors">Social Impact</a></li>
+                        <li><a href="/community" class="hover:text-[#9c051d] transition-colors">Community Events</a></li>
+                        <li><a href="/blog" class="hover:text-[#9c051d] transition-colors">Blog</a></li>
                     </ul>
                 </div> 
 
                 <div>
                     <h4 class="text-white font-medium mb-4 text-sm">Legal</h4>
                     <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="/privacy" class="hover:text-[#2997ff] transition-colors">Privacy Policy</a></li>
-                        <li><a href="/terms" class="hover:text-[#2997ff] transition-colors">Terms of Service</a></li>
-                        <li><a href="/cookies" class="hover:text-[#2997ff] transition-colors">Cookie Policy</a></li>
-                        <li><a href="/licenses" class="hover:text-[#2997ff] transition-colors">License & Authorization</a></li>
-                        <li><a href="/security" class="hover:text-[#2997ff] transition-colors">Security</a></li>
+                        <li><a href="/privacy" class="hover:text-[#9c051d] transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" class="hover:text-[#9c051d] transition-colors">Terms of Service</a></li>
+                        <li><a href="/cookies" class="hover:text-[#9c051d] transition-colors">Cookie Policy</a></li>
+                        <li><a href="/licenses" class="hover:text-[#9c051d] transition-colors">License & Authorization</a></li>
+                        <li><a href="/security" class="hover:text-[#9c051d] transition-colors">Security</a></li>
                     </ul>
                 </div>
             </div>

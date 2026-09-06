@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Employees</x-slot>
     <x-slot name="breadcrumb">Employees</x-slot>
 
@@ -31,7 +31,7 @@
                 </td>
                 <td style="font-size:12px">{{ $emp->email }}</td>
                 <td>
-                    <span class="badge" style="background:rgba(41,151,255,0.1);color:#2997ff;border-color:rgba(41,151,255,0.2)">{{ $emp->roleLabel() }}</span>
+                    <span class="badge" style="background:rgba(156,5,29,0.1);color:#9c051d;border-color:rgba(156,5,29,0.2)">{{ $emp->roleLabel() }}</span>
                 </td>
                 <td style="font-size:12px">{{ $emp->created_at->format('d M Y') }}</td>
                 <td>

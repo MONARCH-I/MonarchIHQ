@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -47,9 +47,9 @@
             pointer-events: none;
             z-index: 0;
         }
-        .auth-orb-1 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(41,151,255,0.14) 0%, transparent 70%); top: -80px; left: -80px; }
+        .auth-orb-1 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(156,5,29,0.14) 0%, transparent 70%); top: -80px; left: -80px; }
         .auth-orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(120,80,255,0.09) 0%, transparent 70%); bottom: -60px; right: -60px; }
-        .auth-orb-3 { width: 220px; height: 220px; background: radial-gradient(circle, rgba(41,151,255,0.05) 0%, transparent 70%); bottom: 25%; left: 8%; }
+        .auth-orb-3 { width: 220px; height: 220px; background: radial-gradient(circle, rgba(156,5,29,0.05) 0%, transparent 70%); bottom: 25%; left: 8%; }
 
         /* Subtle grid pattern */
         body::before {
@@ -79,7 +79,7 @@
             box-shadow:
                 0 0 0 1px rgba(255,255,255,0.03) inset,
                 0 30px 52px rgba(0,0,0,0.6),
-                0 2px 14px rgba(41,151,255,0.06);
+                0 2px 14px rgba(156,5,29,0.06);
             padding: 30px 28px 28px;
             opacity: 0;
             transform: translateY(16px);
@@ -122,9 +122,9 @@
         }
         .auth-input::placeholder { color: rgba(255,255,255,0.25); font-size: 12px; }
         .auth-input:focus {
-            border-color: rgba(41,151,255,0.45);
-            background: rgba(41,151,255,0.05);
-            box-shadow: 0 0 0 2.5px rgba(41,151,255,0.12);
+            border-color: rgba(156,5,29,0.45);
+            background: rgba(156,5,29,0.05);
+            box-shadow: 0 0 0 2.5px rgba(156,5,29,0.12);
         }
         .auth-input:-webkit-autofill,
         .auth-input:-webkit-autofill:focus {
@@ -219,7 +219,7 @@
             transition: color 0.15s;
         }
         .auth-link:hover { color: #ffffff; }
-        .auth-link-blue { color: #2997ff; }
+        .auth-link-blue { color: #9c051d; }
         .auth-link-blue:hover { color: #5bb0ff; }
 
         /* Error validation box */
@@ -234,8 +234,8 @@
 
         /* Status message */
         .auth-status {
-            background: rgba(41,151,255,0.1);
-            border: 1px solid rgba(41,151,255,0.2);
+            background: rgba(156,5,29,0.1);
+            border: 1px solid rgba(156,5,29,0.2);
             border-radius: 8px;
             padding: 6px 10px;
             color: #60aaff;

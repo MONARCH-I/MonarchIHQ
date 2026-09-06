@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">News Articles</x-slot>
     <x-slot name="breadcrumb">Content → News</x-slot>
 
@@ -37,7 +37,7 @@
                     <div style="font-size:11px;color:var(--text-muted);margin-top:2px">{{ $article->author_name }} · {{ $article->read_time_minutes }}m read</div>
                 </td>
                 <td>
-                    <span class="badge" style="background:rgba(41,151,255,0.1);color:#2997ff;border-color:rgba(41,151,255,0.2)">
+                    <span class="badge" style="background:rgba(156,5,29,0.1);color:#9c051d;border-color:rgba(156,5,29,0.2)">
                         {{ $article->categoryLabel() }}
                     </span>
                 </td>
@@ -54,7 +54,7 @@
                         <a href="{{ route('manager.content.news.edit', $article) }}" class="btn btn-secondary btn-sm">Edit</a>
                         <form method="POST" action="{{ route('manager.content.news.toggle-publish', $article) }}">
                             @csrf
-                            <button class="btn btn-sm" style="background:rgba(41,151,255,0.1);color:#2997ff;border:1px solid rgba(41,151,255,0.2)">
+                            <button class="btn btn-sm" style="background:rgba(156,5,29,0.1);color:#9c051d;border:1px solid rgba(156,5,29,0.2)">
                                 {{ $article->is_published ? 'Unpublish' : 'Publish' }}
                             </button>
                         </form>

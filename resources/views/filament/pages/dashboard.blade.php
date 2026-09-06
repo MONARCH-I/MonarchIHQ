@@ -39,8 +39,8 @@
             text-align: left;
             width: 100%;
         }
-        .bento-tab:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 12px 36px -8px rgba(41,151,255,0.22); }
-        .bento-tab.active { border-color: transparent; box-shadow: 0 8px 32px -6px rgba(41,151,255,0.35); }
+        .bento-tab:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 12px 36px -8px rgba(156,5,29,0.22); }
+        .bento-tab.active { border-color: transparent; box-shadow: 0 8px 32px -6px rgba(156,5,29,0.35); }
         .bento-tab .bento-icon {
             width: 36px; height: 36px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
@@ -53,7 +53,7 @@
         html:not(.dark) .bento-tab.inactive { background: #f4f6fa; border-color: #e2e8f0; }
 
         /* ── Active gradients per tab ─────────────────────────────────────── */
-        .bento-tab.active[data-tab="overview"]  { background: linear-gradient(135deg, #0f2027 0%, #1a3a5c 60%, #2997ff22 100%); }
+        .bento-tab.active[data-tab="overview"]  { background: linear-gradient(135deg, #0f2027 0%, #1a3a5c 60%, #9c051d22 100%); }
         .bento-tab.active[data-tab="saas"]      { background: linear-gradient(135deg, #1a1040 0%, #2d1b69 60%, #7c3aed22 100%); }
         .bento-tab.active[data-tab="hardware"]  { background: linear-gradient(135deg, #0a1f12 0%, #14532d 60%, #22c55e22 100%); }
         .bento-tab.active[data-tab="servicing"] { background: linear-gradient(135deg, #1f1205 0%, #431407 60%, #f9731622 100%); }
@@ -78,7 +78,7 @@
         .monarch-section-header::before {
             content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
             width: 4px; height: 70%; border-radius: 99px;
-            background: linear-gradient(to bottom, #2997ff, #7c3aed);
+            background: linear-gradient(to bottom, #9c051d, #7c3aed);
         }
 
         /* ── Tables ──────────────────────────────────────────────────────────── */
@@ -123,7 +123,7 @@
             transition: background 0.12s ease;
         }
         .monarch-table tbody tr:hover {
-            background: rgba(41,151,255,0.04);
+            background: rgba(156,5,29,0.04);
         }
         .dark .monarch-table tbody tr:hover {
             background: rgba(255,255,255,0.02);
@@ -138,7 +138,7 @@
             {{-- Overview & Financials --}}
             <button onclick="monarchSwitchTab('overview')" data-tab="overview"
                 class="bento-tab {{ $activeTab === 'overview' ? 'active' : 'inactive' }}">
-                <div class="bento-icon {{ $activeTab === 'overview' ? 'bg-blue-400/20 text-[#60a5fa]' : 'bg-blue-500/10 text-blue-400' }}">
+                <div class="bento-icon {{ $activeTab === 'overview' ? 'bg-[#9c051d]/20 text-[#c4203a]' : 'bg-[#9c051d]/10 text-[#c4203a]' }}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
@@ -223,7 +223,7 @@
                 </h2>
             </div>
             <a href="{{ route('filament.monarch.resources.products.create') }}" id="monarch-add-btn"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#2997ff] text-white hover:bg-[#1a7de3] transition shadow-md shadow-blue-500/25">
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#9c051d] text-white hover:bg-[#7a0417] transition shadow-md shadow-[#9c051d]/25">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
                 </svg>
@@ -254,17 +254,17 @@
                 </div>
 
                 {{-- Total Orders --}}
-                <div class="monarch-kpi" style="background:linear-gradient(135deg,#0c1a3a 0%,#1e3a8a 100%);">
+                <div class="monarch-kpi" style="background:linear-gradient(135deg,#1a0108 0%,#5a0414 100%);">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-blue-300">Orders Received</span>
-                        <div class="w-9 h-9 rounded-xl bg-blue-400/20 text-[#60a5fa] flex items-center justify-center">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-[#e8788a]">Orders Received</span>
+                        <div class="w-9 h-9 rounded-xl bg-[#9c051d]/20 text-[#c4203a] flex items-center justify-center">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                         </div>
                     </div>
                     <div class="text-2xl font-extrabold text-white">{{ $overview['totalOrdersCount'] }}</div>
-                    <p class="text-[11px] text-blue-300 mt-2">
+                    <p class="text-[11px] text-[#e8788a] mt-2">
                         <span class="font-bold text-emerald-400">{{ $overview['paidOrdersCount'] }} Paid</span>
-                        <span class="text-blue-400/60"> · </span>
+                        <span class="text-[#c4203a]/60"> · </span>
                         {{ $overview['pendingOrdersCount'] }} Pending
                     </p>
                 </div>
@@ -298,7 +298,7 @@
             <div class="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 overflow-hidden shadow-sm">
                 <div class="p-4 border-b border-gray-200 dark:border-white/10 flex items-center justify-between bg-gray-50/50 dark:bg-white/[0.02]">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-[#2997ff]/10 text-[#2997ff] flex items-center justify-center">
+                        <div class="w-8 h-8 rounded-lg bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                         </div>
                         <div>
@@ -306,7 +306,7 @@
                             <p class="text-[11px] text-gray-500 dark:text-gray-400">Live feed of orders and checkout events</p>
                         </div>
                     </div>
-                    <a href="{{ route('filament.monarch.resources.orders.index') }}" class="text-xs font-bold text-[#2997ff] hover:underline flex items-center gap-1">
+                    <a href="{{ route('filament.monarch.resources.orders.index') }}" class="text-xs font-bold text-[#9c051d] hover:underline flex items-center gap-1">
                         View All
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                     </a>
@@ -341,7 +341,7 @@
                                     </td>
                                     <td>
                                         <div class="flex items-center gap-2.5">
-                                            <div class="w-7 h-7 rounded-full bg-[#2997ff]/10 text-[#2997ff] flex items-center justify-center text-[10px] font-black shrink-0">
+                                            <div class="w-7 h-7 rounded-full bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center text-[10px] font-black shrink-0">
                                                 {{ strtoupper(substr($order->customer_name ?? 'G', 0, 1)) }}
                                             </div>
                                             <div>
@@ -372,7 +372,7 @@
                                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold
                                             {{ $order->status === 'delivered' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                                             : ($order->status === 'cancelled'  ? 'bg-red-500/10 text-red-500 border border-red-500/20'
-                                            : 'bg-[#2997ff]/10 text-[#2997ff] border border-[#2997ff]/20') }}">
+                                            : 'bg-[#9c051d]/10 text-[#9c051d] border border-[#9c051d]/20') }}">
                                             {{ ucfirst($order->status) }}
                                         </span>
                                     </td>
@@ -381,8 +381,8 @@
                                     <td style="text-align:right">
                                         <a href="{{ route('filament.monarch.resources.orders.edit', $order) }}"
                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold
-                                                  bg-[#2997ff]/8 text-[#2997ff] border border-[#2997ff]/20
-                                                  hover:bg-[#2997ff] hover:text-white hover:border-[#2997ff] transition-all duration-150">
+                                                  bg-[#9c051d]/8 text-[#9c051d] border border-[#9c051d]/20
+                                                  hover:bg-[#9c051d] hover:text-white hover:border-[#9c051d] transition-all duration-150">
                                             Manage
                                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                                         </a>
@@ -414,15 +414,15 @@
                     <div class="text-3xl font-extrabold text-white">{{ $saas['saasCount'] }}</div>
                     <p class="text-[11px] text-purple-300 mt-2">Live in store catalog</p>
                 </div>
-                <div class="monarch-kpi" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);">
+                <div class="monarch-kpi" style="background:linear-gradient(135deg,#0f172a 0%,#5a0414 100%);">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-blue-400/20 text-blue-300 flex items-center justify-center">
+                        <div class="w-8 h-8 rounded-lg bg-[#9c051d]/20 text-[#e8788a] flex items-center justify-center">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-blue-300">Licenses Sold</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-[#e8788a]">Licenses Sold</span>
                     </div>
                     <div class="text-3xl font-extrabold text-white">{{ $saas['saasSalesCount'] }}</div>
-                    <p class="text-[11px] text-blue-300 mt-2">Customer activations</p>
+                    <p class="text-[11px] text-[#e8788a] mt-2">Customer activations</p>
                 </div>
                 <div class="monarch-kpi" style="background:linear-gradient(135deg,#052e16 0%,#14532d 100%);">
                     <div class="flex items-center gap-3 mb-3">
@@ -528,13 +528,13 @@
                     <div class="text-3xl font-extrabold text-white">{{ $hardware['totalUnitsInStock'] }}</div>
                     <p class="text-[11px] text-emerald-300 mt-2">Across all hardware categories</p>
                 </div>
-                <div class="monarch-kpi" style="background:linear-gradient(135deg,#0c1a3a 0%,#1e3a8a 100%);">
+                <div class="monarch-kpi" style="background:linear-gradient(135deg,#1a0108 0%,#5a0414 100%);">
                     <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-blue-400/20 text-blue-300 flex items-center justify-center font-black">₵</div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-blue-300">Asset Value</span>
+                        <div class="w-8 h-8 rounded-lg bg-[#9c051d]/20 text-[#e8788a] flex items-center justify-center font-black">₵</div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-[#e8788a]">Asset Value</span>
                     </div>
-                    <div class="text-3xl font-extrabold text-[#60a5fa]">₵{{ number_format($hardware['inventoryAssetValue'], 2) }}</div>
-                    <p class="text-[11px] text-blue-300 mt-2">Retail value on hand</p>
+                    <div class="text-3xl font-extrabold text-[#c4203a]">₵{{ number_format($hardware['inventoryAssetValue'], 2) }}</div>
+                    <p class="text-[11px] text-[#e8788a] mt-2">Retail value on hand</p>
                 </div>
                 <div class="monarch-kpi" style="background:linear-gradient(135deg,{{ $hardware['lowStockCount'] > 0 ? '#431407 0%,#7c2d12' : '#052e16 0%,#14532d' }} 100%);">
                     <div class="flex items-center gap-3 mb-3">
@@ -723,8 +723,8 @@
                                         <div class="flex items-center justify-end gap-2">
                                             <a href="{{ route('admin.backups.download', $b['filename']) }}"
                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold
-                                                      bg-[#2997ff]/8 text-[#2997ff] border border-[#2997ff]/20
-                                                      hover:bg-[#2997ff] hover:text-white hover:border-[#2997ff] transition-all duration-150">
+                                                      bg-[#9c051d]/8 text-[#9c051d] border border-[#9c051d]/20
+                                                      hover:bg-[#9c051d] hover:text-white hover:border-[#9c051d] transition-all duration-150">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                                                 Download
                                             </a>
@@ -764,7 +764,7 @@
     };
 
     const TAB_ACTIVE_GRADIENT = {
-        overview:  'var(--bento-grad-overview, linear-gradient(135deg,#1e3a8a,#2563eb))',
+        overview:  'var(--bento-grad-overview, linear-gradient(135deg,#5a0414,#9c051d))',
         saas:      'var(--bento-grad-saas,     linear-gradient(135deg,#4c1d95,#7c3aed))',
         hardware:  'var(--bento-grad-hardware,  linear-gradient(135deg,#064e3b,#059669))',
         servicing: 'var(--bento-grad-servicing, linear-gradient(135deg,#7c2d12,#ea580c))',

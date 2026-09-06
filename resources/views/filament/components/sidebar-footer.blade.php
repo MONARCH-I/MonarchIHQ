@@ -1,10 +1,10 @@
-<div class="px-3 py-3 border-t border-gray-200 dark:border-white/10 mt-auto" id="monarch-sidebar-footer">
+﻿<div class="px-3 py-3 border-t border-gray-200 dark:border-white/10 mt-auto" id="monarch-sidebar-footer">
 
     {{-- User Row --}}
     <div class="flex items-center gap-2.5 mb-3 px-1">
         {{-- Avatar with gradient ring --}}
         <div class="relative shrink-0">
-            <div class="w-8 h-8 rounded-full p-[2px]" style="background: linear-gradient(135deg, #2997ff, #7c3aed);">
+            <div class="w-8 h-8 rounded-full p-[2px]" style="background: linear-gradient(135deg, #9c051d, #7c3aed);">
                 <img
                     src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&color=ffffff&background=1a3a5c&bold=true&size=64"
                     alt="{{ auth()->user()->name ?? 'Admin' }}"

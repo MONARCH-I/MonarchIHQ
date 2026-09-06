@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     <meta charset="utf-8">
@@ -16,8 +16,8 @@
             --bg-card: #111111;
             --bg-hover: #1a1a1a;
             --border: rgba(255,255,255,0.08);
-            --accent: #2997ff;
-            --accent-dim: rgba(41,151,255,0.12);
+            --accent: #9c051d;
+            --accent-dim: rgba(156,5,29,0.12);
             --text-primary: #f5f5f7;
             --text-secondary: rgba(245,245,247,0.60);
             --text-muted: rgba(245,245,247,0.35);
@@ -44,7 +44,7 @@
         }
         .sidebar-logo .logo-icon {
             width: 34px; height: 34px; border-radius: 10px;
-            background: var(--accent-dim); border: 1px solid rgba(41,151,255,0.3);
+            background: var(--accent-dim); border: 1px solid rgba(156,5,29,0.3);
             display: flex; align-items: center; justify-content: center;
             font-weight: 800; font-size: 14px; color: var(--accent); flex-shrink: 0;
         }
@@ -73,7 +73,7 @@
         .sidebar-tab:hover { background: var(--bg-hover); color: var(--text-primary); }
         .sidebar-tab.active {
             background: var(--accent-dim); color: var(--accent);
-            border-color: rgba(41,151,255,0.25);
+            border-color: rgba(156,5,29,0.25);
         }
         .sidebar-tab .tab-icon {
             width: 32px; height: 32px; border-radius: 8px;
@@ -149,14 +149,14 @@
             border-radius: 16px; padding: 20px 24px;
             transition: border-color 0.2s;
         }
-        .stat-card:hover { border-color: rgba(41,151,255,0.3); }
+        .stat-card:hover { border-color: rgba(156,5,29,0.3); }
         .stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
         .stat-value { font-size: 30px; font-weight: 800; color: var(--text-primary); margin-top: 4px; }
 
         /* ── Buttons ── */
         .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all 0.15s; }
         .btn-primary   { background: var(--accent); color: #fff; }
-        .btn-primary:hover { background: #1a7de3; transform: translateY(-1px); }
+        .btn-primary:hover { background: #7a0417; transform: translateY(-1px); }
         .btn-secondary { background: var(--bg-hover); color: var(--text-primary); border: 1px solid var(--border); }
         .btn-secondary:hover { border-color: rgba(255,255,255,0.2); }
         .btn-danger    { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
@@ -398,8 +398,8 @@
         .mai-logo {
             width: 36px; height: 36px;
             border-radius: 10px;
-            background: linear-gradient(135deg, rgba(41,151,255,0.25), rgba(99,102,241,0.25));
-            border: 1px solid rgba(41,151,255,0.35);
+            background: linear-gradient(135deg, rgba(156,5,29,0.25), rgba(99,102,241,0.25));
+            border: 1px solid rgba(156,5,29,0.35);
             display: flex; align-items: center; justify-content: center;
             font-size: 16px; flex-shrink: 0;
         }
@@ -452,8 +452,8 @@
         }
         .mai-welcome-icon {
             width: 64px; height: 64px; border-radius: 20px;
-            background: linear-gradient(135deg, rgba(41,151,255,0.2), rgba(99,102,241,0.2));
-            border: 1px solid rgba(41,151,255,0.3);
+            background: linear-gradient(135deg, rgba(156,5,29,0.2), rgba(99,102,241,0.2));
+            border: 1px solid rgba(156,5,29,0.3);
             display: flex; align-items: center; justify-content: center;
             font-size: 28px;
         }
@@ -483,7 +483,7 @@
         .mai-prompt-chip:hover {
             background: var(--accent-dim);
             color: var(--accent);
-            border-color: rgba(41,151,255,0.3);
+            border-color: rgba(156,5,29,0.3);
         }
 
         /* Message bubbles */
@@ -496,13 +496,13 @@
             font-size: 12px; font-weight: 700; flex-shrink: 0;
         }
         .mai-msg.user .mai-msg-avatar {
-            background: rgba(41,151,255,0.15);
+            background: rgba(156,5,29,0.15);
             color: var(--accent);
-            border: 1px solid rgba(41,151,255,0.25);
+            border: 1px solid rgba(156,5,29,0.25);
         }
         .mai-msg.assistant .mai-msg-avatar {
-            background: linear-gradient(135deg, rgba(41,151,255,0.2), rgba(99,102,241,0.2));
-            border: 1px solid rgba(41,151,255,0.3);
+            background: linear-gradient(135deg, rgba(156,5,29,0.2), rgba(99,102,241,0.2));
+            border: 1px solid rgba(156,5,29,0.3);
             font-size: 14px;
         }
 
@@ -516,8 +516,8 @@
             line-height: 1.65;
         }
         .mai-msg.user .mai-bubble {
-            background: rgba(41,151,255,0.15);
-            border: 1px solid rgba(41,151,255,0.2);
+            background: rgba(156,5,29,0.15);
+            border: 1px solid rgba(156,5,29,0.2);
             color: var(--text-primary);
             border-top-right-radius: 4px;
         }
@@ -635,7 +635,7 @@
         }
         .mai-typing span {
             width: 7px; height: 7px; border-radius: 50%;
-            background: rgba(41,151,255,0.5);
+            background: rgba(156,5,29,0.5);
             animation: maiTyping 1.4s infinite;
         }
         .mai-typing span:nth-child(2) { animation-delay: 0.2s; }
@@ -671,7 +671,7 @@
             transition: border-color 0.2s;
             line-height: 1.5;
         }
-        .mai-input:focus { border-color: rgba(41,151,255,0.4); }
+        .mai-input:focus { border-color: rgba(156,5,29,0.4); }
         .mai-input::placeholder { color: var(--text-muted); }
 
         .mai-send-btn {
@@ -682,8 +682,8 @@
             flex-shrink: 0;
             transition: all 0.15s;
         }
-        .mai-send-btn:hover { background: #1a7de3; transform: scale(1.04); }
-        .mai-send-btn:disabled { background: rgba(41,151,255,0.3); cursor: not-allowed; transform: none; }
+        .mai-send-btn:hover { background: #7a0417; transform: scale(1.04); }
+        .mai-send-btn:disabled { background: rgba(156,5,29,0.3); cursor: not-allowed; transform: none; }
         .mai-send-btn svg { width: 18px; height: 18px; color: white; }
 
         .mai-input-hint {
@@ -693,12 +693,12 @@
 
         /* Sidebar MAI tab glow */
         .sidebar-tab.mai-tab {
-            background: linear-gradient(135deg, rgba(41,151,255,0.08), rgba(99,102,241,0.08));
-            border-color: rgba(41,151,255,0.2) !important;
+            background: linear-gradient(135deg, rgba(156,5,29,0.08), rgba(99,102,241,0.08));
+            border-color: rgba(156,5,29,0.2) !important;
         }
         .sidebar-tab.mai-tab:hover {
-            background: linear-gradient(135deg, rgba(41,151,255,0.15), rgba(99,102,241,0.15));
-            border-color: rgba(41,151,255,0.35) !important;
+            background: linear-gradient(135deg, rgba(156,5,29,0.15), rgba(99,102,241,0.15));
+            border-color: rgba(156,5,29,0.35) !important;
         }
 
         /* Error bubble */
@@ -740,7 +740,7 @@
         .mai-hdr-btn.active {
             background: var(--accent-dim);
             color: var(--accent);
-            border-color: rgba(41,151,255,0.35);
+            border-color: rgba(156,5,29,0.35);
         }
         .mai-history-count {
             padding: 1px 6px;
@@ -751,7 +751,7 @@
             color: var(--text-muted);
         }
         .mai-hdr-btn.active .mai-history-count {
-            background: rgba(41,151,255,0.2);
+            background: rgba(156,5,29,0.2);
             color: var(--accent);
         }
 
@@ -797,7 +797,7 @@
             gap: 5px;
             padding: 6px 12px;
             border-radius: 8px;
-            background: linear-gradient(135deg, #2997ff, #0071e3);
+            background: linear-gradient(135deg, #9c051d, #0071e3);
             color: #fff;
             font-size: 11.5px;
             font-weight: 600;
@@ -826,12 +826,12 @@
         }
         .mai-history-item:hover {
             background: rgba(255,255,255,0.06);
-            border-color: rgba(41,151,255,0.25);
+            border-color: rgba(156,5,29,0.25);
             transform: translateX(2px);
         }
         .mai-history-item.active {
             background: var(--accent-dim);
-            border-color: rgba(41,151,255,0.35);
+            border-color: rgba(156,5,29,0.35);
         }
         .mai-history-item-left {
             display: flex;
@@ -844,8 +844,8 @@
             width: 30px;
             height: 30px;
             border-radius: 8px;
-            background: rgba(41,151,255,0.1);
-            border: 1px solid rgba(41,151,255,0.2);
+            background: rgba(156,5,29,0.1);
+            border: 1px solid rgba(156,5,29,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -952,7 +952,7 @@
             <span>HR</span>
             @php $newMsgs = \App\Models\ContactMessage::where('status','new')->count(); @endphp
             @if($newMsgs > 0)
-            <span class="badge" style="background:#2997ff;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto;">{{ $newMsgs }}</span>
+            <span class="badge" style="background:#9c051d;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto;">{{ $newMsgs }}</span>
             @endif
         </a>
         @endif
@@ -969,8 +969,8 @@
         @if(auth()->user()->isSuperAdmin())
         <button type="button" onclick="maiOpen()" class="sidebar-tab mai-tab" id="maiSidebarBtn" aria-label="Open MAI Chat">
             <div class="tab-icon" style="font-size:17px;">✦</div>
-            <span style="background:linear-gradient(90deg,#2997ff,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">MAI</span>
-            <span style="margin-left:auto;font-size:9px;padding:1px 6px;border-radius:99px;background:linear-gradient(135deg,rgba(41,151,255,0.2),rgba(99,102,241,0.2));color:#818cf8;border:1px solid rgba(99,102,241,0.3);-webkit-text-fill-color:#818cf8;">AI</span>
+            <span style="background:linear-gradient(90deg,#9c051d,#c4203a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">MAI</span>
+            <span style="margin-left:auto;font-size:9px;padding:1px 6px;border-radius:99px;background:linear-gradient(135deg,rgba(156,5,29,0.2),rgba(99,102,241,0.2));color:#c4203a;border:1px solid rgba(99,102,241,0.3);-webkit-text-fill-color:#c4203a;">AI</span>
         </button>
         @endif
     </div>

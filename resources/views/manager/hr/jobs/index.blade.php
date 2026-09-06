@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Job Listings</x-slot>
     <x-slot name="breadcrumb">HR → Jobs</x-slot>
 
@@ -41,7 +41,7 @@
                         <a href="{{ route('manager.hr.jobs.edit', $job) }}" class="btn btn-secondary btn-sm">Edit</a>
                         <form method="POST" action="{{ route('manager.hr.jobs.toggle-active', $job) }}">
                             @csrf
-                            <button class="btn btn-sm" style="background:rgba(41,151,255,0.1);color:#2997ff;border:1px solid rgba(41,151,255,0.2)">
+                            <button class="btn btn-sm" style="background:rgba(156,5,29,0.1);color:#9c051d;border:1px solid rgba(156,5,29,0.2)">
                                 {{ $job->is_active ? 'Deactivate' : 'Activate' }}
                             </button>
                         </form>

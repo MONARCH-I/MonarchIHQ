@@ -1,4 +1,4 @@
-<x-main-layout :showFooter="false">
+﻿<x-main-layout :showFooter="false">
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -110,7 +110,7 @@
 
     .db-nav-item.active {
         background: rgba(56,189,248, 0.12);
-        color: #38bdf8;
+        color: #9c051d;
         font-weight: 600;
     }
 
@@ -290,7 +290,7 @@
     .db-badge-green  { background: rgba(16,185,129,0.12); color: #10b981; }
     .db-badge-yellow { background: rgba(245,158,11,0.12); color: #f59e0b; }
     .db-badge-red    { background: rgba(239,68,68,0.12);  color: #ef4444; }
-    .db-badge-blue   { background: rgba(59,130,246,0.12); color: #3b82f6; }
+    .db-badge-blue   { background: rgba(59,130,246,0.12); color: #9c051d; }
 
     /* ── Account / Settings Form ── */
     .db-form-card {
@@ -349,7 +349,7 @@
     }
 
     .db-btn-primary {
-        background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+        background: linear-gradient(135deg, #9c051d 0%, #0284c7 100%);
         color: white;
         border: none;
         padding: 0.65rem 1.5rem;
@@ -541,10 +541,10 @@
 
         @if(auth()->user()->hasManagerAccess())
         <div style="margin-top:8px;display:flex;flex-direction:column;gap:6px;width:100%;align-items:center">
-          <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;background:rgba(41,151,255,0.12);color:#2997ff;border:1px solid rgba(41,151,255,0.3)">
+          <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:99px;background:rgba(156,5,29,0.12);color:#9c051d;border:1px solid rgba(156,5,29,0.3)">
             {{ auth()->user()->roleLabel() }}
           </span>
-          <a href="{{ route('manager') }}" style="font-size:11px;font-weight:600;color:#2997ff;text-decoration:none;display:inline-flex;align-items:center;gap:4px">
+          <a href="{{ route('manager') }}" style="font-size:11px;font-weight:600;color:#9c051d;text-decoration:none;display:inline-flex;align-items:center;gap:4px">
             ✦ Open Manager Portal &rarr;
           </a>
         </div>
@@ -621,7 +621,7 @@
         <div class="db-stat-grid">
           <div class="db-stat-card">
             <div class="db-stat-icon" style="background: rgba(56,189,248,0.12);">
-              <svg width="18" height="18" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
+              <svg width="18" height="18" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
             </div>
             <div class="db-stat-value">{{ $totalOrders ?? 0 }}</div>
             <div class="db-stat-label">Total Orders</div>
@@ -642,7 +642,7 @@
           </div>
           <div class="db-stat-card">
             <div class="db-stat-icon" style="background: rgba(59,130,246,0.12);">
-              <svg width="18" height="18" fill="none" stroke="#3b82f6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              <svg width="18" height="18" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             </div>
             <div class="db-stat-value">₵{{ number_format($totalSpent ?? 0, 2) }}</div>
             <div class="db-stat-label">Total Spent</div>
@@ -660,7 +660,7 @@
                   @if($recentOrder->isPaid())
                     <svg width="14" height="14" fill="none" stroke="#10b981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   @else
-                    <svg width="14" height="14" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <svg width="14" height="14" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                   @endif
                 </div>
                 <div class="db-timeline-content">
@@ -680,7 +680,7 @@
 
             <div class="db-timeline-item">
               <div class="db-timeline-dot" style="background: rgba(56,189,248,0.12);">
-                <svg width="14" height="14" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <svg width="14" height="14" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
               </div>
               <div class="db-timeline-content">
                 <div class="db-timeline-title">Account Created</div>
@@ -709,7 +709,7 @@
           {{-- Empty state --}}
           <div style="text-align:center; padding: 4rem 2rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 1rem;">
             <div style="width:72px;height:72px;background:rgba(56,189,248,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
-              <svg width="30" height="30" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              <svg width="30" height="30" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
             </div>
             <div style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;">No orders yet</div>
             <div style="font-size:0.8rem;color:var(--text-muted);max-width:280px;margin:0 auto 1.5rem;line-height:1.6;">Once you place an order, it will appear here for easy tracking and management.</div>
@@ -725,7 +725,7 @@
               {{-- Header --}}
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 mb-3.5 border-b gap-2" style="border-color: var(--border-subtle);">
                 <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm bg-[#38bdf8]/10 text-[#38bdf8]">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm bg-[#9c051d]/10 text-[#9c051d]">
                     #{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}
                   </div>
                   <div>
@@ -794,7 +794,7 @@
                 <div class="flex items-center gap-3 justify-between sm:justify-end">
                   <div class="text-right mr-2">
                     <span class="text-[10px] uppercase font-bold tracking-wider block text-gray-400">Total</span>
-                    <span class="text-base font-extrabold text-[#38bdf8]">₵{{ number_format($order->total, 2) }}</span>
+                    <span class="text-base font-extrabold text-[#9c051d]">₵{{ number_format($order->total, 2) }}</span>
                   </div>
 
                   @if(!$order->isPaid())
@@ -806,7 +806,7 @@
                   @endif
 
                   <a href="{{ route('bag.success', $order->id) }}"
-                     class="px-4 py-2 rounded-lg text-xs font-semibold border hover:border-[#38bdf8] transition flex items-center gap-1"
+                     class="px-4 py-2 rounded-lg text-xs font-semibold border hover:border-[#9c051d] transition flex items-center gap-1"
                      style="border-color: var(--border-subtle); color: var(--text-primary); background: var(--bg-primary);">
                     Receipt
                   </a>
@@ -932,7 +932,7 @@
           <div class="db-form-card-title">Email Preferences</div>
 
           @if (session('status') === 'notifications-updated')
-            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Notification preferences saved.</p>
+            <p class="db-alert-msg" style="color:#9c051d;font-size:0.78rem;margin-bottom:1rem;">✓ Notification preferences saved.</p>
           @endif
 
           <form method="POST" action="{{ route('settings.notifications') }}" class="db-async-form">
@@ -965,7 +965,7 @@
                   onchange="updateToggle(this)"
                 >
                 <span id="track_{{ $pref['key'] }}"
-                  style="position:absolute;cursor:pointer;inset:0;background:{{ $u->{$pref['key']} ? '#38bdf8' : 'rgba(255,255,255,0.15)' }};border-radius:999px;transition:background 0.2s;"
+                  style="position:absolute;cursor:pointer;inset:0;background:{{ $u->{$pref['key']} ? '#9c051d' : 'rgba(255,255,255,0.15)' }};border-radius:999px;transition:background 0.2s;"
                   onclick="document.getElementById('toggle_{{ $pref['key'] }}').click()">
                   <span id="thumb_{{ $pref['key'] }}"
                     style="position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform 0.2s;transform:{{ $u->{$pref['key']} ? 'translateX(18px)' : 'translateX(0)' }}">
@@ -993,7 +993,7 @@
           <div class="db-form-card-title">Display & Language</div>
 
           @if (session('status') === 'display-updated')
-            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Display preferences saved.</p>
+            <p class="db-alert-msg" style="color:#9c051d;font-size:0.78rem;margin-bottom:1rem;">✓ Display preferences saved.</p>
           @endif
 
           <form method="POST" action="{{ route('settings.display') }}" class="db-async-form">
@@ -1026,7 +1026,7 @@
           <div class="db-form-card-title">Shipping Address</div>
 
           @if (session('status') === 'address-updated')
-            <p class="db-alert-msg" style="color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;">✓ Shipping address saved.</p>
+            <p class="db-alert-msg" style="color:#9c051d;font-size:0.78rem;margin-bottom:1rem;">✓ Shipping address saved.</p>
           @endif
 
           <form method="POST" action="{{ route('settings.address') }}" class="db-async-form">
@@ -1171,7 +1171,7 @@
 
     const icon = type === 'error'
       ? `<svg width="18" height="18" fill="none" stroke="#fff" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01"/></svg>`
-      : `<svg width="18" height="18" fill="none" stroke="#38bdf8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"/></svg>`;
+      : `<svg width="18" height="18" fill="none" stroke="#9c051d" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"/></svg>`;
 
     toast.innerHTML = `<span>${icon}</span><span style="flex:1;">${message}</span>`;
     toastContainer.appendChild(toast);
@@ -1220,7 +1220,7 @@
           showToast(successMsg, 'success');
           const alertEl = document.createElement('p');
           alertEl.className = 'db-alert-msg';
-          alertEl.style.cssText = 'color:#38bdf8;font-size:0.78rem;margin-bottom:1rem;transition:all 0.3s;';
+          alertEl.style.cssText = 'color:#9c051d;font-size:0.78rem;margin-bottom:1rem;transition:all 0.3s;';
           alertEl.innerHTML = `✓ ${successMsg}`;
           form.parentElement.insertBefore(alertEl, form);
         } else {
@@ -1252,7 +1252,7 @@
     const track = document.getElementById('track_' + key);
     const thumb = document.getElementById('thumb_' + key);
     if (checkbox.checked) {
-      track.style.background = '#38bdf8';
+      track.style.background = '#9c051d';
       thumb.style.transform = 'translateX(18px)';
     } else {
       track.style.background = 'rgba(255,255,255,0.15)';

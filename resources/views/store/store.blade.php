@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="MonarchI Store — Enterprise Hardware, IoT & Digital Products"
     description="Explore and purchase official MonarchI hardware, smart devices, software licenses, and digital developer products."
     keywords="MonarchI Store, Buy Enterprise Hardware, IoT Devices, AI Hardware Africa, Tech Store Ghana, Developer Licenses">
@@ -40,7 +40,7 @@
         .store-bento-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 16px 36px rgba(0,0,0,0.22);
-            border-color: rgba(41, 151, 255, 0.4);
+            border-color: rgba(156, 5, 29, 0.4);
         }
         html.light-theme .store-bento-card {
             background: #ffffff;
@@ -80,7 +80,7 @@
         .feat-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 18px 42px rgba(0,0,0,0.28);
-            border-color: rgba(41, 151, 255, 0.4);
+            border-color: rgba(156, 5, 29, 0.4);
         }
         .feat-card .feat-img {
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -107,12 +107,12 @@
         }
         .cat-chip:hover {
             transform: translateY(-2px);
-            border-color: rgba(41, 151, 255, 0.5);
+            border-color: rgba(156, 5, 29, 0.5);
             box-shadow: 0 6px 18px rgba(0,0,0,0.12);
         }
         .cat-chip.cat-active {
-            border-color: #2997ff;
-            box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.3);
+            border-color: #9c051d;
+            box-shadow: 0 0 0 2px rgba(156, 5, 29, 0.3);
         }
         html.light-theme .cat-chip {
             background: #ffffff;
@@ -141,11 +141,11 @@
                 <a href="{{ route('store.index') }}"
                    class="snap-start shrink-0 flex flex-col items-center gap-2 cursor-pointer group select-none">
                     <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden cat-chip {{ !$activeCategory ? 'cat-active' : '' }} flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 {{ !$activeCategory ? 'text-[#2997ff]' : 'text-gray-400 group-hover:text-[#2997ff]' }} transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 {{ !$activeCategory ? 'text-[#9c051d]' : 'text-gray-400 group-hover:text-[#9c051d]' }} transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
                         </svg>
                     </div>
-                    <span class="text-[11px] sm:text-xs font-medium {{ !$activeCategory ? 'font-bold text-[#2997ff]' : 'text-gray-400 group-hover:text-current' }} tracking-tight transition-colors whitespace-nowrap">All</span>
+                    <span class="text-[11px] sm:text-xs font-medium {{ !$activeCategory ? 'font-bold text-[#9c051d]' : 'text-gray-400 group-hover:text-current' }} tracking-tight transition-colors whitespace-nowrap">All</span>
                 </a>
 
                 @foreach($categories as $cat)
@@ -162,7 +162,7 @@
                                 </div>
                             @endif
                         </div>
-                        <span class="text-[11px] sm:text-xs font-medium {{ $activeCategory === $cat->slug ? 'font-bold text-[#2997ff]' : 'text-gray-400 group-hover:text-current' }} tracking-tight transition-colors whitespace-nowrap">{{ $cat->name }}</span>
+                        <span class="text-[11px] sm:text-xs font-medium {{ $activeCategory === $cat->slug ? 'font-bold text-[#9c051d]' : 'text-gray-400 group-hover:text-current' }} tracking-tight transition-colors whitespace-nowrap">{{ $cat->name }}</span>
                     </a>
                 @endforeach
             </div>
@@ -244,7 +244,7 @@
             <span class="text-5xl mb-3">📦</span>
             <p class="text-lg font-bold" style="color: var(--text-primary);">No products found</p>
             <p class="mt-1 text-xs" style="color: var(--text-muted);">Try browsing a different category.</p>
-            <a href="{{ route('store.index') }}" class="mt-5 px-6 py-2.5 bg-[#2997ff] text-white rounded-full text-xs font-bold hover:bg-[#1a7de3] transition shadow-md">
+            <a href="{{ route('store.index') }}" class="mt-5 px-6 py-2.5 bg-[#9c051d] text-white rounded-full text-xs font-bold hover:bg-[#7a0417] transition shadow-md">
                 View all products
             </a>
         </div>
@@ -280,7 +280,7 @@
                         <p class="text-[10px] font-bold tracking-widest uppercase mb-1" style="color: var(--text-muted);">
                             {{ $product->category->name }}
                         </p>
-                        <a href="{{ route('store.show', $product->slug) }}" class="font-bold text-sm leading-snug line-clamp-1 transition hover:text-[#2997ff]" style="color: var(--text-primary);">
+                        <a href="{{ route('store.show', $product->slug) }}" class="font-bold text-sm leading-snug line-clamp-1 transition hover:text-[#9c051d]" style="color: var(--text-primary);">
                             {{ $product->name }}
                         </a>
                         <p class="text-xs mt-1 line-clamp-2 leading-relaxed" style="color: var(--text-secondary);">
@@ -317,7 +317,7 @@
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <button type="submit" id="atb-{{ $product->id }}"
-                                class="atb-btn w-full py-2.5 px-3 bg-[#2997ff] text-white rounded-xl text-xs font-bold hover:bg-[#1a7de3] active:scale-95 transition shadow-sm flex items-center justify-center gap-1.5">
+                                class="atb-btn w-full py-2.5 px-3 bg-[#9c051d] text-white rounded-xl text-xs font-bold hover:bg-[#7a0417] active:scale-95 transition shadow-sm flex items-center justify-center gap-1.5">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                                 </svg>
@@ -376,7 +376,7 @@
                     <a href="{{ $products->previousPageUrl() }}"
                        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl transition duration-200 group"
                        style="color: var(--text-secondary); background: transparent;"
-                       onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                       onmouseover="this.style.background='rgba(156,5,29,0.12)'; this.style.color='#9c051d';"
                        onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';"
                        aria-label="Previous Page">
                         <svg class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -389,7 +389,7 @@
                     @foreach($products->getUrlRange(1, $products->lastPage()) as $page => $url)
                         @if($page == $products->currentPage())
                             <span class="inline-flex items-center justify-center min-w-[34px] h-[34px] px-3 text-xs font-bold rounded-xl text-white shadow-md select-none"
-                                  style="background: #2997ff; box-shadow: 0 4px 14px rgba(41, 151, 255, 0.45);"
+                                  style="background: #9c051d; box-shadow: 0 4px 14px rgba(156, 5, 29, 0.45);"
                                   aria-current="page">
                                 {{ $page }}
                             </span>
@@ -397,7 +397,7 @@
                             <a href="{{ $url }}"
                                class="inline-flex items-center justify-center min-w-[34px] h-[34px] px-3 text-xs font-semibold rounded-xl transition duration-200"
                                style="color: var(--text-secondary); background: transparent;"
-                               onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                               onmouseover="this.style.background='rgba(156,5,29,0.12)'; this.style.color='#9c051d';"
                                onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';">
                                 {{ $page }}
                             </a>
@@ -410,7 +410,7 @@
                     <a href="{{ $products->nextPageUrl() }}"
                        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl transition duration-200 group"
                        style="color: var(--text-secondary); background: transparent;"
-                       onmouseover="this.style.background='rgba(41,151,255,0.12)'; this.style.color='#2997ff';"
+                       onmouseover="this.style.background='rgba(156,5,29,0.12)'; this.style.color='#9c051d';"
                        onmouseout="this.style.background='transparent'; this.style.color='var(--text-secondary)';"
                        aria-label="Next Page">
                         <span class="hidden sm:inline">Next</span>
@@ -436,7 +436,7 @@
 
             {{-- Decorative glow --}}
             <div class="absolute -top-20 -left-20 w-72 h-72 bg-orange-500 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-blue-500 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-[#9c051d] opacity-10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10 max-w-xl">
                 <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-orange-400 mb-3">Custom Software Solutions</span>
@@ -504,7 +504,7 @@
                         }
                         if (btn) {
                             btn.classList.add('bg-green-600');
-                            btn.classList.remove('bg-[#2997ff]');
+                            btn.classList.remove('bg-[#9c051d]');
                         }
 
                         if (window.showStoreToast) {
@@ -515,7 +515,7 @@
                             if (btnTextSpan) btnTextSpan.textContent = originalText;
                             if (btn) {
                                 btn.classList.remove('bg-green-600');
-                                btn.classList.add('bg-[#2997ff]');
+                                btn.classList.add('bg-[#9c051d]');
                                 btn.disabled = false;
                             }
                         }, 1600);

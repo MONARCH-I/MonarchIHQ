@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Store Manager</x-slot>
     <x-slot name="breadcrumb">Overview</x-slot>
 
@@ -9,7 +9,7 @@
         <a href="{{ route('manager.store.orders') }}"     class="sidebar-nav-link {{ request()->is('manager/store/orders*') ? 'active' : '' }}">
             <span>🛒</span> Orders
             @if($stats['pending_orders'] > 0)
-            <span class="badge" style="background:#2997ff;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto;">{{ $stats['pending_orders'] }}</span>
+            <span class="badge" style="background:#9c051d;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto;">{{ $stats['pending_orders'] }}</span>
             @endif
         </a>
     </x-slot>
@@ -50,7 +50,7 @@
                 <td style="color:var(--text-primary);font-weight:600">#{{ $order->id }}</td>
                 <td style="font-size:12px">{{ $order->customer_name ?? $order->customer_email }}</td>
                 <td>GHS {{ number_format($order->total, 2) }}</td>
-                <td><span class="badge" style="background:rgba(41,151,255,0.1);color:#2997ff;border-color:rgba(41,151,255,0.2)">{{ ucfirst($order->status) }}</span></td>
+                <td><span class="badge" style="background:rgba(156,5,29,0.1);color:#9c051d;border-color:rgba(156,5,29,0.2)">{{ ucfirst($order->status) }}</span></td>
                 <td><a href="{{ route('manager.store.orders.show', $order) }}" class="btn btn-secondary btn-sm">View</a></td>
             </tr>
             @endforeach

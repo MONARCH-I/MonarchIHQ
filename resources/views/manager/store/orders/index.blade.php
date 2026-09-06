@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Orders</x-slot>
     <x-slot name="breadcrumb">Store → Orders</x-slot>
 
@@ -28,7 +28,7 @@
                     <span class="badge" style="background:rgba(239,68,68,0.1);color:#f87171;border-color:rgba(239,68,68,0.2)">{{ ucfirst($order->payment_status) }}</span>
                     @endif
                 </td>
-                <td><span class="badge" style="background:rgba(41,151,255,0.1);color:#2997ff;border-color:rgba(41,151,255,0.2)">{{ ucfirst($order->status) }}</span></td>
+                <td><span class="badge" style="background:rgba(156,5,29,0.1);color:#9c051d;border-color:rgba(156,5,29,0.2)">{{ ucfirst($order->status) }}</span></td>
                 <td style="font-size:12px">{{ $order->created_at->format('d M Y') }}</td>
                 <td><a href="{{ route('manager.store.orders.show', $order) }}" class="btn btn-secondary btn-sm">View</a></td>
             </tr>

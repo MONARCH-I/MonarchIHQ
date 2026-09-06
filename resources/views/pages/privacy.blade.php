@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="Privacy Policy — MonarchI HQ"
     description="Read the MonarchI HQ Privacy Policy to understand how we collect, protect, process, and respect enterprise and user data across our AI and cloud services."
     keywords="Privacy Policy, MonarchI HQ, Data Protection, GDPR, Enterprise Security, AI Privacy">
@@ -6,10 +6,10 @@
     {{-- Hero --}}
     <section class="relative pt-32 pb-16 px-6 overflow-hidden" style="background: var(--bg-primary);">
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[70%] rounded-full opacity-15 blur-[120px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
+            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[70%] rounded-full opacity-15 blur-[120px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
         </div>
         <div class="max-w-[860px] mx-auto text-center relative z-10 reveal">
-            <span class="text-xs font-bold tracking-[0.25em] text-[#2997ff] uppercase mb-4 inline-block">Legal & Compliance</span>
+            <span class="text-xs font-bold tracking-[0.25em] text-[#9c051d] uppercase mb-4 inline-block">Legal & Compliance</span>
             <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6" style="color: var(--text-primary);">Privacy Policy</h1>
             <p class="text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed" style="color: var(--text-secondary);">
                 Last updated: {{ date('F Y') }}. Our commitments to enterprise privacy, zero-data-leakage artificial intelligence, and global compliance.
@@ -56,8 +56,8 @@
                 <p class="text-sm md:text-base leading-relaxed mb-4" style="color: var(--text-secondary);">
                     You have the right to access, rectify, export, or request the erasure of your personal data at any time. For privacy inquiries or data compliance requests, contact our Data Protection Officer at:
                 </p>
-                <div class="p-4 rounded-xl inline-block" style="background: rgba(41,151,255,0.08); border: 1px solid rgba(41,151,255,0.2);">
-                    <p class="text-sm font-mono text-[#2997ff]">privacy@monarchihq.com</p>
+                <div class="p-4 rounded-xl inline-block" style="background: rgba(156,5,29,0.08); border: 1px solid rgba(156,5,29,0.2);">
+                    <p class="text-sm font-mono text-[#9c051d]">privacy@monarchihq.com</p>
                     <p class="text-xs mt-1" style="color: var(--text-muted);">MonarchI HQ, Accra / Tema, Greater Accra, Ghana</p>
                 </div>
             </div>

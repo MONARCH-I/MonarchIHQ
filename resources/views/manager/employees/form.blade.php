@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">{{ isset($user) ? 'Edit Employee' : 'Add Employee' }}</x-slot>
     <x-slot name="breadcrumb">Employees → {{ isset($user) ? 'Edit' : 'Create' }}</x-slot>
 
@@ -53,7 +53,7 @@
                 </div>
 
                 @if(!isset($user))
-                <div style="padding:12px 14px;background:rgba(41,151,255,0.05);border:1px solid rgba(41,151,255,0.15);border-radius:10px;font-size:12px;color:var(--text-secondary)">
+                <div style="padding:12px 14px;background:rgba(156,5,29,0.05);border:1px solid rgba(156,5,29,0.15);border-radius:10px;font-size:12px;color:var(--text-secondary)">
                     ℹ️ The employee account will be created as verified. Ask the employee to change their password on first login via Profile settings.
                 </div>
                 @endif

@@ -1,4 +1,4 @@
-<x-main-layout>
+﻿<x-main-layout>
 <div class="pt-20 md:pt-24 pb-24 min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
     <div class="max-w-[760px] mx-auto px-4 sm:px-6 lg:px-8 pt-8">
 
@@ -14,21 +14,21 @@
                 </svg>
             </div>
             @else
-            <div class="w-20 h-20 bg-blue-500/10 text-[#2997ff] rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border border-blue-500/20">
+            <div class="w-20 h-20 bg-[#9c051d]/10 text-[#9c051d] rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner border border-[#9c051d]/20">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
             </div>
             @endif
 
-            <p class="text-xs font-bold uppercase tracking-widest text-[#2997ff] mb-2">
+            <p class="text-xs font-bold uppercase tracking-widest text-[#9c051d] mb-2">
                 {{ $order->isPaid() ? 'Payment Confirmed' : 'Order Received' }}
             </p>
             <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3" style="color: var(--text-primary);">
                 {{ $order->isPaid() ? 'Thank you for your payment!' : 'Thank you for your order!' }}
             </h1>
             <p class="text-sm max-w-md mx-auto leading-relaxed mb-6" style="color: var(--text-secondary);">
-                We have received your order <span class="font-bold text-[#2997ff]">#MHQ-{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>.
+                We have received your order <span class="font-bold text-[#9c051d]">#MHQ-{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>.
                 @if($order->isPaid())
                     Your payment via Paystack was successful and your digital items/shipment are now being prepared.
                 @else
@@ -78,7 +78,7 @@
                     @foreach($order->items as $item)
                     <div class="flex items-center justify-between text-sm">
                         <div class="flex items-center gap-2 min-w-0">
-                            <span class="font-bold text-[#2997ff]">{{ $item->quantity }}x</span>
+                            <span class="font-bold text-[#9c051d]">{{ $item->quantity }}x</span>
                             <span class="truncate" style="color: var(--text-secondary);">{{ $item->product?->name ?? 'Product' }}</span>
                         </div>
                         <span class="font-bold shrink-0 ml-4" style="color: var(--text-primary);">₵{{ number_format($item->subtotal, 2) }}</span>
@@ -88,7 +88,7 @@
 
                 <div class="pt-3 border-t flex justify-between font-bold text-base" style="border-color: var(--border-color);">
                     <span style="color: var(--text-primary);">Total Amount</span>
-                    <span class="text-xl text-[#2997ff]">₵{{ number_format($order->total, 2) }}</span>
+                    <span class="text-xl text-[#9c051d]">₵{{ number_format($order->total, 2) }}</span>
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                 @endif
 
                 <a href="{{ route('store.index') }}"
-                   class="w-full sm:w-auto px-8 py-3.5 bg-[#2997ff] text-white rounded-full text-sm font-bold hover:bg-[#1a7de3] transition shadow-md">
+                   class="w-full sm:w-auto px-8 py-3.5 bg-[#9c051d] text-white rounded-full text-sm font-bold hover:bg-[#7a0417] transition shadow-md">
                     Continue Shopping
                 </a>
 

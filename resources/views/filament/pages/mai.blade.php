@@ -1,4 +1,4 @@
-<x-filament-panels::page>
+﻿<x-filament-panels::page>
     <div class="mai-root-wrapper" id="maiApp">
 
         {{-- ── Background Aurora FX ────────────────────────────────────────── --}}
@@ -14,9 +14,9 @@
                         <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#mai-gemini-grad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/>
                         <defs>
                             <linearGradient id="mai-gemini-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#38bdf8"/>
-                                <stop offset="0.5" stop-color="#818cf8"/>
-                                <stop offset="1" stop-color="#c084fc"/>
+                                <stop stop-color="#9c051d"/>
+                                <stop offset="0.5" stop-color="#c4203a"/>
+                                <stop offset="1" stop-color="#e8788a"/>
                             </linearGradient>
                         </defs>
                     </svg>
@@ -125,9 +125,9 @@
                                     <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#mai-hero-grad)"/>
                                     <defs>
                                         <linearGradient id="mai-hero-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#38bdf8"/>
-                                            <stop offset="0.4" stop-color="#818cf8"/>
-                                            <stop offset="0.8" stop-color="#c084fc"/>
+                                            <stop stop-color="#9c051d"/>
+                                            <stop offset="0.4" stop-color="#c4203a"/>
+                                            <stop offset="0.8" stop-color="#e8788a"/>
                                             <stop offset="1" stop-color="#f43f5e"/>
                                         </linearGradient>
                                     </defs>
@@ -146,7 +146,7 @@
                         <div class="mai-suggestions-grid">
 
                             <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('How many active products do we have in total, and which ones are currently featured?')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8;">
+                                <div class="mai-card-icon-wrap" style="background: rgba(56, 189, 248, 0.12); color: #9c051d;">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                                     </svg>
@@ -185,7 +185,7 @@
                             </button>
 
                             <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('Show me the latest contact messages and inquiries received from the website.')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(192, 132, 252, 0.12); color: #c084fc;">
+                                <div class="mai-card-icon-wrap" style="background: rgba(192, 132, 252, 0.12); color: #e8788a;">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                                     </svg>
@@ -334,7 +334,7 @@
                 right: 15%;
                 width: 480px;
                 height: 380px;
-                background: radial-gradient(circle, #2563eb 0%, #4f46e5 50%, transparent 70%);
+                background: radial-gradient(circle, #9c051d 0%, #4f46e5 50%, transparent 70%);
             }
             .mai-glow-2 {
                 bottom: -60px;
@@ -387,7 +387,7 @@
                 font-size: 16px;
                 font-weight: 800;
                 letter-spacing: -0.02em;
-                background: linear-gradient(135deg, #ffffff 30%, #93c5fd 75%, #c084fc 100%);
+                background: linear-gradient(135deg, #ffffff 30%, #e8788a 75%, #e8788a 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
@@ -400,7 +400,7 @@
                 font-size: 10px;
                 font-weight: 700;
                 background: rgba(56, 189, 248, 0.1);
-                color: #38bdf8;
+                color: #9c051d;
                 border: 1px solid rgba(56, 189, 248, 0.25);
             }
             .mai-live-dot {
@@ -708,7 +708,7 @@
                 position: absolute;
                 inset: -8px;
                 border-radius: 24px;
-                background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+                background: linear-gradient(135deg, #9c051d, #c4203a, #e8788a);
                 filter: blur(20px);
                 opacity: 0.55;
                 animation: maiGlowPulse 4s ease-in-out infinite;
@@ -737,7 +737,7 @@
                 margin-bottom: 8px;
             }
             .mai-hero-name {
-                background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+                background: linear-gradient(135deg, #9c051d 0%, #c4203a 50%, #e8788a 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
@@ -814,7 +814,7 @@
                 transition: transform 0.2s ease, color 0.2s ease;
             }
             .mai-suggestion-card:hover .mai-card-arrow {
-                color: #38bdf8;
+                color: #9c051d;
                 transform: translateX(3px);
             }
 
@@ -844,7 +844,7 @@
             }
             .mai-msg-row.user .mai-msg-bubble {
                 max-width: 78%;
-                background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+                background: linear-gradient(135deg, #5a0414 0%, #1e293b 100%);
                 border: 1px solid rgba(56, 189, 248, 0.25);
                 border-top: 1px solid rgba(255, 255, 255, 0.35);
                 color: #f8fafc;
@@ -870,7 +870,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-shrink: 0;
-                color: #38bdf8;
+                color: #9c051d;
                 font-size: 14px;
                 font-weight: 800;
                 box-shadow: 0 4px 14px -2px rgba(56, 189, 248, 0.3);
@@ -911,7 +911,7 @@
             .mai-answer-markdown h2 { font-size: 16px; }
             .mai-answer-markdown h3 { font-size: 14px; }
             .mai-answer-markdown strong { color: #f8fafc; font-weight: 700; }
-            .mai-answer-markdown em { color: #93c5fd; font-style: italic; }
+            .mai-answer-markdown em { color: #e8788a; font-style: italic; }
             .mai-answer-markdown ul, .mai-answer-markdown ol {
                 margin: 10px 0 14px 20px;
                 padding: 0;
@@ -921,7 +921,7 @@
             .mai-answer-markdown li { margin-bottom: 6px; }
             .mai-answer-markdown code:not(pre code) {
                 background: rgba(56, 189, 248, 0.12);
-                color: #38bdf8;
+                color: #9c051d;
                 padding: 2px 6px;
                 border-radius: 6px;
                 font-size: 12px;
@@ -1044,7 +1044,7 @@
                 font-size: 10.5px;
                 text-transform: uppercase;
                 letter-spacing: 0.06em;
-                color: #38bdf8;
+                color: #9c051d;
                 font-weight: 700;
                 margin-bottom: 4px;
             }
@@ -1107,7 +1107,7 @@
                 width: 6px;
                 height: 6px;
                 border-radius: 99px;
-                background: #38bdf8;
+                background: #9c051d;
                 animation: maiDotPulse 1.4s infinite ease-in-out both;
             }
             .mai-thinking-dots span:nth-child(1) { animation-delay: -0.32s; }
@@ -1199,7 +1199,7 @@
                 width: 38px;
                 height: 38px;
                 border-radius: 14px;
-                background: linear-gradient(135deg, #38bdf8 0%, #6366f1 60%, #a855f7 100%);
+                background: linear-gradient(135deg, #9c051d 0%, #6366f1 60%, #a855f7 100%);
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 color: #ffffff;
                 display: flex;
@@ -1302,7 +1302,7 @@
                 font-family: ui-monospace, SFMono-Regular, monospace;
                 font-size: 12px;
                 font-weight: 700;
-                color: #38bdf8;
+                color: #9c051d;
                 margin-bottom: 3px;
             }
             .mai-schema-desc {

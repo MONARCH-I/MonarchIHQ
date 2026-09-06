@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Application: {{ $application->name }}</x-slot>
     <x-slot name="breadcrumb">HR → Applications → #{{ $application->id }}</x-slot>
 
@@ -36,7 +36,7 @@
                     @php
                         $badgeStyle = match($application->status) {
                             'pending'     => 'background:rgba(234,179,8,0.15);color:#facc15;border:1px solid rgba(234,179,8,0.3)',
-                            'reviewed'    => 'background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3)',
+                            'reviewed'    => 'background:rgba(59,130,246,0.15);color:#c4203a;border:1px solid rgba(59,130,246,0.3)',
                             'shortlisted' => 'background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3)',
                             'rejected'    => 'background:rgba(244,63,94,0.15);color:#fb7185;border:1px solid rgba(244,63,94,0.3)',
                             default       => 'background:rgba(255,255,255,0.1);color:#fff',
@@ -82,7 +82,7 @@
                 <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px">Candidate Resume / CV</div>
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;background:var(--bg-hover);border-radius:12px;border:1px solid var(--border)">
                     <div style="display:flex;align-items:center;gap:12px">
-                        <div style="width:40px;height:40px;border-radius:10px;background:rgba(41,151,255,0.15);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">
+                        <div style="width:40px;height:40px;border-radius:10px;background:rgba(156,5,29,0.15);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">
                             CV
                         </div>
                         <div>

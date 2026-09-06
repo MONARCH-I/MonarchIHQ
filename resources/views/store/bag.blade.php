@@ -1,4 +1,4 @@
-<x-main-layout>
+﻿<x-main-layout>
 <div class="bag-page-root pt-20 md:pt-24 pb-24 min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
     <style>
         .bag-card {
@@ -20,7 +20,7 @@
             transition: all 0.3s ease;
         }
         .bag-item-card:hover {
-            border-color: rgba(41, 151, 255, 0.35);
+            border-color: rgba(156, 5, 29, 0.35);
             box-shadow: 0 10px 28px rgba(0,0,0,0.14);
         }
         html.light-theme .bag-item-card {
@@ -45,8 +45,8 @@
             transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .qty-stepper-btn:hover:not(:disabled) {
-            background: rgba(41, 151, 255, 0.15);
-            color: #2997ff !important;
+            background: rgba(156, 5, 29, 0.15);
+            color: #9c051d !important;
             transform: scale(1.08);
         }
         .qty-stepper-btn:active:not(:disabled) {
@@ -92,7 +92,7 @@
                 </h1>
             </div>
             <a href="{{ route('store.index') }}"
-               class="text-sm font-semibold hover:text-[#2997ff] flex items-center gap-1.5 transition py-2 px-4 rounded-xl border"
+               class="text-sm font-semibold hover:text-[#9c051d] flex items-center gap-1.5 transition py-2 px-4 rounded-xl border"
                style="color: var(--text-secondary); border-color: var(--border-color); background: var(--card-bg-alt);">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
@@ -123,13 +123,13 @@
         {{-- ── EMPTY BAG CONTAINER ────────────────────────────────────────── --}}
         <div id="empty-bag-container" class="{{ empty($items) ? '' : 'hidden' }} flex flex-col items-center justify-center py-24 text-center">
             <div class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-lg mb-6" style="background: var(--card-bg-alt); border: 1px solid var(--border-color);">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#2997ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#9c051d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                 </svg>
             </div>
             <h2 class="text-2xl font-bold" style="color: var(--text-primary);">Your shopping bag is empty</h2>
             <p class="mt-2 text-sm max-w-sm" style="color: var(--text-muted);">Looks like you haven't added anything to your bag yet. Explore our digital software and hardware products.</p>
-            <a href="{{ route('store.index') }}" class="mt-7 px-8 py-3.5 bg-[#2997ff] text-white rounded-full text-sm font-bold hover:bg-[#1a7de3] transition shadow-md hover:shadow-lg hover:-translate-y-0.5 transform">
+            <a href="{{ route('store.index') }}" class="mt-7 px-8 py-3.5 bg-[#9c051d] text-white rounded-full text-sm font-bold hover:bg-[#7a0417] transition shadow-md hover:shadow-lg hover:-translate-y-0.5 transform">
                 Browse the Store →
             </a>
         </div>
@@ -158,7 +158,7 @@
 
                             <div class="min-w-0 flex-1">
                                 <p class="text-[10px] font-bold uppercase tracking-widest mb-0.5" style="color: var(--text-muted);">{{ $p->category->name }}</p>
-                                <a href="{{ route('store.show', $p->slug) }}" class="font-bold text-sm leading-snug truncate block hover:text-[#2997ff] transition" style="color: var(--text-primary);">
+                                <a href="{{ route('store.show', $p->slug) }}" class="font-bold text-sm leading-snug truncate block hover:text-[#9c051d] transition" style="color: var(--text-primary);">
                                     {{ $p->name }}
                                 </a>
                                 <div class="flex items-center gap-2 mt-1">
@@ -265,10 +265,10 @@
                     <div class="mt-5 pt-4 border-t" style="border-color: var(--border-color);">
                         <div class="flex gap-2">
                             <input type="text" id="promo-input" placeholder="Promo code"
-                                   class="flex-1 px-3.5 py-2.5 rounded-xl text-xs font-medium focus:outline-none focus:ring-1 focus:ring-[#2997ff] uppercase"
+                                   class="flex-1 px-3.5 py-2.5 rounded-xl text-xs font-medium focus:outline-none focus:ring-1 focus:ring-[#9c051d] uppercase"
                                    style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
                             <button type="button" onclick="applyPromoCode()"
-                                    class="px-4 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#2997ff] hover:text-white"
+                                    class="px-4 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#9c051d] hover:text-white"
                                     style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
                                 Apply
                             </button>
@@ -280,12 +280,12 @@
 
                     <div class="flex justify-between font-bold text-base mb-6">
                         <span style="color: var(--text-primary);">Estimated Total</span>
-                        <span id="bag-summary-total" class="text-xl text-[#2997ff]">₵{{ number_format($subtotal, 2) }}</span>
+                        <span id="bag-summary-total" class="text-xl text-[#9c051d]">₵{{ number_format($subtotal, 2) }}</span>
                     </div>
 
                     {{-- Proceed to Checkout Trigger --}}
                     <button type="button" onclick="openCheckoutModal()"
-                            class="w-full py-4 bg-[#2997ff] text-white rounded-2xl font-bold text-sm hover:bg-[#1a7de3] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
+                            class="w-full py-4 bg-[#9c051d] text-white rounded-2xl font-bold text-sm hover:bg-[#7a0417] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
                         <span>Proceed to Checkout</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -305,7 +305,7 @@
                     {{-- Need help? --}}
                     <div class="mt-6 pt-4 border-t text-center" style="border-color: var(--border-color);">
                         <p class="text-xs" style="color: var(--text-muted);">Questions about your order?</p>
-                        <a href="{{ url('/contact') }}" class="text-xs font-semibold text-[#2997ff] hover:underline underline-offset-2 transition">
+                        <a href="{{ url('/contact') }}" class="text-xs font-semibold text-[#9c051d] hover:underline underline-offset-2 transition">
                             Talk to our customer desk →
                         </a>
                     </div>
@@ -329,7 +329,7 @@
         {{-- Header (sticky) --}}
         <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b shrink-0" style="border-color: var(--border-color);">
             <div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-[#2997ff]">Instant Checkout</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-[#9c051d]">Instant Checkout</p>
                 <h3 class="text-xl font-bold" style="color: var(--text-primary);">Complete Your Order</h3>
             </div>
             <button type="button" onclick="closeCheckoutModal()"
@@ -345,8 +345,8 @@
             @auth
             {{-- Logged-in: show pre-filled read-only identity info --}}
             <div class="p-3.5 rounded-xl flex items-center gap-3 border"
-                 style="background: rgba(41,151,255,0.07); border-color: rgba(41,151,255,0.25);">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0 text-[#2997ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                 style="background: rgba(156,5,29,0.07); border-color: rgba(156,5,29,0.25);">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0 text-[#9c051d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <div class="min-w-0">
@@ -363,7 +363,7 @@
             <div>
                 <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Phone / WhatsApp *</label>
                 <input type="tel" name="customer_phone" required placeholder="+233 XX XXX XXXX"
-                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff]"
+                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d]"
                        style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
             </div>
             @else
@@ -371,7 +371,7 @@
             <div>
                 <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Full Name *</label>
                 <input type="text" name="customer_name" required placeholder="e.g. Kwame Mensah"
-                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff]"
+                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d]"
                        style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
             </div>
 
@@ -379,27 +379,27 @@
                 <div>
                     <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Email Address *</label>
                     <input type="email" name="customer_email" required placeholder="kwame@example.com"
-                           class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff]"
+                           class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d]"
                            style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
                 </div>
                 <div>
                     <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Phone / WhatsApp *</label>
                     <input type="tel" name="customer_phone" required placeholder="+233 XX XXX XXXX"
-                           class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff]"
+                           class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d]"
                            style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
                 </div>
             </div>
 
             {{-- Sign-in nudge --}}
             <p class="text-[11px]" style="color: var(--text-muted);"
-            >Have an account? <a href="{{ route('login') }}" class="text-[#2997ff] font-semibold hover:underline">Sign in</a> to check out faster.</p>
+            >Have an account? <a href="{{ route('login') }}" class="text-[#9c051d] font-semibold hover:underline">Sign in</a> to check out faster.</p>
             @endauth
 
             {{-- Delivery / Shipping Address --}}
             <div>
                 <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Delivery Address / City *</label>
                 <input type="text" name="shipping_address" required placeholder="e.g. Airport Residential Area, Accra"
-                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff]"
+                       class="w-full px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d]"
                        style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
             </div>
 
@@ -407,7 +407,7 @@
             <div>
                 <label class="block text-xs font-bold mb-2" style="color: var(--text-secondary);">Payment Method</label>
                 <div class="p-4 rounded-2xl border"
-                     style="background: var(--bg-primary); border-color: rgba(41, 151, 255, 0.4); box-shadow: 0 4px 18px rgba(41, 151, 255, 0.08);">
+                     style="background: var(--bg-primary); border-color: rgba(156, 5, 29, 0.4); box-shadow: 0 4px 18px rgba(156, 5, 29, 0.08);">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm bg-[#00C3F7]/15 text-[#00C3F7]">
@@ -420,7 +420,7 @@
                                 <span class="text-[11px]" style="color: var(--text-muted);">Instant, safe &amp; direct payments</span>
                             </div>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-500/10 text-[#2997ff] border border-blue-500/20">
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#9c051d]/10 text-[#9c051d] border border-[#9c051d]/20">
                             Secure Gateway
                         </span>
                     </div>
@@ -437,7 +437,7 @@
                         </span>
                         <span class="text-[10px] font-semibold px-2.5 py-1 rounded-lg border flex items-center gap-1"
                               style="background: var(--card-bg-alt); border-color: var(--border-color); color: var(--text-secondary);">
-                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> AT Money
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#c4203a]"></span> AT Money
                         </span>
                         <span class="text-[10px] font-semibold px-2.5 py-1 rounded-lg border flex items-center gap-1"
                               style="background: var(--card-bg-alt); border-color: var(--border-color); color: var(--text-secondary);">
@@ -457,7 +457,7 @@
             <div>
                 <label class="block text-xs font-bold mb-1.5" style="color: var(--text-secondary);">Special Instructions (Optional)</label>
                 <textarea name="notes" rows="2" placeholder="Any specific requirements or instructions..."
-                          class="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#2997ff] resize-none"
+                          class="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#9c051d] resize-none"
                           style="background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);"></textarea>
             </div>
 
@@ -468,12 +468,12 @@
                 {{-- Summary amount note --}}
                 <div class="flex items-center justify-between mb-3">
                     <span class="text-xs font-medium" style="color: var(--text-secondary);">Amount to Pay:</span>
-                    <span id="modal-checkout-total" class="font-extrabold text-base text-[#2997ff]">₵{{ number_format($subtotal, 2) }}</span>
+                    <span id="modal-checkout-total" class="font-extrabold text-base text-[#9c051d]">₵{{ number_format($subtotal, 2) }}</span>
                 </div>
 
                 {{-- Submit CTA --}}
                 <button type="submit" id="modal-submit-btn"
-                        class="w-full py-4 bg-[#2997ff] text-white rounded-2xl font-bold text-sm hover:bg-[#1a7de3] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
+                        class="w-full py-4 bg-[#9c051d] text-white rounded-2xl font-bold text-sm hover:bg-[#7a0417] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
                     <span>Pay with Paystack</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>

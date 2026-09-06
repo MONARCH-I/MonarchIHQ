@@ -1,4 +1,4 @@
-@php
+﻿@php
     $productImage = $product->image_path ? asset('storage/' . $product->image_path) : asset('images/world-tech.png');
     $productDescription = Str::limit(strip_tags($product->short_description ?: $product->description), 160);
     $effectivePrice = $product->sale_price ?: $product->price;
@@ -44,7 +44,7 @@
         }
         .modern-qty-stepper:focus-within,
         .modern-qty-stepper:hover {
-            border-color: rgba(41, 151, 255, 0.4);
+            border-color: rgba(156, 5, 29, 0.4);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
         }
         .qty-stepper-btn {
@@ -52,8 +52,8 @@
             transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .qty-stepper-btn:hover:not(:disabled) {
-            background: rgba(41, 151, 255, 0.15);
-            color: #2997ff !important;
+            background: rgba(156, 5, 29, 0.15);
+            color: #9c051d !important;
             transform: scale(1.08);
         }
         .qty-stepper-btn:active:not(:disabled) {
@@ -73,9 +73,9 @@
 
         {{-- Breadcrumb --}}
         <nav class="flex items-center gap-2 text-xs mb-8" style="color: var(--text-muted);">
-            <a href="{{ route('store.index') }}" class="hover:text-[#2997ff] transition">Store</a>
+            <a href="{{ route('store.index') }}" class="hover:text-[#9c051d] transition">Store</a>
             <span>/</span>
-            <a href="{{ route('store.index', ['category' => $product->category->slug]) }}" class="hover:text-[#2997ff] transition">{{ $product->category->name }}</a>
+            <a href="{{ route('store.index', ['category' => $product->category->slug]) }}" class="hover:text-[#9c051d] transition">{{ $product->category->name }}</a>
             <span>/</span>
             <span class="font-medium" style="color: var(--text-secondary);">{{ $product->name }}</span>
         </nav>
@@ -94,7 +94,7 @@
                     @if($badge['color'] === 'orange') bg-orange-500 text-white
                     @elseif($badge['color'] === 'red') bg-red-600 text-white
                     @elseif($badge['color'] === 'green') bg-green-600 text-white
-                    @elseif($badge['color'] === 'blue') bg-blue-600 text-white
+                    @elseif($badge['color'] === 'blue') bg-[#9c051d] text-white
                     @else bg-gray-600 text-white @endif">
                     {{ $badge['text'] }}
                 </span>
@@ -164,7 +164,7 @@
 
                         {{-- Add to Bag Button --}}
                         <button type="submit" id="detail-atb-btn"
-                                class="flex-1 h-[52px] bg-[#2997ff] text-white rounded-2xl font-bold text-sm hover:bg-[#1a7de3] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
+                                class="flex-1 h-[52px] bg-[#9c051d] text-white rounded-2xl font-bold text-sm hover:bg-[#7a0417] transition-all hover:shadow-lg active:scale-98 flex items-center justify-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                             </svg>
@@ -205,7 +205,7 @@
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400">
                     </div>
                     <div class="p-4">
-                        <p class="text-sm font-bold line-clamp-1 group-hover:text-[#2997ff] transition" style="color: var(--text-primary);">{{ $rel->name }}</p>
+                        <p class="text-sm font-bold line-clamp-1 group-hover:text-[#9c051d] transition" style="color: var(--text-primary);">{{ $rel->name }}</p>
                         <p class="text-sm font-semibold mt-1" style="color: var(--text-secondary);">{{ $rel->display_price }}</p>
                     </div>
                 </a>
@@ -291,7 +291,7 @@
                     if (span) span.textContent = 'Added to Bag ✓';
                     if (btn) {
                         btn.classList.add('bg-green-600');
-                        btn.classList.remove('bg-[#2997ff]');
+                        btn.classList.remove('bg-[#9c051d]');
                     }
 
                     if (window.showStoreToast) {
@@ -302,7 +302,7 @@
                         if (span) span.textContent = originalText;
                         if (btn) {
                             btn.classList.remove('bg-green-600');
-                            btn.classList.add('bg-[#2997ff]');
+                            btn.classList.add('bg-[#9c051d]');
                             btn.disabled = false;
                         }
                     }, 1600);

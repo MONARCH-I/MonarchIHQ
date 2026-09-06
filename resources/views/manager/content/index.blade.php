@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Content Manager</x-slot>
     <x-slot name="breadcrumb">Overview</x-slot>
 
@@ -20,7 +20,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-label">Published</div>
-            <div class="stat-value" style="color:#2997ff">{{ $stats['published_articles'] }}</div>
+            <div class="stat-value" style="color:#9c051d">{{ $stats['published_articles'] }}</div>
         </div>
         <div class="stat-card">
             <div class="stat-label">Total Projects</div>

@@ -1,4 +1,4 @@
-<x-manager-sidebar>
+﻿<x-manager-sidebar>
     <x-slot name="pageTitle">Job Applications</x-slot>
     <x-slot name="breadcrumb">HR → Applications</x-slot>
 
@@ -9,7 +9,7 @@
             <span>📄</span> Applications
             @php $pendingCount = \App\Models\JobApplication::pending()->count(); @endphp
             @if($pendingCount > 0)
-            <span class="badge" style="background:#2997ff;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto">{{ $pendingCount }}</span>
+            <span class="badge" style="background:#9c051d;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto">{{ $pendingCount }}</span>
             @endif
         </a>
         <a href="{{ route('manager.hr.messages') }}"     class="sidebar-nav-link"><span>✉️</span> Messages</a>
@@ -89,7 +89,7 @@
                         @php
                             $badgeStyle = match($app->status) {
                                 'pending'     => 'background:rgba(234,179,8,0.15);color:#facc15;border:1px solid rgba(234,179,8,0.3)',
-                                'reviewed'    => 'background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3)',
+                                'reviewed'    => 'background:rgba(59,130,246,0.15);color:#c4203a;border:1px solid rgba(59,130,246,0.3)',
                                 'shortlisted' => 'background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3)',
                                 'rejected'    => 'background:rgba(244,63,94,0.15);color:#fb7185;border:1px solid rgba(244,63,94,0.3)',
                                 default       => 'background:rgba(255,255,255,0.1);color:#fff',

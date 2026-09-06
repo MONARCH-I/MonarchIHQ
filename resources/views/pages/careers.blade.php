@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="Careers at MonarchI HQ — Build Next-Generation AI & Systems"
     description="Join the engineering team at MonarchI HQ. Explore open positions in software development, machine learning, systems architecture, and product design."
     keywords="MonarchI Careers, Software Engineering Jobs Ghana, AI Engineering Careers Africa, Tech Jobs Accra, Systems Architect Jobs">
@@ -10,18 +10,18 @@
         ============================================= --}}
         <section class="relative pt-32 pb-20 px-6 min-h-[55vh] flex items-center justify-center overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-                <div class="absolute top-[-20%] right-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
-                <div class="absolute bottom-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
+                <div class="absolute top-[-20%] right-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
+                <div class="absolute bottom-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
             </div>
 
             <div class="max-w-[1000px] mx-auto text-center relative z-10 reveal">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2997ff]/30 bg-[#2997ff]/10 text-[#2997ff] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-[#2997ff] animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#9c051d]/30 bg-[#9c051d]/10 text-[#9c051d] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-[#9c051d] animate-pulse"></span>
                     Join Our Engineering Vanguard
                 </div>
                 <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight" style="color: var(--text-primary);">
                     Build the Next Frontier of <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2997ff] via-[#60a5fa] to-[#93c5fd]">Global Technology.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#9c051d] via-[#c4203a] to-[#e8788a]">Global Technology.</span>
                 </h2>
                 <p class="text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed" style="color: var(--text-secondary);">
                     We are a team of systems architects, AI engineers, and product designers solving high-complexity problems with craft and obsession.
@@ -35,25 +35,25 @@
         <section class="py-20 px-6 z-10 relative border-t" style="border-color: var(--border-color); background: var(--bg-section);">
             <div class="max-w-[1200px] mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-[#2997ff] mb-2">Our Engineering Ethos</h3>
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-[#9c051d] mb-2">Our Engineering Ethos</h3>
                     <h2 class="text-3xl md:text-4xl font-bold" style="color: var(--text-primary);">Why Builders Thrive at MonarchI</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#2997ff]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">⚡</div>
+                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#9c051d]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
+                        <div class="w-12 h-12 rounded-2xl bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center font-bold text-xl mb-6">⚡</div>
                         <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Extreme Craftsmanship</h4>
                         <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">We care deeply about clean code, zero-latency micro-interactions, robust database design, and architectural integrity. No cutting corners.</p>
                     </div>
 
-                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#2997ff]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">🌐</div>
+                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#9c051d]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
+                        <div class="w-12 h-12 rounded-2xl bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center font-bold text-xl mb-6">🌐</div>
                         <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">African Roots, Global Scale</h4>
                         <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Headquartered in Accra with global deployment standards. We build software and hardware that solves real infrastructural challenges across markets.</p>
                     </div>
 
-                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#2997ff]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center font-bold text-xl mb-6">🚀</div>
+                    <div class="p-8 rounded-3xl border transition-all duration-300 hover:border-[#9c051d]/50 hover:shadow-xl" style="background: var(--bg-card); border-color: var(--border-color);">
+                        <div class="w-12 h-12 rounded-2xl bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center font-bold text-xl mb-6">🚀</div>
                         <h4 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Autonomous Ownership</h4>
                         <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Engineers lead projects end-to-end. We value high agency, clear technical writing, rapid prototyping, and shipping production-grade systems.</p>
                     </div>
@@ -67,7 +67,7 @@
         <section id="positions" class="py-20 px-6 z-10 relative border-t" style="border-color: var(--border-color); background: var(--bg-primary);">
             <div class="max-w-[1050px] mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-[#2997ff] mb-2">Open Positions</h3>
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-[#9c051d] mb-2">Open Positions</h3>
                     <h2 class="text-3xl md:text-4xl font-bold" style="color: var(--text-primary);">Find Your Next Chapter at MonarchI</h2>
                     <p class="text-xs text-gray-400 mt-2">Click any role to view comprehensive requirements and submit your application.</p>
                 </div>
@@ -78,7 +78,7 @@
                     <div class="text-4xl mb-4">🔭</div>
                     <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">No active openings right now</h4>
                     <p class="text-sm max-w-md mx-auto mb-6" style="color: var(--text-secondary);">We are always seeking exceptional engineers, mathematicians, and builders. Drop us your portfolio or GitHub profile.</p>
-                    <a href="mailto:careers@monarchi.com.gh?subject=General%20Engineering%20Inquiry" class="text-xs font-bold text-[#2997ff] hover:underline">
+                    <a href="mailto:careers@monarchi.com.gh?subject=General%20Engineering%20Inquiry" class="text-xs font-bold text-[#9c051d] hover:underline">
                         Send General Application &rarr;
                     </a>
                 </div>
@@ -89,17 +89,17 @@
                     <div role="button" tabindex="0"
                          @click="openModal({{ $job->id }})"
                          @keydown.enter="openModal({{ $job->id }})"
-                         class="p-6 sm:p-8 rounded-2xl border transition-all duration-300 hover:border-[#2997ff] hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group cursor-pointer select-none"
+                         class="p-6 sm:p-8 rounded-2xl border transition-all duration-300 hover:border-[#9c051d] hover:shadow-2xl hover:shadow-[#9c051d]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group cursor-pointer select-none"
                          style="background: var(--bg-card); border-color: var(--border-color);">
                         <div>
                             <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff] px-2.5 py-0.5 rounded-full bg-[#2997ff]/10">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#9c051d] px-2.5 py-0.5 rounded-full bg-[#9c051d]/10">
                                     {{ $job->department }}
                                 </span>
                                 <span class="text-xs text-gray-400">&middot; {{ $job->employmentTypeLabel() }}</span>
                                 <span class="text-xs text-gray-400">&middot; {{ $job->location }}</span>
                             </div>
-                            <h4 class="text-xl font-bold group-hover:text-[#2997ff] transition-colors" style="color: var(--text-primary);">
+                            <h4 class="text-xl font-bold group-hover:text-[#9c051d] transition-colors" style="color: var(--text-primary);">
                                 {{ $job->title }}
                             </h4>
                             @if($job->skills_required)
@@ -115,7 +115,7 @@
 
                         <div class="flex items-center gap-3 shrink-0">
                             <button type="button"
-                                    class="px-5 py-2.5 bg-gradient-to-r from-[#2997ff] to-blue-600 text-white rounded-xl text-xs font-bold hover:brightness-110 transition shadow-lg shadow-blue-500/25 flex items-center gap-1.5">
+                                    class="px-5 py-2.5 bg-gradient-to-r from-[#9c051d] to-[#7a0417] text-white rounded-xl text-xs font-bold hover:brightness-110 transition shadow-lg shadow-[#9c051d]/25 flex items-center gap-1.5">
                                 <span>View Details &amp; Apply</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                             </button>
@@ -130,7 +130,7 @@
                     <p class="text-xs max-w-md mx-auto mb-6" style="color: var(--text-secondary);">
                         We are continuously scouting for high-agency systems builders, researchers, and hardware specialists. Let us know how you can contribute.
                     </p>
-                    <a href="mailto:careers@monarchi.com.gh?subject=General%20Engineering%20Inquiry" class="text-xs font-bold text-[#2997ff] hover:underline">
+                    <a href="mailto:careers@monarchi.com.gh?subject=General%20Engineering%20Inquiry" class="text-xs font-bold text-[#9c051d] hover:underline">
                         Send General Inquiry &rarr;
                     </a>
                 </div>
@@ -169,15 +169,15 @@
                  x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                  x-transition:leave-end="opacity-0 scale-95 translate-y-4"
                  class="relative w-full max-w-3xl max-h-[92vh] flex flex-col rounded-3xl shadow-2xl overflow-hidden border border-white/10 z-10"
-                 style="background: #0d0f17; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(41, 151, 255, 0.18);">
+                 style="background: #130005; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(156, 5, 29, 0.18);">
 
                 {{-- Ambient Header Glow --}}
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-28 bg-gradient-to-b from-[#2997ff]/20 to-transparent blur-3xl pointer-events-none"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 h-28 bg-gradient-to-b from-[#9c051d]/20 to-transparent blur-3xl pointer-events-none"></div>
 
                 {{-- Sticky Modal Header --}}
-                <header class="relative px-6 py-4 border-b border-white/10 flex items-center justify-between gap-4 shrink-0 bg-[#0d0f17]/90 backdrop-blur-md z-20">
+                <header class="relative px-6 py-4 border-b border-white/10 flex items-center justify-between gap-4 shrink-0 bg-[#130005]/90 backdrop-blur-md z-20">
                     <div class="flex items-center gap-2 overflow-hidden">
-                        <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff] px-2.5 py-0.5 rounded-full bg-[#2997ff]/10 shrink-0"
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#9c051d] px-2.5 py-0.5 rounded-full bg-[#9c051d]/10 shrink-0"
                               x-text="currentJob?.department"></span>
                         <span class="text-xs text-gray-400 hidden sm:inline" x-text="'· ' + (currentJob?.employment_type_label || '')"></span>
                         <span class="text-xs text-gray-400 hidden sm:inline" x-text="'· ' + (currentJob?.location || '')"></span>
@@ -188,13 +188,13 @@
                         <div class="flex items-center p-1 rounded-xl bg-white/5 border border-white/10 text-xs">
                             <button type="button"
                                     @click="activeTab = 'details'"
-                                    :class="activeTab === 'details' ? 'bg-[#2997ff] text-white shadow-md' : 'text-gray-400 hover:text-white'"
+                                    :class="activeTab === 'details' ? 'bg-[#9c051d] text-white shadow-md' : 'text-gray-400 hover:text-white'"
                                     class="px-3 py-1 rounded-lg font-medium transition">
                                 Job Details
                             </button>
                             <button type="button"
                                     @click="activeTab = 'apply'"
-                                    :class="activeTab === 'apply' ? 'bg-[#2997ff] text-white shadow-md' : 'text-gray-400 hover:text-white'"
+                                    :class="activeTab === 'apply' ? 'bg-[#9c051d] text-white shadow-md' : 'text-gray-400 hover:text-white'"
                                     class="px-3 py-1 rounded-lg font-medium transition flex items-center gap-1">
                                 <span>Apply</span>
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -230,10 +230,10 @@
 
                         {{-- Skills Required --}}
                         <div class="p-4 rounded-2xl border border-white/10 bg-white/5">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#2997ff] mb-2.5">Key Skills &amp; Stack</h4>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#9c051d] mb-2.5">Key Skills &amp; Stack</h4>
                             <div class="flex flex-wrap gap-2">
                                 <template x-for="skill in skillsArray" :key="skill">
-                                    <span class="text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 border border-blue-400/20 text-blue-200"
+                                    <span class="text-xs px-2.5 py-1 rounded-lg bg-[#9c051d]/10 border border-[#9c051d]/20 text-[#e8788a]"
                                           x-text="skill"></span>
                                 </template>
                             </div>
@@ -247,7 +247,7 @@
 
                         {{-- Perks / Benefits --}}
                         <div class="pt-4 border-t border-white/10">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#2997ff] mb-3">What We Provide</h4>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-[#9c051d] mb-3">What We Provide</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-300">
                                 <div class="p-3 rounded-xl border border-white/5 bg-white/5 flex items-center gap-2.5">
                                     <span class="text-base">💻</span>
@@ -273,7 +273,7 @@
                             <span class="text-xs text-gray-400">Ready to take on this challenge?</span>
                             <button type="button"
                                     @click="activeTab = 'apply'"
-                                    class="px-6 py-3 bg-gradient-to-r from-[#2997ff] to-blue-600 text-white font-bold text-xs rounded-xl hover:brightness-110 transition shadow-lg shadow-blue-500/20 flex items-center gap-2">
+                                    class="px-6 py-3 bg-gradient-to-r from-[#9c051d] to-[#7a0417] text-white font-bold text-xs rounded-xl hover:brightness-110 transition shadow-lg shadow-[#9c051d]/20 flex items-center gap-2">
                                 <span>Apply for this Position</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                             </button>
@@ -304,7 +304,7 @@
                         <div x-show="!isSubmitted">
                             <div class="mb-5 pb-4 border-b border-white/10">
                                 <h3 class="text-xl font-bold text-white">Submit Candidate Profile</h3>
-                                <p class="text-xs text-gray-400 mt-1">Applying for <span class="text-[#2997ff] font-semibold" x-text="currentJob?.title"></span> (<span x-text="currentJob?.department"></span>)</p>
+                                <p class="text-xs text-gray-400 mt-1">Applying for <span class="text-[#9c051d] font-semibold" x-text="currentJob?.title"></span> (<span x-text="currentJob?.department"></span>)</p>
                             </div>
 
                             {{-- Error Banner --}}
@@ -318,7 +318,7 @@
                                                x-model="formData.name"
                                                required
                                                placeholder="e.g. Kwame Mensah"
-                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#2997ff] focus:ring-1 focus:ring-[#2997ff] transition">
+                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#9c051d] focus:ring-1 focus:ring-[#9c051d] transition">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-gray-300 mb-1.5">Email Address *</label>
@@ -326,7 +326,7 @@
                                                x-model="formData.email"
                                                required
                                                placeholder="kwame@example.com"
-                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#2997ff] focus:ring-1 focus:ring-[#2997ff] transition">
+                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#9c051d] focus:ring-1 focus:ring-[#9c051d] transition">
                                     </div>
                                 </div>
 
@@ -337,14 +337,14 @@
                                                x-model="formData.phone"
                                                required
                                                placeholder="+233 24 000 0000"
-                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#2997ff] focus:ring-1 focus:ring-[#2997ff] transition">
+                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#9c051d] focus:ring-1 focus:ring-[#9c051d] transition">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold text-gray-300 mb-1.5">Portfolio / GitHub / LinkedIn (Optional)</label>
                                         <input type="url"
                                                x-model="formData.portfolio_url"
                                                placeholder="https://github.com/username"
-                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#2997ff] focus:ring-1 focus:ring-[#2997ff] transition">
+                                               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#9c051d] focus:ring-1 focus:ring-[#9c051d] transition">
                                     </div>
                                 </div>
 
@@ -352,7 +352,7 @@
                                 <div>
                                     <label class="block text-xs font-semibold text-gray-300 mb-1.5">Upload CV / Resume * (PDF, DOC, DOCX — Max 10MB)</label>
                                     <div class="relative border-2 border-dashed rounded-2xl p-6 text-center transition-all cursor-pointer"
-                                         :class="selectedFile ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-white/15 bg-white/5 hover:border-[#2997ff]/50'"
+                                         :class="selectedFile ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-white/15 bg-white/5 hover:border-[#9c051d]/50'"
                                          @click="$refs.cvInput.click()"
                                          @dragover.prevent="$event.dataTransfer.dropEffect = 'copy'"
                                          @drop.prevent="handleDrop($event)">
@@ -365,7 +365,7 @@
 
                                         <template x-if="!selectedFile">
                                             <div class="space-y-2 pointer-events-none">
-                                                <div class="w-10 h-10 rounded-xl bg-[#2997ff]/10 text-[#2997ff] flex items-center justify-center mx-auto text-lg">📄</div>
+                                                <div class="w-10 h-10 rounded-xl bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center mx-auto text-lg">📄</div>
                                                 <div class="text-xs text-gray-300 font-medium">Click to upload or drag and drop your CV</div>
                                                 <div class="text-[10px] text-gray-500">PDF, Word docs up to 10MB accepted</div>
                                             </div>
@@ -396,7 +396,7 @@
                                     <textarea x-model="formData.cover_letter"
                                               rows="4"
                                               placeholder="Share notable projects you've shipped, problems you love solving, or why you want to join MonarchI..."
-                                              class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#2997ff] focus:ring-1 focus:ring-[#2997ff] transition resize-none"></textarea>
+                                              class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#9c051d] focus:ring-1 focus:ring-[#9c051d] transition resize-none"></textarea>
                                 </div>
 
                                 {{-- Submit Button --}}
@@ -408,7 +408,7 @@
                                     </button>
                                     <button type="submit"
                                             :disabled="isSubmitting || !selectedFile"
-                                            class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#2997ff] to-blue-600 text-white font-bold text-xs hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                                            class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#9c051d] to-[#7a0417] text-white font-bold text-xs hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-2 shadow-lg shadow-[#9c051d]/20">
                                         <template x-if="isSubmitting">
                                             <svg class="animate-spin w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -673,7 +673,7 @@
             border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(41, 151, 255, 0.4);
+            background: rgba(156, 5, 29, 0.4);
         }
     </style>
 

@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="MonarchI HQ — Enterprise AI, Intelligent Systems & Software Engineering"
     description="MonarchI HQ engineers enterprise-grade AI systems, intelligent workflow automations, bespoke software, and cutting-edge digital infrastructure for leading global organizations."
     keywords="MonarchI, MonarchI HQ, Enterprise AI, Workflow Automation, Software Development, SaaS Platforms, Cloud Architecture, Web Development, Intelligent Systems, Cyber Security, Tech Africa, Digital Transformation, MAI AI">
@@ -206,7 +206,7 @@
 
             {{-- Section Header --}}
             <div class="mb-16 md:mb-20 reveal">
-                <p class="text-xs font-semibold tracking-[0.2em] text-[#2997ff] uppercase mb-4">Our Services</p>
+                <p class="text-xs font-semibold tracking-[0.2em] text-[#9c051d] uppercase mb-4">Our Services</p>
                 <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
                     <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1]" style="color: var(--text-primary);">
                         What we offer<br><span style="color: var(--text-muted);">to your business.</span>
@@ -381,7 +381,7 @@
         <div class="relative px-6 flex flex-col md:flex-row items-center gap-16 max-w-[1200px] mx-auto py-24">
 
             <div class="md:w-1/2 reveal-left pl-6">
-                <h2 class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-3">Monarch AI - MAI</h2>
+                <h2 class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-3">Monarch AI - MAI</h2>
                 <h3 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-6">
                     Monarch Intelligence <br> AI that knows you.
                 </h3>
@@ -391,31 +391,31 @@
                 </p>
                 <ul class="space-y-4 text-sm text-gray-300 font-light">
                     <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Get analysis from your business's data in real-time.
                     </li>
                     <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Generate tailored email for clients and stakeholders.
                     </li>
                     <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Get intelligent advice tailored to you.
                     </li>
                     <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Automate repetitive business tasks effortlessly.
                     </li>
                     <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Provide Financial Forecasts with backed business data.
@@ -433,7 +433,7 @@
                     </div>
                     <div class="p-6 space-y-6 text-sm">
                         <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-[#2997ff]/20 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-[#9c051d]/20 flex items-center justify-center shrink-0">
                                 You</div>
                             <div class="glass px-4 py-2 rounded-lg rounded-tl-none text-gray-200 border-none">Compare this quarters revenue to last years and make a forecast based on current market conditions.</div>
                         </div>
@@ -447,7 +447,7 @@
                             <div
                                 class="bg-gray-900 border border-white/10 px-4 py-3 rounded-lg rounded-tl-none text-gray-300 font-light w-full">
                                 <p class="mb-2">Per the data, the company has made a total of $87,899 compared to last years quarter revenue of $65,345 which signifies a percentage increase of ...</p>
-                                <span class="text-[10px] text-[#2997ff] font-mono">✔ Generated in 1.2s</span>
+                                <span class="text-[10px] text-[#9c051d] font-mono">✔ Generated in 1.2s</span>
                             </div>
                         </div>
                     </div>
@@ -470,7 +470,7 @@
         </div>
 
         <div class="relative max-w-7xl mx-auto text-center z-10 reveal">
-            <h2 class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-3">Start Today</h2>
+            <h2 class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-3">Start Today</h2>
             <h3 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-8">Bring enterprise AI<br>
                 into your workflow.</h3>
             <p class="text-lg text-gray-400 font-light leading-relaxed max-w-3xl mx-auto mb-12">
@@ -479,7 +479,7 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="{{ route('login') }}"
-                    class="inline-block bg-[#2997ff] hover:bg-[#1a7de3] text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 text-lg">
+                    class="inline-block bg-[#9c051d] hover:bg-[#7a0417] text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 text-lg">
                     Get Started
                 </a>
                 <a href="#demo"
@@ -502,7 +502,7 @@
             {{-- Two labels side by side --}}
             <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-1 md:gap-0">
                 <div>
-                    <p class="text-xs font-semibold tracking-[0.2em] text-[#2997ff] uppercase mb-1">Case Studies &amp; Projects</p>
+                    <p class="text-xs font-semibold tracking-[0.2em] text-[#9c051d] uppercase mb-1">Case Studies &amp; Projects</p>
                     <h2 class="text-3xl md:text-4xl font-semibold tracking-tight leading-tight" style="color: var(--text-primary);">
                         Research, Insights &amp;<br class="hidden md:block"> Work We're Proud Of.
                     </h2>
@@ -522,7 +522,7 @@
                     class="absolute inset-0 w-full h-3/4 object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">FinTech Sector - Ghana</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-2 block">FinTech Sector - Ghana</span>
                     <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">National Payment Systems Strategy</h3>
                     <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">The Bank of Ghana's strategy mandates telecoms and fintechs to upgrade security infrastructure and institute automated monitoring systems.</p>
                     <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
@@ -536,7 +536,7 @@
                     class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">HealthTech - Ghana</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-2 block">HealthTech - Ghana</span>
                     <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">AI-Driven Health Programme</h3>
                     <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">Ghana launched an AI-driven health programme with WHO and UNDP, deploying early warning systems for climate-sensitive diseases.</p>
                     <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
@@ -553,7 +553,7 @@
                     class="absolute inset-0 w-full h-full object-cover opacity-60 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">FinTech - West Africa</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-2 block">FinTech - West Africa</span>
                     <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">AI Credit Scoring for Unbanked SMEs</h3>
                     <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">AI engines analysing mobile-money patterns issue instant micro-loans to SMEs — reducing approval time from weeks to minutes.</p>
                     <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
@@ -570,7 +570,7 @@
                     class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">Smart Cities - Ghana</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-2 block">Smart Cities - Ghana</span>
                     <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">GhanaPostGPS &amp; Digital Addressing</h3>
                     <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">A unique code for every 5m&times;5m grid across Ghana — enabling emergency response and logistics for millions without postal addresses.</p>
                     <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
@@ -587,7 +587,7 @@
                     class="absolute inset-0 w-full h-full object-cover opacity-55 transition duration-1000 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 z-10 max-w-lg">
-                    <span class="text-xs font-bold tracking-[0.2em] text-[#2997ff] uppercase mb-2 block">AgriTech - East Africa</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-[#9c051d] uppercase mb-2 block">AgriTech - East Africa</span>
                     <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Nuru: Offline AI Crop Disease Diagnosis</h3>
                     <p class="text-gray-300 mb-4 font-light text-sm leading-relaxed">Nuru uses on-device vision to diagnose crop diseases offline, reaching millions of smallholder farmers via the UN ENSURE programme.</p>
                     <a class="bg-white text-black px-5 py-1.5 rounded-full font-medium hover:bg-gray-200 transition text-sm"
@@ -610,14 +610,14 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
                     <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">Edge Computing</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-[#9c051d]/20 text-[#9c051d] rounded-md">Edge Computing</span>
                         <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">Logistics</span>
                     </div>
                     <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Project Zero Latency</h3>
                     <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                         Deployed Monarch's Edge Intelligence to remote hardware — offline processing without latency in critical logistical environments.
                     </p>
-                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#9c051d] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
                         Visit Store
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -634,14 +634,14 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
                     <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">SaaS</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-[#9c051d]/20 text-[#9c051d] rounded-md">SaaS</span>
                         <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">Finance</span>
                     </div>
                     <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">invenStore Platform</h3>
                     <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                         Full-stack inventory management SaaS for SMEs across Ghana with real-time stock tracking and automated reorder alerts.
                     </p>
-                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#9c051d] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
                         Learn More
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -658,14 +658,14 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
                     <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">HealthTech</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-[#9c051d]/20 text-[#9c051d] rounded-md">HealthTech</span>
                         <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">AI</span>
                     </div>
                     <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">MAI Health Dashboard</h3>
                     <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                         AI-powered health monitoring dashboard for clinic staff, surfacing patient trends and flagging anomalies with zero manual input.
                     </p>
-                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#9c051d] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
                         Learn More
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -682,14 +682,14 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
                     <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">Compliance</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-[#9c051d]/20 text-[#9c051d] rounded-md">Compliance</span>
                         <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">FinTech</span>
                     </div>
                     <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">KYC Automation Suite</h3>
                     <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                         AI-driven KYC pipeline for a Ghanaian fintech — cutting onboarding time by 78% with full Bank of Ghana regulatory compliance.
                     </p>
-                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#9c051d] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
                         Learn More
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -706,14 +706,14 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-black/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center p-8">
                     <div class="flex gap-2 mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <span class="text-xs font-medium px-2 py-1 bg-[#2997ff]/20 text-[#2997ff] rounded-md">AgriTech</span>
+                        <span class="text-xs font-medium px-2 py-1 bg-[#9c051d]/20 text-[#9c051d] rounded-md">AgriTech</span>
                         <span class="text-xs font-medium px-2 bg-white/10 text-white rounded-md">AI / MAI</span>
                     </div>
                     <h3 class="text-2xl text-white font-semibold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">MAI AgriAdvisor</h3>
                     <p class="text-gray-300 font-light leading-relaxed text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                         Offline-capable crop advisory engine for smallholder farmers in Northern Ghana — real-time pest alerts, yield forecasts, and market prices via SMS.
                     </p>
-                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#2997ff] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
+                    <a href="#" class="mt-2 text-white text-sm font-medium flex items-center gap-2 hover:text-[#9c051d] transition w-max transform translate-y-4 group-hover:translate-y-0 duration-700 delay-75">
                         Learn More
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>

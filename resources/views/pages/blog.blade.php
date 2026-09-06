@@ -1,4 +1,4 @@
-<x-main-layout
+﻿<x-main-layout
     title="Engineering Insights & Tech News — MonarchI HQ Blog"
     description="Read the latest articles on artificial intelligence, edge computing, African tech ecosystems, and enterprise software engineering from MonarchI HQ."
     keywords="MonarchI Blog, Tech News Africa, AI Insights, Edge Computing Articles, Software Engineering Trends, African Tech Innovation">
@@ -10,17 +10,17 @@
         ============================================= --}}
         <section class="relative pt-32 pb-20 px-6 min-h-[50vh] flex items-center justify-center overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-                <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
-                <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #2997ff, transparent 70%);"></div>
+                <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] rounded-full opacity-20 blur-[120px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
+                <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full opacity-10 blur-[100px]" style="background: radial-gradient(circle, #9c051d, transparent 70%);"></div>
             </div>
 
             <div class="max-w-[1000px] mx-auto text-center relative z-10 reveal">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2997ff]/30 bg-[#2997ff]/10 text-[#2997ff] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-[#2997ff] animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#9c051d]/30 bg-[#9c051d]/10 text-[#9c051d] text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-[#9c051d] animate-pulse"></span>
                     Trending &amp; Insights
                 </div>
                 <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight" style="color: var(--text-primary);">
-                    Monarchi <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2997ff] via-[#60a5fa] to-[#93c5fd]">Insights</span>.
+                    Monarchi <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#9c051d] via-[#c4203a] to-[#e8788a]">Insights</span>.
                 </h2>
                 <p class="text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed" style="color: var(--text-secondary);">
                     African &amp; Global Tech news, deep dives into edge AI, telemetry architectures, and modern software design.
@@ -32,7 +32,7 @@
         {{-- ── Empty State ── --}}
         <section class="py-24 px-6 text-center border-t" style="border-color: var(--border-color); background: var(--bg-section);">
             <div class="max-w-md mx-auto p-12 rounded-3xl border border-white/10" style="background: var(--bg-card);">
-                <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-[#2997ff] flex items-center justify-center text-2xl mx-auto mb-4">📰</div>
+                <div class="w-14 h-14 rounded-2xl bg-[#9c051d]/10 text-[#9c051d] flex items-center justify-center text-2xl mx-auto mb-4">📰</div>
                 <h3 class="text-lg font-bold text-white mb-2">No articles published yet</h3>
                 <p class="text-sm" style="color: var(--text-secondary);">Our engineering team is crafting new dispatches. Check back soon.</p>
             </div>
@@ -50,30 +50,30 @@
                 @if($featured->isExternal())
                 {{-- External Featured Article --}}
                 <a href="{{ $featured->external_url }}" target="_blank" rel="noopener noreferrer"
-                   class="rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#2997ff]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer"
+                   class="rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#9c051d]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer"
                    style="background: var(--bg-card); border-color: var(--border-color);">
                 @else
                 {{-- Native Featured Article (Opens Modal) --}}
                 <div role="button" tabindex="0" @click="openModal({{ $featured->id }})" @keydown.enter="openModal({{ $featured->id }})"
-                     class="rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#2997ff]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer select-none"
+                     class="rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#9c051d]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer select-none"
                      style="background: var(--bg-card); border-color: var(--border-color);">
                 @endif
                     <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden h-[300px] lg:h-[360px] relative border" style="border-color: var(--border-color); background: var(--bg-primary);">
-                        <div class="absolute inset-0 flex items-center justify-center p-8 bg-gradient-to-br from-[#2997ff]/20 via-[#1e293b]/50 to-transparent">
+                        <div class="absolute inset-0 flex items-center justify-center p-8 bg-gradient-to-br from-[#9c051d]/20 via-[#1e293b]/50 to-transparent">
                             <div class="text-center">
-                                <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#2997ff] block mb-2">
+                                <span class="text-xs font-mono font-bold uppercase tracking-widest text-[#9c051d] block mb-2">
                                     {{ $featured->categoryLabel() }}
                                 </span>
-                                <h4 class="text-2xl font-bold text-white group-hover:text-[#2997ff] transition-colors leading-snug">{{ $featured->title }}</h4>
+                                <h4 class="text-2xl font-bold text-white group-hover:text-[#9c051d] transition-colors leading-snug">{{ $featured->title }}</h4>
                             </div>
                         </div>
                         @if($featured->isExternal())
-                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs text-sky-300 font-semibold backdrop-blur-md flex items-center gap-1.5">
+                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs text-[#e8788a] font-semibold backdrop-blur-md flex items-center gap-1.5">
                             <span>{{ $featured->externalDomain() }}</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                         </div>
                         @else
-                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-xs text-blue-300 font-medium backdrop-blur-md flex items-center gap-1.5">
+                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#9c051d]/20 border border-[#9c051d]/30 text-xs text-[#e8788a] font-medium backdrop-blur-md flex items-center gap-1.5">
                             <span>Read Full Article</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                         </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="flex items-center gap-3 mb-4 flex-wrap">
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#2997ff] px-2.5 py-0.5 rounded-full bg-[#2997ff]/10">Featured</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#9c051d] px-2.5 py-0.5 rounded-full bg-[#9c051d]/10">Featured</span>
                             <span class="text-xs text-gray-400">&middot; {{ $featured->read_time_minutes }} min read</span>
                             @if($featured->published_at)
                             <span class="text-xs text-gray-400">&middot; {{ $featured->published_at->format('M Y') }}</span>
@@ -92,7 +92,7 @@
                             </span>
                             @endif
                         </div>
-                        <h3 class="text-2xl md:text-4xl font-bold mb-4 group-hover:text-[#2997ff] transition leading-tight" style="color: var(--text-primary);">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4 group-hover:text-[#9c051d] transition leading-tight" style="color: var(--text-primary);">
                             {{ $featured->title }}
                         </h3>
                         @if($featured->excerpt)
@@ -102,7 +102,7 @@
                         @endif
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#2997ff] to-sky-300 text-white font-bold text-xs flex items-center justify-center shadow-lg shadow-blue-500/20">
+                                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#9c051d] to-sky-300 text-white font-bold text-xs flex items-center justify-center shadow-lg shadow-[#9c051d]/20">
                                     {{ strtoupper(substr($featured->author_name, 0, 2)) }}
                                 </div>
                                 <div>
@@ -111,11 +111,11 @@
                                 </div>
                             </div>
                             @if($featured->isExternal())
-                            <span class="text-xs font-semibold text-[#2997ff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            <span class="text-xs font-semibold text-[#9c051d] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                 Open Source ↗
                             </span>
                             @else
-                            <span class="text-xs font-semibold text-[#2997ff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            <span class="text-xs font-semibold text-[#9c051d] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                 Read Article &rarr;
                             </span>
                             @endif
@@ -151,19 +151,19 @@
                         $tagColor = match($article->category) {
                             'african_tech' => 'text-amber-400 bg-amber-400/10 border-amber-400/20',
                             'global_tech'  => 'text-purple-400 bg-purple-400/10 border-purple-400/20',
-                            default        => 'text-[#2997ff] bg-[#2997ff]/10 border-[#2997ff]/20',
+                            default        => 'text-[#9c051d] bg-[#9c051d]/10 border-[#9c051d]/20',
                         };
                     @endphp
 
                     @if($article->isExternal())
                     {{-- External Card --}}
                     <a href="{{ $article->external_url }}" target="_blank" rel="noopener noreferrer"
-                       class="p-6 rounded-3xl border transition-all duration-300 hover:shadow-2xl hover:border-[#2997ff]/60 hover:-translate-y-1 flex flex-col justify-between group cursor-pointer"
+                       class="p-6 rounded-3xl border transition-all duration-300 hover:shadow-2xl hover:border-[#9c051d]/60 hover:-translate-y-1 flex flex-col justify-between group cursor-pointer"
                        style="background: var(--bg-card); border-color: var(--border-color);">
                     @else
                     {{-- Internal Card (Opens Modal) --}}
                     <div role="button" tabindex="0" @click="openModal({{ $article->id }})" @keydown.enter="openModal({{ $article->id }})"
-                         class="p-6 rounded-3xl border transition-all duration-300 hover:shadow-2xl hover:border-[#2997ff]/60 hover:-translate-y-1 flex flex-col justify-between group cursor-pointer select-none"
+                         class="p-6 rounded-3xl border transition-all duration-300 hover:shadow-2xl hover:border-[#9c051d]/60 hover:-translate-y-1 flex flex-col justify-between group cursor-pointer select-none"
                          style="background: var(--bg-card); border-color: var(--border-color);">
                     @endif
                         <div>
@@ -181,7 +181,7 @@
                                 @endif
                             </div>
 
-                            <h4 class="text-lg font-bold mb-3 group-hover:text-[#2997ff] transition leading-snug" style="color: var(--text-primary);">
+                            <h4 class="text-lg font-bold mb-3 group-hover:text-[#9c051d] transition leading-snug" style="color: var(--text-primary);">
                                 {{ $article->title }}
                             </h4>
 
@@ -195,11 +195,11 @@
                         <div class="pt-4 border-t flex items-center justify-between text-xs" style="border-color: var(--border-color);">
                             <span style="color: var(--text-muted);">{{ $article->published_at?->format('M Y') ?? '' }}</span>
                             @if($article->isExternal())
-                            <span class="font-bold text-[#2997ff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            <span class="font-bold text-[#9c051d] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                 External Source ↗
                             </span>
                             @else
-                            <span class="font-bold text-[#2997ff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            <span class="font-bold text-[#9c051d] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                 Read Full Article &rarr;
                             </span>
                             @endif
@@ -248,15 +248,15 @@
                  x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                  x-transition:leave-end="opacity-0 scale-95 translate-y-4"
                  class="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl shadow-2xl overflow-hidden border border-white/10 z-10"
-                 style="background: #0b0d14; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(41, 151, 255, 0.15);">
+                 style="background: #120004; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(156, 5, 29, 0.15);">
 
                 {{-- Ambient Modal Header Glow --}}
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#2997ff]/20 to-transparent blur-2xl pointer-events-none"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#9c051d]/20 to-transparent blur-2xl pointer-events-none"></div>
 
                 {{-- Sticky Glass Top Bar --}}
-                <header class="relative px-6 py-4 border-b border-white/10 flex items-center justify-between gap-4 shrink-0 bg-[#0b0d14]/90 backdrop-blur-md z-20">
+                <header class="relative px-6 py-4 border-b border-white/10 flex items-center justify-between gap-4 shrink-0 bg-[#120004]/90 backdrop-blur-md z-20">
                     <div class="flex items-center gap-3 overflow-hidden">
-                        <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border text-[#2997ff] bg-[#2997ff]/10 border-[#2997ff]/30 shrink-0"
+                        <span class="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border text-[#9c051d] bg-[#9c051d]/10 border-[#9c051d]/30 shrink-0"
                               x-text="currentArticle?.category_label || 'Engineering'"></span>
                         <span class="text-xs text-gray-400 hidden sm:inline" x-text="currentArticle?.read_time_minutes ? currentArticle.read_time_minutes + ' min read' : ''"></span>
                         <span class="text-xs text-gray-500 hidden sm:inline">&middot;</span>
@@ -268,7 +268,7 @@
                         <button type="button"
                                 @click="copyArticleLink()"
                                 class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-xs text-gray-300 hover:text-white transition flex items-center gap-1.5 font-medium">
-                            <svg class="w-3.5 h-3.5 text-[#2997ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            <svg class="w-3.5 h-3.5 text-[#9c051d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                             <span x-text="copied ? 'Copied Link!' : 'Share'">Share</span>
                         </button>
 
@@ -291,7 +291,7 @@
                             x-text="currentArticle?.title"></h1>
 
                         <div class="flex items-center gap-3 pt-2">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2997ff] to-cyan-400 text-white font-bold text-xs flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0"
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#9c051d] to-cyan-400 text-white font-bold text-xs flex items-center justify-center shadow-lg shadow-[#9c051d]/20 shrink-0"
                                  x-text="currentArticle?.author_initial || 'M'"></div>
                             <div>
                                 <div class="text-sm font-bold text-white" x-text="currentArticle?.author_name || 'Monarchi Engineering'"></div>
@@ -302,8 +302,8 @@
 
                     {{-- Excerpt Callout --}}
                     <template x-if="currentArticle?.excerpt">
-                        <div class="p-5 rounded-2xl border border-[#2997ff]/20 bg-gradient-to-r from-[#2997ff]/10 to-transparent">
-                            <p class="text-sm md:text-base italic text-blue-100/90 leading-relaxed"
+                        <div class="p-5 rounded-2xl border border-[#9c051d]/20 bg-gradient-to-r from-[#9c051d]/10 to-transparent">
+                            <p class="text-sm md:text-base italic text-white/70 leading-relaxed"
                                x-text="currentArticle.excerpt"></p>
                         </div>
                     </template>
@@ -318,7 +318,7 @@
                         <div>
                             <span>Author: <strong class="text-white" x-text="currentArticle?.author_name"></strong></span>
                             <span class="mx-2">&middot;</span>
-                            <span>Category: <strong class="text-sky-400" x-text="currentArticle?.category_label"></strong></span>
+                            <span>Category: <strong class="text-[#c4203a]" x-text="currentArticle?.category_label"></strong></span>
                         </div>
                         <button type="button"
                                 @click="closeModal()"
@@ -437,7 +437,7 @@
 
                         // Blockquote detection
                         if (text.startsWith('> ')) {
-                            return '<blockquote class="border-l-4 border-[#2997ff] pl-4 py-1 italic text-blue-200/90 my-4 bg-white/5 rounded-r-xl pr-4">' + this.escapeHtml(text.replace(/^>\s*/, '')) + '</blockquote>';
+                            return '<blockquote class="border-l-4 border-[#9c051d] pl-4 py-1 italic text-[#e8788a]/90 my-4 bg-white/5 rounded-r-xl pr-4">' + this.escapeHtml(text.replace(/^>\s*/, '')) + '</blockquote>';
                         }
 
                         // Code block detection
@@ -493,7 +493,7 @@
             border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(41, 151, 255, 0.4);
+            background: rgba(156, 5, 29, 0.4);
         }
     </style>
 

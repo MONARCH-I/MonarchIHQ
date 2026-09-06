@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -64,8 +64,8 @@
             font-size: 14px; font-weight: 600;
             text-decoration: none; transition: all 0.15s;
         }
-        .btn-primary { background: #2997ff; color: #fff; }
-        .btn-primary:hover { background: #1a7de3; transform: translateY(-1px); }
+        .btn-primary { background: #9c051d; color: #fff; }
+        .btn-primary:hover { background: #7a0417; transform: translateY(-1px); }
         .btn-secondary {
             background: rgba(255,255,255,0.05);
             color: rgba(245,245,247,0.7);
