@@ -48,7 +48,9 @@ Route::get('/about', function () {
 // Dynamic pages
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects.index');
 Route::get('/blog', [NewsController::class, 'index'])->name('blog.index');
+Route::get('/trending', [NewsController::class, 'index'])->name('trending.index');
 Route::get('/careers', [CareersController::class, 'index'])->name('careers.index');
+Route::post('/careers/{job}/apply', [CareersController::class, 'apply'])->name('careers.apply');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
@@ -233,6 +235,12 @@ Route::prefix('manager/hr')
         Route::patch('/messages/{message}/status', [HrManagerController::class, 'messagesUpdateStatus'])->name('messages.status');
         Route::post('/messages/{message}/reply', [HrManagerController::class, 'messagesSendReply'])->name('messages.reply');
         Route::delete('/messages/{message}', [HrManagerController::class, 'messagesDestroy'])->name('messages.destroy');
+        // Job Applications
+        Route::get('/applications', [HrManagerController::class, 'applicationsList'])->name('applications');
+        Route::get('/applications/{application}', [HrManagerController::class, 'applicationsShow'])->name('applications.show');
+        Route::patch('/applications/{application}/status', [HrManagerController::class, 'applicationsUpdateStatus'])->name('applications.status');
+        Route::get('/applications/{application}/cv', [HrManagerController::class, 'applicationsDownloadCv'])->name('applications.download-cv');
+        Route::delete('/applications/{application}', [HrManagerController::class, 'applicationsDestroy'])->name('applications.destroy');
     });
 
 // ── Employee Management (super_admin + hr_manager) ────────────────────────────

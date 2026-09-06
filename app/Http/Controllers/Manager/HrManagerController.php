@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
+use App\Models\JobApplication;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class HrManagerController extends Controller
 {
@@ -21,6 +23,8 @@ class HrManagerController extends Controller
         $stats = [
             'active_jobs' => JobListing::active()->count(),
             'total_jobs' => JobListing::count(),
+            'total_applications' => JobApplication::count(),
+            'pending_applications' => JobApplication::pending()->count(),
             'new_messages' => ContactMessage::where('status', 'new')->count(),
             'open_messages' => ContactMessage::open()->count(),
             'replied_messages' => ContactMessage::where('status', 'replied')->count(),
@@ -195,5 +199,88 @@ class HrManagerController extends Controller
 
         return redirect()->route('manager.hr.messages')
             ->with('success', 'Message deleted.');
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  JOB APPLICATIONS
+    // ═══════════════════════════════════════════════════════════════
+
+    public function applicationsList(Request $request)
+    {
+        abort_if(! auth()->user()->isHrManager(), 403);
+
+        $query = JobApplication::with('jobListing')->latest();
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->filled('job_id')) {
+            $query->where('job_listing_id', $request->job_id);
+        }
+
+        if ($request->filled('search')) {
+            $term = '%'.$request->search.'%';
+            $query->where(function ($q) use ($term) {
+                $q->where('name', 'like', $term)
+                    ->orWhere('email', 'like', $term)
+                    ->orWhere('phone', 'like', $term);
+            });
+        }
+
+        $applications = $query->paginate(20)->withQueryString();
+        $jobs = JobListing::orderBy('title')->get();
+
+        return view('manager.hr.applications.index', compact('applications', 'jobs'));
+    }
+
+    public function applicationsShow(JobApplication $application)
+    {
+        abort_if(! auth()->user()->isHrManager(), 403);
+
+        $application->load('jobListing');
+
+        return view('manager.hr.applications.show', compact('application'));
+    }
+
+    public function applicationsUpdateStatus(Request $request, JobApplication $application)
+    {
+        abort_if(! auth()->user()->isHrManager(), 403);
+
+        $validated = $request->validate([
+            'status' => 'required|in:pending,reviewed,shortlisted,rejected',
+            'hr_notes' => 'nullable|string|max:5000',
+        ]);
+
+        $application->update($validated);
+
+        return back()->with('success', "Application status updated to {$application->statusLabel()}.");
+    }
+
+    public function applicationsDownloadCv(JobApplication $application)
+    {
+        abort_if(! auth()->user()->isHrManager(), 403);
+
+        if (! Storage::disk('local')->exists($application->resume_path)) {
+            abort(404, 'CV file not found on disk.');
+        }
+
+        return Storage::disk('local')->download(
+            $application->resume_path,
+            $application->resume_filename ?: 'Resume.pdf'
+        );
+    }
+
+    public function applicationsDestroy(JobApplication $application)
+    {
+        abort_if(! auth()->user()->isHrManager(), 403);
+
+        if ($application->resume_path && Storage::disk('local')->exists($application->resume_path)) {
+            Storage::disk('local')->delete($application->resume_path);
+        }
+
+        $application->delete();
+
+        return redirect()->route('manager.hr.applications')->with('success', 'Application deleted.');
     }
 }

@@ -4,8 +4,9 @@
 
     <x-slot name="sidebarNav">
         <div class="sidebar-nav-label">HR</div>
-        <a href="{{ route('manager.hr.jobs') }}"     class="sidebar-nav-link active"><span>💼</span> Job Listings</a>
-        <a href="{{ route('manager.hr.messages') }}" class="sidebar-nav-link"><span>✉️</span> Messages</a>
+        <a href="{{ route('manager.hr.jobs') }}"         class="sidebar-nav-link active"><span>💼</span> Job Listings</a>
+        <a href="{{ route('manager.hr.applications') }}" class="sidebar-nav-link"><span>📄</span> Applications</a>
+        <a href="{{ route('manager.hr.messages') }}"     class="sidebar-nav-link"><span>✉️</span> Messages</a>
     </x-slot>
 
     <x-slot name="topbarActions">

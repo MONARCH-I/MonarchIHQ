@@ -4,8 +4,14 @@
 
     <x-slot name="sidebarNav">
         <div class="sidebar-nav-label">HR</div>
-        <a href="{{ route('manager.hr.jobs') }}"     class="sidebar-nav-link {{ request()->is('manager/hr/jobs*') ? 'active' : '' }}"><span>💼</span> Job Listings</a>
-        <a href="{{ route('manager.hr.messages') }}" class="sidebar-nav-link {{ request()->is('manager/hr/messages*') ? 'active' : '' }}">
+        <a href="{{ route('manager.hr.jobs') }}"         class="sidebar-nav-link {{ request()->is('manager/hr/jobs*') ? 'active' : '' }}"><span>💼</span> Job Listings</a>
+        <a href="{{ route('manager.hr.applications') }}" class="sidebar-nav-link {{ request()->is('manager/hr/applications*') ? 'active' : '' }}">
+            <span>📄</span> Applications
+            @if(($stats['pending_applications'] ?? 0) > 0)
+            <span class="badge" style="background:#2997ff;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto">{{ $stats['pending_applications'] }}</span>
+            @endif
+        </a>
+        <a href="{{ route('manager.hr.messages') }}"     class="sidebar-nav-link {{ request()->is('manager/hr/messages*') ? 'active' : '' }}">
             <span>✉️</span> Messages
             @if($stats['new_messages'] > 0)
             <span class="badge" style="background:#2997ff;color:#fff;border:none;padding:1px 6px;font-size:9px;margin-left:auto">{{ $stats['new_messages'] }}</span>
@@ -13,7 +19,7 @@
         </a>
     </x-slot>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-bottom:28px">
         <div class="stat-card">
             <div class="stat-label">Active Jobs</div>
             <div class="stat-value" style="color:#4ade80">{{ $stats['active_jobs'] }}</div>
@@ -23,16 +29,20 @@
             <div class="stat-value">{{ $stats['total_jobs'] }}</div>
         </div>
         <div class="stat-card">
+            <div class="stat-label">Applications</div>
+            <div class="stat-value" style="color:#38bdf8">{{ $stats['total_applications'] ?? 0 }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Pending Review</div>
+            <div class="stat-value" style="color:#facc15">{{ $stats['pending_applications'] ?? 0 }}</div>
+        </div>
+        <div class="stat-card">
             <div class="stat-label">New Messages</div>
             <div class="stat-value" style="color:#2997ff">{{ $stats['new_messages'] }}</div>
         </div>
         <div class="stat-card">
             <div class="stat-label">Open Messages</div>
             <div class="stat-value" style="color:#f59e0b">{{ $stats['open_messages'] }}</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Replied</div>
-            <div class="stat-value">{{ $stats['replied_messages'] }}</div>
         </div>
     </div>
 

@@ -53,6 +53,7 @@ class ContentManagerController extends Controller
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
+            'external_url' => 'nullable|url|max:1000',
             'excerpt' => 'nullable|string|max:500',
             'body' => 'nullable|string',
             'category' => 'required|in:african_tech,global_tech,engineering',
@@ -87,6 +88,7 @@ class ContentManagerController extends Controller
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
+            'external_url' => 'nullable|url|max:1000',
             'excerpt' => 'nullable|string|max:500',
             'body' => 'nullable|string',
             'category' => 'required|in:african_tech,global_tech,engineering',

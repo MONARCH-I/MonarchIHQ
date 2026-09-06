@@ -19,6 +19,14 @@
                     <input name="title" class="form-input" value="{{ old('title', $article->title) }}" required>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-label">External Source URL (Optional)</label>
+                    <input name="external_url" type="url" class="form-input" value="{{ old('external_url', $article->external_url) }}" placeholder="https://techcrunch.com/... or https://bloomberg.com/...">
+                    <span style="font-size:11px;color:var(--text-muted);display:block;margin-top:4px">
+                        Leave blank for native articles (which open in the full Article Reader Modal). If filled, clicking the card opens this external link directly in a new tab.
+                    </span>
+                </div>
+
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
                     <div class="form-group">
                         <label class="form-label">Category *</label>

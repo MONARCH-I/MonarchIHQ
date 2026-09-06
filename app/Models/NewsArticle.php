@@ -12,6 +12,7 @@ class NewsArticle extends Model
     protected $fillable = [
         'title',
         'slug',
+        'external_url',
         'excerpt',
         'body',
         'category',
@@ -48,6 +49,22 @@ class NewsArticle extends Model
     public function categoryLabel(): string
     {
         return self::getCategoryLabel($this->category);
+    }
+
+    public function isExternal(): bool
+    {
+        return ! empty($this->external_url);
+    }
+
+    public function externalDomain(): ?string
+    {
+        if (! $this->isExternal()) {
+            return null;
+        }
+
+        $host = parse_url($this->external_url, PHP_URL_HOST);
+
+        return $host ? preg_replace('/^www\./', '', $host) : 'External Source';
     }
 
     // ─── Scopes ──────────────────────────────────────────────────────────────
