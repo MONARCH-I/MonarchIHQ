@@ -1,4 +1,4 @@
-﻿<x-main-layout
+<x-main-layout
     title="MonarchI HQ — Enterprise AI, Intelligent Systems & Software Engineering"
     description="MonarchI HQ engineers enterprise-grade AI systems, intelligent workflow automations, bespoke software, and cutting-edge digital infrastructure for leading global organizations."
     keywords="MonarchI, MonarchI HQ, Enterprise AI, Workflow Automation, Software Development, SaaS Platforms, Cloud Architecture, Web Development, Intelligent Systems, Cyber Security, Tech Africa, Digital Transformation, MAI AI">
@@ -234,7 +234,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">SaaS Platforms</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Software. Built for Scale.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
@@ -258,7 +258,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Workflow Automation</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Automate. Optimize. Intelligent.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/contact" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
@@ -282,7 +282,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white drop-shadow-md">Software Development</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-semibold leading-relaxed">Build. Deploy. Scale.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
@@ -306,7 +306,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Web Development</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Identity. Performance. Yours.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
@@ -330,7 +330,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Integrated Systems</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Engineered as one. Built for the world.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">
@@ -354,7 +354,7 @@
                         <h3 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white drop-shadow-md">Security Systems</h3>
                         <p class="text-sm md:text-base text-gray-200 drop-shadow font-normal leading-relaxed">Intelligent. Connected. Secure.</p>
                         <div class="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                            <a href="/services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#9c051d] hover:bg-[#7a0417] text-white text-xs md:text-sm font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                                 Learn More
                             </a>
                             <a href="/store" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium transition-all duration-200 shadow-md hover:scale-105 active:scale-95">

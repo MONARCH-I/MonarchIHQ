@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     <meta charset="utf-8">
@@ -797,7 +797,7 @@
             gap: 5px;
             padding: 6px 12px;
             border-radius: 8px;
-            background: linear-gradient(135deg, #9c051d, #0071e3);
+            background: linear-gradient(135deg, #9c051d, #7a0417);
             color: #fff;
             font-size: 11.5px;
             font-weight: 600;
