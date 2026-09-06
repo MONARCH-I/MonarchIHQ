@@ -260,6 +260,16 @@ Route::prefix('/manager/mai')->middleware(['auth', 'role:super_admin'])->name('m
     Route::delete('/conversations/{conversation}', [MaiController::class, 'deleteConversation'])->name('conversation.delete');
 });
 
+// Monarch Super Admin panel aliases
+Route::post('/monarch/mai/chat', [MaiController::class, 'chat'])
+    ->middleware(['auth', 'role:super_admin'])
+    ->name('monarch.mai.chat');
+Route::prefix('/monarch/mai/api')->middleware(['auth', 'role:super_admin'])->name('monarch.mai.')->group(function () {
+    Route::get('/conversations', [MaiController::class, 'conversations'])->name('conversations');
+    Route::get('/conversations/{conversation}', [MaiController::class, 'conversationMessages'])->name('conversation.messages');
+    Route::delete('/conversations/{conversation}', [MaiController::class, 'deleteConversation'])->name('conversation.delete');
+});
+
 // ────────────────────────────────────────────────────────────────────────────
 //  DEDICATED MANAGER & STAFF AUTHENTICATION
 // ────────────────────────────────────────────────────────────────────────────

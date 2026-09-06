@@ -208,4 +208,43 @@ class MaiChatTest extends TestCase
         // Verify github link is not present in footer
         $response->assertDontSee('https://github.com/MONARCH-I');
     }
+
+    public function test_super_admin_can_chat_via_monarch_route(): void
+    {
+        $admin = $this->createSuperAdmin();
+
+        $mockMai = Mockery::mock(MaiService::class);
+        $mockMai->shouldReceive('handle')
+            ->once()
+            ->andReturn([
+                'reasoning' => 'Querying active categories.',
+                'sql' => 'SELECT count(*) as total FROM categories',
+                'results_count' => 1,
+                'results_preview' => [['total' => 5]],
+                'answer' => 'We currently have 5 categories.',
+                'error' => null,
+            ]);
+
+        $this->app->instance(MaiService::class, $mockMai);
+
+        $response = $this->actingAs($admin)->postJson(route('monarch.mai.chat'), [
+            'message' => 'How many categories do we have?',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'ok' => true,
+            'answer' => 'We currently have 5 categories.',
+        ]);
+    }
+
+    public function test_super_admin_can_access_monarch_mai_page(): void
+    {
+        $admin = $this->createSuperAdmin();
+
+        $response = $this->actingAs($admin)->get('/monarch/mai');
+        $response->assertStatus(200);
+        $response->assertSee('MAI');
+        $response->assertSee('History');
+    }
 }
