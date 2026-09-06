@@ -59,7 +59,7 @@ class CareersController extends Controller
                             "<p><strong>Email:</strong> {$application->email}</p>".
                             "<p><strong>Phone:</strong> {$application->phone}</p>".
                             ($application->portfolio_url ? "<p><strong>Portfolio / URL:</strong> <a href=\"{$application->portfolio_url}\">{$application->portfolio_url}</a></p>" : '').
-                            ($application->cover_letter ? "<p><strong>Cover Letter:</strong><br>".nl2br(e($application->cover_letter)).'</p>' : '').
+                            ($application->cover_letter ? '<p><strong>Cover Letter:</strong><br>'.nl2br(e($application->cover_letter)).'</p>' : '').
                             '<br><hr><p><small style="color:#888">Log in to the MonarchI HR Portal to review full candidate details and download their CV.</small></p>'
                         );
                 });

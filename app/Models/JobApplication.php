@@ -23,8 +23,11 @@ class JobApplication extends Model
     ];
 
     const STATUS_PENDING = 'pending';
+
     const STATUS_REVIEWED = 'reviewed';
+
     const STATUS_SHORTLISTED = 'shortlisted';
+
     const STATUS_REJECTED = 'rejected';
 
     public function jobListing(): BelongsTo
