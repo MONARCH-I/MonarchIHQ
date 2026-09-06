@@ -50,7 +50,7 @@
                 @if($featured->isExternal())
                 {{-- External Featured Article --}}
                 <a href="{{ $featured->external_url }}" target="_blank" rel="noopener noreferrer"
-                   class="block rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#2997ff]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer"
+                   class="rounded-[2rem] p-8 md:p-12 border transition-all duration-500 hover:shadow-2xl hover:border-[#2997ff]/60 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 group cursor-pointer"
                    style="background: var(--bg-card); border-color: var(--border-color);">
                 @else
                 {{-- Native Featured Article (Opens Modal) --}}
