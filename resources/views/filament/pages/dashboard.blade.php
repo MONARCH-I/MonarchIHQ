@@ -136,63 +136,63 @@
         <div class="monarch-bento-grid" id="monarch-tabs">
 
             {{-- Overview & Financials --}}
-            <button wire:click="setTab('overview')" data-tab="overview"
+            <button onclick="monarchSwitchTab('overview')" data-tab="overview"
                 class="bento-tab {{ $activeTab === 'overview' ? 'active' : 'inactive' }}">
                 <div class="bento-icon {{ $activeTab === 'overview' ? 'bg-blue-400/20 text-[#60a5fa]' : 'bg-blue-500/10 text-blue-400' }}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
                 </div>
-                <div class="bento-label {{ $activeTab === 'overview' ? 'text-white' : 'text-gray-700 dark:text-gray-300' }}">Overview &amp; Financials</div>
-                <div class="bento-sub {{ $activeTab === 'overview' ? 'text-blue-200' : 'text-gray-500' }}">Revenue · Orders · KPIs</div>
+                <div class="bento-label" data-tab-label="overview">Overview &amp; Financials</div>
+                <div class="bento-sub" data-tab-sub="overview">Revenue · Orders · KPIs</div>
             </button>
 
             {{-- SaaS & Software --}}
-            <button wire:click="setTab('saas')" data-tab="saas"
+            <button onclick="monarchSwitchTab('saas')" data-tab="saas"
                 class="bento-tab {{ $activeTab === 'saas' ? 'active' : 'inactive' }}">
                 <div class="bento-icon {{ $activeTab === 'saas' ? 'bg-purple-400/20 text-purple-300' : 'bg-purple-500/10 text-purple-400' }}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                     </svg>
                 </div>
-                <div class="bento-label {{ $activeTab === 'saas' ? 'text-white' : 'text-gray-700 dark:text-gray-300' }}">SaaS &amp; Software</div>
-                <div class="bento-sub {{ $activeTab === 'saas' ? 'text-purple-200' : 'text-gray-500' }}">Licenses · Subscriptions</div>
+                <div class="bento-label" data-tab-label="saas">SaaS &amp; Software</div>
+                <div class="bento-sub" data-tab-sub="saas">Licenses · Subscriptions</div>
                 @if($saas['saasCount'] > 0)
-                <span class="bento-badge {{ $activeTab === 'saas' ? 'bg-white/15 text-white' : 'bg-purple-500/10 text-purple-400' }}">
+                <span class="bento-badge {{ $activeTab === 'saas' ? 'bg-white/15 text-white' : 'bg-purple-500/10 text-purple-400' }}" data-tab-badge="saas">
                     {{ $saas['saasCount'] }} plans
                 </span>
                 @endif
             </button>
 
             {{-- Hardware & IoT --}}
-            <button wire:click="setTab('hardware')" data-tab="hardware"
+            <button onclick="monarchSwitchTab('hardware')" data-tab="hardware"
                 class="bento-tab {{ $activeTab === 'hardware' ? 'active' : 'inactive' }}">
                 <div class="bento-icon {{ $activeTab === 'hardware' ? 'bg-emerald-400/20 text-emerald-300' : 'bg-emerald-500/10 text-emerald-400' }}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <div class="bento-label {{ $activeTab === 'hardware' ? 'text-white' : 'text-gray-700 dark:text-gray-300' }}">Hardware &amp; IoT</div>
-                <div class="bento-sub {{ $activeTab === 'hardware' ? 'text-emerald-200' : 'text-gray-500' }}">Inventory · Alerts</div>
+                <div class="bento-label" data-tab-label="hardware">Hardware &amp; IoT</div>
+                <div class="bento-sub" data-tab-sub="hardware">Inventory · Alerts</div>
                 @if($hardware['lowStockCount'] > 0)
-                <span class="bento-badge bg-amber-500 text-white">⚠ {{ $hardware['lowStockCount'] }}</span>
+                <span class="bento-badge bg-amber-500 text-white" data-tab-badge="hardware">⚠ {{ $hardware['lowStockCount'] }}</span>
                 @endif
             </button>
 
             {{-- Servicing --}}
-            <button wire:click="setTab('servicing')" data-tab="servicing"
+            <button onclick="monarchSwitchTab('servicing')" data-tab="servicing"
                 class="bento-tab {{ $activeTab === 'servicing' ? 'active' : 'inactive' }}">
                 <div class="bento-icon {{ $activeTab === 'servicing' ? 'bg-orange-400/20 text-orange-300' : 'bg-orange-500/10 text-orange-400' }}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
                 </div>
-                <div class="bento-label {{ $activeTab === 'servicing' ? 'text-white' : 'text-gray-700 dark:text-gray-300' }}">Servicing &amp; Inquiries</div>
-                <div class="bento-sub {{ $activeTab === 'servicing' ? 'text-orange-200' : 'text-gray-500' }}">Custom · Consulting</div>
+                <div class="bento-label" data-tab-label="servicing">Servicing &amp; Inquiries</div>
+                <div class="bento-sub" data-tab-sub="servicing">Custom · Consulting</div>
             </button>
 
             {{-- Backup & Restore — spans full 4 cols (wide accent row) --}}
-            <button wire:click="setTab('backups')" data-tab="backups"
+            <button onclick="monarchSwitchTab('backups')" data-tab="backups"
                 class="bento-tab col-span-2 sm:col-span-4 {{ $activeTab === 'backups' ? 'active' : 'inactive' }}"
                 style="flex-direction:row; align-items:center; gap:14px;">
                 <div class="bento-icon {{ $activeTab === 'backups' ? 'bg-cyan-400/20 text-cyan-300' : 'bg-cyan-500/10 text-cyan-400' }}" style="width:44px;height:44px;border-radius:14px;">
@@ -201,10 +201,10 @@
                     </svg>
                 </div>
                 <div style="flex:1; text-align:left;">
-                    <div class="bento-label {{ $activeTab === 'backups' ? 'text-white' : 'text-gray-700 dark:text-gray-300' }}">Backup &amp; Restore</div>
-                    <div class="bento-sub {{ $activeTab === 'backups' ? 'text-cyan-200' : 'text-gray-500' }}">Database Snapshots</div>
+                    <div class="bento-label" data-tab-label="backups">Backup &amp; Restore</div>
+                    <div class="bento-sub" data-tab-sub="backups">Database Snapshots</div>
                 </div>
-                <span class="{{ $activeTab === 'backups' ? 'bg-white/15 text-white' : 'bg-cyan-500/10 text-cyan-500' }} px-3 py-1 rounded-full text-xs font-bold ml-auto shrink-0">
+                <span class="{{ $activeTab === 'backups' ? 'bg-white/15 text-white' : 'bg-cyan-500/10 text-cyan-500' }} px-3 py-1 rounded-full text-xs font-bold ml-auto shrink-0" data-tab-badge="backups">
                     {{ count($backups) }}
                 </span>
             </button>
@@ -214,13 +214,12 @@
         {{-- ── Section Header + Quick Action ──────────────────────────────── --}}
         <div class="flex items-center justify-between pt-1">
             <div class="monarch-section-header">
-                <h2 class="text-sm font-bold text-gray-900 dark:text-white pl-1">
-                    @if($activeTab === 'overview') Overview &amp; Revenue Analytics
-                    @elseif($activeTab === 'saas') SaaS &amp; Software Hub
-                    @elseif($activeTab === 'hardware') Hardware &amp; Edge IoT Inventory
-                    @elseif($activeTab === 'servicing') Custom Engineering &amp; Client Inquiries
-                    @elseif($activeTab === 'backups') Database Snapshot &amp; Disaster Recovery
-                    @endif
+                <h2 class="text-sm font-bold text-gray-900 dark:text-white pl-1" id="monarch-tab-title">
+                    {{ $activeTab === 'overview' ? 'Overview & Revenue Analytics'
+                     : ($activeTab === 'saas'      ? 'SaaS & Software Hub'
+                     : ($activeTab === 'hardware'  ? 'Hardware & Edge IoT Inventory'
+                     : ($activeTab === 'servicing' ? 'Custom Engineering & Client Inquiries'
+                     : 'Database Snapshot & Disaster Recovery'))) }}
                 </h2>
             </div>
             <a href="{{ route('filament.monarch.resources.products.create') }}" id="monarch-add-btn"
@@ -236,8 +235,7 @@
         {{-- ══════════════════════════════════════════════════════════════════ --}}
         {{-- TAB 1: OVERVIEW & FINANCIALS                                       --}}
         {{-- ══════════════════════════════════════════════════════════════════ --}}
-        @if($activeTab === 'overview')
-        <div class="space-y-6" id="tab-overview">
+        <div class="space-y-6" id="tab-overview" style="{{ $activeTab !== 'overview' ? 'display:none' : '' }}">
 
             {{-- KPI Stat Cards --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="monarch-kpis">
@@ -398,14 +396,12 @@
             </div>
 
         </div>
-        @endif
 
 
         {{-- ══════════════════════════════════════════════════════════════════ --}}
         {{-- TAB 2: SAAS & SOFTWARE                                             --}}
         {{-- ══════════════════════════════════════════════════════════════════ --}}
-        @if($activeTab === 'saas')
-        <div class="space-y-6" id="tab-saas">
+        <div class="space-y-6" id="tab-saas" style="{{ $activeTab !== 'saas' ? 'display:none' : '' }}">
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="monarch-kpi" style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);">
@@ -514,14 +510,12 @@
             </div>
 
         </div>
-        @endif
 
 
         {{-- ══════════════════════════════════════════════════════════════════ --}}
         {{-- TAB 3: HARDWARE & EDGE IOT                                         --}}
         {{-- ══════════════════════════════════════════════════════════════════ --}}
-        @if($activeTab === 'hardware')
-        <div class="space-y-6" id="tab-hardware">
+        <div class="space-y-6" id="tab-hardware" style="{{ $activeTab !== 'hardware' ? 'display:none' : '' }}">
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="monarch-kpi" style="background:linear-gradient(135deg,#052e16 0%,#14532d 100%);">
@@ -587,14 +581,12 @@
             @endif
 
         </div>
-        @endif
 
 
         {{-- ══════════════════════════════════════════════════════════════════ --}}
         {{-- TAB 4: SERVICING & INQUIRIES                                       --}}
         {{-- ══════════════════════════════════════════════════════════════════ --}}
-        @if($activeTab === 'servicing')
-        <div class="space-y-6" id="tab-servicing">
+        <div class="space-y-6" id="tab-servicing" style="{{ $activeTab !== 'servicing' ? 'display:none' : '' }}">
 
             <div class="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 p-5 shadow-sm">
                 <div class="flex items-center gap-3 mb-5">
@@ -647,14 +639,12 @@
             </div>
 
         </div>
-        @endif
 
 
         {{-- ══════════════════════════════════════════════════════════════════ --}}
         {{-- TAB 5: DATABASE BACKUP & RESTORE                                   --}}
         {{-- ══════════════════════════════════════════════════════════════════ --}}
-        @if($activeTab === 'backups')
-        <div class="space-y-6" id="tab-backups">
+        <div class="space-y-6" id="tab-backups" style="{{ $activeTab !== 'backups' ? 'display:none' : '' }}">
 
             <div class="p-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 flex items-center justify-between gap-4">
                 <div class="flex items-start gap-4">
@@ -759,7 +749,64 @@
             </div>
 
         </div>
-        @endif
 
     </div>
 </x-filament-panels::page>
+
+<script>
+(function () {
+    const TAB_TITLES = {
+        overview:  'Overview & Revenue Analytics',
+        saas:      'SaaS & Software Hub',
+        hardware:  'Hardware & Edge IoT Inventory',
+        servicing: 'Custom Engineering & Client Inquiries',
+        backups:   'Database Snapshot & Disaster Recovery',
+    };
+
+    const TAB_ACTIVE_GRADIENT = {
+        overview:  'var(--bento-grad-overview, linear-gradient(135deg,#1e3a8a,#2563eb))',
+        saas:      'var(--bento-grad-saas,     linear-gradient(135deg,#4c1d95,#7c3aed))',
+        hardware:  'var(--bento-grad-hardware,  linear-gradient(135deg,#064e3b,#059669))',
+        servicing: 'var(--bento-grad-servicing, linear-gradient(135deg,#7c2d12,#ea580c))',
+        backups:   'var(--bento-grad-backups,   linear-gradient(135deg,#164e63,#0891b2))',
+    };
+
+    window.monarchSwitchTab = function (tab) {
+        // Hide all tab content panels
+        ['overview', 'saas', 'hardware', 'servicing', 'backups'].forEach(function (t) {
+            var panel = document.getElementById('tab-' + t);
+            if (panel) panel.style.display = (t === tab) ? '' : 'none';
+
+            // Update tab button state
+            var btn = document.querySelector('[data-tab="' + t + '"]');
+            if (btn) {
+                if (t === tab) {
+                    btn.classList.remove('inactive');
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('inactive');
+                }
+            }
+        });
+
+        // Update section header title
+        var title = document.getElementById('monarch-tab-title');
+        if (title) title.textContent = TAB_TITLES[tab] || tab;
+
+        // Persist selection in sessionStorage so refresh remembers it
+        try { sessionStorage.setItem('monarch_active_tab', tab); } catch (e) {}
+    };
+
+    // On load, restore from sessionStorage if different from server-rendered default
+    (function () {
+        var stored;
+        try { stored = sessionStorage.getItem('monarch_active_tab'); } catch (e) {}
+        var serverTab = document.querySelector('.bento-tab.active');
+        var serverTabName = serverTab ? serverTab.getAttribute('data-tab') : 'overview';
+        if (stored && stored !== serverTabName && TAB_TITLES[stored]) {
+            monarchSwitchTab(stored);
+        }
+    })();
+})();
+</script>

@@ -1330,9 +1330,9 @@
         (function () {
             'use strict';
 
-            const CHAT_URL         = '{{ route("manager.mai.chat") }}';
-            const CONVS_URL        = '{{ route("manager.mai.conversations") }}';
-            const CONV_BASE        = '{{ url("/manager/mai/conversations") }}';
+            const CHAT_URL         = '{{ route("monarch.mai.chat") }}';
+            const CONVS_URL        = '{{ route("monarch.mai.conversations") }}';
+            const CONV_BASE        = '{{ url("/monarch/mai/api/conversations") }}';
             const CSRF_TOKEN       = '{{ csrf_token() }}';
             const USER_INITIALS    = '{{ $adminInitials ?? "AD" }}';
 
