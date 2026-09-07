@@ -120,17 +120,21 @@ class Dashboard extends Page
             ->orWhere('slug', 'like', '%software%')
             ->pluck('id');
 
-        // Physical products
+        // Physical products only (exclude digital products and SaaS categories)
         $hardwareProducts = Product::with('category')
+            ->where('is_digital', false)
             ->whereNotIn('category_id', $saasCategoryIds)
             ->get();
 
         $totalUnitsInStock = $hardwareProducts->sum('stock_quantity');
-        $inventoryAssetValue = $hardwareProducts->sum(fn ($p) => ($p->price * $p->stock_quantity));
+        $inventoryAssetValue = $hardwareProducts->sum(fn ($p) => ($p->price * ($p->stock_quantity ?? 0)));
 
-        // Low stock alerts (stock <= min threshold)
+        // Low stock alerts (physical products only, stock <= min threshold)
         $lowStockProducts = Product::with('category')
             ->where('is_active', true)
+            ->where('is_digital', false)
+            ->whereNotNull('stock_quantity')
+            ->whereNotNull('min_stock_threshold')
             ->whereColumn('stock_quantity', '<=', 'min_stock_threshold')
             ->orderBy('stock_quantity')
             ->get();

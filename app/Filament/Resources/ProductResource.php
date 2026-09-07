@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -46,7 +47,24 @@ class ProductResource extends Resource
                         ->label('SKU')
                         ->unique(ignoreRecord: true)
                         ->placeholder('MHQ-XXXXXX')
-                        ->maxLength(100),
+                        ->maxLength(100)
+                        ->suffixAction(
+                            Forms\Components\Actions\Action::make('generateSku')
+                                ->icon('heroicon-m-sparkles')
+                                ->tooltip('Auto-generate unique SKU')
+                                ->action(function (Forms\Set $set, Forms\Get $get) {
+                                    $category = $get('category_id') ? Category::find($get('category_id')) : null;
+                                    $prefix = 'MHQ';
+                                    if ($category) {
+                                        $clean = strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', $category->name), 0, 4));
+                                        if (! empty($clean)) {
+                                            $prefix = $clean;
+                                        }
+                                    }
+                                    $sku = $prefix.'-'.strtoupper(Str::random(6));
+                                    $set('sku', $sku);
+                                })
+                        ),
 
                     Forms\Components\Select::make('category_id')
                         ->label('Category')
@@ -54,6 +72,22 @@ class ProductResource extends Resource
                         ->searchable()
                         ->preload()
                         ->required(),
+
+                    Forms\Components\Toggle::make('is_digital')
+                        ->label('Digital Product (License, SaaS, Download)')
+                        ->helperText('Digital products do not require warehouse stock tracking or physical inventory.')
+                        ->default(false)
+                        ->live()
+                        ->afterStateUpdated(function ($state, Forms\Set $set) {
+                            if ($state) {
+                                $set('stock_quantity', null);
+                                $set('min_stock_threshold', null);
+                            } else {
+                                $set('stock_quantity', 0);
+                                $set('min_stock_threshold', 5);
+                            }
+                        })
+                        ->columnSpanFull(),
                 ])->columns(2),
 
             Forms\Components\Section::make('Description')
@@ -84,20 +118,27 @@ class ProductResource extends Resource
                 ])->columns(2),
 
             Forms\Components\Section::make('Inventory')
+                ->description('Manage physical warehouse quantities and low-stock alerts.')
                 ->schema([
                     Forms\Components\TextInput::make('stock_quantity')
+                        ->label('Stock Quantity')
                         ->numeric()
-                        ->required()
+                        ->minValue(0)
+                        ->maxValue(2147483647)
+                        ->required(fn (Forms\Get $get) => ! $get('is_digital'))
                         ->default(0)
-                        ->minValue(0),
+                        ->helperText('Available physical units in warehouse.'),
 
                     Forms\Components\TextInput::make('min_stock_threshold')
                         ->label('Low Stock Alert Threshold')
                         ->numeric()
-                        ->default(5)
                         ->minValue(0)
+                        ->maxValue(2147483647)
+                        ->default(5)
                         ->helperText('Triggers a low-stock alert in the dashboard.'),
-                ])->columns(2),
+                ])
+                ->hidden(fn (Forms\Get $get) => (bool) $get('is_digital'))
+                ->columns(2),
 
             Forms\Components\Section::make('Store Appearance')
                 ->schema([
@@ -203,20 +244,30 @@ class ProductResource extends Resource
                     ->placeholder('—')
                     ->color('danger'),
 
+                Tables\Columns\IconColumn::make('is_digital')
+                    ->label('Digital')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-cloud-arrow-down')
+                    ->falseIcon('heroicon-o-cube')
+                    ->trueColor('info')
+                    ->falseColor('gray'),
+
                 Tables\Columns\TextColumn::make('stock_quantity')
                     ->label('Stock')
                     ->sortable()
                     ->badge()
-                    ->color(fn ($record) => match ($record->stock_status) {
+                    ->color(fn ($record) => $record->is_digital ? 'info' : match ($record->stock_status) {
                         'in_stock' => 'success',
                         'low_stock' => 'warning',
                         'out_of_stock' => 'danger',
                     })
-                    ->formatStateUsing(fn ($state, $record) => match ($record->stock_status) {
-                        'in_stock' => $state.' In Stock',
-                        'low_stock' => $state.' Low',
-                        'out_of_stock' => 'Out of Stock',
-                    }),
+                    ->formatStateUsing(fn ($state, $record) => $record->is_digital
+                        ? 'Digital (Unlimited)'
+                        : match ($record->stock_status) {
+                            'in_stock' => $state.' In Stock',
+                            'low_stock' => $state.' Low',
+                            'out_of_stock' => 'Out of Stock',
+                        }),
 
                 Tables\Columns\IconColumn::make('is_featured')
                     ->label('Featured')
@@ -237,6 +288,12 @@ class ProductResource extends Resource
                     ->relationship('category', 'name')
                     ->label('Category'),
 
+                Tables\Filters\TernaryFilter::make('is_digital')
+                    ->label('Product Type')
+                    ->placeholder('All Products')
+                    ->trueLabel('Digital Only')
+                    ->falseLabel('Physical Only'),
+
                 Tables\Filters\TernaryFilter::make('is_featured')
                     ->label('Featured'),
 
@@ -245,7 +302,7 @@ class ProductResource extends Resource
 
                 Tables\Filters\Filter::make('low_stock')
                     ->label('Low Stock / Out of Stock')
-                    ->query(fn (Builder $query) => $query->whereColumn('stock_quantity', '<=', 'min_stock_threshold')),
+                    ->query(fn (Builder $query) => $query->where('is_digital', false)->whereNotNull('stock_quantity')->whereColumn('stock_quantity', '<=', 'min_stock_threshold')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -1,4 +1,4 @@
-﻿<x-main-layout
+<x-main-layout
     title="MonarchI Store — Enterprise Hardware, IoT & Digital Products"
     description="Explore and purchase official MonarchI hardware, smart devices, software licenses, and digital developer products."
     keywords="MonarchI Store, Buy Enterprise Hardware, IoT Devices, AI Hardware Africa, Tech Store Ghana, Developer Licenses">
@@ -297,13 +297,18 @@
 
                         {{-- Stock status --}}
                         <div class="flex items-center gap-1.5 mt-1.5">
-                            @php
-                                $status = $product->stock_status;
-                                $dotClass = $status === 'in_stock' ? 'dot-in' : ($status === 'low_stock' ? 'dot-low' : 'dot-out');
-                                $statusLabel = $status === 'in_stock' ? 'In Stock' : ($status === 'low_stock' ? 'Low Stock' : 'Out of Stock');
-                            @endphp
-                            <span class="inline-block w-2 h-2 rounded-full {{ $dotClass }}"></span>
-                            <span class="text-[10px] font-medium" style="color: var(--text-muted);">{{ $statusLabel }}</span>
+                            @if($product->is_digital)
+                                <span class="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
+                                <span class="text-[10px] font-medium text-blue-400">Instant Digital Delivery</span>
+                            @else
+                                @php
+                                    $status = $product->stock_status;
+                                    $dotClass = $status === 'in_stock' ? 'dot-in' : ($status === 'low_stock' ? 'dot-low' : 'dot-out');
+                                    $statusLabel = $status === 'in_stock' ? 'In Stock' : ($status === 'low_stock' ? 'Low Stock' : 'Out of Stock');
+                                @endphp
+                                <span class="inline-block w-2 h-2 rounded-full {{ $dotClass }}"></span>
+                                <span class="text-[10px] font-medium" style="color: var(--text-muted);">{{ $statusLabel }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>

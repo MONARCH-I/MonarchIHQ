@@ -21,6 +21,7 @@ class Product extends Model
         'short_description',
         'price',
         'sale_price',
+        'is_digital',
         'stock_quantity',
         'min_stock_threshold',
         'is_featured',
@@ -35,10 +36,21 @@ class Product extends Model
     protected $casts = [
         'price' => 'decimal:2',
         'sale_price' => 'decimal:2',
+        'is_digital' => 'boolean',
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
         'gallery' => 'array',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (Product $product) {
+            if ($product->is_digital) {
+                $product->stock_quantity = null;
+                $product->min_stock_threshold = null;
+            }
+        });
+    }
 
     // ── Relationships ─────────────────────────────────────────────────────────
 
@@ -66,13 +78,20 @@ class Product extends Model
 
     public function scopeLowStock(Builder $query): Builder
     {
-        return $query->whereColumn('stock_quantity', '<=', 'min_stock_threshold')
+        return $query->where('is_digital', false)
+            ->whereNotNull('stock_quantity')
+            ->whereNotNull('min_stock_threshold')
+            ->whereColumn('stock_quantity', '<=', 'min_stock_threshold')
             ->where('stock_quantity', '>', 0);
     }
 
     public function scopeOutOfStock(Builder $query): Builder
     {
-        return $query->where('stock_quantity', 0);
+        return $query->where('is_digital', false)
+            ->where(function ($q) {
+                $q->where('stock_quantity', 0)
+                    ->orWhereNull('stock_quantity');
+            });
     }
 
     public function scopeForCategory(Builder $query, string $categorySlug): Builder
@@ -98,10 +117,13 @@ class Product extends Model
 
     public function getStockStatusAttribute(): string
     {
-        if ($this->stock_quantity === 0) {
+        if ($this->is_digital) {
+            return 'in_stock';
+        }
+        if ($this->stock_quantity === null || $this->stock_quantity <= 0) {
             return 'out_of_stock';
         }
-        if ($this->stock_quantity <= $this->min_stock_threshold) {
+        if ($this->min_stock_threshold !== null && $this->stock_quantity <= $this->min_stock_threshold) {
             return 'low_stock';
         }
 
@@ -125,16 +147,16 @@ class Product extends Model
     /**
      * Compute the single active badge for this product.
      * Guaranteed never duplicated. Priority:
-     * 1. Out of stock / Restock soon (grayed out)
+     * 1. Out of stock / Restock soon (grayed out) - physical products only
      * 2. Admin explicit badge (Pre-Order, Limited Offer, or custom text)
-     * 3. System automated badge (Limited Quantity, Limited Offer / Sale, Popular)
+     * 3. System automated badge (Limited Quantity, Limited Offer / Sale, Popular, Digital)
      *
      * @return array{text: string, color: string, is_grayed: bool}|null
      */
     public function getBadgeAttribute(): ?array
     {
-        // 1. Out of stock (Grayed out)
-        if ($this->stock_quantity <= 0) {
+        // 1. Out of stock (Grayed out) — physical products only
+        if (! $this->is_digital && ($this->stock_quantity === null || $this->stock_quantity <= 0)) {
             return [
                 'text' => 'Restock Soon',
                 'color' => 'gray',
@@ -164,7 +186,7 @@ class Product extends Model
         }
 
         // 3. System automated badges
-        if ($this->stock_quantity <= $this->min_stock_threshold) {
+        if (! $this->is_digital && $this->min_stock_threshold !== null && $this->stock_quantity <= $this->min_stock_threshold) {
             return [
                 'text' => 'Limited Quantity',
                 'color' => 'orange',
@@ -183,6 +205,14 @@ class Product extends Model
         if ($this->is_featured) {
             return [
                 'text' => 'Popular',
+                'color' => 'blue',
+                'is_grayed' => false,
+            ];
+        }
+
+        if ($this->is_digital) {
+            return [
+                'text' => 'Digital Product',
                 'color' => 'blue',
                 'is_grayed' => false,
             ];

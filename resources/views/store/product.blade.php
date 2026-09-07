@@ -1,4 +1,4 @@
-﻿@php
+@php
     $productImage = $product->image_path ? asset('storage/' . $product->image_path) : asset('images/world-tech.png');
     $productDescription = Str::limit(strip_tags($product->short_description ?: $product->description), 160);
     $effectivePrice = $product->sale_price ?: $product->price;
@@ -115,26 +115,32 @@
                     @endif
                 </div>
 
-                {{-- Stock --}}
+                {{-- Stock / Delivery Type --}}
                 <div class="flex items-center gap-2 mb-6">
-                    @php
-                        $status = $product->stock_status;
-                        $dotColors = ['in_stock'=>'bg-green-500','low_stock'=>'bg-amber-400','out_of_stock'=>'bg-red-500'];
-                        $statusLabels = ['in_stock'=>'In Stock','low_stock'=>'Low Stock — Order Soon','out_of_stock'=>'Out of Stock'];
-                    @endphp
-                    <span class="w-2.5 h-2.5 rounded-full {{ $dotColors[$status] }} inline-block"></span>
-                    <span class="text-sm font-medium" style="color: var(--text-secondary);">{{ $statusLabels[$status] }}</span>
+                    @if($product->is_digital)
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block animate-pulse"></span>
+                        <span class="text-sm font-semibold text-blue-400">⚡ Instant Digital Download &bull; No physical shipping needed</span>
+                    @else
+                        @php
+                            $status = $product->stock_status;
+                            $dotColors = ['in_stock'=>'bg-green-500','low_stock'=>'bg-amber-400','out_of_stock'=>'bg-red-500'];
+                            $statusLabels = ['in_stock'=>'In Stock','low_stock'=>'Low Stock — Order Soon','out_of_stock'=>'Out of Stock'];
+                        @endphp
+                        <span class="w-2.5 h-2.5 rounded-full {{ $dotColors[$status] }} inline-block"></span>
+                        <span class="text-sm font-medium" style="color: var(--text-secondary);">{{ $statusLabels[$status] }}</span>
+                    @endif
                 </div>
 
-                {{-- Add to Bag with Ultra-Modern Quantity Stepper --}}
-                @if($product->stock_status !== 'out_of_stock')
+                {{-- Add to Bag Form --}}
+                @if($product->is_digital || $product->stock_status !== 'out_of_stock')
                 <form id="product-detail-atb-form" action="{{ route('bag.add') }}" method="POST" class="mb-5">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="quantity" id="detail-qty-input" value="1">
 
                     <div class="flex items-center gap-3.5">
-                        {{-- Ultra-Modern Capsule Stepper --}}
+                        @if(!$product->is_digital)
+                        {{-- Ultra-Modern Capsule Stepper (Physical Products only) --}}
                         <div class="modern-qty-stepper flex items-center justify-between p-1 rounded-2xl h-[52px] w-[140px] shrink-0 select-none">
                             {{-- Decrement Button --}}
                             <button type="button" id="qty-dec-btn" aria-label="Decrease quantity"
@@ -161,6 +167,7 @@
                                 </svg>
                             </button>
                         </div>
+                        @endif
 
                         {{-- Add to Bag Button --}}
                         <button type="submit" id="detail-atb-btn"
@@ -168,7 +175,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                             </svg>
-                            <span>Add to Bag</span>
+                            <span>{{ $product->is_digital ? 'Add to Bag (Instant Access)' : 'Add to Bag' }}</span>
                         </button>
                     </div>
                 </form>
