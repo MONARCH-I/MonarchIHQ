@@ -19,7 +19,6 @@
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>
-        <env name="APP_KEY" value="base64:REMOVED"/>
         <env name="APP_DEBUG" value="true"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
@@ -33,5 +32,8 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="PAYSTACK_SECRET_KEY" value="sk_test_placeholder"/>
+        <env name="PAYSTACK_PUBLIC_KEY" value="pk_test_placeholder"/>
+        <env name="PAYSTACK_PAYMENT_URL" value="https://api.paystack.co"/>
     </php>
 </phpunit>
