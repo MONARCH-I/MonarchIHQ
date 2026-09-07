@@ -1114,13 +1114,7 @@
 
         {{-- Header --}}
         <div class="mai-header">
-            <div class="mai-logo">✦</div>
-            <div style="min-width:0;">
-                <div class="mai-title">MAI &mdash; Monarch AI</div>
-                <div class="mai-subtitle">SUPER ADMIN &bull; CONTEXT-AWARE</div>
-            </div>
-
-            <div class="mai-header-actions">
+            <div class="mai-header-actions" style="margin:0;">
                 <button type="button" class="mai-hdr-btn" onclick="maiNewChat()" id="maiNewChatBtn" title="Start a fresh conversation">
                     <span style="font-size:13px;font-weight:700;">+</span>
                     <span>New Chat</span>
@@ -1130,6 +1124,14 @@
                     <span id="maiHistoryBtnLabel">History</span>
                     <span class="mai-history-count" id="maiConvCount">0</span>
                 </button>
+            </div>
+
+            <div style="flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;">
+                <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                    <img src="{{ asset('images/logo-white.png') }}" alt="MonarchI Logo" style="height:22px;width:auto;object-fit:contain;" />
+                    <div class="mai-title" style="font-size:15px;font-weight:700;color:var(--text-primary);">MAI &mdash; Monarch AI</div>
+                </div>
+                <div class="mai-subtitle" style="font-size:10px;color:var(--text-muted);margin-top:1px;letter-spacing:0.04em;">SUPER ADMIN &bull; CONTEXT-AWARE</div>
             </div>
 
             <button type="button" class="mai-close-btn" onclick="maiClose()" aria-label="Close MAI">✕</button>

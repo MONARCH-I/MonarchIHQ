@@ -1,4 +1,4 @@
-﻿<x-filament-panels::page>
+<x-filament-panels::page>
     <div class="mai-root-wrapper" id="maiApp">
 
         {{-- ── Background Aurora FX ────────────────────────────────────────── --}}
@@ -8,20 +8,55 @@
 
         {{-- ── TOP NAVIGATION / CONTROL BAR ───────────────────────────────── --}}
         <header class="mai-topbar">
+            {{-- Left: Async Navigation Tabs --}}
             <div class="mai-topbar-left">
-                <div class="mai-brand-spark">
-                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#mai-gemini-grad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/>
-                        <defs>
-                            <linearGradient id="mai-gemini-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#9c051d"/>
-                                <stop offset="0.5" stop-color="#c4203a"/>
-                                <stop offset="1" stop-color="#e8788a"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div>
+                <nav class="mai-nav-tabs" role="tablist" aria-label="MAI Navigation">
+                    <button type="button"
+                            class="mai-tab-btn active"
+                            id="maiTabChatBtn"
+                            onclick="maiSwitchTab('chat')"
+                            role="tab"
+                            aria-selected="true"
+                            title="Active Chat">
+                        <svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        <span>Chat</span>
+                    </button>
+
+                    <button type="button"
+                            class="mai-tab-btn"
+                            id="maiTabHistoryBtn"
+                            onclick="maiSwitchTab('history')"
+                            role="tab"
+                            aria-selected="false"
+                            title="Past Conversations">
+                        <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>History</span>
+                        <span class="liquid-counter-badge" id="maiHistoryBadge">0</span>
+                    </button>
+
+                    <button type="button"
+                            class="mai-tab-btn"
+                            id="maiTabSchemaBtn"
+                            onclick="maiSwitchTab('schema')"
+                            role="tab"
+                            aria-selected="false"
+                            title="Database Schema">
+                        <svg class="w-3.5 h-3.5 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7M4 7c0-2 1.5-3 3.5-3h9c2 0 3.5 1 3.5 3M4 7h16m-8 4v6m-4-3h8" />
+                        </svg>
+                        <span class="hidden sm:inline">DB Schema</span>
+                    </button>
+                </nav>
+            </div>
+
+            {{-- Center: Company Logo + Centered Text Content --}}
+            <div class="mai-topbar-center">
+                <div class="mai-center-brand">
+                    <img src="{{ asset('images/logo-white.png') }}" alt="MonarchI Logo" class="mai-header-logo" />
                     <div class="flex items-center gap-2">
                         <h1 class="mai-title">MAI</h1>
                         <span class="mai-model-chip">
@@ -29,39 +64,21 @@
                             <span class="font-medium">{{ $geminiModel ?? 'gemini-3.6-flash' }}</span>
                         </span>
                     </div>
-                    <p class="mai-subtitle">Zero-Shot PostgreSQL Engine & Enterprise Intelligence</p>
                 </div>
+                <p class="mai-subtitle">Zero-Shot PostgreSQL Engine &amp; Enterprise Intelligence</p>
             </div>
 
+            {{-- Right: Actions --}}
             <div class="mai-topbar-actions">
-                {{-- History Toggle Liquid Button --}}
-                <button type="button" class="liquid-btn liquid-btn-history" id="maiToggleHistoryBtn" onclick="maiToggleHistory()" title="Toggle Past Conversations">
-                    <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>History</span>
-                    <span class="liquid-counter-badge" id="maiHistoryBadge">0</span>
-                </button>
-
-                {{-- + New Chat Liquid Button --}}
                 <button type="button" class="liquid-btn liquid-btn-primary" onclick="maiNewChat()" title="Start New AI Session">
-                    <svg class="w-4 h-4 shrink-0 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg class="w-3.5 h-3.5 shrink-0 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
-                    <span>New Chat</span>
+                    <span class="hidden sm:inline">New Chat</span>
                 </button>
 
-                {{-- DB Schema Modal Trigger --}}
-                <button type="button" class="liquid-btn liquid-btn-glass" onclick="maiToggleSchemaModal()" title="View Database Tables & Fields">
-                    <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7M4 7c0-2 1.5-3 3.5-3h9c2 0 3.5 1 3.5 3M4 7h16m-8 4v6m-4-3h8" />
-                    </svg>
-                    <span class="hidden sm:inline">DB Schema</span>
-                </button>
-
-                {{-- Clear Session --}}
                 <button type="button" class="liquid-btn liquid-btn-glass" onclick="maiClearCurrentChat()" title="Clear Active View">
-                    <svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <svg class="w-3.5 h-3.5 text-rose-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                     <span class="hidden md:inline">Clear</span>
@@ -116,87 +133,43 @@
                 {{-- Scrollable Message Stream --}}
                 <div class="mai-messages-container" id="maiMessagesFeed">
 
-                    {{-- ── ZERO-STATE HERO (Google Gemini / Grok style) ────── --}}
+                    {{-- ── ZERO-STATE HERO (Compact, No Overflow) ────── --}}
                     <div class="mai-hero-view" id="maiHeroView">
                         <div class="mai-hero-spark-wrap">
                             <div class="mai-hero-spark-glow"></div>
                             <div class="mai-hero-spark">
-                                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="url(#mai-hero-grad)"/>
-                                    <defs>
-                                        <linearGradient id="mai-hero-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#9c051d"/>
-                                            <stop offset="0.4" stop-color="#c4203a"/>
-                                            <stop offset="0.8" stop-color="#e8788a"/>
-                                            <stop offset="1" stop-color="#f43f5e"/>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                                <img src="{{ asset('images/logo-white.png') }}" alt="MonarchI Crest" class="w-5 h-5 object-contain" />
                             </div>
                         </div>
 
                         <h2 class="mai-hero-greeting">
-                            Good day, <span class="mai-hero-name">{{ $adminFirstName ?? 'Admin' }}</span>.
+                            Good day, <span class="mai-hero-name">{{ $adminFirstName ?? 'Admin' }}</span>
                         </h2>
                         <p class="mai-hero-tagline">
-                            Where would you like to direct Monarchi intelligence today?
+                            How can MonarchI intelligence assist you today?
                         </p>
 
-                        {{-- Grok / Gemini Suggestion Cards Grid --}}
-                        <div class="mai-suggestions-grid">
-
-                            <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('How many active products do we have in total, and which ones are currently featured?')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(56, 189, 248, 0.12); color: #9c051d;">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                    </svg>
-                                </div>
-                                <div class="mai-card-body">
-                                    <p class="mai-card-title">Active & Featured Products</p>
-                                    <p class="mai-card-desc">Audit catalog count, categories, and showcase items</p>
-                                </div>
-                                <span class="mai-card-arrow">→</span>
+                        {{-- Compact Suggestion Pills --}}
+                        <div class="mai-suggestions-pills">
+                            <button type="button" class="mai-suggestion-pill" onclick="maiQuickPrompt('How many active products do we have in total, and which ones are currently featured?')">
+                                <span class="mai-pill-dot" style="background:#38bdf8;"></span>
+                                <span>Active &amp; Featured Products</span>
                             </button>
 
-                            <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('List all products with stock quantity less than or equal to their minimum stock threshold.')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                                    </svg>
-                                </div>
-                                <div class="mai-card-body">
-                                    <p class="mai-card-title">Low Stock Alert Audit</p>
-                                    <p class="mai-card-desc">Identify inventory nearing threshold needing supplier POs</p>
-                                </div>
-                                <span class="mai-card-arrow">→</span>
+                            <button type="button" class="mai-suggestion-pill" onclick="maiQuickPrompt('List all products with stock quantity less than or equal to their minimum stock threshold.')">
+                                <span class="mai-pill-dot" style="background:#f59e0b;"></span>
+                                <span>Low Stock Alerts</span>
                             </button>
 
-                            <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('Summarize total revenue and order volume by payment status and payment channel.')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                    </svg>
-                                </div>
-                                <div class="mai-card-body">
-                                    <p class="mai-card-title">Revenue & Order Breakdown</p>
-                                    <p class="mai-card-desc">Calculate paid vs pending GMV and mobile money split</p>
-                                </div>
-                                <span class="mai-card-arrow">→</span>
+                            <button type="button" class="mai-suggestion-pill" onclick="maiQuickPrompt('Summarize total revenue and order volume by payment status and payment channel.')">
+                                <span class="mai-pill-dot" style="background:#10b981;"></span>
+                                <span>Revenue &amp; Orders</span>
                             </button>
 
-                            <button type="button" class="mai-suggestion-card" onclick="maiQuickPrompt('Show me the latest contact messages and inquiries received from the website.')">
-                                <div class="mai-card-icon-wrap" style="background: rgba(192, 132, 252, 0.12); color: #e8788a;">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                                    </svg>
-                                </div>
-                                <div class="mai-card-body">
-                                    <p class="mai-card-title">Client Inquiries & CRM</p>
-                                    <p class="mai-card-desc">Review fresh contact form submissions & HR status</p>
-                                </div>
-                                <span class="mai-card-arrow">→</span>
+                            <button type="button" class="mai-suggestion-pill" onclick="maiQuickPrompt('Show me the latest contact messages and inquiries received from the website.')">
+                                <span class="mai-pill-dot" style="background:#c084fc;"></span>
+                                <span>Client Inquiries</span>
                             </button>
-
                         </div>
                     </div>
 
@@ -302,21 +275,58 @@
 
         {{-- ── STYLES: GEMINI & GROK COSMIC DARK THEME + LIQUID GLASS BUTTONS ── --}}
         <style>
+            /* ── Scoped Filament Layout Overrides: Zero outer scrolling, exact fit below topbar ── */
+            html:has(.mai-root-wrapper),
+            body:has(.mai-root-wrapper) {
+                overflow: hidden !important;
+                height: 100vh !important;
+                max-height: 100vh !important;
+            }
+            .fi-main-ctn:has(.mai-root-wrapper) {
+                overflow: hidden !important;
+                height: 100vh !important;
+            }
+            .fi-main:has(.mai-root-wrapper) {
+                padding: 0.5rem 1rem 0.75rem !important;
+                overflow: hidden !important;
+                display: flex !important;
+                flex-direction: column !important;
+                flex: 1 !important;
+                height: calc(100vh - var(--fi-topbar-height, 4rem)) !important;
+                max-height: calc(100vh - var(--fi-topbar-height, 4rem)) !important;
+                min-height: 0 !important;
+            }
+            .fi-page:has(.mai-root-wrapper) {
+                gap: 0 !important;
+                padding: 0 !important;
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                height: 100% !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
+            }
+            .fi-page:has(.mai-root-wrapper) > header.fi-header {
+                display: none !important;
+            }
+
             /* Root Container */
             .mai-root-wrapper {
                 position: relative;
                 width: 100%;
-                height: calc(100vh - 7.5rem);
-                min-height: 600px;
+                height: 100% !important;
+                max-height: 100% !important;
+                min-height: 0 !important;
                 display: flex;
                 flex-direction: column;
                 background: #090a10;
-                border-radius: 24px;
+                border-radius: 16px;
                 border: 1px solid rgba(255, 255, 255, 0.08);
-                box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                box-shadow: 0 16px 48px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
                 overflow: hidden;
                 color: #f1f5f9;
                 font-family: inherit;
+                flex: 1;
             }
 
             /* Aurora Ambient FX */
@@ -353,35 +363,45 @@
                 opacity: 0.12;
             }
 
-            /* Topbar */
+            /* Topbar (Balanced 3-column Layout with Centered Branding) */
             .mai-topbar {
                 position: relative;
                 z-index: 20;
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
                 align-items: center;
-                justify-content: space-between;
                 gap: 16px;
-                padding: 14px 24px;
-                background: rgba(14, 16, 26, 0.75);
+                padding: 10px 20px;
+                background: rgba(14, 16, 26, 0.85);
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+                flex-shrink: 0;
             }
             .mai-topbar-left {
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                justify-content: flex-start;
             }
-            .mai-brand-spark {
-                width: 36px;
-                height: 36px;
-                border-radius: 12px;
-                background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(192, 132, 252, 0.25));
-                border: 1px solid rgba(255, 255, 255, 0.2);
+            .mai-topbar-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .mai-center-brand {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 4px 16px -2px rgba(56, 189, 248, 0.35);
+                gap: 10px;
+            }
+            .mai-header-logo {
+                height: 24px;
+                width: auto;
+                max-width: 32px;
+                object-fit: contain;
+                filter: drop-shadow(0 2px 8px rgba(156, 5, 29, 0.4));
             }
             .mai-title {
                 font-size: 16px;
@@ -418,11 +438,68 @@
             .mai-subtitle {
                 font-size: 11px;
                 color: #94a3b8;
+                margin-top: 1px;
             }
             .mai-topbar-actions {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                justify-content: flex-end;
+                gap: 8px;
+            }
+
+            /* Async Navigation Tabs (Liquid Segmented Buttons) */
+            .mai-nav-tabs {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                padding: 3px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .mai-tab-btn {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 12px;
+                border-radius: 9px;
+                font-size: 11.5px;
+                font-weight: 600;
+                color: #94a3b8;
+                background: transparent;
+                border: 1px solid transparent;
+                cursor: pointer;
+                user-select: none;
+                transition: all 0.18s ease;
+                text-decoration: none;
+            }
+            .mai-tab-btn:hover {
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.06);
+            }
+            .mai-tab-btn.active {
+                color: #ffffff;
+                background: linear-gradient(135deg, rgba(156, 5, 29, 0.35) 0%, rgba(99, 102, 241, 0.25) 100%);
+                border-color: rgba(156, 5, 29, 0.4);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            @media (max-width: 820px) {
+                .mai-topbar {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding: 8px 14px;
+                    gap: 8px;
+                }
+                .mai-topbar-center {
+                    order: -1;
+                    width: 100%;
+                    margin-bottom: 2px;
+                }
+                .mai-subtitle {
+                    display: none;
+                }
             }
 
             /* LIQUID GLASS BUTTONS */
@@ -683,58 +760,53 @@
             .mai-messages-container {
                 flex: 1;
                 overflow-y: auto;
-                padding: 24px 28px 140px;
+                padding: 16px 20px 105px;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 16px;
                 scroll-behavior: smooth;
             }
 
-            /* Zero-State Hero View */
+            /* Zero-State Hero View (Compact, Zero-Overflow) */
             .mai-hero-view {
-                max-width: 820px;
+                max-width: 680px;
                 margin: auto auto;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 30px 16px;
+                padding: 14px 12px;
             }
             .mai-hero-spark-wrap {
                 position: relative;
-                margin-bottom: 18px;
+                margin-bottom: 8px;
             }
             .mai-hero-spark-glow {
                 position: absolute;
-                inset: -8px;
-                border-radius: 24px;
-                background: linear-gradient(135deg, #9c051d, #c4203a, #e8788a);
-                filter: blur(20px);
-                opacity: 0.55;
-                animation: maiGlowPulse 4s ease-in-out infinite;
-            }
-            @keyframes maiGlowPulse {
-                0%, 100% { transform: scale(0.95); opacity: 0.45; }
-                50% { transform: scale(1.08); opacity: 0.7; }
+                inset: -4px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #9c051d, #c4203a);
+                filter: blur(12px);
+                opacity: 0.45;
             }
             .mai-hero-spark {
                 position: relative;
-                width: 64px;
-                height: 64px;
-                border-radius: 20px;
+                width: 42px;
+                height: 42px;
+                border-radius: 12px;
                 background: linear-gradient(135deg, #181b2a, #0d0f1a);
-                border: 1px solid rgba(255, 255, 255, 0.25);
+                border: 1px solid rgba(255, 255, 255, 0.22);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
             }
             .mai-hero-greeting {
-                font-size: 32px;
+                font-size: 20px;
                 font-weight: 800;
-                letter-spacing: -0.03em;
+                letter-spacing: -0.02em;
                 color: #ffffff;
-                margin-bottom: 8px;
+                margin-bottom: 4px;
             }
             .mai-hero-name {
                 background: linear-gradient(135deg, #9c051d 0%, #c4203a 50%, #e8788a 100%);
@@ -742,80 +814,58 @@
                 -webkit-text-fill-color: transparent;
             }
             .mai-hero-tagline {
-                font-size: 14px;
+                font-size: 12px;
                 color: #94a3b8;
-                max-width: 520px;
-                margin-bottom: 32px;
-                line-height: 1.5;
+                max-width: 440px;
+                margin-bottom: 14px;
+                line-height: 1.4;
             }
 
-            /* Suggestions Bento Grid */
-            .mai-suggestions-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-                width: 100%;
-                max-width: 760px;
-            }
-            @media (max-width: 680px) {
-                .mai-suggestions-grid { grid-template-columns: 1fr; }
-            }
-            .mai-suggestion-card {
-                position: relative;
+            /* Compact Suggestions Pills */
+            .mai-suggestions-pills {
                 display: flex;
-                align-items: center;
-                gap: 14px;
-                padding: 14px 16px;
-                border-radius: 16px;
-                background: rgba(255, 255, 255, 0.035);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-top: 1px solid rgba(255, 255, 255, 0.2);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                cursor: pointer;
-                text-align: left;
-                transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-                user-select: none;
-            }
-            .mai-suggestion-card:hover {
-                transform: translateY(-2px);
-                background: rgba(255, 255, 255, 0.06);
-                border-color: rgba(56, 189, 248, 0.3);
-                border-top-color: rgba(255, 255, 255, 0.4);
-                box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.4), 0 0 20px -2px rgba(56, 189, 248, 0.15);
-            }
-            .mai-card-icon-wrap {
-                width: 40px;
-                height: 40px;
-                border-radius: 12px;
-                display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
+                gap: 8px;
+                max-width: 620px;
+                margin: 0 auto;
+            }
+            .mai-suggestion-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 7px 13px;
+                border-radius: 99px;
+                font-size: 11.5px;
+                font-weight: 500;
+                color: #e2e8f0;
+                background: rgba(255, 255, 255, 0.035);
+                border: 1px solid rgba(255, 255, 255, 0.09);
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                cursor: pointer;
+                transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+                user-select: none;
+                text-align: left;
+            }
+            .mai-suggestion-pill:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(156, 5, 29, 0.35);
+                border-top-color: rgba(255, 255, 255, 0.4);
+                color: #ffffff;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            }
+            .mai-suggestion-pill:active {
+                transform: translateY(0);
+            }
+            .mai-pill-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 99px;
                 flex-shrink: 0;
-            }
-            .mai-card-body {
-                flex: 1;
-                min-width: 0;
-            }
-            .mai-card-title {
-                font-size: 13px;
-                font-weight: 700;
-                color: #f1f5f9;
-            }
-            .mai-card-desc {
-                font-size: 11px;
-                color: #94a3b8;
-                margin-top: 2px;
-                line-height: 1.3;
-            }
-            .mai-card-arrow {
-                font-size: 14px;
-                color: #64748b;
-                transition: transform 0.2s ease, color 0.2s ease;
-            }
-            .mai-suggestion-card:hover .mai-card-arrow {
-                color: #9c051d;
-                transform: translateX(3px);
             }
 
             /* Message Bubbles */
@@ -1127,9 +1177,9 @@
                 position: absolute;
                 left: 0;
                 right: 0;
-                bottom: 16px;
+                bottom: 12px;
                 z-index: 25;
-                padding: 0 24px;
+                padding: 0 16px;
                 pointer-events: none;
                 display: flex;
                 justify-content: center;
@@ -1389,11 +1439,45 @@
                 }
             };
 
+            window.maiSwitchTab = function (tab) {
+                // Update tab buttons
+                ['chat', 'history', 'schema'].forEach(function (t) {
+                    const btn = document.getElementById('maiTab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+                    if (btn) {
+                        const isActive = (t === tab);
+                        btn.classList.toggle('active', isActive);
+                        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    }
+                });
+
+                if (tab === 'chat') {
+                    if (drawer) drawer.classList.remove('open');
+                    if (schemaModal) schemaModal.classList.remove('open');
+                    isDrawerOpen = false;
+                    if (userInput) userInput.focus();
+                } else if (tab === 'history') {
+                    if (schemaModal) schemaModal.classList.remove('open');
+                    if (drawer) {
+                        drawer.classList.add('open');
+                        isDrawerOpen = true;
+                    }
+                    maiFetchConversations();
+                } else if (tab === 'schema') {
+                    if (drawer) drawer.classList.remove('open');
+                    isDrawerOpen = false;
+                    if (schemaModal) schemaModal.classList.add('open');
+                }
+            };
+
             window.maiToggleHistory = function () {
                 isDrawerOpen = !isDrawerOpen;
                 if (drawer) {
                     drawer.classList.toggle('open', isDrawerOpen);
                 }
+                const histBtn = document.getElementById('maiTabHistoryBtn');
+                const chatBtn = document.getElementById('maiTabChatBtn');
+                if (histBtn) histBtn.classList.toggle('active', isDrawerOpen);
+                if (chatBtn) chatBtn.classList.toggle('active', !isDrawerOpen);
                 if (historyToggleBtn) {
                     historyToggleBtn.classList.toggle('active', isDrawerOpen);
                 }
@@ -1401,9 +1485,11 @@
 
             window.maiToggleSchemaModal = function (e) {
                 if (e && e.target !== schemaModal) return;
-                if (schemaModal) {
-                    schemaModal.classList.toggle('open');
-                }
+                const isOpen = schemaModal ? schemaModal.classList.toggle('open') : false;
+                const schemaBtn = document.getElementById('maiTabSchemaBtn');
+                const chatBtn = document.getElementById('maiTabChatBtn');
+                if (schemaBtn) schemaBtn.classList.toggle('active', isOpen);
+                if (chatBtn) chatBtn.classList.toggle('active', !isOpen);
             };
 
             function maiFetchConversations() {
@@ -1481,7 +1567,7 @@
                 if (historyListEl) {
                     historyListEl.querySelectorAll('.mai-history-item').forEach(el => el.classList.remove('active'));
                 }
-                if (isDrawerOpen) maiToggleHistory();
+                maiSwitchTab('chat');
             };
 
             window.maiClearCurrentChat = function () {
@@ -1490,7 +1576,7 @@
 
             window.maiLoadPastChat = function (id) {
                 activeConvId = id;
-                if (isDrawerOpen) maiToggleHistory();
+                maiSwitchTab('chat');
 
                 if (historyListEl) {
                     historyListEl.querySelectorAll('.mai-history-item').forEach(el => {
