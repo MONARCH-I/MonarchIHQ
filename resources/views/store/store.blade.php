@@ -182,11 +182,15 @@
         {{-- Carousel with well-proportioned card height (h-[390px]) --}}
         <div class="flex space-x-5 overflow-x-auto prod-scroll pb-2 pt-2 snap-x relative z-10">
             @foreach($featuredProducts as $fp)
+            @php
+                $cardStyleClasses = match($fp->card_style) {
+                    'dark' => 'bg-[#111111] text-white',
+                    'promo' => 'bg-gradient-to-br from-[#181818] to-[#282828] text-white',
+                    default => 'bg-[var(--bg-primary)] text-[var(--text-primary)]',
+                };
+            @endphp
             <a href="{{ route('store.show', $fp->slug) }}"
-               class="feat-card snap-start shrink-0 w-[290px] sm:w-[330px] md:w-[350px] h-[390px] md:h-[410px] rounded-[1.75rem] relative overflow-hidden group flex flex-col
-                @if($fp->card_style === 'dark') bg-[#111111] text-white
-                @elseif($fp->card_style === 'promo') bg-gradient-to-br from-[#181818] to-[#282828] text-white
-                @else bg-[var(--bg-primary)] text-[var(--text-primary)] @endif">
+               class="feat-card snap-start shrink-0 w-[290px] sm:w-[330px] md:w-[350px] h-[390px] md:h-[410px] rounded-[1.75rem] relative overflow-hidden group flex flex-col {{ $cardStyleClasses }}">
 
                 {{-- Card top content --}}
                 <div class="relative z-10 p-6 flex flex-col h-full">

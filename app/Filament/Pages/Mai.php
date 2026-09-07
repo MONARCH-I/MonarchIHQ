@@ -18,6 +18,8 @@ class Mai extends Page
 
     protected static string $view = 'filament.pages.mai';
 
+    protected ?string $maxContentWidth = 'full';
+
     /**
      * Suppress default Filament header to let custom Gemini / Grok top bar shine.
      */

@@ -88,14 +88,18 @@
                      alt="{{ $product->name }}"
                      class="w-full h-full object-cover">
 
-                @php $badge = $product->badge; @endphp
+                @php
+                    $badge = $product->badge;
+                    $badgeBg = match($badge['color'] ?? '') {
+                        'orange' => 'bg-orange-500',
+                        'red' => 'bg-red-600',
+                        'green' => 'bg-green-600',
+                        'blue' => 'bg-[#9c051d]',
+                        default => 'bg-gray-600',
+                    };
+                @endphp
                 @if($badge)
-                <span class="absolute top-5 left-5 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md
-                    @if($badge['color'] === 'orange') bg-orange-500 text-white
-                    @elseif($badge['color'] === 'red') bg-red-600 text-white
-                    @elseif($badge['color'] === 'green') bg-green-600 text-white
-                    @elseif($badge['color'] === 'blue') bg-[#9c051d] text-white
-                    @else bg-gray-600 text-white @endif">
+                <span class="absolute top-5 left-5 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md text-white {{ $badgeBg }}">
                     {{ $badge['text'] }}
                 </span>
                 @endif
