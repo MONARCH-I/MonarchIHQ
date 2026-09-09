@@ -481,30 +481,6 @@
             background-color: var(--footer-bg) !important;
         }
 
-        /* Theme badge indicator */
-        .theme-badge {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            z-index: 9999;
-            opacity: 0;
-            animation: fadeBadge 4s ease forwards;
-            pointer-events: none;
-        }
-        .theme-badge.dark  { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); }
-        .theme-badge.light { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.5); border: 1px solid rgba(0,0,0,0.1); }
-        @keyframes fadeBadge {
-            0%   { opacity: 0; transform: translateY(10px); }
-            15%  { opacity: 1; transform: translateY(0); }
-            75%  { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(10px); }
-        }
 
         /* =============================================
            APPLE-STYLE SEARCH OVERLAY
@@ -832,9 +808,6 @@
 </head>
 
 <body>
-    <!-- Time-based theme badge -->
-    <div class="theme-badge" id="theme-badge"></div>
-
     <header class="glass fixed top-0 w-full z-50" id="header">
         <div class="max-w-[1024px] mx-auto h-12 flex items-center justify-between px-4 md:px-0">
             <a href="/">
@@ -1094,23 +1067,14 @@
             const hour = new Date().getHours();
             const isDay = hour >= 6 && hour < 19;
             const html  = document.getElementById('html-root');
-            const badge = document.getElementById('theme-badge');
             const navLogo = document.getElementById('nav-logo');
 
             if (isDay) {
                 html.classList.add('light-theme');
-                if (badge) {
-                    badge.textContent = 'Day Mode';
-                    badge.classList.add('light');
-                }
                 if (navLogo) {
                     navLogo.src = "{{asset('images/logo.png')}}";
                 }
             } else {
-                if (badge) {
-                    badge.textContent = 'Night Mode';
-                    badge.classList.add('dark');
-                }
                 if (navLogo) {
                     navLogo.src = "{{asset('images/logo-white.png')}}";
                 }
