@@ -50,7 +50,20 @@ class CategoryResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('image_path')
                         ->label('Category Image / Icon')
-                        ->image()
+                        ->acceptedFileTypes([
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/webp',
+                            'image/gif',
+                            'image/svg+xml',
+                            'image/x-png',
+                            'image/pjpeg',
+                        ])
+                        ->validationMessages([
+                            'mimetypes' => 'The :attribute must be a valid image file (PNG, JPG, JPEG, WEBP, GIF, SVG).',
+                        ])
+                        ->maxSize(10240)
                         ->disk('public')
                         ->directory('categories')
                         ->imageResizeMode('cover')

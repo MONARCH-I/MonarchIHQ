@@ -188,7 +188,20 @@ class ProductResource extends Resource
                 ->schema([
                     Forms\Components\FileUpload::make('image_path')
                         ->label('Main Product Image')
-                        ->image()
+                        ->acceptedFileTypes([
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/webp',
+                            'image/gif',
+                            'image/svg+xml',
+                            'image/x-png',
+                            'image/pjpeg',
+                        ])
+                        ->validationMessages([
+                            'mimetypes' => 'The :attribute must be a valid image file (PNG, JPG, JPEG, WEBP, GIF, SVG).',
+                        ])
+                        ->maxSize(10240)
                         ->disk('public')
                         ->directory('products')
                         ->imageResizeMode('cover')
@@ -199,7 +212,20 @@ class ProductResource extends Resource
 
                     Forms\Components\FileUpload::make('gallery')
                         ->label('Gallery Images')
-                        ->image()
+                        ->acceptedFileTypes([
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/webp',
+                            'image/gif',
+                            'image/svg+xml',
+                            'image/x-png',
+                            'image/pjpeg',
+                        ])
+                        ->validationMessages([
+                            'mimetypes' => 'The :attribute must be a valid image file (PNG, JPG, JPEG, WEBP, GIF, SVG).',
+                        ])
+                        ->maxSize(10240)
                         ->multiple()
                         ->reorderable()
                         ->disk('public')
