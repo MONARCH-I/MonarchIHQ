@@ -35,8 +35,11 @@ class BackupService
         $connection = config('database.default', 'sqlite');
 
         try {
-            // Case 1: Physical SQLite file exists on disk
-            if ($connection === 'sqlite' && File::exists($this->databasePath) && filesize($this->databasePath) > 0) {
+            $sqliteDb = config('database.connections.sqlite.database');
+            $isMemorySqlite = ($connection === 'sqlite' && $sqliteDb === ':memory:');
+
+            // Case 1: Physical SQLite file exists on disk and is actually used by the connection
+            if ($connection === 'sqlite' && ! $isMemorySqlite && File::exists($this->databasePath) && filesize($this->databasePath) > 0) {
                 $filename = "monarchi_backup_{$timestamp}.sqlite";
                 $target = "{$this->backupDir}/{$filename}";
                 File::copy($this->databasePath, $target);
@@ -173,7 +176,30 @@ class BackupService
         try {
             if ($ext === 'sql') {
                 $sqlContent = File::get($source);
-                DB::unprepared($sqlContent);
+
+                if ($connection === 'sqlite') {
+                    DB::statement('PRAGMA foreign_keys = OFF;');
+                } elseif ($connection === 'pgsql') {
+                    try {
+                        DB::statement("SET session_replication_role = 'replica';");
+                    } catch (\Throwable $e) {
+                        // ignore if not superuser
+                    }
+                }
+
+                try {
+                    DB::unprepared($sqlContent);
+                } finally {
+                    if ($connection === 'sqlite') {
+                        DB::statement('PRAGMA foreign_keys = ON;');
+                    } elseif ($connection === 'pgsql') {
+                        try {
+                            DB::statement("SET session_replication_role = 'origin';");
+                        } catch (\Throwable $e) {
+                            // ignore
+                        }
+                    }
+                }
 
                 Log::info("Database restored successfully from SQL snapshot {$filename}");
 
@@ -263,6 +289,12 @@ class BackupService
         $sql .= "-- Driver: {$driver}\n";
         $sql .= '-- Created at: '.now()->toIso8601String()."\n\n";
 
+        if ($driver === 'sqlite') {
+            $sql .= "PRAGMA foreign_keys = OFF;\n\n";
+        } elseif ($driver === 'mysql') {
+            $sql .= "SET FOREIGN_KEY_CHECKS = 0;\n\n";
+        }
+
         $tables = Schema::getTableListing();
 
         foreach ($tables as $table) {
@@ -290,18 +322,25 @@ class BackupService
             $sql .= "-- --------------------------------------------------------\n";
             $sql .= "-- Table Data: {$table} (".$rows->count()." rows)\n";
             $sql .= "-- --------------------------------------------------------\n";
+            $sql .= "DELETE FROM \"{$table}\";\n";
+
+            $insertVerb = ($driver === 'sqlite') ? 'INSERT OR REPLACE INTO' : 'INSERT INTO';
 
             foreach ($rows as $row) {
                 $rowArray = (array) $row;
                 $columns = array_keys($rowArray);
                 $escapedCols = implode(', ', array_map(fn ($c) => "\"{$c}\"", $columns));
 
-                $escapedVals = array_map(function ($value) {
+                $escapedVals = array_map(function ($value) use ($driver) {
                     if ($value === null) {
                         return 'NULL';
                     }
                     if (is_bool($value)) {
-                        return $value ? 'TRUE' : 'FALSE';
+                        if ($driver === 'pgsql') {
+                            return $value ? 'TRUE' : 'FALSE';
+                        }
+
+                        return $value ? '1' : '0';
                     }
                     if (is_int($value) || is_float($value)) {
                         return (string) $value;
@@ -311,10 +350,16 @@ class BackupService
                     return "'{$str}'";
                 }, array_values($rowArray));
 
-                $sql .= "INSERT INTO \"{$table}\" ({$escapedCols}) VALUES (".implode(', ', $escapedVals).");\n";
+                $sql .= "{$insertVerb} \"{$table}\" ({$escapedCols}) VALUES (".implode(', ', $escapedVals).");\n";
             }
 
             $sql .= "\n";
+        }
+
+        if ($driver === 'sqlite') {
+            $sql .= "PRAGMA foreign_keys = ON;\n";
+        } elseif ($driver === 'mysql') {
+            $sql .= "SET FOREIGN_KEY_CHECKS = 1;\n";
         }
 
         File::put($targetPath, $sql);

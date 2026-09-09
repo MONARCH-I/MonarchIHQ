@@ -74,7 +74,7 @@ test('backup service creates, lists, restores, and deletes database snapshots', 
 
     // Restore backup
     $restoreResult = $service->restoreBackup($createResult['filename']);
-    expect($restoreResult['success'])->toBeTrue();
+    expect($restoreResult['success'])->toBeTrue($restoreResult['message'] ?? 'Failed restoring backup');
 
     // Delete backup
     $deleteResult = $service->deleteBackup($createResult['filename']);
