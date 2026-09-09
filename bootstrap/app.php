@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use League\Flysystem\UnableToRetrieveMetadata;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -36,10 +38,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->render(function (\League\Flysystem\UnableToRetrieveMetadata $e, Request $request) {
+        $exceptions->render(function (UnableToRetrieveMetadata $e, Request $request) {
             $location = $e->location();
             if (str_contains($location, 'livewire-tmp') || str_contains($e->getMessage(), 'livewire-tmp')) {
-                throw \Illuminate\Validation\ValidationException::withMessages([
+                throw ValidationException::withMessages([
                     'data.image_path' => 'The uploaded temporary file has expired or was already processed. Please re-select or re-upload your file.',
                     'image_path' => 'The uploaded temporary file has expired or was already processed. Please re-select or re-upload your file.',
                 ]);

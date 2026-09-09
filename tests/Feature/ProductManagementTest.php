@@ -9,7 +9,9 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\UnableToRetrieveMetadata;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -237,8 +239,8 @@ class ProductManagementTest extends TestCase
 
     public function test_missing_temporary_file_throws_validation_exception_instead_of_500(): void
     {
-        \Illuminate\Support\Facades\Route::get('/test-temporary-upload-exception', function () {
-            throw \League\Flysystem\UnableToRetrieveMetadata::create('livewire-tmp/missing-file.png', 'file_size');
+        Route::get('/test-temporary-upload-exception', function () {
+            throw UnableToRetrieveMetadata::create('livewire-tmp/missing-file.png', 'file_size');
         });
 
         $response = $this->getJson('/test-temporary-upload-exception');

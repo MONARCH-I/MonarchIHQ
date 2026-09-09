@@ -261,7 +261,7 @@ class BackupService
     {
         $sql = "-- MonarchI HQ Database Backup Snapshot\n";
         $sql .= "-- Driver: {$driver}\n";
-        $sql .= "-- Created at: " . now()->toIso8601String() . "\n\n";
+        $sql .= '-- Created at: '.now()->toIso8601String()."\n\n";
 
         $tables = Schema::getTableListing();
 
@@ -288,7 +288,7 @@ class BackupService
             }
 
             $sql .= "-- --------------------------------------------------------\n";
-            $sql .= "-- Table Data: {$table} (" . $rows->count() . " rows)\n";
+            $sql .= "-- Table Data: {$table} (".$rows->count()." rows)\n";
             $sql .= "-- --------------------------------------------------------\n";
 
             foreach ($rows as $row) {
@@ -307,10 +307,11 @@ class BackupService
                         return (string) $value;
                     }
                     $str = str_replace("'", "''", (string) $value);
+
                     return "'{$str}'";
                 }, array_values($rowArray));
 
-                $sql .= "INSERT INTO \"{$table}\" ({$escapedCols}) VALUES (" . implode(', ', $escapedVals) . ");\n";
+                $sql .= "INSERT INTO \"{$table}\" ({$escapedCols}) VALUES (".implode(', ', $escapedVals).");\n";
             }
 
             $sql .= "\n";
