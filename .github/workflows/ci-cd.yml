@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Setup PHP Environment
       - name: Setup PHP
@@ -28,7 +28,7 @@ jobs:
 
       # Cache Composer dependencies
       - name: Cache Composer Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -41,9 +41,9 @@ jobs:
 
       # Setup Node.js & Vite
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install Frontend Dependencies
@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Deploy using Fly.io
       - name: Setup Flyctl
