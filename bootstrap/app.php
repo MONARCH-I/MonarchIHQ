@@ -36,5 +36,13 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\League\Flysystem\UnableToRetrieveMetadata $e, Request $request) {
+            $location = $e->location();
+            if (str_contains($location, 'livewire-tmp') || str_contains($e->getMessage(), 'livewire-tmp')) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'data.image_path' => 'The uploaded temporary file has expired or was already processed. Please re-select or re-upload your file.',
+                    'image_path' => 'The uploaded temporary file has expired or was already processed. Please re-select or re-upload your file.',
+                ]);
+            }
+        });
     })->create();

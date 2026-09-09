@@ -10,9 +10,12 @@ use App\Models\User;
 use App\Services\BackupService;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Livewire\WithFileUploads;
 
 class Dashboard extends Page
 {
+    use WithFileUploads;
+
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
     protected static ?string $navigationLabel = 'Dashboard';
@@ -25,6 +28,8 @@ class Dashboard extends Page
 
     // Backup management state
     public ?string $selectedBackupToRestore = null;
+
+    public $backupFile = null;
 
     /**
      * Remove the big default header title.
@@ -240,6 +245,38 @@ class Dashboard extends Page
         } else {
             Notification::make()
                 ->title('Delete Failed')
+                ->body($result['message'])
+                ->danger()
+                ->send();
+        }
+    }
+
+    /**
+     * Action: Upload Backup Snapshot
+     */
+    public function handleUploadBackup(): void
+    {
+        $this->validate([
+            'backupFile' => 'required|file|max:51200', // Max 50MB
+        ], [
+            'backupFile.required' => 'Please select a backup file (.sqlite or .sql) to upload.',
+            'backupFile.max' => 'The backup file size must not exceed 50MB.',
+        ]);
+
+        $backupService = app(BackupService::class);
+        $result = $backupService->uploadBackup($this->backupFile);
+
+        $this->reset('backupFile');
+
+        if ($result['success']) {
+            Notification::make()
+                ->title('Backup Snapshot Uploaded')
+                ->body($result['message'])
+                ->success()
+                ->send();
+        } else {
+            Notification::make()
+                ->title('Upload Failed')
                 ->body($result['message'])
                 ->danger()
                 ->send();

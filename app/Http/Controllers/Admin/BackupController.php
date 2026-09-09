@@ -30,4 +30,27 @@ class BackupController extends Controller
 
         return response()->download($path, $filename);
     }
+
+    public function upload(Request $request)
+    {
+        if (! auth()->check() || ! auth()->user()->is_super_admin) {
+            abort(403, 'Unauthorized access to database backups.');
+        }
+
+        $request->validate([
+            'backup_file' => 'required|file|max:51200',
+        ]);
+
+        $result = $this->backupService->uploadBackup($request->file('backup_file'));
+
+        if ($request->expectsJson()) {
+            return response()->json($result, $result['success'] ? 200 : 422);
+        }
+
+        if ($result['success']) {
+            return back()->with('success', $result['message']);
+        }
+
+        return back()->with('error', $result['message']);
+    }
 }

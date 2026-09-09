@@ -102,10 +102,13 @@ Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')
 //  AUTHENTICATED USER ROUTES
 // ────────────────────────────────────────────────────────────────────────────
 
-// Admin Backup Download (super_admin only)
+// Admin Backup Download & Upload (super_admin only)
 Route::get('/monarch/backups/download/{filename}', [BackupController::class, 'download'])
     ->middleware(['auth', 'role:super_admin'])
     ->name('admin.backups.download');
+Route::post('/monarch/backups/upload', [BackupController::class, 'upload'])
+    ->middleware(['auth', 'role:super_admin'])
+    ->name('admin.backups.upload');
 
 // Fallback POST handler for Filament login to prevent 405 Method Not Allowed if submitted natively
 Route::post('/monarch/login', function (Request $request) {

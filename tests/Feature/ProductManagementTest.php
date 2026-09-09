@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\CategoryResource\Pages\CreateCategory;
 use App\Filament\Resources\ProductResource\Pages\CreateProduct;
 use App\Models\Category;
 use App\Models\Product;
@@ -156,5 +157,92 @@ class ProductManagementTest extends TestCase
         $showResponse->assertStatus(200);
         $showResponse->assertSee('Instant Digital Download');
         $showResponse->assertSee('Add to Bag (Instant Access)');
+    }
+
+    public function test_product_model_defaults_badge_color_and_card_style_when_null(): void
+    {
+        $product = Product::create([
+            'category_id' => $this->category->id,
+            'name' => 'Auto Defaulted Product',
+            'slug' => 'auto-defaulted-product',
+            'price' => 99.00,
+            'badge_color' => null,
+            'card_style' => null,
+        ]);
+
+        $this->assertEquals('orange', $product->badge_color);
+        $this->assertEquals('light', $product->card_style);
+        $this->assertDatabaseHas('products', [
+            'slug' => 'auto-defaulted-product',
+            'badge_color' => 'orange',
+            'card_style' => 'light',
+        ]);
+    }
+
+    public function test_super_admin_can_create_product_with_images_in_filament(): void
+    {
+        Storage::fake('public');
+        $this->actingAs($this->superAdmin);
+
+        $image = UploadedFile::fake()->image('product-main.png', 400, 400);
+
+        Livewire::test(CreateProduct::class)
+            ->set('data.name', 'POS Hardware Terminal')
+            ->set('data.slug', 'pos-hardware-terminal')
+            ->set('data.category_id', $this->category->id)
+            ->set('data.price', 1899.00)
+            ->set('data.stock_quantity', 15)
+            ->set('data.card_style', 'dark')
+            ->set('data.badge_color', 'orange')
+            ->set('data.image_path', $image)
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $this->assertDatabaseHas('products', [
+            'slug' => 'pos-hardware-terminal',
+            'badge_color' => 'orange',
+            'card_style' => 'dark',
+        ]);
+
+        $product = Product::where('slug', 'pos-hardware-terminal')->first();
+        $this->assertNotNull($product->image_path);
+        Storage::disk('public')->assertExists($product->image_path);
+    }
+
+    public function test_super_admin_can_create_category_with_image_in_filament(): void
+    {
+        Storage::fake('public');
+        $this->actingAs($this->superAdmin);
+
+        $image = UploadedFile::fake()->image('category-icon.png', 300, 300);
+
+        Livewire::test(CreateCategory::class)
+            ->set('data.name', 'Edge IoT Solutions')
+            ->set('data.slug', 'edge-iot-solutions')
+            ->set('data.sort_order', 5)
+            ->set('data.is_active', true)
+            ->set('data.image_path', $image)
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $this->assertDatabaseHas('categories', [
+            'slug' => 'edge-iot-solutions',
+            'name' => 'Edge IoT Solutions',
+        ]);
+
+        $category = Category::where('slug', 'edge-iot-solutions')->first();
+        $this->assertNotNull($category->image_path);
+        Storage::disk('public')->assertExists($category->image_path);
+    }
+
+    public function test_missing_temporary_file_throws_validation_exception_instead_of_500(): void
+    {
+        \Illuminate\Support\Facades\Route::get('/test-temporary-upload-exception', function () {
+            throw \League\Flysystem\UnableToRetrieveMetadata::create('livewire-tmp/missing-file.png', 'file_size');
+        });
+
+        $response = $this->getJson('/test-temporary-upload-exception');
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors(['data.image_path']);
     }
 }

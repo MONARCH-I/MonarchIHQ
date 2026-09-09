@@ -49,6 +49,12 @@ class Product extends Model
                 $product->stock_quantity = null;
                 $product->min_stock_threshold = null;
             }
+            if (empty($product->badge_color)) {
+                $product->badge_color = 'orange';
+            }
+            if (empty($product->card_style)) {
+                $product->card_style = 'light';
+            }
         });
     }
 

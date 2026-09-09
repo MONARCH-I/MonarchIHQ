@@ -173,7 +173,8 @@ class ProductResource extends Resource
                             'blue' => 'Blue (Popular / Featured)',
                             'gray' => 'Gray (Muted)',
                         ])
-                        ->default('orange'),
+                        ->default('orange')
+                        ->required(),
 
                     Forms\Components\Toggle::make('is_featured')
                         ->label('Show in "New Products" Carousel')

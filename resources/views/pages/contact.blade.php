@@ -53,8 +53,8 @@
                         <div>
                             <h4 class="text-lg font-medium mb-1" style="color: var(--text-primary);">Email Us</h4>
                             <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-                                General: hello@monarchi.com<br>
-                                Support: support@monarchi.com
+                                General: support@monarchihq.com<br>
+                                Support: support@monarchihq.com
                             </p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div>
                             <h4 class="text-lg font-medium mb-1" style="color: var(--text-primary);">Call Us</h4>
                             <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
-                                +233 (0) 55 123 4567<br>
+                                +233 (0) 50 550 4793<br>
                                 Mon-Fri, 9am - 6pm (GMT)
                             </p>
                         </div>
